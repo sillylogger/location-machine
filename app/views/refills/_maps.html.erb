@@ -1,0 +1,45 @@
+
+<!--
+Add the code below to the bottom of your page, just before the closing </body> tag.
+Edit myLatlng and the other variables.
+
+Find syntax for Features that can be styled here:
+
+https://developers.google.com/maps/documentation/javascript/reference#MapTypeStyleFeatureType
+
+Or use a service such as:
+
+http://software.stadtwerk.org/google_maps_colorizr/#
+http://gmaps-samples-v3.googlecode.com/svn/trunk/styledmaps/wizard/index.html
+https://developers.google.com/maps/documentation/javascript/tutorial
+-->
+
+<script>
+  /* markers */
+
+  var contentString =
+      '<div id="content">'+
+        '<div id="siteNotice">'+ '</div>'+
+        '<h1 id="firstHeading" class="firstHeading">thoughtbot</h1>'+
+          '<div id="bodyContent"'+
+          '<p>Sveavägen 98</p>'+
+        '</div>'+
+      '</div>';
+
+  var infowindow = new google.maps.InfoWindow({
+        content: contentString,
+        maxWidth: 300
+  });
+
+  // var marker = new google.maps.Marker({
+  //     position: myLatlng,
+  //     map: map,
+  //     title: 'thoughtbot (Sweden)'
+  //   });
+
+  // google.maps.event.addListener(marker, 'click', function () {
+  //   infowindow.open(map,marker);
+  // });
+</script>
+
+

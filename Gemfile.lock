@@ -155,6 +155,7 @@ GEM
     raindrops (0.15.0)
     rake (10.4.2)
     ref (2.0.0)
+    refills (0.1.0)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
     rspec-core (3.4.1)
@@ -238,6 +239,7 @@ DEPENDENCIES
   omniauth-facebook
   quiet_assets
   rails
+  refills
   rspec-rails
   sass-rails
   slim

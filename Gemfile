@@ -12,9 +12,11 @@ gem 'sass-rails'
 gem 'bourbon'
 gem 'neat'
 gem 'bitters'
+gem 'refills'
 gem 'font-awesome-sass'
 
 gem 'slim'
+gem 'slim-rails'
 
 gem 'devise'
 gem 'omniauth'
@@ -23,6 +25,8 @@ gem 'omniauth-facebook'
 gem 'awesome_print'
 
 group :development do
+  gem 'refills'
+
   gem 'capistrano'
 
   gem 'quiet_assets'

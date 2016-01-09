@@ -16,9 +16,11 @@
 @import "bourbon";
 @import "base/base";
 @import "neat";
+@import "refills/maps";
 
 body {
   background: $base-background-color;
+  -webkit-font-smoothing: antialiased;
 }
 
 #navbar,
@@ -56,12 +58,19 @@ footer#notifications {
 }
 
 
+#main {
+}
+
 .b-call-to-action {
-  font-size: 1.5em;
   text-align: center;
 
+  &__post {
+    margin: 1em 0;
+    background-color: $dark-gray;
+  }
+
   // https://css-tricks.com/circular-3d-buttons/
-  &__link {
+  &__enter {
     display: inline-block;
 
     background-color: #f7f7f7;

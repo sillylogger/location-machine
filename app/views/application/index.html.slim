@@ -1,6 +1,13 @@
-p They say dumb it down, or stay underground...
 
-- unless user_signed_in?
+- if user_signed_in?
+  #map_canvas
+
   .b-call-to-action
-    a.b-call-to-action__link(href=user_omniauth_authorize_path(:facebook)) Enter
+    button.b-call-to-action__post(href=new_event_path) Post your event!
 
+- else
+
+  .b-call-to-action
+    a.b-call-to-action__enter(href=user_omniauth_authorize_path(:facebook)) Enter
+
+  p They say dumb it down, or stay underground...
