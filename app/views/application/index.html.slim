@@ -1,5 +1,6 @@
 p They say dumb it down, or stay underground...
 
-.b-call-to-action
-  a.b-call-to-action__link(href=new_user_session_path) Enter
+- unless user_signed_in?
+  .b-call-to-action
+    a.b-call-to-action__link(href=user_omniauth_authorize_path(:facebook)) Enter
 

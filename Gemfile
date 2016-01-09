@@ -20,6 +20,8 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
 
+gem 'awesome_print'
+
 group :development do
   gem 'capistrano'
 
