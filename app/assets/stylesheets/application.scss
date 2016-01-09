@@ -1,0 +1,86 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_self
+ */
+
+@import "bourbon";
+@import "base/base";
+@import "neat";
+
+body {
+  background: $base-background-color;
+}
+
+#main {
+  @include outer-container;
+  max-width: 22.5em;
+}
+
+header {
+  font-size: 2em;
+  text-align: center;
+}
+
+p {
+}
+
+.b-call-to-action {
+  font-size: 1.5em;
+  text-align: center;
+
+  // https://css-tricks.com/circular-3d-buttons/
+  &__link {
+    display: inline-block;
+
+    background-color: #f7f7f7;
+    @include background-image(
+      linear-gradient(to bottom, #f7f7f7, #e7e7e7)
+    );
+
+    color: #a7a7a7;
+    margin: 36px;
+    width: 144px;
+    height: 144px;
+    position: relative;
+    text-align: center;
+    line-height: 144px;
+    border-radius: 50%;
+    box-shadow: 0px 3px 8px #aaa, inset 0px 2px 3px #fff;
+    text-decoration: none;
+
+    &:hover {
+      color: #555;
+    }
+
+    &:active,
+    &:visited {
+      color: #555;
+      background: #f5f5f5;
+    }
+
+    &:before {
+      content: "";
+      display: block;
+      background: #fff;
+      border-top: 2px solid #ddd;
+      position: absolute;
+      top: -18px;
+      left: -18px;
+      bottom: -18px;
+      right: -18px;
+      z-index: -1;
+      border-radius: 50%;
+      box-shadow: inset 0px 8px 48px #ddd;
+    }
+  }
+}
