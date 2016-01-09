@@ -21,18 +21,40 @@ body {
   background: $base-background-color;
 }
 
+#navbar,
+#notifications,
 #main {
   @include outer-container;
   max-width: 22.5em;
 }
 
-header {
-  font-size: 2em;
-  text-align: center;
+
+header#navbar {
+  line-height: 32px;
+  vertical-align: baseline;
+
+  h2 {
+    display: inline-block;
+  }
+
+  p {
+    line-height: 32px;
+    float: right;
+
+    img {
+      width: 32px;
+      border-radius: 3px;
+      vertical-align: middle;
+    }
+  }
+
 }
 
-p {
+footer#notifications {
+  position: fixed;
+  bottom: 0;
 }
+
 
 .b-call-to-action {
   font-size: 1.5em;

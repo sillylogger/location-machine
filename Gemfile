@@ -16,6 +16,10 @@ gem 'font-awesome-sass'
 
 gem 'slim'
 
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
+
 group :development do
   gem 'capistrano'
 

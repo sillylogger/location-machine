@@ -9,10 +9,23 @@ html( lang=I18n.locale )
 
     = stylesheet_link_tag 'application', media: 'all'
     = javascript_include_tag 'application'
-
-    - if Rails.env.production?
-      = render 'shared/tracking'
+    = render 'shared/tracking'
 
   body
-    #main= yield
 
+    header#navbar
+      h2 ruang bawah
+
+      - if user_signed_in?
+        p
+          - if current_user.avatar_url?
+            img(src=current_user.avatar_url)
+          = " #{current_user.name} "
+          = link_to "exit", destroy_user_session_path
+
+    #main
+      = yield
+
+    footer#notifications
+      p.notice= notice
+      p.alert= alert
