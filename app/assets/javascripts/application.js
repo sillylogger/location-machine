@@ -15,6 +15,11 @@
 
 
 function initializeMap(canvas) {
+  if(!window.google) {
+    console.log("initializeMap - google not loaded");
+    return;
+  }
+
   var jakarta = new google.maps.LatLng(-6.1745, 106.8227);
 
   var mapOptions = {
@@ -43,6 +48,11 @@ function initializeMap(canvas) {
 function hydrateLatLng(latId, lngId) {
   var lattitudeInput = document.getElementById(latId);
   var longitudeInput = document.getElementById(lngId);
+
+  if(!window.map) {
+    console.log("hydrateLatLng - map not yet initialized");
+    return;
+  }
 
   window.map.addListener('click', function(e) {
     if(window.lastMarker) {
@@ -78,7 +88,7 @@ function placeEvents(events) {
 }
 
 function setCurrentPosition(position) {
-  console.log("Geolocation is available.");
+  console.log("setCurrentPosition - navigator.geolocation.getCurrentPosition success");
   if(!position.coords) { return; }
 
   var currentLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
@@ -111,14 +121,15 @@ function setCurrentPosition(position) {
 }
 
 function failCurrentPosition() {
-  console.log("Geolocation refused?");
+  console.log("failCurrentPosition - navigator.geolocation.getCurrentPosition fail");
 }
 
 ready(function() {
-  console.log("Ready");
-
   var mapCanvas = document.getElementById('map_canvas');
-  if(!mapCanvas) { return; }
+  if(!mapCanvas) {
+    console.log("ready - mapCanvas isn't on this page");
+    return;
+  }
 
   window.map = initializeMap(mapCanvas);
 
@@ -126,7 +137,7 @@ ready(function() {
     if(navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(setCurrentPosition, failCurrentPosition);
     } else {
-      console.log("Geolocation is not available.");
+      console.log("ready - navigator.geolocation not available");
     }
   }, 250);
 
