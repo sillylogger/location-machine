@@ -61,6 +61,22 @@ footer#notifications {
 #main {
 }
 
+.b-event-form {
+ 
+  #map_canvas {
+    margin-bottom: 0.75em;
+  }
+
+  &__actions {
+    text-align: center;
+
+    input {
+      background-color: $dark-gray;
+    }
+  }
+
+}
+
 .b-call-to-action {
   text-align: center;
 

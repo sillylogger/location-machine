@@ -2,8 +2,14 @@
 - if user_signed_in?
   #map_canvas
 
+  javascript:
+    setTimeout(function(){
+      var events = #{Event.all.to_json.html_safe};
+      placeEvents(events);
+    }, 500);
+
   .b-call-to-action
-    button.b-call-to-action__post(href=new_event_path) Post your event!
+    a.b-call-to-action__post.b-btn(href=new_event_path) Post your event!
 
 - else
 

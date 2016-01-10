@@ -12,7 +12,6 @@ gem 'sass-rails'
 gem 'bourbon'
 gem 'neat'
 gem 'bitters'
-gem 'refills'
 gem 'font-awesome-sass'
 
 gem 'slim'
