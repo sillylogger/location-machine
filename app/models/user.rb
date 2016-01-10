@@ -1,3 +1,5 @@
+# stolen from: http://sourcey.com/rails-4-omniauth-using-devise-with-twitter-facebook-and-linkedin/
+
 class User < ActiveRecord::Base
 
   # Include default devise modules. Others available are:
@@ -12,7 +14,7 @@ class User < ActiveRecord::Base
   TEMP_EMAIL_PREFIX = 'change@me'
   TEMP_EMAIL_REGEX = /\Achange@me/
 
-  validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
+  validates_presence_of :email
 
   def self.find_for_oauth(auth, signed_in_resource = nil)
 
@@ -58,8 +60,13 @@ class User < ActiveRecord::Base
     user
   end
 
-  def email_verified?
-    self.email && self.email !~ TEMP_EMAIL_REGEX
+  def prompt_additional_information?
+    return false if self.unconfirmed_email? ||
+                    self.phone?
+
+    return false unless self.email.match(TEMP_EMAIL_REGEX)
+
+    true
   end
 
 end

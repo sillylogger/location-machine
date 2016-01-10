@@ -15,10 +15,10 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def after_sign_in_path_for resource
-    if resource.email_verified?
-      super resource
-    else
+    if resource.prompt_additional_information?
       finish_signup_path(resource)
+    else
+      super resource
     end
   end
 
