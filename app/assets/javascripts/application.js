@@ -82,6 +82,7 @@ function setCurrentPosition(position) {
   if(!position.coords) { return; }
 
   var currentLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+  window.currentLocation = currentLocation;
 
   var marker = new google.maps.Marker({
     position: currentLocation,

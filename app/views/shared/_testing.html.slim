@@ -1,0 +1,14 @@
+- if Rails.env.test?
+
+  javascript:
+    navigator.geolocation = {};
+
+    navigator.geolocation.getCurrentPosition = function(success) {
+      success({
+        coords: {
+          latitude:   -6.2189898,
+          longitude: 106.7861758
+        }
+      });
+    };
+

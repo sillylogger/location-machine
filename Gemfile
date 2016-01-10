@@ -43,6 +43,7 @@ group :development,
       :test do
 
   gem 'byebug',               github: 'deivid-rodriguez/byebug'
+
   gem 'nokogiri'
 
   gem 'rspec-rails'
@@ -52,8 +53,6 @@ group :development,
   gem 'capybara',             github: 'jnicklas/capybara'
   gem 'selenium-webdriver'
   gem 'capybara-webkit',      github: 'thoughtbot/capybara-webkit'
-
-  gem 'site_prism',           github: 'natritmeyer/site_prism'
 
 end
 
