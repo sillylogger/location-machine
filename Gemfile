@@ -27,6 +27,9 @@ group :development do
   gem 'refills'
 
   gem 'capistrano'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-passenger'
 
   gem 'quiet_assets'
 
