@@ -27,6 +27,8 @@ group :development do
   gem 'refills'
 
   gem 'capistrano'
+  gem 'capistrano-nvm'
+  gem 'capistrano-rvm'
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano-passenger'
@@ -40,14 +42,19 @@ end
 group :development,
       :test do
 
-  gem 'web-console', '~> 2.0'
-  gem 'byebug',             git: 'http://github.com/deivid-rodriguez/byebug'
+  gem 'byebug',               github: 'deivid-rodriguez/byebug'
   gem 'nokogiri'
 
-end
-
-group :test do
   gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'database_cleaner',     github: 'bmabey/database_cleaner'
+
+  gem 'capybara',             github: 'jnicklas/capybara'
+  gem 'selenium-webdriver'
+  gem 'capybara-webkit',      github: 'thoughtbot/capybara-webkit'
+
+  gem 'site_prism',           github: 'natritmeyer/site_prism'
+
 end
 
 
