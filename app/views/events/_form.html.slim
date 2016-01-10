@@ -3,12 +3,7 @@
   = f.hidden_field :latitude
   = f.hidden_field :longitude
 
-  - if @event.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@event.errors.count, "error")} prohibited this event from being saved:"
-      ul
-        - @event.errors.full_messages.each do |message|
-          li = message
+  = render 'shared/errors', errors: @event.errors
 
   .b-event-form__field
     #map_canvas
@@ -18,11 +13,6 @@
 
   .b-event-form__field
     = f.text_area :description, placeholder: "Description"
-
-  /.b-event-form__field
-  /  = f.date_field :opens
-  /.b-event-form__field
-  /  = f.date_field :closes
 
   .b-event-form__actions= f.submit
 

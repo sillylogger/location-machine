@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe ApplicationController do
 
   describe "#index" do

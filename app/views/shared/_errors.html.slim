@@ -1,0 +1,8 @@
+- if errors.any?
+  .b-errors
+    .b-errors__title = "#{pluralize(errors.count, "error")} caused a problem:"
+
+    ul.b-errors__list
+      - errors.full_messages.each do |message|
+        li.b-errors__item = message
+

@@ -1,0 +1,23 @@
+.b-finish-signup
+
+  p.b-finish-signup__description Could you check this info?
+
+  = form_for(current_user, :as => 'user', :url => finish_signup_path(current_user), :html => { role: 'form'}) do |f|
+
+    = render 'shared/errors', errors: current_user.errors
+
+    .b-finish-signup__field
+      = f.text_field :name
+
+    .b-finish-signup__field
+      = f.text_field :email, value: '', placeholder: 'you@example.com'
+      .b-finish-signup__help Please confirm your email address. No spam.
+
+    .b-finish-signup__field
+      = f.text_field :phone, placeholder: '+62-812-0003-1337'
+
+    .b-finish-signup__field
+      = f.text_field :password, placeholder: 'new password'
+
+    .b-finish-signup__actions= f.submit 'Continue'
+

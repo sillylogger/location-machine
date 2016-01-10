@@ -31,15 +31,15 @@ https://developers.google.com/maps/documentation/javascript/tutorial
         maxWidth: 300
   });
 
-  // var marker = new google.maps.Marker({
-  //     position: myLatlng,
-  //     map: map,
-  //     title: 'thoughtbot (Sweden)'
-  //   });
+  var marker = new google.maps.Marker({
+      position: myLatlng,
+      map: map,
+      title: 'thoughtbot (Sweden)'
+    });
 
-  // google.maps.event.addListener(marker, 'click', function () {
-  //   infowindow.open(map,marker);
-  // });
+  google.maps.event.addListener(marker, 'click', function () {
+    infowindow.open(map,marker);
+  });
 </script>
 
 

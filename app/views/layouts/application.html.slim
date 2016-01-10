@@ -17,7 +17,7 @@ html( lang=I18n.locale )
   body
 
     header#navbar
-      h2 ruang bawah
+      h2= link_to "ruang bawah", root_path
 
       - if user_signed_in?
         p

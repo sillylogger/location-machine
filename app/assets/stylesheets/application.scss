@@ -24,10 +24,9 @@ body {
 }
 
 #navbar,
-#notifications,
 #main {
   @include outer-container;
-  max-width: 22.5em;
+  max-width: 25em;
 }
 
 
@@ -55,6 +54,14 @@ header#navbar {
 footer#notifications {
   position: fixed;
   bottom: 0;
+  left: 0;
+  width: 100%;
+
+  .notice,
+  .alert {
+    max-width: 25em;
+    margin: 0 auto;
+  }
 }
 
 
@@ -74,6 +81,36 @@ footer#notifications {
       background-color: $dark-gray;
     }
   }
+
+}
+
+.b-finish-signup {
+
+  &__description {
+  }
+
+  &__field {
+
+  }
+
+  &__help {
+    margin-top: -0.75em;
+    color: $medium-gray;
+    font-size: 0.9em;
+    margin-bottom: 0.75em;
+  }
+
+  &__actions {
+    text-align: center;
+
+    input {
+      background-color: $dark-gray;
+    }
+  }
+
+}
+
+.b-errors {
 
 }
 
