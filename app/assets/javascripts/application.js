@@ -10,7 +10,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require not-jquery
+//= require shared/not-jquery
 //= require_self
 
 
@@ -72,9 +72,7 @@ function hydrateLatLng(latId, lngId) {
 }
 
 function placeEvents(events) {
-  for(index in events) {
-    var e = events[index];
-
+  events.forEach(function(e) {
     var eventLocation = new google.maps.LatLng(e.latitude, e.longitude);
 
     var marker = new google.maps.Marker({
@@ -83,8 +81,15 @@ function placeEvents(events) {
       title: e.name
     });
 
-    // window.map.panTo(marker.getPosition());
-  }
+    google.maps.event.addListener(marker, 'click', function () {
+      var infowindow = new google.maps.InfoWindow({
+        content: e.name,
+        maxWidth: 300
+      });
+
+      infowindow.open(window.map, marker);
+    });
+  });
 }
 
 function setCurrentPosition(position) {
