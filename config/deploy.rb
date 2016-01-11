@@ -2,7 +2,7 @@
 lock '3.4.0'
 
 set :application, 'ruangbawah'
-set :repo_url,  'sillylogger@superawesometommy.com:git/ruangbawah.git'
+set :repo_url,  'sillylogger@ruangbawah.com:git/ruangbawah.git'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
