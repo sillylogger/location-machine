@@ -60,9 +60,20 @@ Rails.application.configure do
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = 'http://assets.example.com'
 
-  # Ignore bad email addresses and do not raise email delivery errors.
-  # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  # config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.smtp_settings = {
+    :address                => ENV['SMTP_ADDRESS'],
+    :port                   => ENV['SMTP_PORT'],              # ports 587 and 2525 are also supported with STARTTLS
+    :enable_starttls_auto   => true,                          # detects and uses STARTTLS
+    :user_name              => ENV['SMTP_USER_NAME'],
+    :password               => ENV['SMTP_PASSWORD'],          # SMTP password is any valid API key
+    :authentication         => ENV['SMTP_AUTHENTICATION'],    # Mandrill supports 'plain' or 'login'
+    :domain                 => ENV['SMTP_DOMAIN'],            # your domain to identify your server when connecting
+  }
+  config.action_mailer.default_url_options = {
+    :host                   => 'ruangbawah.com'
+  }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
