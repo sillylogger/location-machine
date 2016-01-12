@@ -12,6 +12,11 @@
 //
 //= require shared/not-jquery
 //= require_self
+//
+//
+// Pull compiled from /public/assets/javascripts
+//= require pre-application
+//
 
 
 function initializeMap(canvas) {

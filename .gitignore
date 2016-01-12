@@ -6,11 +6,19 @@
 
 # Ignore bundler config.
 /.bundle
+/node_modules
+
 
 # Ignore all logfiles and tempfiles.
-.byebug_history
 /log/*
 !/log/.keep
 /tmp
 
+# ignore db
 *.sqlite3
+
+# ignore history
+.byebug_history
+
+# ignore generated files
+/public/assets

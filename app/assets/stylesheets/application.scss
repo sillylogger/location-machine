@@ -11,6 +11,11 @@
  * file per style scope.
  *
  *= require_self
+ *
+ *
+ * Pull compiled from /public/assets/stylesheets
+ *= require pre-application
+ *
  */
 
 @import "bourbon";
@@ -69,7 +74,7 @@ footer#notifications {
 }
 
 .b-event-form {
- 
+
   #map_canvas {
     margin-bottom: 0.75em;
   }
