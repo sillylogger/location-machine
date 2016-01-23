@@ -20,6 +20,12 @@ var config = {
   },
 
   plugins: {
+    autoReload: {
+      enabled: {
+        css: true,
+        js:  false
+      }
+    }
   }
 
 };

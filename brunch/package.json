@@ -1,10 +1,15 @@
 {
-  "name": "simple-brunch",
+  "name": "brunch-working-with-rails-and-tests",
   "version": "0.1.0",
   "private": true,
+
   "devDependencies": {
-    "brunch": "^1.7.20",
-    "javascript-brunch": "^1.7.1",
-    "sass-brunch": "^1.8.9"
+    "brunch":               "^1.7.20",
+
+    "javascript-brunch":    "^1.7.1",
+    "sass-brunch":          "^1.8.9",
+
+    "auto-reload-brunch":   "*"
   }
+
 }
