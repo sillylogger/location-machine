@@ -41,11 +41,13 @@ footer#notifications {
   bottom: 0;
   left: 0;
   width: 100%;
+  color: #444;
 
   .notice,
   .alert {
     max-width: 25em;
     margin: 0 auto;
+    text-align: center;
   }
 }
 

@@ -20,30 +20,9 @@ var config = {
   },
 
   plugins: {
-    sass: {
-      mode: 'ruby'
-    }
   }
 
 };
 
 module.exports = { config: config }
 
-  // paths: {
-  //   public: './../public/assets/'
-  // },
-  //
-  // sourceMaps: false,
-  //
-  // files: {
-  //   javascripts: {
-  //     joinTo: {
-  //       'javascripts/pre-application.js':  /javascripts\/.*\.js/
-  //     },
-  //   },
-  //   stylesheets: {
-  //     joinTo: {
-  //       'stylesheets/pre-application.css': /stylesheets\/.*\.scss/
-  //     }
-  //   }
-  // }
