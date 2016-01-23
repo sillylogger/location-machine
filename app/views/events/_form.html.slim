@@ -17,7 +17,7 @@
   .b-event-form__actions= f.submit
 
   javascript:
-    setTimeout(function() {
-      hydrateLatLng('event_latitude',
-                    'event_longitude');
-    }, 500);
+    ready(function() {
+      map.hydrateLatLng('event_latitude',
+                        'event_longitude');
+    });

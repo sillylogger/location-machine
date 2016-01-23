@@ -13,14 +13,11 @@
     "postinstall": "gulp build"
   },
   "browserify": {
-    "transform": [
-      "coffeeify"
-    ]
+    "transform": [ ]
   },
   "dependencies": {
     "browser-sync": "~2.4.0",
     "browserify": "^8.0.2",
-    "coffeeify": "~0.7.0",
     "del": "^1.1.1",
     "gulp": "^3.8.7",
     "gulp-autoprefixer": "^2.0.0",

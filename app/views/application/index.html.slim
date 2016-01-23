@@ -2,11 +2,11 @@
 - if user_signed_in?
   #map_canvas
 
-  javascript:
-    setTimeout(function(){
-      var events = #{@events.to_json.html_safe};
-      placeEvents(events);
-    }, 500);
+    javascript:
+      ready(function() {
+        var events = #{@events.to_json.html_safe};
+        map.placeEvents(events);
+      });
 
   .b-call-to-action
     a.b-call-to-action__post.b-btn(href=new_event_path) Post your event!

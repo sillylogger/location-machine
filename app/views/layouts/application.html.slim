@@ -10,11 +10,11 @@ html( lang=I18n.locale )
 
     = stylesheet_link_tag 'application', media: 'all'
 
-    = javascript_include_tag 'https://maps.googleapis.com/maps/api/js'
-    = javascript_include_tag 'application'
-
     = render 'shared/testing'
     = render 'shared/tracking'
+
+    = javascript_include_tag 'https://maps.googleapis.com/maps/api/js'
+    = javascript_include_tag 'application'
 
   body
 
@@ -34,3 +34,4 @@ html( lang=I18n.locale )
     footer#notifications
       p.notice= notice
       p.alert= alert
+
