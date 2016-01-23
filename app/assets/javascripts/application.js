@@ -10,7 +10,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-// Pull compiled from /public/assets/javascripts
+// Pull compiled from /brunch/public
 //= require pre-application
 //= require_self
 //

@@ -33,7 +33,6 @@ module Ruangbawah
     config.active_record.raise_in_transactional_callbacks = true
 
     # Make public assets requireable in manifest files
-    config.assets.paths << Rails.root.join("public", "assets", "stylesheets")
-    config.assets.paths << Rails.root.join("public", "assets", "javascripts")
+    config.assets.paths << Rails.root.join("brunch", "public")
   end
 end
