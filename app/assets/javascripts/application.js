@@ -20,8 +20,12 @@ var preApplication = require('javascripts/pre-application');
 var ready = window.ready = preApplication.notJquery.ready;
 
 ready(function() {
+
   window.map = Object.create(preApplication.map);
-  window.map.init();
-  window.map.setCurrentPosition();
+
+  if(window.map.init()) {
+    window.map.setCurrentPosition();
+  }
+
 });
 

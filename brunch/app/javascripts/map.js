@@ -8,16 +8,14 @@ var map = {
   init: function() {
     if(!window.google) {
       console.log("map.init - google not loaded");
-      return null;
+      return false;
     }
 
-    this.map();
-
-    return {
-      hydrateLatLng: this.hydrateLatLng,
-      placeEventsOnMap: this.placeEventsOnMap,
-      setCurrentPosition: this.setCurrentPosition
-    };
+    if(! this.map()) {
+      return false;
+    } else {
+      return true;
+    }
   },
 
   map: function() {
@@ -26,7 +24,7 @@ var map = {
     var canvas = document.getElementById('map_canvas');
     if(!canvas) {
       console.log("initializeMap - mapCanvas isn't on this page");
-      return;
+      return false;
     }
 
     var jakarta = new google.maps.LatLng(-6.1745, 106.8227);
@@ -50,6 +48,8 @@ var map = {
         { lightness: 10 }
       ]}
     ]);
+
+    return this._map;
   },
 
   hydrateLatLng: function (latId, lngId) {
