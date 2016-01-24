@@ -16,16 +16,5 @@
 //
 
 var preApplication = require('javascripts/pre-application');
-
-var ready = window.ready = preApplication.notJquery.ready;
-
-ready(function() {
-
-  window.map = Object.create(preApplication.map);
-
-  if(window.map.init()) {
-    window.map.setCurrentPosition();
-  }
-
-});
+    preApplication();
 

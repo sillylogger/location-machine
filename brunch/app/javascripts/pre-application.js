@@ -1,20 +1,17 @@
 "use strict";
 
-var notJquery = require('javascripts/shared/not-jquery');
-var map = require('javascripts/map');
+let utils = require('javascripts/shared/not-jquery');
+let Map = require('javascripts/map');
 
-// Better Architecture:
-//  map:
-//  -- init() uses findOrCreateMap();
-//  -- hydrateLatLng(id, id) uses getMap()
-//  -- placeEventsOnMap() uses getMap()
-//  -- setCurrent
+module.exports = function run() {
 
+  utils.ready(function() {
+    window.map = new Map();
 
-var preApplication = {
-  notJquery: notJquery,
-  map: map
+    if(window.map.isInitialized()) {
+      window.map.setCurrentPosition();
+    }
+
+  });
+
 };
-
-module.exports = preApplication;
-

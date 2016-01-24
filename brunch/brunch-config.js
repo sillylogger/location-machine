@@ -1,7 +1,5 @@
 var config = {
 
-  sourceMaps: false,
-
   files: {
     javascripts: {
       joinTo: {
@@ -16,6 +14,10 @@ var config = {
   },
 
   plugins: {
+    babel: {
+      presets: [ 'es2015' ]
+    },
+
     autoReload: {
       enabled: {
         css: true,

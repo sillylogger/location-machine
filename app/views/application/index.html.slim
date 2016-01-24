@@ -3,7 +3,9 @@
   #map_canvas
 
     javascript:
-      ready(function() {
+      var utils = require('javascripts/shared/not-jquery');
+
+      utils.ready(function() {
         var events = #{@events.to_json.html_safe};
         map.placeEvents(events);
       });

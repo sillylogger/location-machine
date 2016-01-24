@@ -17,7 +17,9 @@
   .b-event-form__actions= f.submit
 
   javascript:
-    ready(function() {
+    var utils = require('javascripts/shared/not-jquery');
+
+    utils.ready(function() {
       map.hydrateLatLng('event_latitude',
                         'event_longitude');
     });

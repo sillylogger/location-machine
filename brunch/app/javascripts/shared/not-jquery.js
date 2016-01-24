@@ -1,7 +1,7 @@
 // let's not jquery..
 // http://youmightnotneedjquery.com/
 
-module.exports = {
+let notJquery = {
 
   ready: function ready(fn) {
     if (document.readyState != 'loading'){
@@ -12,3 +12,6 @@ module.exports = {
   }
 
 }
+
+module.exports = notJquery;
+
