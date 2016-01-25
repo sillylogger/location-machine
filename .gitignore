@@ -22,5 +22,11 @@ node_modules
 
 # ignore generated files
 /public/assets
+/public/lib
+
+/public/specs.js
+/public/specs.js.map
+/public/SpecRunner.html
+
 /brunch/public
 

@@ -1,16 +1,25 @@
 var config = {
 
+  npm: {
+    enabled: true
+  },
+
   files: {
     javascripts: {
       joinTo: {
-        'pre-application.js':  'app/javascripts/**.js'
+        'assets/javascripts/pre-application.js':  'app/javascripts/**.js',
+        'specs.js':                              ['app/javascripts/**.js', 'app/spec/**.js']
       }
     },
     stylesheets: {
       joinTo: {
-        'pre-application.css': 'app/stylesheets/pre-application.scss'
+        'assets/stylesheets/pre-application.css': 'app/stylesheets/pre-application.scss'
       }
     }
+  },
+
+  paths: {
+    public: './../public/'
   },
 
   plugins: {

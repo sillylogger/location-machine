@@ -1,5 +1,3 @@
-"use strict";
-
 let utils = require('javascripts/shared/not-jquery');
 let Map = require('javascripts/map');
 
