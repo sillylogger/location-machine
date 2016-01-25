@@ -54,6 +54,8 @@ group :development,
   gem 'selenium-webdriver'
   gem 'capybara-webkit',      github: 'thoughtbot/capybara-webkit'
 
+  gem 'site_prism',           github: 'natritmeyer/site_prism'
+
 end
 
 
