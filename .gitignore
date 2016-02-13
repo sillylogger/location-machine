@@ -5,14 +5,14 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 # Ignore bundler config.
-/.bundle
+.bundle
 node_modules
 
 
 # Ignore all logfiles and tempfiles.
-/log/*
-!/log/.keep
-/tmp
+log/*
+!log/.keep
+tmp
 
 # ignore db
 *.sqlite3
@@ -21,12 +21,12 @@ node_modules
 .byebug_history
 
 # ignore generated files
-/public/assets
-/public/lib
+public/assets
+public/lib
 
-/public/specs.js
-/public/specs.js.map
-/public/SpecRunner.html
+public/specs.js
+public/specs.js.map
+public/SpecRunner.html
 
-/brunch/public
+brunch/public
 
