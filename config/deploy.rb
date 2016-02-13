@@ -26,7 +26,7 @@ set :log_level, :info
 set :pty, true
 
 # Default value for :linked_files is []
-set :linked_files, fetch(:linked_files, []).push('db/production.sqlite3')
+set :linked_files, fetch(:linked_files, []).push('db/production.sqlite3', '.env', '.env.production')
 
 # Default value for linked_dirs is []
 set :linked_dirs, fetch(:linked_dirs, []).push('brunch/node_modules')

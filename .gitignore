@@ -17,6 +17,9 @@ tmp
 # ignore db
 *.sqlite3
 
+# ignore environment configuration
+.env*
+
 # ignore history
 .byebug_history
 

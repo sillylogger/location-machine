@@ -5,6 +5,8 @@ gem 'sqlite3'
 gem 'rails'
 gem 'unicorn'
 
+gem 'dotenv-rails'
+
 gem 'therubyracer'
 gem 'uglifier'
 
@@ -43,7 +45,6 @@ group :development,
       :test do
 
   gem 'byebug',               github: 'deivid-rodriguez/byebug'
-
   gem 'nokogiri'
 
   gem 'rspec-rails'
