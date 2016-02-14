@@ -66,14 +66,13 @@ class Map {
     });
   }
 
-  placeEvents(events) {
-    events.forEach( e => {
-      let eventLocation = new google.maps.LatLng(e.latitude, e.longitude);
+  placeParties(parties) {
+    parties.forEach( p => {
+      let partyLocation = new google.maps.LatLng(p.latitude, p.longitude);
 
       let marker = new google.maps.Marker({
-        position: eventLocation,
-        map: map,
-        title: e.name
+        position: partyLocation,
+        map: map
       });
 
       google.maps.event.addListener(marker, 'click', () => {
@@ -82,7 +81,7 @@ class Map {
         }
 
         let infoWindow = new google.maps.InfoWindow({
-          content: e.name,
+          content: p.name,
           maxWidth: 300
         });
 

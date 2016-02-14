@@ -15,21 +15,21 @@ describe "the MVP flow" do
     wait_until { page.current_path == root_path }
 
     click_link 'Post your event!'
-    wait_until { page.current_path == new_event_path }
+    wait_until { page.current_path == new_party_path }
 
     execute_script <<-JS
-      document.getElementById('event_latitude').value = '#{lat}';
-      document.getElementById('event_longitude').value = '#{lng}';
+      document.getElementById('party_latitude').value = '#{lat}';
+      document.getElementById('party_longitude').value = '#{lng}';
     JS
-    fill_in 'event[name]',        with: name
-    fill_in 'event[description]', with: 'bring a bottle'
+    fill_in 'party[name]',        with: name
+    fill_in 'party[description]', with: 'bring a bottle'
     click_button 'Create Event'
     wait_until { page.current_path == root_path }
 
-    event = Event.last
-    expect(event.name).to eq(name)
-    expect(event.latitude).to eq(lat)
-    expect(event.longitude).to eq(lng)
+    party = Party.last
+    expect(party.name).to eq(name)
+    expect(party.latitude).to eq(lat)
+    expect(party.longitude).to eq(lng)
   end
 
 end

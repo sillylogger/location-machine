@@ -1,0 +1,25 @@
+= form_for @party, html: { class: 'b-party-form' } do |f|
+
+  = f.hidden_field :latitude
+  = f.hidden_field :longitude
+
+  = render 'shared/errors', errors: @party.errors
+
+  .b-party-form__field
+    #map_canvas
+
+  .b-party-form__field
+    = f.text_field :name, placeholder: "Name"
+
+  .b-party-form__field
+    = f.text_area :description, placeholder: "Description"
+
+  .b-party-form__actions= f.submit "Create Event"
+
+  javascript:
+    var utils = require('javascripts/shared/not-jquery');
+
+    utils.ready(function() {
+      map.hydrateLatLng('party_latitude',
+                        'party_longitude');
+    });

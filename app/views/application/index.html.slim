@@ -6,12 +6,12 @@
       var utils = require('javascripts/shared/not-jquery');
 
       utils.ready(function() {
-        var events = #{@events.to_json.html_safe};
-        map.placeEvents(events);
+        var parties = #{@parties.to_json.html_safe};
+        map.placeParties(parties);
       });
 
   .b-call-to-action
-    a.b-call-to-action__post.b-btn(href=new_event_path) Post your event!
+    a.b-call-to-action__post.b-btn(href=new_party_path) Post your event!
 
 - else
 

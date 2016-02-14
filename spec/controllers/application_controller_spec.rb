@@ -1,7 +1,7 @@
 describe ApplicationController do
 
   describe "#index" do
-    let!(:event) { FactoryGirl.create :event }
+    let!(:party) { FactoryGirl.create :party }
 
     it "renders the index page" do
       get :index
@@ -10,11 +10,11 @@ describe ApplicationController do
       expect(response.body).to   include("ruang bawah")
     end
 
-    it "only shows open events" do
+    it "only shows open parties" do
       get :index
 
-      event_ids = assigns(:events).map(&:id)
-      expect(event_ids).to match_array(Event.active.pluck(:id))
+      party_ids = assigns(:parties).map(&:id)
+      expect(party_ids).to match_array(Party.active.pluck(:id))
     end
   end
 

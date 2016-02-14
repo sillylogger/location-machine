@@ -1,6 +1,6 @@
 FactoryGirl.define do
 
-  factory :event do
+  factory :party do
     name          "basement"
     description   "bring a bottle"
     opens         { 6.hours.ago }

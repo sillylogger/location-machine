@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :timeoutable,
          :lockable, :omniauthable
 
-  has_many :events
+  has_many :parties
   has_many :identities
 
   TEMP_EMAIL_PREFIX = 'change@me'
