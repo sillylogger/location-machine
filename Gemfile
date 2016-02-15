@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'sqlite3'
 
-gem 'rails'
+gem 'rails', '~> 4.2.5.1'
 gem 'unicorn'
 
 gem 'dotenv-rails'
@@ -19,7 +19,7 @@ gem 'font-awesome-sass'
 gem 'slim'
 gem 'slim-rails'
 
-gem 'devise'
+gem 'devise', '>= 3.5.4'
 gem 'omniauth'
 gem 'omniauth-facebook'
 
@@ -45,7 +45,7 @@ group :development,
       :test do
 
   gem 'byebug',               github: 'deivid-rodriguez/byebug'
-  gem 'nokogiri'
+  gem 'nokogiri', '>= 1.6.7.2'
 
   gem 'rspec-rails'
   gem 'factory_girl_rails'
@@ -60,3 +60,4 @@ group :development,
 end
 
 
+gem 'rails-html-sanitizer', '~> 1.0.3'
