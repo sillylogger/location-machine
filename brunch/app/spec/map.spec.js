@@ -1,7 +1,4 @@
-
 let Map = require('javascripts/map');
-
-
 
 describe("Map", () => {
 

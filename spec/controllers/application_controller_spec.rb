@@ -1,7 +1,7 @@
 describe ApplicationController do
 
   describe "#index" do
-    let!(:party) { FactoryGirl.create :party }
+    let!(:party) { FactoryBot.create :party }
 
     it "renders the index page" do
       get :index

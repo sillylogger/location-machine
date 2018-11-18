@@ -1,6 +1,6 @@
 describe "the MVP flow" do
 
-  let!(:user) { FactoryGirl.create :user }
+  let!(:user) { FactoryBot.create :user }
 
   let(:lat) {  -6.2189898 }
   let(:lng) { 106.7861758 }

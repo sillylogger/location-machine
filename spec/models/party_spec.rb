@@ -1,8 +1,8 @@
 describe Party do
 
   describe ".active" do
-    let(:active_party) { FactoryGirl.create :party, opens: 1.minute.ago, closes: 1.minute.from_now }
-    let(:inactive_party) { FactoryGirl.create :party, opens: 2.minutes.ago, closes: 1.minute.ago }
+    let(:active_party) { FactoryBot.create :party, opens: 1.minute.ago, closes: 1.minute.from_now }
+    let(:inactive_party) { FactoryBot.create :party, opens: 2.minutes.ago, closes: 1.minute.ago }
 
     it "includes ongoing partys" do
       expect(Party.active).to include(active_party)

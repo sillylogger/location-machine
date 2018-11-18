@@ -1,8 +1,8 @@
-FactoryGirl.define do
+FactoryBot.define do
 
   factory :party do
-    name          "basement"
-    description   "bring a bottle"
+    name          { "basement" }
+    description   { "bring a bottle" }
     opens         { 6.hours.ago }
     closes        { 6.hours.from_now }
   end

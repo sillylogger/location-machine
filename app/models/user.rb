@@ -1,12 +1,12 @@
 # stolen from: http://sourcey.com/rails-4-omniauth-using-devise-with-twitter-facebook-and-linkedin/
 
-class User < ActiveRecord::Base
+class User < ApplicationRecord
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :timeoutable,
-         :lockable, :omniauthable
+         :lockable, :omniauthable, omniauth_providers: %i(facebook)
 
   has_many :parties
   has_many :identities

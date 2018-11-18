@@ -1,4 +1,4 @@
-class Party < ActiveRecord::Base
+class Party < ApplicationRecord
 
   belongs_to :user
 
