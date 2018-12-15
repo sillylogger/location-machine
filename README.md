@@ -1,8 +1,11 @@
 ## [RuangBawah.com](http://www.ruangbawah.com)
 
 Prototype of a simple / temporary event sharing app:
-
 ![Screenshot](/app/assets/images/ruangbawah-dot-com.png)
+
+Start the server with:
+    puma -b 'ssl://127.0.0.1:3000?key=config/localhost.key&cert=config/localhost.crt'
+This is because Facebook will no longer accept http endpoints, comitting localhost keys just for dev.
 
 ### Development Goals:
 
