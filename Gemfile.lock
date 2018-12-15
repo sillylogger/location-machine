@@ -1,5 +1,5 @@
 GIT
-  remote: https://github.com/plataformatec/devise
+  remote: https://github.com/plataformatec/devise.git
   revision: cb663e96a370ba5d3dc6aa8ea3a2683268e980a0
   specs:
     devise (4.5.0)
@@ -282,7 +282,6 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0.0)
   sqlite3
   turbolinks (~> 5)
-  tzinfo-data
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)
   webpacker
