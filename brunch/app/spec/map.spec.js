@@ -18,6 +18,8 @@ describe("Map", () => {
     window.google.maps.MapTypeId = {
       ROADTYPE: 1
     };
+
+    window.google.maps.Map.prototype.set = function(){};
   }
 
   beforeEach( () => {
@@ -42,7 +44,7 @@ describe("Map", () => {
     });
 
     it("logs out if the canvas isn't there", () => {
-      map_canvas.remove();
+      map_canvas.parentElement.remove(map_canvas);
 
       spyOn(console, 'log').and.callThrough();
       var map = new Map();

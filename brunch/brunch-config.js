@@ -7,8 +7,16 @@ var config = {
   files: {
     javascripts: {
       joinTo: {
-        'assets/javascripts/pre-application.js': ['app/javascripts/**/**.js', 'app/javascripts/**.js'],
-        'specs.js':                              ['app/javascripts/**/**.js', 'app/javascripts/**.js', 'app/spec/**/**.js', 'app/spec/**.js']
+        'assets/javascripts/pre-application.js': [
+          'app/javascripts/**/**.js',
+          'app/javascripts/**.js'
+        ],
+        'specs.js': [
+          'app/javascripts/**/**.js',
+          'app/javascripts/**.js',
+          'app/spec/**/**.js',
+          'app/spec/**.js'
+        ]
       }
     },
     stylesheets: {
