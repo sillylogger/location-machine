@@ -30,6 +30,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 
 gem 'devise', github: 'plataformatec/devise'
+gem 'omniauth-facebook', github: 'mkdynamic/omniauth-facebook'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
