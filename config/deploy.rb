@@ -1,15 +1,15 @@
 # config valid only for current version of Capistrano
 lock '3.4.0'
 
-set :application, 'ruangbawah'
-set :repo_url,  'git@github.com:sillylogger/ruangbawah.git'
+set :application, 'locationmachine'
+set :repo_url,  'git@github.com:sillylogger/locationmachine.git'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
 # set :deploy_to, '/var/www/my_app_name'
-set :deploy_to, "/home/sillylogger/ruangbawah.com"
+set :deploy_to, "/home/sillylogger/locationmachine.io"
 
 set :tmp_dir, "/home/sillylogger/tmp"
 

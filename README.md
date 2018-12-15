@@ -1,4 +1,4 @@
-## [RuangBawah.com](http://www.ruangbawah.com)
+## [LocationMachine.io](https://www.locationmachine.io)
 
 Prototype of a simple / temporary event sharing app:
 ![Screenshot](/app/assets/images/ruangbawah-dot-com.png)

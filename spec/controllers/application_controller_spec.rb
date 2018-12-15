@@ -7,7 +7,7 @@ describe ApplicationController do
       get :index
 
       expect(response.status).to eq(200)
-      expect(response.body).to   include("ruang bawah")
+      expect(response.body).to   include("location machine")
     end
 
     it "only shows open parties" do

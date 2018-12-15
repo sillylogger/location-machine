@@ -72,7 +72,7 @@ Rails.application.configure do
     :domain                 => ENV['SMTP_DOMAIN'],            # your domain to identify your server when connecting
   }
   config.action_mailer.default_url_options = {
-    :host                   => 'ruangbawah.com'
+    :host                   => 'locationmachine.io'
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to

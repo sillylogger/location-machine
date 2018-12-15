@@ -6,7 +6,7 @@ html( lang=I18n.locale )
     meta(name="viewport" content="width=device-width, initial-scale=1")
     meta(name="google-site-verification" content="4kjFHmNsbLyk3ZyRrcoEQO8YVSEazsjr0_q5ipoTQC0")
 
-    title ruang bawah
+    title location machine
 
     = stylesheet_link_tag 'application', media: 'all'
 
@@ -19,7 +19,7 @@ html( lang=I18n.locale )
   body
 
     header#navbar
-      h2= link_to "ruang bawah", root_path
+      h2= link_to "location machine", root_path
 
       - if user_signed_in?
         p

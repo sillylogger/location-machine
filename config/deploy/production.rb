@@ -49,7 +49,7 @@
 #
 # The server-based syntax can be used to override options:
 # ------------------------------------
-server 'ruangbawah.com',
+server 'locationmachine.io',
   user: 'sillylogger',
   roles: %w{web app},
   ssh_options: {
