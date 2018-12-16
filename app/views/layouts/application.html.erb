@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>LocationMachine</title>
+    <title>Location Machine</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+
+    <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{ Rails.application.credentials.google[:maps_api_key] }" %>
+    <%= javascript_pack_tag 'application' %>
   </head>
 
   <body>
