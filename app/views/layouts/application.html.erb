@@ -21,10 +21,28 @@
 
   <body>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <header id="navbar">
+      <h2><%= link_to "location machine", root_path %></h2>
 
-    <%= yield %>
+      <%- if user_signed_in? %>
+        <p>
+          <%- if current_user.avatar_url? %>
+            <img src="<%= current_user.avatar_url.sub('http:', 'https:') %>" alt="current_user.avatar_url" />
+          <%- end %>
+          <%= " #{current_user.name} " %>
+          <%= link_to "exit", destroy_user_session_path %>
+        </p>
+      <%- end %>
+    </header>
+
+    <div id="main">
+      <%= yield %>
+    </div>
+
+    <footer id="notifications">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+    </footer>
 
   </body>
 </html>

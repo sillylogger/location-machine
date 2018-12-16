@@ -1,0 +1,43 @@
+<%= form_with(model: location, local: true, class: 'b-location-form') do |form| %>
+
+  <%= form.hidden_field :latitude %>
+  <%= form.hidden_field :longitude %>
+
+  <% if location.errors.any? %>
+    <div class="b-errors">
+      <div class="b-errors__title">
+        <%= pluralize(location.errors.count, "error") %> caused a problem:
+      </div>
+
+      <ul class="b-errors__list">
+      <% location.errors.full_messages.each do |message| %>
+        <li class="b-errors__item"><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="b-location-form__field">
+    <div id="map_canvas"></div>
+  </div>
+
+  <div class="b-location-form__field">
+    <%= form.text_field :name, placeholder: "Name" %>
+  </div>
+
+  <div class="b-location-form__field">
+    <%= form.text_area :description, placeholder: "Description" %>
+  </div>
+
+  <div class="b-location-form__actions">
+    <%= form.submit "Create Location" %>
+  </div>
+
+  <script>
+    utils.ready(function() {
+      map.hydrateLatLng('location_latitude',
+                        'location_longitude');
+    });
+  </script>
+
+<% end %>
