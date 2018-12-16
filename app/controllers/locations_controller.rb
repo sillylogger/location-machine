@@ -34,7 +34,7 @@ class LocationsController < ApplicationController
   # DELETE /locations/1
   def destroy
     @location.destroy
-    redirect_to locations_url, notice: 'Location was successfully destroyed.'
+    redirect_to root_path, notice: 'Location was successfully destroyed.'
   end
 
   private

@@ -28,46 +28,32 @@ RSpec.describe LocationsController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # Location. As you add validations to Location, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  let(:valid_attributes) { FactoryBot.attributes_for(:location).merge({
+    user_id: user.id
+  }) }
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  let(:invalid_attributes) { valid_attributes.merge({
+    name: ""
+  }) }
+
+  let(:user) { FactoryBot.create :user }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # LocationsController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
-
-  describe "GET #index" do
-    it "returns a success response" do
-      Location.create! valid_attributes
-      get :index, params: {}, session: valid_session
-      expect(response).to be_successful
-    end
-  end
-
-  describe "GET #show" do
-    it "returns a success response" do
-      location = Location.create! valid_attributes
-      get :show, params: {id: location.to_param}, session: valid_session
-      expect(response).to be_successful
-    end
-  end
+  before(:each) { sign_in user }
 
   describe "GET #new" do
     it "returns a success response" do
-      get :new, params: {}, session: valid_session
+      get :new, params: {}
       expect(response).to be_successful
     end
   end
 
   describe "GET #edit" do
     it "returns a success response" do
-      location = Location.create! valid_attributes
-      get :edit, params: {id: location.to_param}, session: valid_session
+      location = FactoryBot.create :location, user: user
+      get :edit, params: { id: location.to_param }
       expect(response).to be_successful
     end
   end
@@ -76,19 +62,19 @@ RSpec.describe LocationsController, type: :controller do
     context "with valid params" do
       it "creates a new Location" do
         expect {
-          post :create, params: {location: valid_attributes}, session: valid_session
+          post :create, params: { location: valid_attributes }
         }.to change(Location, :count).by(1)
       end
 
       it "redirects to the created location" do
-        post :create, params: {location: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(Location.last)
+        post :create, params: { location: valid_attributes }
+        expect(response).to redirect_to(root_path)
       end
     end
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: {location: invalid_attributes}, session: valid_session
+        post :create, params: { location: invalid_attributes }
         expect(response).to be_successful
       end
     end
@@ -96,28 +82,28 @@ RSpec.describe LocationsController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+      let(:new_attributes) { {
+        name: "Sweet Beef"
+      } }
 
       it "updates the requested location" do
-        location = Location.create! valid_attributes
-        put :update, params: {id: location.to_param, location: new_attributes}, session: valid_session
+        location = FactoryBot.create :location, user: user
+        put :update, params: { id: location.to_param, location: new_attributes }
         location.reload
-        skip("Add assertions for updated state")
+        expect(location.name).to eq(new_attributes[:name])
       end
 
       it "redirects to the location" do
-        location = Location.create! valid_attributes
-        put :update, params: {id: location.to_param, location: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(location)
+        location = FactoryBot.create :location, user: user
+        put :update, params: { id: location.to_param, location: valid_attributes }
+        expect(response).to redirect_to(root_path)
       end
     end
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'edit' template)" do
-        location = Location.create! valid_attributes
-        put :update, params: {id: location.to_param, location: invalid_attributes}, session: valid_session
+        location = FactoryBot.create :location, user: user
+        put :update, params: { id: location.to_param, location: invalid_attributes }
         expect(response).to be_successful
       end
     end
@@ -125,16 +111,16 @@ RSpec.describe LocationsController, type: :controller do
 
   describe "DELETE #destroy" do
     it "destroys the requested location" do
-      location = Location.create! valid_attributes
+      location = FactoryBot.create :location, user: user
       expect {
-        delete :destroy, params: {id: location.to_param}, session: valid_session
+        delete :destroy, params: { id: location.to_param }
       }.to change(Location, :count).by(-1)
     end
 
     it "redirects to the locations list" do
-      location = Location.create! valid_attributes
-      delete :destroy, params: {id: location.to_param}, session: valid_session
-      expect(response).to redirect_to(locations_url)
+      location = FactoryBot.create :location, user: user
+      delete :destroy, params: { id: location.to_param }
+      expect(response).to redirect_to(root_path)
     end
   end
 
