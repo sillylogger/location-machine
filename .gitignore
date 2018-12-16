@@ -7,6 +7,9 @@
 # Ignore bundler config.
 /.bundle
 
+# Ignore notes to self.
+NOTES.md
+
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
@@ -17,7 +20,7 @@
 !/log/.keep
 !/tmp/.keep
 
-# Ignore uploaded files in development
+# Ignore uploaded files in development.
 /storage/*
 !/storage/.keep
 
