@@ -16,6 +16,7 @@ $_button-background-color-hover: shade($action-color, 20%);
   font-weight: 600;
   line-height: 1;
   padding: $small-spacing $base-spacing;
+  outline: none;
   text-align: center;
   text-decoration: none;
   transition: background-color $base-duration $base-timing;
@@ -29,8 +30,8 @@ $_button-background-color-hover: shade($action-color, 20%);
   }
 
   &:focus {
-    outline: $focus-outline;
-    outline-offset: $focus-outline-offset;
+    // outline: $focus-outline;
+    // outline-offset: $focus-outline-offset;
   }
 
   &:disabled {

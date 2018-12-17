@@ -3,19 +3,7 @@
   <%= form.hidden_field :latitude %>
   <%= form.hidden_field :longitude %>
 
-  <% if location.errors.any? %>
-    <div class="b-errors">
-      <div class="b-errors__title">
-        <%= pluralize(location.errors.count, "error") %> caused a problem:
-      </div>
-
-      <ul class="b-errors__list">
-      <% location.errors.full_messages.each do |message| %>
-        <li class="b-errors__item"><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render 'shared/errors', errors: location.errors %>
 
   <div class="b-location-form__field">
     <div id="map_canvas"></div>

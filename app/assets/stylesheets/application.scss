@@ -18,10 +18,13 @@
 
 @import "maps";
 
-body {
+html {
   background: whitesmoke;
+  margin: 8px;
+}
+
+body {
   -webkit-font-smoothing: antialiased;
-  padding: 8px;
 }
 
 #navbar,
