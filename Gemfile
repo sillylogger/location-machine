@@ -1,66 +1,62 @@
 source 'https://rubygems.org'
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
 
-gem 'rake'
+# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'rails', '~> 5.2.2'
 
-gem 'sqlite3'
+# Use postgresql as the database for Active Record
+gem 'pg'
+gem 'appengine'
 
-gem 'puma'
+# Use Puma as the app server
+gem 'puma', '~> 3.11'
 
-gem 'rails', '~> 5'
-gem 'dotenv-rails'
+# Use SCSS for stylesheets
+gem 'sass-rails', '~> 5.0'
+gem 'bourbon', github: 'thoughtbot/bourbon'
+gem 'neat', github: 'thoughtbot/neat'
+gem 'bitters', github: 'thoughtbot/bitters'
 
-gem 'therubyracer'
-gem 'uglifier'
+# Use Uglifier as compressor for JavaScript assets
+gem 'uglifier', '>= 1.3.0'
+# Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
+gem 'webpacker'
 
-gem 'sassc'
-gem 'sassc-rails'
-gem 'bourbon'
-gem 'neat'
-gem 'bitters'
-gem 'font-awesome-sass'
+gem 'devise', github: 'plataformatec/devise'
+gem 'omniauth-facebook', github: 'mkdynamic/omniauth-facebook'
 
-gem 'slim'
-gem 'slim-rails'
+# Reduces boot times through caching; required in config/boot.rb
+gem 'bootsnap', '>= 1.1.0', require: false
 
-gem 'devise'
-gem 'omniauth'
-gem 'omniauth-facebook'
+group :development, :test do
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug'
 
-gem 'awesome_print'
+  %w[rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support].each do |lib|
+    gem lib, github: "rspec/#{lib}"
+  end
+end
 
 group :development do
-  gem 'refills'
+  # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
+  gem 'web-console', '>= 3.3.0'
+  gem 'listen', '>= 3.0.5', '< 3.2'
 
-  # gem 'capistrano'
-  # gem 'capistrano-nvm'
-  # gem 'capistrano-rvm'
-  # gem 'capistrano-bundler'
-  # gem 'capistrano-rails'
-  # gem 'capistrano-passenger'
-
-  gem 'better_errors'
-  gem 'binding_of_caller'
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
-group :development,
-      :test do
+group :test do
+  gem 'factory_bot_rails', github: 'thoughtbot/factory_bot_rails'
+  gem 'database_cleaner', github: 'bmabey/database_cleaner'
 
-  gem 'byebug',               github: 'deivid-rodriguez/byebug'
-  gem 'nokogiri'
-
-  gem 'rspec-rails'
-  gem 'rails-controller-testing'
-  gem 'factory_bot_rails'
-  gem 'database_cleaner',     github: 'bmabey/database_cleaner'
-
-  gem 'capybara',             github: 'jnicklas/capybara'
+  # Adds support for Capybara system testing and selenium driver
+  gem 'capybara', github: 'jnicklas/capybara'
   gem 'selenium-webdriver'
-  gem 'capybara-webkit',      github: 'thoughtbot/capybara-webkit'
 
-  gem 'site_prism',           github: 'natritmeyer/site_prism'
-
+  # Easy installation and use of chromedriver to run system tests with Chrome
+  gem 'chromedriver-helper'
 end
-
-gem 'rails-html-sanitizer', '~> 1.0.3'

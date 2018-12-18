@@ -1,22 +1,23 @@
-# stolen from: http://sourcey.com/rails-4-omniauth-using-devise-with-twitter-facebook-and-linkedin/
-
 class User < ApplicationRecord
 
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable, :confirmable,
-         :recoverable, :rememberable, :trackable, :timeoutable,
-         :lockable, :omniauthable, omniauth_providers: %i(facebook)
+  # :timeoutable
+  devise :database_authenticatable, :registerable, :confirmable, :lockable,
+         :recoverable, :rememberable, :trackable, :validatable,
+         :omniauthable, omniauth_providers: %i[facebook]
 
-  has_many :parties
+  has_many :locations
   has_many :identities
+
+  validates_presence_of :email
 
   TEMP_EMAIL_PREFIX = 'change@me'
   TEMP_EMAIL_REGEX = /\Achange@me/
 
-  validates_presence_of :email
-
-  def self.find_for_oauth(auth, signed_in_resource = nil)
+  # From an old article about multiple identities:
+  # https://sourcey.com/rails-4-omniauth-using-devise-with-twitter-facebook-and-linkedin/
+  # *cough* yagni *cough*
+  def self.find_for_oauth auth, signed_in_resource = nil
 
     # Get the identity and user if they exist
     identity = Identity.find_for_oauth(auth)
@@ -58,6 +59,10 @@ class User < ApplicationRecord
     end
 
     user
+  end
+
+  def email_verified?
+    self.email && self.email !~ TEMP_EMAIL_REGEX
   end
 
   def prompt_additional_information?

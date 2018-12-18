@@ -5,31 +5,39 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 # Ignore bundler config.
-.bundle
-node_modules
+/.bundle
 
+# Ignore notes to self.
+NOTES.md
+
+# Ignore the default SQLite database.
+/bin/cloud_sql_proxy
+/db/*.sqlite3
+/db/*.sqlite3-journal
+
+# Ignore test results.
+spec/examples.txt
 
 # Ignore all logfiles and tempfiles.
-log/*
-!log/.keep
-tmp
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
 
-# ignore db
-*.sqlite3
+# Ignore uploaded files in development.
+/storage/*
+!/storage/.keep
 
-# ignore environment configuration
-.env*
+/node_modules
+/yarn-error.log
 
-# ignore history
+/public/assets
 .byebug_history
 
-# ignore generated files
-public/assets
-public/lib
-
-public/specs.js
-public/specs.js.map
-public/SpecRunner.html
-
-brunch/public
-
+# Ignore master key for decrypting credentials and more.
+/config/master.key
+/public/packs
+/public/packs-test
+/node_modules
+yarn-debug.log*
+.yarn-integrity

@@ -1,4 +1,10 @@
-describe User do
+require 'rails_helper'
+
+# RSpec.describe User, type: :model do
+#   pending "add some examples to (or delete) #{__FILE__}"
+# end
+
+RSpec.describe User do
 
   describe "#prompt_additional_information?" do
     it "bothers users if they have the temp email" do
@@ -35,3 +41,4 @@ describe User do
   end
 
 end
+

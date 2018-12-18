@@ -2,11 +2,10 @@ class UsersController < ApplicationController
 
   before_action :set_user
 
-  # GET/PATCH /users/:id/finish_signup
   def finish_signup
     if request.patch? && params[:user] && params[:user][:email]
       if @user.update(user_params)
-        # @user.skip_reconfirmation!
+        @user.skip_reconfirmation!
 
         sign_in(@user, :bypass => true)
         redirect_to root_path, notice: 'Your profile was successfully updated.'
@@ -24,7 +23,7 @@ class UsersController < ApplicationController
 
   def user_params
     accessible = [ :name, :email ] # extend with your own params
-    accessible << [ :password ] unless params[:user][:password].blank?
+    accessible << [ :password, :password_confirmation ] unless params[:user][:password].blank?
     params.require(:user).permit(accessible)
   end
 
