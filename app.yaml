@@ -1,3 +1,14 @@
-env: flex
 runtime: ruby
+env: flex
 entrypoint: bundle exec rackup --port $PORT
+
+automatic_scaling:
+  min_num_instances: 1
+  max_num_instances: 2
+
+env_variables:
+  RAILS_ENV: production
+
+beta_settings:
+  cloud_sql_instances: location-machine:asia-east2:location-machine-sql
+

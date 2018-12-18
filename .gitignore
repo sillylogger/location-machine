@@ -11,6 +11,7 @@
 NOTES.md
 
 # Ignore the default SQLite database.
+/bin/cloud_sql_proxy
 /db/*.sqlite3
 /db/*.sqlite3-journal
 

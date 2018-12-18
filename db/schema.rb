@@ -12,8 +12,11 @@
 
 ActiveRecord::Schema.define(version: 2018_12_16_060921) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "identities", force: :cascade do |t|
-    t.integer "user_id"
+    t.bigint "user_id"
     t.string "provider"
     t.string "uid"
     t.datetime "created_at", null: false
@@ -22,7 +25,7 @@ ActiveRecord::Schema.define(version: 2018_12_16_060921) do
   end
 
   create_table "locations", force: :cascade do |t|
-    t.integer "user_id"
+    t.bigint "user_id"
     t.string "name"
     t.text "description"
     t.float "latitude"
@@ -61,4 +64,6 @@ ActiveRecord::Schema.define(version: 2018_12_16_060921) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  add_foreign_key "identities", "users"
+  add_foreign_key "locations", "users"
 end
