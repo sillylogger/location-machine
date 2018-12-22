@@ -6,9 +6,9 @@
 #
 default: &default
   adapter: postgresql
-  prepared_statements: false
   encoding: unicode
   pool: 5
+  timeout: 5000
 
 development:
   <<: *default
@@ -23,8 +23,8 @@ test:
 
 production:
   <<: *default
+  database: location-machine-sql-production
 
   username: <%= Rails.application.credentials.google[:cloud_sql_username] %>
   password: <%= Rails.application.credentials.google[:cloud_sql_password] %>
-  database: location-machine-sql-production
-  socket: /cloudsql/<%= Rails.application.credentials.google[:cloud_sql_connection_name] %>
+  host: /cloudsql/<%= Rails.application.credentials.google[:cloud_sql_connection_name] %>
