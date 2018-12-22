@@ -8,7 +8,6 @@ gem 'rails', '~> 5.2.2'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
-gem 'appengine'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
@@ -47,6 +46,10 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+
+  # Only require appengine if running remote commands,
+  # otherwise it will warn about Cloud SDK quotas
+  gem 'appengine', require: !ENV['APPENGINE'].nil?
 end
 
 group :test do
