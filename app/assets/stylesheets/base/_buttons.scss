@@ -30,8 +30,7 @@ $_button-background-color-hover: shade($action-color, 20%);
   }
 
   &:focus {
-    // outline: $focus-outline;
-    // outline-offset: $focus-outline-offset;
+    outline: none;
   }
 
   &:disabled {
@@ -41,5 +40,23 @@ $_button-background-color-hover: shade($action-color, 20%);
     &:hover {
       background-color: $_button-background-color;
     }
+  }
+}
+
+.b-btn.m--facebook {
+  padding: 8px;
+  background-color: #4267b2;
+  text-align: center;
+
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    vertical-align: middle;
+    margin-right: 0.5rem;
+  }
+
+  span {
+    position: relative;
+    top: 2px;
   }
 }
