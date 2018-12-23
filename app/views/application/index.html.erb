@@ -1,26 +1,15 @@
-<%- if user_signed_in? %>
-  <div id="map_canvas"></div>
+<div id="map_canvas"></div>
 
-  <script>
-    utils.ready(function() {
-      var locations = <%= @locations.to_json.html_safe %>;
-      map.placeLocations(locations);
-    });
-  </script>
+<script>
+  utils.ready(function() {
+    var locations = <%= @locations.to_json.html_safe %>;
+    map.placeLocations(locations);
+  });
+</script>
 
-  <div class="b-call-to-action">
-    <a class="b-call-to-action__post b-btn" href="<%= new_location_path %>">
-      Post your location!
-    </a>
-  </div>
-
-<%- else %>
-
-  <div class="b-call-to-action">
-    <a class="b-call-to-action__enter" href="<%= user_facebook_omniauth_authorize_path %>">
-      Enter!
-    </a>
-  </div>
-
-<%- end %>
+<div class="b-call-to-action">
+  <a class="b-call-to-action__post b-btn" href="<%= new_location_path %>">
+    Post your location!
+  </a>
+</div>
 

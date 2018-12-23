@@ -136,45 +136,4 @@ footer#notifications {
     margin: 1rem 0;
     background-color: $gray-dark;
   }
-
-  // https://css-tricks.com/circular-3d-buttons/
-  &__enter {
-    display: inline-block;
-    background-color: #f7f7f7;
-    color: #a7a7a7;
-    margin: 36px;
-    width: 144px;
-    height: 144px;
-    position: relative;
-    text-align: center;
-    line-height: 144px;
-    border-radius: 50%;
-    box-shadow: 0px 3px 8px #aaa, inset 0px 2px 3px #fff;
-    text-decoration: none;
-
-    &:hover {
-      color: #555;
-    }
-
-    &:active,
-    &:visited {
-      color: #555;
-      background: #f5f5f5;
-    }
-
-    &:before {
-      content: "";
-      display: block;
-      background: #fff;
-      border-top: 2px solid #ddd;
-      position: absolute;
-      top: -18px;
-      left: -18px;
-      bottom: -18px;
-      right: -18px;
-      z-index: -1;
-      border-radius: 50%;
-      box-shadow: inset 0px 8px 48px #ddd;
-    }
-  }
 }
