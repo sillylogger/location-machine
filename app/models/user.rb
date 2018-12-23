@@ -2,7 +2,7 @@ class User < ApplicationRecord
 
   # Include default devise modules. Others available are:
   # :timeoutable
-  devise :database_authenticatable, :registerable, :confirmable, :lockable,
+  devise :database_authenticatable, :registerable, :lockable,  # TODO: disable confirmable until email is setup :confirmable
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: %i[facebook]
 
