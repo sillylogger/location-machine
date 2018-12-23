@@ -13,7 +13,6 @@
  */
 
 @import "bourbon";
-@import "neat";
 @import "base/base";
 
 @import "maps";
@@ -27,16 +26,32 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-#navbar,
-#main {
-  // @include outer-container;
-
-  // @include grid-container;
-  // @include grid-column;
-
-  max-width: 25em;
+.container {
+  max-width: 25rem;
   margin-left: auto;
   margin-right: auto;
+}
+
+form {
+  .field {
+
+  }
+
+  .help {
+    margin-top: -0.75rem;
+    color: $medium-gray;
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+
+  .actions {
+    text-align: center;
+
+    input {
+      background-color: $dark-gray;
+    }
+  }
 }
 
 header#navbar {
@@ -46,9 +61,9 @@ header#navbar {
 
   h2 {
     display: inline-block;
-    font-size: 1em;
+    font-size: 1rem;
     line-height: 1.2;
-    margin: 0 0 0.75em;
+    margin-bottom: 0.75rem;
   }
 
   p {
@@ -76,7 +91,7 @@ footer#notifications {
 
   .notice,
   .alert {
-    max-width: 25em;
+    max-width: 25rem;
     margin: 0 auto;
     text-align: center;
   }
@@ -85,10 +100,13 @@ footer#notifications {
 #main {
 }
 
+.b-devise-shared-links {
+  margin-top: 2rem;
+}
+
 .b-location-form {
-
   #map_canvas {
-    margin-bottom: 0.75em;
+    margin-bottom: 0.75rem;
   }
 
   &__actions {
@@ -98,44 +116,13 @@ footer#notifications {
       background-color: $dark-gray;
     }
   }
-
-}
-
-.b-finish-signup {
-
-  &__description {
-  }
-
-  &__field {
-
-  }
-
-  &__help {
-    margin-top: -0.75em;
-    color: $medium-gray;
-    font-size: 0.9em;
-    margin-bottom: 0.75em;
-  }
-
-  &__actions {
-    text-align: center;
-
-    input {
-      background-color: $dark-gray;
-    }
-  }
-
-}
-
-.b-errors {
-
 }
 
 .b-call-to-action {
   text-align: center;
 
   &__post {
-    margin: 1em 0;
+    margin: 1rem 0;
     background-color: $dark-gray;
   }
 

@@ -1,33 +1,30 @@
-<div class="b-finish-signup">
+<h2>Could you check this info?</h2>
 
-  <p class="b-finish-signup__description">Could you check this info?</p>
+<%= form_for(current_user, :as => 'user', :url => finish_signup_path(current_user), :html => { role: 'form'}) do |f| %>
 
-  <%= form_for(current_user, :as => 'user', :url => finish_signup_path(current_user), :html => { role: 'form'}) do |f| %>
+  <%= render 'shared/errors', errors: current_user.errors %>
 
-    <%= render 'shared/errors', errors: current_user.errors %>
+  <div class="field">
+    <%= f.text_field :name, placeholder: 'name', required: true %>
+  </div>
 
-    <div class="b-finish-signup__field">
-      <%= f.text_field :name %>
-    </div>
+  <div class="field">
+    <%= f.email_field :email, placeholder: 'you@example.com', required: true %>
+    <em class="help">Please confirm your email address. No spam, promise.</em>
+  </div>
 
-    <div class="b-finish-signup__field">
-      <%= f.text_field :email, value: '', placeholder: 'you@example.com' %>
-      <div class="b-finish-signup__help">Please confirm your email address. No spam.</div>
-    </div>
+  <div class="field">
+    <%= f.text_field :phone, placeholder: '+62-812-0003-1337', required: true %>
+    <em class="help">Used to connect you with other members.</em>
+  </div>
 
-    <div class="b-finish-signup__field">
-      <%= f.text_field :phone, placeholder: '+62-812-0003-1337' %>
-    </div>
+  <div class="field">
+    <%= f.password_field :password, placeholder: 'New Password', required: true %>
+  </div>
 
-    <div class="b-finish-signup__field">
-      <%= f.password_field :password, placeholder: 'new password' %>
-    </div>
+  <div class="actions">
+    <%= f.submit 'Continue' %>
+  </div>
 
-    <div class="b-finish-signup__actions">
-      <%= f.submit 'Continue' %>
-    </div>
-
-  <%- end %>
-</div>
-
+<%- end %>
 

@@ -9,8 +9,6 @@ class User < ApplicationRecord
   has_many :locations
   has_many :identities
 
-  validates_presence_of :email
-
   TEMP_EMAIL_PREFIX = 'change@me'
   TEMP_EMAIL_REGEX = /\Achange@me/
 
@@ -32,22 +30,27 @@ class User < ApplicationRecord
     if user.nil?
 
       # Get the existing user by email if the provider gives us a verified email.
-      # If no verified email was provided we assign a temporary email and ask the
+      # If no verified email was provided then we don't lookup by email and we don't skip confirmation.
       # user to verify it on the next step via UsersController.finish_signup
-      email_is_verified = auth.info.email && (auth.info.verified || auth.info.verified_email)
-      email = auth.info.email if email_is_verified
-      user = User.where(:email => email).first if email
+      email_is_verified = auth.info.email.present? &&
+                         (auth.info.verified || auth.info.verified_email)
 
-      # Create the user if it's a new registration
+      if email_is_verified
+        user = User.where(email: auth.info.email).first
+      end
+
+      # Create the user if none was found
       if user.nil?
         user = User.new(
-          email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
-          password: Devise.friendly_token[0,20],
           name: auth.info.name,
+          email: auth.info.email || "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
+          password: Devise.friendly_token[0,20],
           avatar_url: auth.info.image
         )
 
-        user.skip_confirmation!
+        # We can trust the provider's verification
+        user.skip_confirmation! unless email_is_verified
+
         user.save!
       end
     end
@@ -61,17 +64,11 @@ class User < ApplicationRecord
     user
   end
 
-  def email_verified?
-    self.email && self.email !~ TEMP_EMAIL_REGEX
-  end
-
   def prompt_additional_information?
-    return false if self.unconfirmed_email? ||
-                    self.phone?
-
-    return false unless self.email.match(TEMP_EMAIL_REGEX)
-
-    true
+    return true if name.blank? ||
+                  (email.blank? && unconfirmed_email.blank?) ||
+                   phone.blank?
+    false
   end
 
 end
