@@ -39,7 +39,7 @@ form {
 
   .help {
     margin-top: -0.75rem;
-    color: $medium-gray;
+    color: $gray-medium;
     font-size: 0.9rem;
     display: block;
     margin-bottom: 0.75rem;
@@ -49,14 +49,25 @@ form {
     text-align: center;
 
     input {
-      background-color: $dark-gray;
+      background-color: $gray-dark;
     }
+  }
+}
+
+#error_explanation {
+  color: $red-dark;
+
+  p {
+    margin-bottom: 0;
+  }
+  ul {
+    margin-bottom: 0.75rem;
   }
 }
 
 header#navbar {
   line-height: 32px;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
   vertical-align: baseline;
 
   h2 {
@@ -113,7 +124,7 @@ footer#notifications {
     text-align: center;
 
     input {
-      background-color: $dark-gray;
+      background-color: $gray-dark;
     }
   }
 }
@@ -123,7 +134,7 @@ footer#notifications {
 
   &__post {
     margin: 1rem 0;
-    background-color: $dark-gray;
+    background-color: $gray-dark;
   }
 
   // https://css-tricks.com/circular-3d-buttons/

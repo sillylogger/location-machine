@@ -3,7 +3,7 @@
   <%= form.hidden_field :latitude %>
   <%= form.hidden_field :longitude %>
 
-  <%= render 'shared/errors', errors: location.errors %>
+  <%= render 'shared/error_messages', errors: location.errors %>
 
   <div class="b-location-form__field">
     <div id="map_canvas"></div>
