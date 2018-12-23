@@ -9,6 +9,7 @@
 
 # Ignore notes to self.
 NOTES.md
+TODO.md
 
 # Ignore the default SQLite database.
 /bin/cloud_sql_proxy
