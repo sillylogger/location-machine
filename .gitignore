@@ -17,7 +17,7 @@ TODO.md
 /db/*.sqlite3-journal
 
 # Ignore test results.
-spec/examples.txt
+spec/.rspec-examples.txt
 
 # Ignore all logfiles and tempfiles.
 /log/*

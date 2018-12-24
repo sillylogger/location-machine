@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "the MVP flow" do
+describe "the MVP flow" do
 
   let!(:user) { FactoryBot.create :user }
 

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Locations", type: :request do
+describe "Locations" do
 
   let(:user) { FactoryBot.create :user }
 

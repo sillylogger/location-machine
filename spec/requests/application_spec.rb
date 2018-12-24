@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Application", type: :request do
+describe "Application" do
 
   describe "GET /" do
     it "works! (now write some real specs)" do

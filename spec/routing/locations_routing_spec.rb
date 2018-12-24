@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe LocationsController, type: :routing do
+describe LocationsController do
   describe "routing" do
     it "routes to #index" do
       expect(:get => "/locations").to route_to("locations#index")
@@ -17,7 +17,6 @@ RSpec.describe LocationsController, type: :routing do
     it "routes to #edit" do
       expect(:get => "/locations/1/edit").to route_to("locations#edit", :id => "1")
     end
-
 
     it "routes to #create" do
       expect(:post => "/locations").to route_to("locations#create")

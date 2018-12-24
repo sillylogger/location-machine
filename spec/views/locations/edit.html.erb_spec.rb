@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "locations/edit", type: :view do
+describe "locations/edit" do
   before(:each) do
     user = User.create(email: "foobar@example.com")
 

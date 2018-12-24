@@ -1,7 +1,7 @@
 require "rails_helper"
 require 'rack/rewrite/yaml_rule_set'
 
-RSpec.describe "rack-rewrite", type: :routing do
+describe "rack-rewrite" do
 
   let(:rules_file) { Rails.root.join('config', 'rewrite.yml') }
 
