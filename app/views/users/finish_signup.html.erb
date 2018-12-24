@@ -1,6 +1,6 @@
 <h2>Could you check this info?</h2>
 
-<%= form_for(current_user, :as => 'user', :url => finish_signup_path(current_user), :html => { role: 'form'}) do |f| %>
+<%= form_for(current_user, :as => 'user', :url => finish_signup_path, :html => { role: 'form'}) do |f| %>
 
   <%= render 'shared/error_messages', errors: current_user.errors %>
 

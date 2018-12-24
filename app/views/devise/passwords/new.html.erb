@@ -5,12 +5,11 @@
   <%= render 'shared/error_messages', errors: resource.errors %>
 
   <div class="field">
-    <%= f.label :email %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, placeholder: 'you@example.com', autocomplete: "email", required: true %>
   </div>
 
   <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
+    <%= f.submit "Send me reset instructions" %>
   </div>
 <% end %>
 

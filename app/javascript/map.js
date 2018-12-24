@@ -66,30 +66,38 @@ class Map {
     });
   }
 
-  placeLocations(mapLocations) {
-    mapLocations.forEach( l => {
-      let position = new google.maps.LatLng(l.latitude, l.longitude);
+  placeClearableLocation(loc) {
+    lastMarker = this.placeLocation(loc);
+  }
 
-      let marker = new google.maps.Marker({
-        position: position,
-        map: map
-      });
+  placeLocation(loc) {
+    let position = new google.maps.LatLng(loc.latitude, loc.longitude);
 
-      google.maps.event.addListener(marker, 'click', () => {
-        if(lastInfoWindow != null) {
-          lastInfoWindow.close();
-        }
-
-        let infoWindow = new google.maps.InfoWindow({
-          content: l.name,
-          maxWidth: 300
-        });
-
-        infoWindow.open(map, marker);
-
-        lastInfoWindow = infoWindow;
-      });
+    let marker = new google.maps.Marker({
+      position: position,
+      map: map
     });
+
+    google.maps.event.addListener(marker, 'click', () => {
+      if(lastInfoWindow != null) {
+        lastInfoWindow.close();
+      }
+
+      let infoWindow = new google.maps.InfoWindow({
+        content: loc.name,
+        maxWidth: 300
+      });
+
+      infoWindow.open(map, marker);
+
+      lastInfoWindow = infoWindow;
+    });
+
+    return marker;
+  }
+
+  placeLocations(mapLocations) {
+    mapLocations.forEach(this.placeLocation);
   }
 
   setCurrentPosition() {

@@ -1,45 +1,78 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<%= form_with(model: resource, as: resource_name, url: registration_path(resource_name), local: true, html: { method: :put }) do |f| %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= f.hidden_field :latitude %>
+  <%= f.hidden_field :longitude %>
 
   <%= render 'shared/error_messages', errors: resource.errors %>
 
   <div class="field">
-    <%= f.label :email %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <div id="map_canvas"></div>
   </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+  <div class="field">
+    <%= f.text_field :name, placeholder: 'Name', autocomplete: "name", required: true %>
+  </div>
 
   <div class="field">
-    <%= f.label :password %>
-    <em class="help">(leave blank if you don't want to change it)</em>
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <em class="help"><%= @minimum_password_length %> characters minimum</em>
+    <%= f.text_area :description, placeholder: 'Description', cols: 4 %>
+  </div>
+
+  <div class="field">
+    <%= f.email_field :email, placeholder: 'you@example.com', autocomplete: "email", required: true %>
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <em class="help">Currently waiting confirmation for: <%= resource.unconfirmed_email %></em>
     <% end %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.text_field :phone, placeholder: '+62-812-0003-1337', autocomplete: "tel", required: true %>
   </div>
 
-  <div class="field">
-    <%= f.label :current_password %>
-    <em class="help">(we need your current password to confirm your changes)</em>
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
+<% # TODO: deal with passwords at some point in the future
+  if false 
+%>
+    <div class="field">
+      <%= f.password_field :password, placeholder: "New Password", autocomplete: "new-password" %>
+      <em class="help">(leave blank if you don't want to change it)</em>
+      <% if @minimum_password_length && false %>
+        <em class="help"><%= @minimum_password_length %> characters minimum</em>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f.password_field :password_confirmation, placeholder: "Confirm New Password", autocomplete: "new-password" %>
+    </div>
+    <div class="field">
+      <em class="help">(we need your current password to confirm your changes)</em>
+      <%= f.password_field :current_password, placeholder: "Current Password", autocomplete: "off" %>
+    </div>
 <% end %>
 
-<h3>Cancel my account</h3>
+  <div class="actions">
+    <%= f.submit 'Update' %>
+  </div>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+  <script>
+    // TODO: if password field is filled, show password confirmation & current password field
 
-<%= link_to "Back", :back %>
+    utils.ready(function() {
+      <%- if resource.locations.present? %>
+        var loc = <%= resource.locations.first.to_json.html_safe %>;
+        map.placeClearableLocation(loc);
+      <%- end %>
+
+      map.hydrateLatLng('user_latitude',
+                        'user_longitude');
+    });
+  </script>
+<% end %>
+
+<hr/>
+
+<h3>Sign Out</h3>
+<p><%= button_to "Sign Out", destroy_user_session_path, method: :delete %></p>
+
+<hr/>
+
+<h3>Cancel my Account</h3>
+<p>Unhappy?  Sorry to hear you feel that way.  Feel free to delete your account and recreate one at a later time.  <%= button_to "Cancel my Account", user_registration_path, data: { confirm: "Are you sure?" }, method: :delete, class: "m--danger" %></p>
+

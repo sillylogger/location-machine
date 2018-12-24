@@ -1,23 +1,23 @@
-<%= form_with(model: location, local: true, class: 'b-location-form') do |form| %>
+<%= form_with(model: location, local: true, class: '') do |form| %>
 
   <%= form.hidden_field :latitude %>
   <%= form.hidden_field :longitude %>
 
   <%= render 'shared/error_messages', errors: location.errors %>
 
-  <div class="b-location-form__field">
+  <div class="field">
     <div id="map_canvas"></div>
   </div>
 
-  <div class="b-location-form__field">
+  <div class="field">
     <%= form.text_field :name, placeholder: "Name" %>
   </div>
 
-  <div class="b-location-form__field">
+  <div class="field">
     <%= form.text_area :description, placeholder: "Description" %>
   </div>
 
-  <div class="b-location-form__actions">
+  <div class="field">
     <%= form.submit "Create Location" %>
   </div>
 

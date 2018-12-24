@@ -43,6 +43,14 @@ $_button-background-color-hover: shade($action-color, 20%);
   }
 }
 
+.b-btn,
+#{$all-buttons} {
+  &.m--danger {
+    background-color: $red-dark;
+  }
+}
+
+
 .b-btn.m--facebook {
   padding: 8px;
   background-color: #4267b2;

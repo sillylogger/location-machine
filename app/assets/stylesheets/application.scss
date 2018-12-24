@@ -33,6 +33,10 @@ body {
 }
 
 form {
+  #map_canvas {
+    margin-bottom: 0.75rem;
+  }
+
   .field {
 
   }
@@ -115,19 +119,6 @@ footer#notifications {
   margin-top: 2rem;
 }
 
-.b-location-form {
-  #map_canvas {
-    margin-bottom: 0.75rem;
-  }
-
-  &__actions {
-    text-align: center;
-
-    input {
-      background-color: $gray-dark;
-    }
-  }
-}
 
 .b-call-to-action {
   text-align: center;

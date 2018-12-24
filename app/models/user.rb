@@ -2,9 +2,11 @@ class User < ApplicationRecord
 
   # Include default devise modules. Others available are:
   # :timeoutable
-  devise :database_authenticatable, :registerable, :lockable,  # TODO: disable confirmable until email is setup :confirmable
+  devise :database_authenticatable, :registerable, :lockable,  # TODO: :confirmable once email is setup
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: %i[facebook]
+
+  validates_presence_of :name
 
   has_many :locations
   has_many :identities
@@ -70,5 +72,22 @@ class User < ApplicationRecord
                    phone.blank?
     false
   end
+
+  def latitude
+    locations.first.try(:latitude)
+  end
+
+  def longitude
+    locations.first.try(:longitude)
+  end
+
+  def name
+    locations.first.try(:name) || super
+  end
+
+  def description
+    locations.first.try(:description)
+  end
+
 
 end

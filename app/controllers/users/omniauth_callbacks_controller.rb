@@ -12,12 +12,15 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
   end
 
-  def after_sign_in_path_for resource
-    if resource.prompt_additional_information?
-      finish_signup_path(resource)
-    else
-      super resource
-    end
-  end
+  # TODO: bring this additional prompt back in the form of 
+  # a flash notification on the profile#edit
+  #
+  # def after_sign_in_path_for resource
+  #   if resource.prompt_additional_information?
+  #     finish_signup_path
+  #   else
+  #     super resource
+  #   end
+  # end
 
 end
