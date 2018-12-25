@@ -1,0 +1,21 @@
+<%= form_with(model: item, local: true) do |form| %>
+
+  <%= render 'shared/error_messages', errors: item.errors %>
+
+  <div class="field">
+    <%= form.text_field :name, placeholder: "Name" %>
+  </div>
+
+  <div class="field">
+    <%= form.text_field :price, placeholder: "Price" %>
+  </div>
+
+  <div class="field">
+    <%= form.text_area :description, placeholder: "Description" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit action %>
+  </div>
+
+<% end %>

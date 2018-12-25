@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   # match '/users/finish_signup' => 'users/registrations#finish_signup', via: [:get, :patch], :as => :finish_signup
   #
 
+  resources :items
   resources :locations
 
   root to: "application#index"

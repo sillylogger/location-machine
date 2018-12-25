@@ -4,7 +4,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def update
     super do |user|
-      user.locations.first_or_create.update(location_params)
+      user.location.update(location_params)
     end
   end
 
