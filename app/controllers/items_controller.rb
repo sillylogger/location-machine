@@ -32,6 +32,8 @@ class ItemsController < ApplicationController
   # PATCH/PUT /items/1
   def update
     if @item.update(item_params)
+
+
       redirect_to @item, notice: 'Item was successfully updated.'
     else
       render :edit
@@ -53,6 +55,6 @@ class ItemsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def item_params
-      params.require(:item).permit(:name, :price, :description)
+      params.require(:item).permit(:name, :price, :description, :image)
     end
 end

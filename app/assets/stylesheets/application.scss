@@ -34,12 +34,8 @@ body {
 }
 
 form {
-  #map_canvas {
-    margin-bottom: 0.75rem;
-  }
-
   .field {
-
+    margin-bottom: 0.75rem;
   }
 
   .help {
@@ -52,6 +48,7 @@ form {
 
   .actions {
     text-align: center;
+    margin-bottom: 0.75rem;
 
     input {
       background-color: $gray-dark;

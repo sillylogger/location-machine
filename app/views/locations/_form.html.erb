@@ -17,12 +17,15 @@
     <%= form.text_area :description, placeholder: "Description" %>
   </div>
 
-  <div class="field">
-    <%= form.submit "Create Location" %>
+  <div class="actions">
+    <%= form.submit action %>
   </div>
 
   <script>
     utils.ready(function() {
+      var loc = <%= location.to_json.html_safe %>;
+      map.placeClearableLocation(loc);
+
       map.hydrateLatLng('location_latitude',
                         'location_longitude');
     });

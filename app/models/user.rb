@@ -86,17 +86,4 @@ class User < ApplicationRecord
     locations.first_or_create
   end
 
-  def description
-    location.description
-  end
-
-  def latitude
-    location.latitude
-  end
-
-  def longitude
-    location.longitude
-  end
-  # END TODO: move to a profile object?
-
 end

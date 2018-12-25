@@ -1,6 +1,6 @@
 class Location < ApplicationRecord
 
-  validates_presence_of :name, :description
+  validates_presence_of :user
 
   belongs_to :user
   has_many   :items

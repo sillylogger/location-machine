@@ -1,20 +1,14 @@
-<%= form_with(model: resource, as: resource_name, url: registration_path(resource_name), local: true, html: { method: :put }) do |f| %>
-
-  <%= f.hidden_field :latitude %>
-  <%= f.hidden_field :longitude %>
+<%= form_with(model: resource, as: :user, url: user_registration_path, local: true, html: { method: :put }) do |f| %>
 
   <%= render 'shared/error_messages', errors: resource.errors %>
 
-  <div class="field">
+  <div class="actions">
     <div id="map_canvas"></div>
+    <%= link_to 'Edit your Location', edit_location_path(resource.location) %>
   </div>
 
   <div class="field">
     <%= f.text_field :name, placeholder: 'Name', autocomplete: "name", required: true %>
-  </div>
-
-  <div class="field">
-    <%= f.text_area :description, placeholder: 'Description', cols: 4 %>
   </div>
 
   <div class="field">
@@ -55,13 +49,8 @@
     // TODO: if password field is filled, show password confirmation & current password field
 
     utils.ready(function() {
-      <%- if resource.locations.present? %>
-        var loc = <%= resource.locations.first.to_json.html_safe %>;
-        map.placeClearableLocation(loc);
-      <%- end %>
-
-      map.hydrateLatLng('user_latitude',
-                        'user_longitude');
+      var loc = <%= resource.location.to_json.html_safe %>;
+      map.placeLocation(loc);
     });
   </script>
 <% end %>

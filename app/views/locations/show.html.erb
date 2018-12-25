@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<div id="map_canvas"></div>
+
+<p>
+  <strong>Name:</strong>
+  <%= @location.name %>
+  <%= link_to 'Edit', edit_location_path(@location) %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @location.description %>
+</p>
+
+<p>
+  <strong>Items:</strong>
+  <ul>
+    <%- @location.items.each do |item| %>
+      <li>
+          <%- if item.image.attached? %>
+            <%= image_tag item.image, size: "25x25" %>
+          <%- end%>
+          <br/>
+          <%= item.name %>
+          <%= link_to 'Edit', edit_item_path(item) %>
+          <br/>
+          <%= item.price %>
+          <br/>
+          <%= item.description %>
+      </li>
+    <%- end %>
+  </ul>
+</p>
+
+<script>
+  utils.ready(function() {
+    var loc = <%= @location.to_json.html_safe %>;
+    map.placeLocation(loc);
+  });
+</script>
+

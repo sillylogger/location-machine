@@ -3,6 +3,10 @@
   <%= render 'shared/error_messages', errors: item.errors %>
 
   <div class="field">
+    <%= form.file_field :image %>
+  </div>
+
+  <div class="field">
     <%= form.text_field :name, placeholder: "Name" %>
   </div>
 
