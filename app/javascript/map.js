@@ -75,18 +75,26 @@ class Map {
 
     let marker = new google.maps.Marker({
       position: position,
-      map: map
+      map: map,
+      title: loc.name
+    });
+
+    let images = loc.items.map((i) => {
+      return `<img src="${i.image_url}" alt="${i.name}" style="max-width:88px; max-height:88px;margin-right:1rem;" />`;
+    }).join(" ")
+
+    let infoWindow = new google.maps.InfoWindow({
+      content: `<div>
+        <h1>${loc.name}</h1>
+        <p>${loc.description}</p>
+        <div>${images}</div>
+      </div>`
     });
 
     google.maps.event.addListener(marker, 'click', () => {
       if(lastInfoWindow != null) {
         lastInfoWindow.close();
       }
-
-      let infoWindow = new google.maps.InfoWindow({
-        content: loc.name,
-        maxWidth: 300
-      });
 
       infoWindow.open(map, marker);
 
