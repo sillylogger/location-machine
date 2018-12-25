@@ -31,7 +31,7 @@ describe "devise/registrations/edit" do
       assert_select "input[name*=latitude]",        1
       assert_select "input[name*=longitude]",       1
 
-      assert_select "input[name*=name][value=?]",   location.name
+      assert_select "input[name*=name][value=?]",   user.name
       assert_select "textarea[name*=description]",  location.description
       assert_select "input[name*=email][value=?]",  user.email
       assert_select "input[name*=phone][value=?]",  user.phone

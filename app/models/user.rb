@@ -73,21 +73,23 @@ class User < ApplicationRecord
     false
   end
 
-  def latitude
-    locations.first.try(:latitude)
-  end
-
-  def longitude
-    locations.first.try(:longitude)
-  end
-
-  def name
-    locations.first.try(:name) || super
+  # TODO: move to a profile value object, using composed_of?
+  # https://api.rubyonrails.org/classes/ActiveRecord/Aggregations/ClassMethods.html
+  def location
+    locations.first_or_create
   end
 
   def description
-    locations.first.try(:description)
+    location.description
   end
 
+  def latitude
+    location.latitude
+  end
+
+  def longitude
+    location.longitude
+  end
+  # END TODO: move to a profile object?
 
 end
