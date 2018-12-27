@@ -29,6 +29,9 @@ gem 'webpacker'
 gem 'devise', github: 'plataformatec/devise'
 gem 'omniauth-facebook', github: 'mkdynamic/omniauth-facebook'
 
+# Best admin system for crud settings & pages
+gem 'activeadmin',            github: 'gregbell/active_admin'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 

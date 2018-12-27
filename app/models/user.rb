@@ -11,6 +11,8 @@ class User < ApplicationRecord
   has_many :locations
   has_many :identities
 
+  ROLES = { admin: 'Admin' }
+
   TEMP_EMAIL_PREFIX = 'change@me'
   TEMP_EMAIL_REGEX = /\Achange@me/
 
@@ -71,6 +73,10 @@ class User < ApplicationRecord
                   (email.blank? && unconfirmed_email.blank?) ||
                    phone.blank?
     false
+  end
+
+  def admin?
+    role? && role == ROLES[:admin]
   end
 
   # TODO: move to a profile value object, using composed_of?
