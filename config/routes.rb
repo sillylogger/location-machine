@@ -13,6 +13,6 @@ Rails.application.routes.draw do
   resources :items
   resources :locations
 
-  root to: "application#index"
+  root to: "locations#index"
 
 end

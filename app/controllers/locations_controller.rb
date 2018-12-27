@@ -1,7 +1,12 @@
 class LocationsController < ApplicationController
 
-  before_action :authenticate_user!
-  before_action :set_location, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!,  except: [:index]
+  before_action :set_location,        only:   [:edit, :update, :destroy]
+
+  # GET /
+  def index
+    @locations = Location.all
+  end
 
   # GET /locations/new
   def new

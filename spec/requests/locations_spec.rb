@@ -6,9 +6,9 @@ describe "Locations" do
 
   before(:each) { sign_in user }
 
-  describe "GET /locations/new" do
+  describe "GET /" do
     it "works! (now write some real specs)" do
-      get new_location_path
+      get locations_path
       expect(response).to have_http_status(200)
     end
   end
