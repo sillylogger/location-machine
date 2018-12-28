@@ -9,12 +9,16 @@ FactoryBot.define do
   end
 
   factory :user do
-    name         { "Tommy Sullivan" }
+    name          { "Tommy Sullivan" }
     email
     phone
-    password     { "password" }
-    avatar_url   { "https://graph.facebook.com/10100952355977829/picture" }
-    confirmed_at { Time.zone.now }
+    password      { "password" }
+    avatar_url    { "https://graph.facebook.com/10100952355977829/picture" }
+    confirmed_at  { Time.zone.now }
+
+    trait :with_admin do
+      role        { User::ROLES[:admin] }
+    end
   end
 
 end

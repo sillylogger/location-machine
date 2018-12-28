@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   resources :items
   resources :locations
+  get '/p/:path' => 'pages#show', :as => :page
+
   root to: "locations#index"
 
   devise_for :users, controllers: {

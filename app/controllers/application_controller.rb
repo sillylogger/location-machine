@@ -12,4 +12,8 @@ class ApplicationController < ActionController::Base
     stored_location_for(resource) || default_path
   end
 
+  def not_found
+    raise ActionController::RoutingError.new('Not Found')
+  end
+
 end
