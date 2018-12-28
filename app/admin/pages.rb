@@ -17,6 +17,20 @@ ActiveAdmin.register Page do
   filter :published
   filter :created_at
 
+  show do
+    attributes_table do
+      row :title
+      row :path
+      row :content do |page|
+        FormatHelper.markdownify page.content
+      end
+      row :visibility
+      row :published
+      row :created_at
+      row :updated_at
+    end
+  end
+
   form do |f|
     f.inputs do
       f.input :title

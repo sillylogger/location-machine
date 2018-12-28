@@ -1,3 +1,3 @@
-<h3><%= @page.title %></h3>
+<h1><%= @page.title %></h1>
 
-<%= @page.content %>
+<%= FormatHelper.markdownify @page.content %>
