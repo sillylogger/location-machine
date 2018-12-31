@@ -52,8 +52,9 @@ class User < ApplicationRecord
           avatar_url: auth.info.image
         )
 
+        # TODO: confirmation should be turned back on at some point
         # We can trust the provider's verification
-        user.skip_confirmation! unless email_is_verified
+        # user.skip_confirmation! unless email_is_verified
 
         user.save!
       end
