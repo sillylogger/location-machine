@@ -12,6 +12,9 @@ gem 'rack-rewrite', github: 'jtrupiano/rack-rewrite'
 # Use postgresql as the database for Active Record
 gem 'pg'
 
+# Use google cloud for storage
+gem 'google-cloud-storage', '~> 1.11', require: false
+
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 
