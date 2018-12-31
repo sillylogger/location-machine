@@ -1,6 +1,6 @@
 ## [LocationMachine.io](https://www.locationmachine.io)
 
-Prototype of a simple / temporary event sharing app:
+Prototype of a simple / temporary event sharing app:  
 ![Screenshot](/app/assets/images/location-machine-dot-io-mvp.png)
 
 Start the server with:
