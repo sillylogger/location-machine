@@ -58,6 +58,15 @@ describe "rack-rewrite" do
   end
 
   shared_examples :path_with_utm_source do
+
+    it "redirects naked paths to the proper domain" do
+      expect(get('')).to eq(
+        'https://www.locationmachine.io')
+
+      expect(get('/')).to eq(
+        'https://www.locationmachine.io/')
+    end
+
     it "redirects to the proper domain with path and params" do
       expect(get('/?utm_source=foobar')).to eq(
         'https://www.locationmachine.io/?utm_source=foobar')
