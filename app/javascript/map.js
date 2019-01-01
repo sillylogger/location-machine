@@ -80,7 +80,11 @@ class Map {
     });
 
     let images = loc.items.map((i) => {
-      return `<img src="${i.image_url}" alt="${i.name}" style="max-width:88px; max-height:88px;margin-right:1rem;" />`;
+      if(i.image_urls){
+        return `<img src="${i.image_urls['thumb']}" alt="${i.name}" style="max-width:88px; max-height:88px;margin-right:1rem;" />`;
+      }
+    }).filter((i) => {
+      return i != null;
     }).join(" ")
 
     let infoWindow = new google.maps.InfoWindow({

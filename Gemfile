@@ -15,6 +15,9 @@ gem 'pg'
 # Use google cloud for storage
 gem 'google-cloud-storage', '~> 1.11', require: false
 
+# Use cloudinary for processing variants
+gem 'cloudinary', github: 'cloudinary/cloudinary_gem'
+
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 

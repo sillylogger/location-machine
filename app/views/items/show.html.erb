@@ -9,7 +9,7 @@
 <p>
   <strong>Image:</strong>
   <%- if @item.image.attached? %>
-    <%= image_tag @item.image %>
+    <%= image_tag @item.image_urls[:medium] %>
   <%- end%>
 </p>
 
