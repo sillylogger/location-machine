@@ -5,7 +5,7 @@ class LocationsController < ApplicationController
 
   # GET /
   def index
-    @locations = Location.all
+    @locations = Location.for_display
   end
 
   # GET /locations/new
