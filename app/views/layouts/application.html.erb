@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Location Machine</title>
+    <title><%= Setting.fetch('site.title', 'Location Machine') %></title>
 
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -23,7 +23,7 @@
 
     <header id="navbar">
       <div class="container">
-        <h2><%= link_to "location machine", root_path %></h2>
+        <h2><%= link_to Setting.fetch('site.title', 'Location Machine'), root_path %></h2>
 
         <%- if user_signed_in? %>
           <p>
