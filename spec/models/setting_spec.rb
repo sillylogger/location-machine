@@ -43,16 +43,4 @@ describe Setting do
     end
   end
 
-  describe ".credentials" do
-    it "pulls values from the Rails.application.credentials" do
-      skip "TODO: for README.md"
-    end
-
-    context "when a key is overridden by an environment variable" do
-      it "doesn't bother with the Rails.application.credentials lookup" do
-        skip "TODO: for README.md"
-      end
-    end
-  end
-
 end

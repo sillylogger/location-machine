@@ -15,7 +15,7 @@
     <%= render 'shared/testing' %>
     <%= render 'shared/tracking' %>
 
-    <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{ Rails.application.credentials.google[:maps_api_key] }" %>
+    <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{ Credential.fetch(:google, :maps_api_key) }" %>
     <%= javascript_pack_tag 'application' %>
   </head>
 

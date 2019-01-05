@@ -1,9 +1,3 @@
-
-
-
-
-
-
 # [LocationMachine.io](https://www.locationmachine.io)
 
 Welcome!  Location Machine is an attempt to connect GPS points with quality photos to 3rd party messaging apps.  Right now it kinda looks like this:
@@ -55,34 +49,26 @@ yarn install
 
 Rails 5.2 provides [a great way](https://edgeguides.rubyonrails.org/security.html#environmental-security) to manage those credentials, but it isn't designed to support several installs of the same app.
 
-We have created an interface for `Rails.application.credentials` that allows for credentials to be overridden with plain old `ENV` variables.
+`Credential.fetch(namespace, key)` is used as an interface for `Rails.application.credentials` that allows for credentials to be overridden with plain old `ENV` variables.
 
-`Setting.fetch_credential('facebook', 'app_id')` will return `ENV['facebook_app_id']` if set, otherwise it will look up `Rails.application.credentials.facebook[:app_id]`.
+For example: `Credential.fetch(:facebook, :app_id)` will return `ENV['FACEBOOK_APP_ID']` if set, otherwise it will look up `Rails.application.credentials.facebook[:app_id]`.
 
-You can find an unencrypted example credentials file at `config/credentials.yml.example`
-
-Copy this structure into `rails credentials:edit` to utilize your own encrypted config file.
-
-A basic install of Location Machine needs the following credentials:
+In order to run the app without everything 500'ing, you will need at least the following credentials:
 
 ```
-secret_key_base:
-
-google:
-  maps_api_key:
-  tracking_id:
-
-facebook:
-  app_id:
-  app_secret:
+secret_key_base: 
 
 cloudinary:
-  cloud_name:
-  api_key:
-  api_secret:
+  cloud_name: demo
 ```
 
-Additional credentials are explained in [3rd Party Services](#3rd-party-services)
+Copy this structure into `rails credentials:edit` to create your own encrypted config **or** define environment variables like `CLOUDINARY_CLOUD_NAME`.
+
+A complete list of all possible credentials can be found at `config/credentials.yml.example`
+
+At a minimum you'll want to provide a valid Google `maps_api_key` to stop Maps from showing "For development purposes only".
+
+Additional credentials / services are explained in [3rd Party Services](#3rd-party-services)
 
 
 ### Running the app
@@ -120,13 +106,13 @@ Make sure your Facebook App's Client OAuth Settings specify Valid OAuth Redirect
 Setup your test database with:
 
 ```
-bundle exec rails db:test:prepare
+rails db:test:prepare
 ```
 
 Then you should be able to run:
 
 ```
-bundle exec rspec spec
+rspec spec
 ```
 
 

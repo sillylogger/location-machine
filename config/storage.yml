@@ -9,7 +9,7 @@ local:
 # Remember not to checkin your GCS keyfile to a repository
 google:
   service: GCS
-  credentials: <%= Rails.application.credentials.google[:storage_service_account] %>
+  credentials: <%= Credential.fetch(:google, :storage_service_account) %>
   project: location-machine
   bucket: location-machine-storage
 
