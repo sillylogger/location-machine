@@ -26,10 +26,10 @@ describe Setting do
       expect(Setting.fetch('foo')).to eq('bar')
     end
 
-    it "throws an exception if the name isn't found and a default isn't given" do
-      expect {
-        Setting.fetch('foo')
-      }.to raise_error(KeyError)
+    it "just returns nil if the name isn't found and a default isn't given" do
+      # TODO: capturing exceptions here helps when setting up the app from nil...
+      # but is it hiding the source of issues? :-/
+      expect(Setting.fetch('foo')).to be_nil
     end
 
     it "returns the default if the name isn't found and a default is given" do
@@ -40,6 +40,18 @@ describe Setting do
       expect {
         expect(Setting.fetch('foo', 'bar')).to eq('bar')
       }.to change(Setting, :count).by(1)
+    end
+  end
+
+  describe ".credentials" do
+    it "pulls values from the Rails.application.credentials" do
+      skip "TODO: for README.md"
+    end
+
+    context "when a key is overridden by an environment variable" do
+      it "doesn't bother with the Rails.application.credentials lookup" do
+        skip "TODO: for README.md"
+      end
     end
   end
 

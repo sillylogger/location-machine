@@ -37,6 +37,7 @@ spec/.rspec-examples.txt
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+/config/credentials.yml.enc
 /public/packs
 /public/packs-test
 /node_modules
