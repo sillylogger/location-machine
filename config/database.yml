@@ -25,6 +25,6 @@ production:
   <<: *default
   database: location-machine-sql-production
 
-  username: <%= Rails.application.credentials.google[:cloud_sql_username] %>
-  password: <%= Rails.application.credentials.google[:cloud_sql_password] %>
-  host: /cloudsql/<%= Rails.application.credentials.google[:cloud_sql_connection_name] %>
+  username: <%= Setting.fetch_credential(:google, :cloud_sql_username) %>
+  password: <%= Setting.fetch_credential(:google, :cloud_sql_password) %>
+  host: /cloudsql/<%= Setting.fetch_credential(:google, :cloud_sql_connection_name) %>
