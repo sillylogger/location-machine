@@ -39,9 +39,14 @@ class User < ApplicationRecord
       email_is_verified = auth.info.email.present? &&
                          (auth.info.verified || auth.info.verified_email)
 
-      if email_is_verified
+      # TODO: confirmation should be turned back on at some point
+      # at which point then you can have 2 places to store an email (email & unconfirmed_email)...
+      # then what to do when you have a verified email for ABC and an unverified email for ABC that then confirms?!
+      # let's deal with that in the future, for now trust Facebook / Google's email
+
+      # if email_is_verified
         user = User.where(email: auth.info.email).first
-      end
+      # end
 
       # Create the user if none was found
       if user.nil?
