@@ -91,8 +91,13 @@ If everything worked all right, you should be able to visit the app at `http://l
 **Yayyyy!**  As admin you can also modify settings at `http://localhost:3000/admin`
 
 In order to login via Facebook's OAuth, you are going to need to use SSL locally.
+The best way to do this is use [`mkcert`](https://github.com/FiloSottile/mkcert) to write trusted self-signed certs to `config/localhost.key` and `config/localhost.crt` with:
 
-That can be accomplished with:
+```
+$(go env GOPATH)/bin/mkcert -cert-file config/localhost.crt -key-file config/localhost.key localhost 127.0.0.1 ::1
+```
+
+Then you can start `puma` with:
 
 ```
 puma -b 'ssl://127.0.0.1:3000?key=config/localhost.key&cert=config/localhost.crt'
