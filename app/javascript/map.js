@@ -81,7 +81,10 @@ class Map {
 
     let images = loc.items.map((i) => {
       if(i.image_urls){
-        return `<img src="${i.image_urls['thumb']}" alt="${i.name}" style="max-width:88px; max-height:88px;margin-right:1rem;" />`;
+        return `<img  src="${i.image_urls['thumb']}"
+                      alt="${i.name}"
+                      style="max-width:88px; max-height:88px; margin-right:1rem; margin-top:1rem;"
+                />`;
       }
     }).filter((i) => {
       return i != null;
@@ -89,9 +92,11 @@ class Map {
 
     let infoWindow = new google.maps.InfoWindow({
       content: `<div>
-        <h1>${loc.name}</h1>
-        <p>${loc.description}</p>
-        <div>${images}</div>
+        <a href="${loc.pretty_path}">
+          <h1>${loc.name}</h1>
+          <p>${loc.description}</p>
+          <div style="margin-top:-1rem;">${images}</div>
+        </a>
       </div>`
     });
 

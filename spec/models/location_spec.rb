@@ -36,4 +36,23 @@ describe Location do
     end
   end
 
+  describe "#pretty_path" do
+    it "includes the location name parameterized" do
+      location = FactoryBot.create(:location)
+      expect(location.pretty_path).to include(location.id.to_s)
+      expect(location.pretty_path).to include(location.name.parameterize)
+    end
+
+    it "doesn't freak out if the name is nil" do
+      location = FactoryBot.create(:location)
+      location.name = nil
+      expect(location.pretty_path).to include(location.id.to_s)
+    end
+
+    it "is empty if the location isn't persisted" do
+      location = Location.new
+      expect(location.pretty_path).to be_nil
+    end
+  end
+
 end

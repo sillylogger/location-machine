@@ -11,7 +11,7 @@ class Item < ApplicationRecord
       {
         thumb:  thumb_path(image.service_url),
         medium: medium_path(image.service_url),
-        full:  full_path(image.service_url)
+        full:   full_path(image.service_url)
       }
     end
   end
@@ -22,6 +22,10 @@ class Item < ApplicationRecord
       methods: [:image_urls],
       except:  [:location_id, :created_at, :updated_at]
     }.merge(options || {}))
+  end
+
+  def to_param
+    [id, name&.parameterize].compact.join('-')
   end
 
 end

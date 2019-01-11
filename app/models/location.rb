@@ -1,4 +1,5 @@
 class Location < ApplicationRecord
+  include Rails.application.routes.url_helpers
 
   validates_presence_of :user
 
@@ -16,8 +17,17 @@ class Location < ApplicationRecord
   def serializable_hash options=nil
     super({
       include: [:items],
+      methods: [:pretty_path],
       except:  [:user_id, :created_at, :updated_at]
     }.merge(options || {}))
+  end
+
+  def pretty_path
+    location_path(self) if persisted?
+  end
+
+  def to_param
+    [id, name&.parameterize].compact.join('-')
   end
 
 end

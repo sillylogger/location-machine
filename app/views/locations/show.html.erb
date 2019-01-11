@@ -19,15 +19,14 @@
     <%- @location.items.each do |item| %>
       <li>
           <%- if item.image.attached? %>
-            <%= image_tag item.image, size: "25x25" %>
+            <%= image_tag item.image_urls[:thumb], size: "25x25" %>
           <%- end%>
           <br/>
           <%= item.name %>
-          <%= link_to 'Edit', edit_item_path(item) %>
-          <br/>
           <%= item.price %>
           <br/>
           <%= item.description %>
+          <%= link_to 'Edit', edit_item_path(item) %>
       </li>
     <%- end %>
   </ul>

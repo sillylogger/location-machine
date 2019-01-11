@@ -2,8 +2,9 @@
 
   <%= render 'shared/error_messages', errors: resource.errors %>
 
+  <div id="map_canvas"></div>
+
   <div class="actions">
-    <div id="map_canvas"></div>
     <%= link_to 'Edit your Location', edit_location_path(resource.location) %>
   </div>
 
