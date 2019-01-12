@@ -1,12 +1,14 @@
 # [LocationMachine.io](https://www.locationmachine.io)
 
-Welcome!  Location Machine is an attempt to connect GPS points with quality photos to 3rd party messaging apps.  Right now it kinda looks like this:
+Welcome!  Location Machine is an attempt to connect: GPS points, quality photos, 3rd party messaging apps.
+
+Right now it kinda looks like this:
 
 ![Screenshot](/app/assets/images/location-machine-dot-io-mvp.png)
 
-There are many applications for a generic app of this nature: event organization, community selling, photo blogging...
+Background: there are many uses for a generic app of this nature: event organization, photo blogging, geocaching...
 
-Hopefully, Location Machine can provide a toolkit of services necessary to setup other apps, supporting UI customization, with an upgradable core.
+Hopefully, Location Machine can provide a toolkit of services necessary to setup other apps, supporting UI customization, and maintain an upgradable core.
 Much like [WordPress.org](https://wordpress.org/) provides a CMS for websites, blogs, and other types of apps.
 
 How will that core / UI layer be segregated?  Likely at the JS level, but it will evolve as we spin up instances of Location Machine.
@@ -49,24 +51,34 @@ yarn install
 
 Rails 5.2 provides [a great way](https://edgeguides.rubyonrails.org/security.html#environmental-security) to manage those credentials, but it isn't designed to support several installs of the same app.
 
-`Credential.fetch(namespace, key)` is used as an interface for `Rails.application.credentials` that allows for credentials to be overridden with plain old `ENV` variables.
+To work past this, we have a `Credential` class that provides `fetch(namespace, key)` as an interface for `Rails.application.credentials` but allows keys to be overwritten with `ENV` variables.
 
-For example: `Credential.fetch(:facebook, :app_id)` will return `ENV['FACEBOOK_APP_ID']` if set, otherwise it will look up `Rails.application.credentials.facebook[:app_id]`.
-
-In order to run the app without everything 500'ing, you will need at least the following credentials:
-
+If you have the minimum `config/credentials.yml.enc` credentials file like:
 ```
-secret_key_base: 
+secret_key_base:
 
 cloudinary:
   cloud_name: demo
 ```
 
+Then:
+```
+ENV['CLOUDINARY_CLOUD_NAME'] = 'test'
+puts Credential.fetch(:cloudinary, :cloud_name)
+=> test
+
+ENV.delete 'CLOUDINARY_CLOUD_NAME'
+puts Credential.fetch(:cloudinary, :cloud_name)
+=> demo
+```
+
+In order to run the app without everything 500'ing, you will need at least a secret_key_base and that cloudinary cloud_name.
+
 Copy this structure into `rails credentials:edit` to create your own encrypted config **or** define environment variables like `CLOUDINARY_CLOUD_NAME`.
 
 A complete list of all possible credentials can be found at `config/credentials.yml.example`
 
-At a minimum you'll want to provide a valid Google `maps_api_key` to stop Maps from showing "For development purposes only".
+You'll want to provide a valid Google `maps_api_key` to stop Maps from showing "For development purposes only".
 
 Additional credentials / services are explained in [3rd Party Services](#3rd-party-services)
 
@@ -119,6 +131,25 @@ Then you should be able to run:
 ```
 rspec spec
 ```
+
+
+### Settings
+
+These are settings that are store in the database and make it easy to customize Location Machine to your needs, much like [WordPress's Options](https://codex.wordpress.org/Option_Reference)
+
+| Name          | Default Value    | Purpose                                                     |
+|---------------|------------------|-------------------------------------------------------------|
+| site.title    | Location Machine | A human readable title in the navigation etc                |
+| site.host     |                  | The full hostname to correct to; eg: www.locationmachine.io |
+
+**TODO:**
+
+| Name              | Default Value    | Purpose                                                        |
+|-------------------|------------------|----------------------------------------------------------------|
+| site.tagline      |                  | A human/computer readable tagline used in meta description     |
+| site.public       |                  | A boolean that requires a user login to view                   |
+| user.registration |                  | A boolean as to whether users can register or it is turned off |
+| user.role         |                  | The default role for new users who register; see `User::ROLES` |
 
 
 
