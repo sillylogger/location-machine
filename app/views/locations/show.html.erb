@@ -1,41 +1,33 @@
-<p id="notice"><%= notice %></p>
+<%= link_to 'Back', locations_path %>
+<%= link_to 'Edit', edit_location_path(@location) %>
 
-<div id="map_canvas"></div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @location.name %>
-  <%= link_to 'Edit', edit_location_path(@location) %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @location.description %>
-</p>
-
-<p>
-  <strong>Items:</strong>
-  <ul>
-    <%- @location.items.each do |item| %>
-      <li>
-          <%- if item.image.attached? %>
-            <%= image_tag item.image_urls[:thumb], size: "25x25" %>
-          <%- end%>
-          <br/>
-          <%= item.name %>
-          <%= item.price %>
-          <br/>
-          <%= item.description %>
-          <%= link_to 'Edit', edit_item_path(item) %>
-      </li>
-    <%- end %>
-  </ul>
-</p>
-
+<div id="map_canvas" class="m--reminder"></div>
 <script>
   utils.ready(function() {
     var loc = <%= @location.to_json.html_safe %>;
-    map.placeLocation(loc);
+    map.placeLocation(loc, { info: false });
   });
 </script>
+
+
+<header class="location-info">
+  <h1 class="location-info__name"><%= @location.name %></h1>
+  <p class="location-info__description"><%= @location.description %></p>
+</header>
+
+
+<ul class="location-items">
+  <%- @location.items.each do |item| %>
+    <li class="location-items__item" data="<%= item.to_json %>">
+      <%- if item.image.attached? %>
+        <%= image_tag item.image_urls[:thumb], size: "50x50" %>
+      <%- end%>
+      <%= link_to 'Show', item_path(item) %>
+      <br/>
+      <%= link_to 'Edit', edit_item_path(item) %>
+    </li>
+  <%- end %>
+</ul>
+
 

@@ -3,12 +3,27 @@ require 'rails_helper'
 describe LocationsController do
 
   let(:valid_attributes) { FactoryBot.attributes_for(:location) }
-
   let(:user) { FactoryBot.create :user }
 
-  before(:each) { sign_in user }
+  describe "GET #index" do
+    it "returns a success response" do
+      get :index, params: {}
+      expect(response).to be_successful
+    end
+  end
+
+  describe "GET #show" do
+    let(:location) { FactoryBot.create :location }
+
+    it "returns a success response" do
+      get :show, params: { id: location.id }
+      expect(response).to be_successful
+    end
+  end
 
   describe "GET #new" do
+    before(:each) { sign_in user }
+
     it "returns a success response" do
       get :new, params: {}
       expect(response).to be_successful
@@ -16,6 +31,8 @@ describe LocationsController do
   end
 
   describe "GET #edit" do
+    before(:each) { sign_in user }
+
     it "returns a success response" do
       location = FactoryBot.create :location, user: user
       get :edit, params: { id: location.to_param }
@@ -24,6 +41,8 @@ describe LocationsController do
   end
 
   describe "POST #create" do
+    before(:each) { sign_in user }
+
     context "with valid params" do
       it "creates a new Location" do
         expect {
@@ -39,6 +58,8 @@ describe LocationsController do
   end
 
   describe "PUT #update" do
+    before(:each) { sign_in user }
+
     context "with valid params" do
       let(:new_attributes) { {
         name: "Sweet Beef"
@@ -60,6 +81,8 @@ describe LocationsController do
   end
 
   describe "DELETE #destroy" do
+    before(:each) { sign_in user }
+
     it "destroys the requested location" do
       location = FactoryBot.create :location, user: user
       expect {

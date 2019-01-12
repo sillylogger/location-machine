@@ -6,11 +6,5 @@ module.exports = function run() {
 
   utils.ready(function() {
     window.map = new Map();
-
-    if(window.map.isInitialized()) {
-      window.map.setCurrentPosition();
-    }
-
   });
-
 };

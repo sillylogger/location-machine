@@ -4,7 +4,11 @@
   margin-bottom: 1rem;
 }
 
-#map_canvas img { 
+#map_canvas.m--reminder {
+  height: 150px;
+}
+
+#map_canvas img {
   max-width: none; // to prevent UI control bug
 }
 

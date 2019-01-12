@@ -2,6 +2,8 @@
 
 <script>
   utils.ready(function() {
+    map.setCurrentPosition();
+
     var locations = <%= @locations.to_json.html_safe %>;
     map.placeLocations(locations);
   });

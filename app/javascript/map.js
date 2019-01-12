@@ -20,24 +20,32 @@ class Map {
     let jakarta = new google.maps.LatLng(-6.1745, 106.8227);
 
     let mapOptions = {
-        center: jakarta,
         zoom: 8,
-        scrollwheel: true,
+        center: jakarta,
         draggable: true,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
+        scrollwheel: true,
+
+
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        mapTypeControl: false,
+        fullscreenControl: true,
+        streetViewControl: false,
+        zoomControl: false,
+
+        clickableIcons: false
     };
 
-    map = new google.maps.Map(canvas, mapOptions);
-
-    map.set('styles', [{
-      featureType: 'landscape',
+    mapOptions['styles'] = [{
       elementType: 'geometry',
+      featureType: 'landscape',
       stylers: [
         { hue: '#ffff00' },
         { saturation: 30 },
         { lightness: 10 }
       ]}
-    ]);
+    ];
+
+    map = new google.maps.Map(canvas, mapOptions);
   }
 
   isInitialized() {
@@ -70,7 +78,7 @@ class Map {
     lastMarker = this.placeLocation(loc);
   }
 
-  placeLocation(loc) {
+  placeLocation(loc, options = {}) {
     let position = new google.maps.LatLng(loc.latitude, loc.longitude);
 
     let marker = new google.maps.Marker({
@@ -79,23 +87,25 @@ class Map {
       title: loc.name
     });
 
-    let images = loc.items.map((i) => {
-      if(i.image_urls){
-        return `<img  src="${i.image_urls['thumb']}"
-                      alt="${i.name}"
-                      style="max-width:88px; max-height:88px; margin-right:1rem; margin-top:1rem;"
-                />`;
-      }
-    }).filter((i) => {
-      return i != null;
+    if(options.info === false){
+      return;
+    }
+
+    let images = loc.items.filter((i) => {
+      return i.image_urls != null;
+    }).map((i) => {
+      return `<img  src="${i.image_urls['thumb']}"
+                    alt="${i.name}"
+                    style="max-width:88px; max-height:88px; margin-right:1rem; margin-top:1rem;"
+              />`;
     }).join(" ")
 
     let infoWindow = new google.maps.InfoWindow({
       content: `<div>
         <a href="${loc.pretty_path}">
           <h1>${loc.name}</h1>
-          <p>${loc.description}</p>
-          <div style="margin-top:-1rem;">${images}</div>
+          <p style="margin-bottom: 0;">${loc.description}</p>
+          <div>${images}</div>
         </a>
       </div>`
     });

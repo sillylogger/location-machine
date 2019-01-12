@@ -21,6 +21,8 @@
 
   <script>
     utils.ready(function() {
+      map.setCurrentPosition();
+
       var loc = <%= location.to_json.html_safe %>;
       map.placeClearableLocation(loc);
 

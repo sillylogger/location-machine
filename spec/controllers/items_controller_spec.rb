@@ -15,7 +15,6 @@ describe ItemsController do
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # ItemsController. Be sure to keep this updated too.
-  before(:each) { sign_in user }
 
   describe "GET #show" do
     it "returns a success response" do
@@ -25,6 +24,8 @@ describe ItemsController do
   end
 
   describe "GET #new" do
+    before(:each) { sign_in user }
+
     it "returns a success response" do
       get :new, params: {}
       expect(response).to be_successful
@@ -32,6 +33,8 @@ describe ItemsController do
   end
 
   describe "GET #edit" do
+    before(:each) { sign_in user }
+
     it "returns a success response" do
       get :edit, params: { id: item.to_param }
       expect(response).to be_successful
@@ -39,6 +42,8 @@ describe ItemsController do
   end
 
   describe "POST #create" do
+    before(:each) { sign_in user }
+
     context "with valid params" do
       it "creates a new Item" do
         expect {
@@ -61,6 +66,8 @@ describe ItemsController do
   end
 
   describe "PUT #update" do
+    before(:each) { sign_in user }
+
     context "with valid params" do
       let(:new_attributes) { {
         name: "Chicken Rice",
@@ -91,6 +98,8 @@ describe ItemsController do
   end
 
   describe "DELETE #destroy" do
+    before(:each) { sign_in user }
+
     it "destroys the requested item" do
       item.touch
       expect {
