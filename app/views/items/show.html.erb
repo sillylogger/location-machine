@@ -1,31 +1,16 @@
-<p id="notice"><%= notice %></p>
+<%= link_to 'Back', location_path(@item.location) %>
 
-<p>
-  <strong>Location:</strong>
-  <%= @item.location %>
-  <%= link_to 'Edit', edit_location_path(@item.location) %>
-</p>
-
-<p>
-  <strong>Image:</strong>
-  <%- if @item.image.attached? %>
-    <%= image_tag @item.image_urls[:medium] %>
-  <%- end%>
-</p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @item.name %>
+<% if @item.editor? current_user %>
   <%= link_to 'Edit', edit_item_path(@item) %>
-</p>
+<% end %>
 
-<p>
-  <strong>Price:</strong>
-  <%= @item.price %>
-</p>
+<% if @item.image.attached? %>
+  <%= image_tag @item.image_urls[:medium] %>
+<% end %>
 
-<p>
-  <strong>Description:</strong>
-  <%= @item.description %>
-</p>
+<section class="item-info">
+  <span class="item-info__price"><%= number_to_currency(@item.price) %></span>
+  <h1 class="item-info__name"><%= @item.name %></h1>
+  <p class="item-info__description"><%= @item.description %></p>
+</section>
 

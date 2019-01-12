@@ -13,6 +13,10 @@ class Location < ApplicationRecord
     where("longitude IS NOT NULL")
   }
 
+  def editor? user
+    self.user_id == user&.id
+  end
+
   # TODO: move this to: https://github.com/rails-api/active_model_serializers
   def serializable_hash options=nil
     super({

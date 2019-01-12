@@ -3,6 +3,10 @@
   <%= render 'shared/error_messages', errors: item.errors %>
 
   <div class="field">
+    <% if @item.image.attached? %>
+      <%= image_tag @item.image_urls[:medium] %>
+    <% end %>
+
     <%= form.file_field :image %>
   </div>
 

@@ -13,9 +13,8 @@
   column-count: 3;
 
   &__item {
-
     img {
-      float: left;
+      max-width: 100%;
     }
   }
 

@@ -1,1 +1,5 @@
 <%= render 'form', item: @item, action: "Update" %>
+
+<hr/>
+
+<%= button_to "Delete", item_path(@item), data: { confirm: "Are you sure?" }, method: :delete, class: "m--danger" %>

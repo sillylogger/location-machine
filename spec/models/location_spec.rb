@@ -36,6 +36,23 @@ describe Location do
     end
   end
 
+  describe "#editor?" do
+    let(:location) { FactoryBot.create(:location) }
+
+    it "returns true for the location's user" do
+      expect(location.editor?(location.user)).to be true
+    end
+
+    it "returns false for any other user" do
+      visitor = FactoryBot.create(:user)
+      expect(location.editor?(visitor)).to be false
+    end
+
+    it "returns false when no user is signed in" do
+      expect(location.editor?(nil)).to be false
+    end
+  end
+
   describe "#pretty_path" do
     it "includes the location name parameterized" do
       location = FactoryBot.create(:location)

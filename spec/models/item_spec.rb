@@ -1,7 +1,23 @@
 require 'rails_helper'
 
 describe Item do
-  include Rails.application.routes.url_helpers
+
+  describe "#editor?" do
+    let(:item) { FactoryBot.create(:item) }
+
+    it "returns true for the location's user" do
+      expect(item.editor?(item.location.user)).to be true
+    end
+
+    it "returns false for any other user" do
+      visitor = FactoryBot.create(:user)
+      expect(item.editor?(visitor)).to be false
+    end
+
+    it "returns false when no user is signed in" do
+      expect(item.editor?(nil)).to be false
+    end
+  end
 
   describe "#to_param" do
     it "includes the item name parameterized" do

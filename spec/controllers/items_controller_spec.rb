@@ -3,10 +3,7 @@ require 'rails_helper'
 describe ItemsController do
 
   let(:valid_attributes) { FactoryBot.attributes_for(:item) }
-
-  let(:invalid_attributes) { valid_attributes.merge({
-    name: ""
-  }) }
+  let(:invalid_attributes) { valid_attributes.merge({ name: "" }) }
 
   let(:item)     { FactoryBot.create(:item, location: location) }
   let(:location) { FactoryBot.create(:location, user: user) }
@@ -102,14 +99,15 @@ describe ItemsController do
 
     it "destroys the requested item" do
       item.touch
+
       expect {
         delete :destroy, params: { id: item.to_param }
       }.to change(Item, :count).by(-1)
     end
 
-    it "redirects to the items list" do
+    it "redirects to the location_path" do
       delete :destroy, params: { id: item.to_param }
-      expect(response).to redirect_to(items_url)
+      expect(response).to redirect_to(location_path(location))
     end
   end
 
