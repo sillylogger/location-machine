@@ -43,12 +43,6 @@ GIT
       xpath (~> 3.2)
 
 GIT
-  remote: https://github.com/jtrupiano/rack-rewrite.git
-  revision: 758860bc46bbd7e701121702990011caf61091f9
-  specs:
-    rack-rewrite (1.5.1)
-
-GIT
   remote: https://github.com/mkdynamic/omniauth-facebook.git
   revision: f4df23af367c9a77f3e1f5a2e36d5b9bc996e658
   specs:
@@ -521,7 +515,6 @@ DEPENDENCIES
   pg
   puma (~> 3.11)
   rack
-  rack-rewrite!
   rails (~> 5.2.2)
   redcarpet
   rspec-core!

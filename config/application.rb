@@ -1,7 +1,6 @@
 require_relative 'boot'
 
 require 'rails/all'
-require 'rack/rewrite/yaml_rule_set'
 require_relative '../lib/strip_x_forwarded_host'
 
 # Require the gems listed in Gemfile, including any gems
@@ -20,12 +19,6 @@ module LocationMachine
 
     config.eager_load_paths << Rails.root.join('lib')
 
-    config.middleware.use(Rack::Rewrite,
-        klass: Rack::Rewrite::YamlRuleSet,
-        options: {
-          file_name: Rails.root.join('config', 'rewrite.yml')
-        }
-    )
     config.middleware.use Rack::Deflater
     config.middleware.use StripXForwardedHost
   end

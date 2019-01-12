@@ -14,4 +14,9 @@ class Setting < ApplicationRecord
     return default
   end
 
+  def self.get name
+    setting = Setting.find_by(name: name)
+    return setting.value unless setting.nil?
+  end
+
 end

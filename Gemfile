@@ -7,7 +7,6 @@ ruby '2.5.1'
 gem 'rails', '~> 5.2.2'
 
 gem 'rack'
-gem 'rack-rewrite', github: 'jtrupiano/rack-rewrite'
 
 # Use postgresql as the database for Active Record
 gem 'pg'

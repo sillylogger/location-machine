@@ -43,4 +43,15 @@ describe Setting do
     end
   end
 
+  describe ".get" do
+    it "returns the value for the name" do
+      setting = Setting.create(name: 'foo', value: 'bar')
+      expect(Setting.get('foo')).to eq('bar')
+    end
+
+    it "just returns nil if the name isn't found" do
+      expect(Setting.get('foo')).to be_nil
+    end
+  end
+
 end

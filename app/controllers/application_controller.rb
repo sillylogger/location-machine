@@ -1,8 +1,7 @@
 class ApplicationController < ActionController::Base
 
-  before_action do
-    ActiveStorage::Current.host = request.base_url
-  end
+  before_action :force_canonical_host
+  before_action :set_current_host
 
   protected
 
@@ -18,6 +17,19 @@ class ApplicationController < ActionController::Base
 
   def not_found
     raise ActionController::RoutingError.new('Not Found')
+  end
+
+
+  def force_canonical_host
+    desired_host = Setting.get('site.host')
+    if desired_host && (request.host != desired_host)
+      host_with_port = request.host_with_port.sub(request.host, desired_host)
+      redirect_to ["//", host_with_port, request.fullpath].join('')
+    end
+  end
+
+  def set_current_host
+    ActiveStorage::Current.host = request.base_url
   end
 
 end
