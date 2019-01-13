@@ -4,11 +4,12 @@ class Location < ApplicationRecord
   validates_presence_of :user
 
   belongs_to :user
+
   has_many   :items
+  accepts_nested_attributes_for :items
 
   scope :for_display, ->() {
     where("name <> ''").
-    where("description <> ''").
     where("latitude IS NOT NULL").
     where("longitude IS NOT NULL")
   }

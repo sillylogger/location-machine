@@ -103,8 +103,7 @@ class Map {
     let infoWindow = new google.maps.InfoWindow({
       content: `<div>
         <a href="${loc.pretty_path}">
-          <h1>${loc.name}</h1>
-          <p style="margin-bottom: 0;">${loc.description}</p>
+          <h1 style="margin-bottom: 0;">${loc.name}</h1>
           <div>${images}</div>
         </a>
       </div>`

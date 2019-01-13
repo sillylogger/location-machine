@@ -13,7 +13,6 @@ describe "locations/new" do
 
     assert_select "form[action=?][method=?]", locations_path, "post" do
       assert_select "input[name=?]", "location[name]"
-      assert_select "textarea[name=?]", "location[description]"
     end
   end
 end

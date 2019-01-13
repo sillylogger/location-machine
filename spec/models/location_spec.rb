@@ -11,14 +11,6 @@ describe Location do
       expect(Location.for_display).to_not include(blank_name)
     end
 
-    it "must have a description" do
-      no_description = FactoryBot.create(:location, description: nil)
-      expect(Location.for_display).to_not include(no_description)
-
-      blank_description = FactoryBot.create(:location, description: "")
-      expect(Location.for_display).to_not include(blank_description)
-    end
-
     it "must have a latitude" do
       no_latitude = FactoryBot.create(:location, latitude: nil)
       expect(Location.for_display).to_not include(no_latitude)
