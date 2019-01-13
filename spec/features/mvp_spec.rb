@@ -18,60 +18,50 @@ describe "the MVP flow" do
     click_link user.name
     wait_until { page.current_path == edit_user_registration_path }
 
-    fill_in 'user[name]',        with: user.name
-    fill_in 'user[email]',       with: user.email
-    fill_in 'user[phone]',       with: user.phone
+    fill_in 'user[name]',  with: (new_name = "Carme Ruscalleda")
+    fill_in 'user[email]', with: (new_email = "carme.ruscalleda@example.com")
+    fill_in 'user[phone]', with: (new_phone = "+62 123 4567 8901")
     click_button 'Update'
 
-    user.reload
     wait_until { page.current_path == root_path }
+    user.reload
 
-    expect(user.name).to  eq(user.name)
-    expect(user.email).to eq(user.email)
-    expect(user.phone).to eq(user.phone)
+    expect(user.name).to  eq(new_name)
+    expect(user.email).to eq(new_email)
+    expect(user.phone).to eq(new_phone)
   end
 
-  it "lets users sign in and edit their location" do
-    click_link user.name
-    wait_until { page.current_path == edit_user_registration_path }
-
-    click_link "Edit your Location"
-    wait_until { page.current_path == edit_location_path(user.location) }
+  it "lets users sign in and post!" do
+    click_link 'Post!'
+    wait_until { page.current_path == new_location_path }
 
     execute_script <<-JS
       document.getElementById('location_latitude').value = '#{location_attributes.latitude}';
       document.getElementById('location_longitude').value = '#{location_attributes.longitude}';
     JS
-    fill_in 'location[name]',        with: location_attributes.name
-    fill_in 'location[description]', with: location_attributes.description
-    click_button 'Update'
+    fill_in 'location[name]', with: location_attributes.name
 
-    location = user.location
-    wait_until { page.current_path == root_path }
-
-    expect(location.latitude).to     eq(location_attributes.latitude)
-    expect(location.longitude).to    eq(location_attributes.longitude)
-    expect(location.name).to         eq(location_attributes.name)
-    expect(location.description).to  eq(location_attributes.description)
-  end
-
-  it "lets users (with a location) sign in and post an item" do
-    click_link 'Post!'
-    wait_until { page.current_path == new_item_path }
-
-    attach_file 'item[image]',    Rails.root.join("spec", "fixtures", "spring-rolls.jpg")
-    fill_in 'item[name]',         with: item_attributes.name
-    fill_in 'item[price]',        with: item_attributes.price
-    fill_in 'item[description]',  with: item_attributes.description
+    attach_file 'location[items_attributes][0][image]', Rails.root.join("spec", "fixtures", "spring-rolls.jpg")
     click_button 'Create'
 
-    item = Item.last
-    wait_until { page.current_path == item_path(item) }
+    validation_message = page.find("#location_items_attributes_0_name").native.attribute("validationMessage")
+    expect(validation_message ).to eq("Please fill out this field.")
 
-    expect(item.image).to         be_attached
-    expect(item.name).to          eq(item_attributes.name)
-    expect(item.price).to         eq(item_attributes.price)
-    expect(item.description).to   eq(item_attributes.description)
+    fill_in     'location[items_attributes][0][name]', with: item_attributes.name
+    fill_in     'location[items_attributes][0][price]', with: item_attributes.price
+    click_button 'Create'
+
+    location = Location.last
+    expect(location.latitude).to eq(location_attributes.latitude)
+    expect(location.longitude).to eq(location_attributes.longitude)
+    expect(location.name).to eq(location_attributes.name)
+
+    item = Item.last
+    expect(item.image).to be_attached
+    expect(item.name).to  eq(item_attributes.name)
+    expect(item.price).to eq(item_attributes.price)
+
+    expect(location.items).to include(item)
   end
 
 end

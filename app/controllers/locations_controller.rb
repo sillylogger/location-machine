@@ -8,18 +8,15 @@ class LocationsController < ApplicationController
     @locations = Location.for_display
   end
 
-  # GET /locations/new
-  def new
-    @location = Location.new
-  end
-
   # GET /locations/1
   def show
     @location = Location.find params[:id]
   end
 
-  # GET /locations/1/edit
-  def edit
+  # GET /locations/new
+  def new
+    @location = Location.new
+    @location.items.build
   end
 
   # POST /locations
@@ -31,6 +28,10 @@ class LocationsController < ApplicationController
     else
       render :new
     end
+  end
+
+  # GET /locations/1/edit
+  def edit
   end
 
   # PATCH/PUT /locations/1
@@ -57,7 +58,18 @@ class LocationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def location_params
-      params.require(:location).permit(:name, :description, :latitude, :longitude)
+      params.require(:location).permit(
+        :latitude,
+        :longitude,
+        :name,
+        :description,
+        items_attributes: [
+          :image,
+          :name,
+          :price,
+          :description
+        ]
+      )
     end
 
 end

@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
   include ::ImageHelper
 
-  validates_presence_of :name, :price, :description
+  validates_presence_of :name
 
   belongs_to        :location
   has_one_attached  :image, acl: 'public'

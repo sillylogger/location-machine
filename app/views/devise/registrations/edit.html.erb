@@ -2,12 +2,6 @@
 
   <%= render 'shared/error_messages', errors: resource.errors %>
 
-  <div id="map_canvas" class="m--reminder"></div>
-
-  <div class="actions">
-    <%= link_to 'Edit your Location', edit_location_path(resource.location) %>
-  </div>
-
   <div class="field">
     <%= f.text_field :name, placeholder: 'Name', autocomplete: "name", required: true %>
   </div>
@@ -24,7 +18,7 @@
   </div>
 
 <% # TODO: deal with passwords at some point in the future
-  if false 
+  if false
 %>
     <div class="field">
       <%= f.password_field :password, placeholder: "New Password", autocomplete: "new-password" %>
@@ -48,11 +42,6 @@
 
   <script>
     // TODO: if password field is filled, show password confirmation & current password field
-
-    utils.ready(function() {
-      var loc = <%= resource.location.to_json.html_safe %>;
-      map.placeLocation(loc);
-    });
   </script>
 <% end %>
 

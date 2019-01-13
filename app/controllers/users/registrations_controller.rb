@@ -2,12 +2,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   before_action :authenticate_user!, only: [:finish_signup]
 
-  def update
-    super do |user|
-      user.location.update(location_params)
-    end
-  end
-
   def finish_signup
     if request.patch? && params[:user] && params[:user][:email]
       if current_user.update(user_params)
@@ -28,15 +22,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
       :name,
       :email,
       :phone
-    ])
-  end
-
-  def location_params
-    params.require(:user).permit([
-      :name,
-      :description,
-      :latitude,
-      :longitude
     ])
   end
 

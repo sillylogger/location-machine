@@ -8,12 +8,30 @@
   <div id="map_canvas"></div>
 
   <div class="field">
-    <%= form.text_field :name, placeholder: "Name" %>
+    <%= form.text_field :name, placeholder: "Name", required: true %>
   </div>
 
   <% if show_description %>
     <div class="field">
       <%= form.text_area :description, placeholder: "Description" %>
+    </div>
+  <% end %>
+
+  <%= form.fields_for :items do |item_form| %>
+    <div class="field">
+      <%= item_form.file_field :image, required: true %>
+    </div>
+
+    <div class="field">
+      <%= item_form.text_field :name, placeholder: "Name", required: true %>
+    </div>
+
+    <div class="field">
+      <%= item_form.text_field :price, placeholder: "Price", required: true %>
+    </div>
+
+    <div class="field">
+      <%= item_form.text_area :description, placeholder: "Description" %>
     </div>
   <% end %>
 

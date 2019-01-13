@@ -17,44 +17,18 @@ describe Users::RegistrationsController do
   end
 
   describe "PUT #update" do
-    context "with valid params" do
-      let(:location_attributes) { FactoryBot.attributes_for(:location) }
+    let(:name) { "Yogi Bear" }
+    let(:email) { "yogi.bear@example.com" }
+    let(:phone) { "+1 234 567 8901" }
 
-      it "updates the user and their location" do
-        # expect(user.locations).to be_empty
-        put :update, params: { id: user.to_param,
-                               user: { }.merge(location_attributes) }
-        user.reload
-        expect(user.name).to eq(location_attributes[:name])
-        expect(user.locations).to be_present
-
-        location = user.locations.first
-        expect(location.name).to eq(location_attributes[:name])
-        expect(location.description).to eq(location_attributes[:description])
-        expect(location.longitude).to eq(location_attributes[:longitude])
-        expect(location.latitude).to eq(location_attributes[:latitude])
-      end
-    end
-
-    context "with invalid params" do
-      it "returns a success response (i.e. to display the 'edit' template)" do
-      end
+    it "updates the user without a password" do
+      put :update, params: { id: user.to_param,
+                             user: { name: name, email: email, phone: phone  } }
+      user.reload
+      expect(user.name).to eq(name)
+      expect(user.email).to eq(email)
+      expect(user.phone).to eq(phone)
     end
   end
-
-  # describe "DELETE #destroy" do
-  #   it "destroys the requested location" do
-  #     location = FactoryBot.create :location, user: user
-  #     expect {
-  #       delete :destroy, params: { id: location.to_param }
-  #     }.to change(Location, :count).by(-1)
-  #   end
-  #
-  #   it "redirects to the locations list" do
-  #     location = FactoryBot.create :location, user: user
-  #     delete :destroy, params: { id: location.to_param }
-  #     expect(response).to redirect_to(root_path)
-  #   end
-  # end
 
 end
