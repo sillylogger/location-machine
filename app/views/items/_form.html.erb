@@ -1,6 +1,6 @@
 <%= form_with(model: item, local: true) do |form| %>
 
-  <%= render 'shared/error_messages', errors: item.errors %>
+  <%= render 'shared/error_messages', resource: item %>
 
   <div class="field">
     <% if @item.image.attached? %>

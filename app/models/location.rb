@@ -1,7 +1,7 @@
 class Location < ApplicationRecord
   include Rails.application.routes.url_helpers
 
-  validates_presence_of :user
+  validates_presence_of :user, :latitude, :longitude
 
   belongs_to :user
 
@@ -9,9 +9,9 @@ class Location < ApplicationRecord
   accepts_nested_attributes_for :items, allow_destroy: true
 
   scope :for_display, ->() {
-    where("name <> ''").
     where("latitude IS NOT NULL").
-    where("longitude IS NOT NULL")
+    where("longitude IS NOT NULL").
+    where("name <> ''")
   }
 
   def editor? user

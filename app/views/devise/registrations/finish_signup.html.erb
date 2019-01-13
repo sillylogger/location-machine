@@ -2,7 +2,7 @@
 
 <%= form_for(current_user, :as => 'user', :url => finish_signup_path, :html => { role: 'form'}) do |f| %>
 
-  <%= render 'shared/error_messages', errors: current_user.errors %>
+  <%= render 'shared/error_messages', resource: current_user %>
 
   <div class="field">
     <%= f.text_field :name, placeholder: 'name', required: true %>

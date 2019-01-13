@@ -2,7 +2,7 @@
 
 <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
 
-  <%= render 'shared/error_messages', errors: resource.errors %>
+  <%= render 'shared/error_messages', resource: resource %>
 
   <div class="field">
     <%= f.label :email %>

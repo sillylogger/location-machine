@@ -88,7 +88,7 @@ class User < ApplicationRecord
   # TODO: move to a profile value object, using composed_of?
   # https://api.rubyonrails.org/classes/ActiveRecord/Aggregations/ClassMethods.html
   def location
-    locations.first_or_create
+    locations.first_or_create(latitude: -6.1745, longitude: 106.8227)
   end
 
 end

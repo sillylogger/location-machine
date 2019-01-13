@@ -1,6 +1,6 @@
 <%= form_with(model: resource, as: :user, url: user_registration_path, local: true, html: { method: :put }) do |f| %>
 
-  <%= render 'shared/error_messages', errors: resource.errors %>
+  <%= render 'shared/error_messages', resource: resource %>
 
   <div class="field">
     <%= f.text_field :name, placeholder: 'Name', autocomplete: "name", required: true %>
