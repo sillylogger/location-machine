@@ -2,3 +2,13 @@
   location: @location,
   action_label: "Create",
   show_description: false %>
+
+<script>
+  utils.ready(function() {
+    map.setCurrentPosition();
+
+    map.hydrateLatLng('location_latitude',
+                      'location_longitude');
+  });
+</script>
+

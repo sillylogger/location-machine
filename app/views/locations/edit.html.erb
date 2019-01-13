@@ -2,3 +2,16 @@
   location: @location,
   action_label: "Update",
   show_description: true %>
+
+<script>
+  utils.ready(function() {
+    map.setCurrentPosition();
+
+    var loc = <%= @location.to_json.html_safe %>;
+    map.placeClearableLocation(loc);
+
+    map.hydrateLatLng('location_latitude',
+                      'location_longitude');
+  });
+</script>
+

@@ -25,7 +25,6 @@ class Map {
         draggable: true,
         scrollwheel: true,
 
-
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         mapTypeControl: false,
         fullscreenControl: true,
@@ -52,32 +51,41 @@ class Map {
     return map != undefined;
   }
 
+  // TODO: split into placeClearableMarker(with drag callback to fn(update inputs)) and fn(update inputs)
   hydrateLatLng(latId, lngId) {
     let lattitudeInput = document.getElementById(latId);
     let longitudeInput = document.getElementById(lngId);
 
     map.addListener('click', e => {
-
       if(lastMarker) {
         lastMarker.setMap(null);
       }
 
+      lattitudeInput.value = e.latLng.lat();
+      longitudeInput.value = e.latLng.lng();
+
       let marker = new google.maps.Marker({
         position: e.latLng,
+        draggable: true,
         map: map
       });
 
-      lattitudeInput.value = e.latLng.lat();
-      longitudeInput.value = e.latLng.lng();
+      marker.addListener('dragend', e => {
+        lattitudeInput.value = e.latLng.lat();
+        longitudeInput.value = e.latLng.lng();
+      })
 
       lastMarker = marker;
     });
   }
 
+  // TODO: clearableMarker ya?  
   placeClearableLocation(loc) {
     lastMarker = this.placeLocation(loc);
   }
 
+
+  // how to split... 
   placeLocation(loc, options = {}) {
     let position = new google.maps.LatLng(loc.latitude, loc.longitude);
 
@@ -109,6 +117,7 @@ class Map {
       </div>`
     });
 
+    // TODO: can be rewritten marker.addListener('click' ya?
     google.maps.event.addListener(marker, 'click', () => {
       if(lastInfoWindow != null) {
         lastInfoWindow.close();
