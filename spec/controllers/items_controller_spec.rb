@@ -2,20 +2,14 @@ require 'rails_helper'
 
 describe ItemsController do
 
-  let(:valid_attributes) { FactoryBot.attributes_for(:item) }
-  let(:invalid_attributes) { valid_attributes.merge({ name: "" }) }
-
   let(:item)     { FactoryBot.create(:item, location: location) }
   let(:location) { FactoryBot.create(:location, user: user) }
   let(:user)     { FactoryBot.create(:user) }
 
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # ItemsController. Be sure to keep this updated too.
-
   describe "GET #show" do
     it "returns a success response" do
-      get :show, params: { id: item.to_param }
+      get :show, params: { location_id: location.to_param,
+                           id: item.to_param }
       expect(response).to be_successful
     end
   end
@@ -24,7 +18,7 @@ describe ItemsController do
     before(:each) { sign_in user }
 
     it "returns a success response" do
-      get :new, params: {}
+      get :new, params: { location_id: location.to_param }
       expect(response).to be_successful
     end
   end
@@ -33,7 +27,8 @@ describe ItemsController do
     before(:each) { sign_in user }
 
     it "returns a success response" do
-      get :edit, params: { id: item.to_param }
+      get :edit, params: { location_id: location.to_param,
+                           id: item.to_param }
       expect(response).to be_successful
     end
   end
@@ -42,21 +37,32 @@ describe ItemsController do
     before(:each) { sign_in user }
 
     context "with valid params" do
+      let(:valid_params) { FactoryBot.attributes_for(:item) }
+
       it "creates a new Item" do
         expect {
-          post :create, params: { item: valid_attributes }
+          post :create, params: { location_id: location.to_param,
+                                  item: valid_params }
         }.to change(Item, :count).by(1)
       end
 
       it "redirects to the created item" do
-        post :create, params: { item: valid_attributes }
-        expect(response).to redirect_to(Item.last)
+        expect {
+          post :create, params: { location_id: location.to_param,
+                                  item: valid_params }
+        }.to change(Item, :count).by(1)
+        expect(response).to redirect_to([location, Item.last])
       end
     end
 
     context "with invalid params" do
+      let(:invalid_params) { FactoryBot.attributes_for(:item).merge(name: '') }
+
       it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: { item: invalid_attributes }
+        expect {
+          post :create, params: { location_id: location.to_param,
+                                  item: invalid_params }
+        }.not_to change(Item, :count)
         expect(response).to be_successful
       end
     end
@@ -66,29 +72,33 @@ describe ItemsController do
     before(:each) { sign_in user }
 
     context "with valid params" do
-      let(:new_attributes) { {
-        name: "Chicken Rice",
-        price: "$1.99",
-        description: "Just like Singaporean chicken rice lah!"
-      } }
+      let(:valid_params) { FactoryBot.attributes_for(:item) }
 
       it "updates the requested item" do
-        put :update, params: { id: item.to_param, item: new_attributes }
+        put :update, params: { location_id: location.to_param,
+                               id: item.to_param,
+                               item: valid_params.merge(price: '1.99') }
         item.reload
-        expect(item.name).to eq(new_attributes[:name])
-        expect(item.price.to_s).to eq("1.99")
-        expect(item.description).to eq(new_attributes[:description])
+        expect(item.name).to        eq(valid_params[:name])
+        expect(item.price.to_s).to  eq('1.99')
+        expect(item.description).to eq(valid_params[:description])
       end
 
       it "redirects to the item" do
-        put :update, params: { id: item.to_param, item: valid_attributes }
-        expect(response).to redirect_to(item)
+        put :update, params: { location_id: location.to_param,
+                               id: item.to_param,
+                               item: valid_params }
+        expect(response).to redirect_to([location, item])
       end
     end
 
     context "with invalid params" do
+      let(:invalid_params) { FactoryBot.attributes_for(:item).merge(name: '') }
+
       it "returns a success response (i.e. to display the 'edit' template)" do
-        put :update, params: { id: item.to_param, item: invalid_attributes }
+        put :update, params: { location_id: location.to_param,
+                               id: item.to_param,
+                               item: invalid_params }
         expect(response).to be_successful
       end
     end
@@ -101,13 +111,15 @@ describe ItemsController do
       item.touch
 
       expect {
-        delete :destroy, params: { id: item.to_param }
+        delete :destroy, params: { location_id: location.to_param,
+                                   id: item.to_param }
       }.to change(Item, :count).by(-1)
     end
 
     it "redirects to the location_path" do
-      delete :destroy, params: { id: item.to_param }
-      expect(response).to redirect_to(location_path(location))
+      delete :destroy, params: { location_id: location.to_param,
+                                 id: item.to_param }
+      expect(response).to redirect_to(location)
     end
   end
 

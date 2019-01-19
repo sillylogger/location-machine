@@ -2,8 +2,9 @@ require 'rails_helper'
 
 describe "locations/show" do
 
-  let(:user) { FactoryBot.create(:user) }
-  let(:location) { FactoryBot.create(:location, user: user) }
+  let(:user)      { FactoryBot.create(:user) }
+  let(:location)  { FactoryBot.create(:location, user: user) }
+  let!(:item)     { FactoryBot.create(:item, location: location) }
 
   before(:each) do
     assign(:location, location)

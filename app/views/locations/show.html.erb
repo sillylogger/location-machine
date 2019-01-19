@@ -23,7 +23,7 @@
 <ul class="location-items">
   <%- @location.items.each do |item| %>
     <li class="location-items__item">
-      <%= link_to item_path(item) do %>
+      <%= link_to location_item_path(@location, item) do %>
         <% if item.image.attached? %>
           <%= image_tag item.image_urls[:thumb] %>
         <% end %>

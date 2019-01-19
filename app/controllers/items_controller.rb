@@ -1,56 +1,58 @@
 class ItemsController < ApplicationController
 
-  before_action :authenticate_user!, only: [       :new, :edit, :create, :update, :destroy]
-  before_action :set_item,           only: [             :edit,          :update, :destroy]
+  before_action :authenticate_user!, only: [        :new, :edit, :create, :update, :destroy]
+  before_action :set_location,       only: [        :new, :edit, :create, :update, :destroy]
+  before_action :set_item,           only: [              :edit,          :update, :destroy]
 
-  # GET /items/1
+  # GET /locations/1/items/1
   def show
-    @item = Item.find(params[:id])
+    @location = Location.find params[:location_id]
+    @item = @location.items.find params[:id]
   end
 
-  # GET /items/new
+  # GET /locations/1/items/new
   def new
-    @item = current_user.location.items.build
+    @item = @location.items.build
   end
 
-  # GET /items/1/edit
+  # GET /locations/1/items/1/edit
   def edit
   end
 
-  # POST /items
+  # POST /locations/1/items
   def create
-    location = current_user.location
-    @item = location.items.build(item_params)
+    @item = @location.items.build(item_params)
 
     if @item.save
-      redirect_to @item, notice: 'Item was successfully created.'
+      redirect_to [@location, @item], notice: 'Item was successfully created.'
     else
       render :new
     end
   end
 
-  # PATCH/PUT /items/1
+  # PATCH/PUT /locations/1/items/1
   def update
     if @item.update(item_params)
-
-
-      redirect_to @item, notice: 'Item was successfully updated.'
+      redirect_to [@location, @item], notice: 'Item was successfully updated.'
     else
       render :edit
     end
   end
 
-  # DELETE /items/1
+  # DELETE /locations/1/items/1
   def destroy
     @item.destroy
-    redirect_to location_path(@item.location), notice: 'Item was successfully destroyed.'
+    redirect_to @location, notice: 'Item was successfully destroyed.'
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
+    def set_location
+      @location = current_user.locations.find(params[:location_id])
+    end
+
     def set_item
-      location = current_user.location
-      @item = location.items.find(params[:id])
+      @item = @location.items.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.

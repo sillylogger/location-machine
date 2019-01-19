@@ -45,16 +45,5 @@ describe User do
     end
   end
 
-  describe "#location" do
-    let(:user) { FactoryBot.create(:user) }
-
-    it "creates a location" do
-      expect(Location.where(user_id: user.id).count).to eq(0)
-      expect {
-        user.location
-      }.to change(Location, :count).by(1)
-    end
-  end
-
 end
 
