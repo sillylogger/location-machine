@@ -23,7 +23,13 @@
 
     <header id="navbar">
       <div class="container">
-        <h2><%= link_to Setting.fetch('site.title', 'Location Machine'), root_path %></h2>
+        <%- if (logo = Setting.fetch('site.logo', 'Logo alt')).has_image? %>
+          <%= link_to root_path do %>
+            <%= image_tag logo.image, alt: logo.value %></h2>
+          <% end %>
+        <%- else %>
+          <h2><%= link_to Setting.fetch('site.title', 'Location Machine').value, root_path %></h2>
+        <%- end %>
 
         <%- if user_signed_in? %>
           <p>

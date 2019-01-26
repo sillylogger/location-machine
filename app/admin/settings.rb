@@ -27,6 +27,10 @@ ActiveAdmin.register Setting do
     f.inputs do
       f.input :name
       f.input :value
+      f.input :has_image
+      if f.object.has_image?
+        f.input :image
+      end
     end
     f.actions
   end
