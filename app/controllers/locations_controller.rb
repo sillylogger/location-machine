@@ -22,7 +22,6 @@ class LocationsController < ApplicationController
   # POST /locations
   def create
     @location = current_user.locations.new(location_params)
-
     if @location.save
       redirect_to root_path, notice: 'Location was successfully created.'
     else
@@ -64,6 +63,7 @@ class LocationsController < ApplicationController
         :name,
         :description,
         items_attributes: [
+          :id,
           :image,
           :name,
           :price,

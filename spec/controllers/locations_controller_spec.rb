@@ -2,7 +2,6 @@ require 'rails_helper'
 
 describe LocationsController do
 
-  let(:valid_attributes) { FactoryBot.attributes_for(:location) }
   let(:user) { FactoryBot.create :user }
 
   describe "GET #index" do
@@ -46,12 +45,12 @@ describe LocationsController do
     context "with valid params" do
       it "creates a new Location" do
         expect {
-          post :create, params: { location: valid_attributes }
+          post :create, params: { location: FactoryBot.attributes_for(:location) }
         }.to change(Location, :count).by(1)
       end
 
       it "redirects to the created location" do
-        post :create, params: { location: valid_attributes }
+        post :create, params: { location: FactoryBot.attributes_for(:location) }
         expect(response).to redirect_to(root_path)
       end
     end
@@ -68,14 +67,28 @@ describe LocationsController do
       it "updates the requested location" do
         location = FactoryBot.create :location, user: user
         put :update, params: { id: location.to_param, location: new_attributes }
+
         location.reload
         expect(location.name).to eq(new_attributes[:name])
       end
 
       it "redirects to the location" do
         location = FactoryBot.create :location, user: user
-        put :update, params: { id: location.to_param, location: valid_attributes }
+        put :update, params: { id: location.to_param, location: new_attributes }
         expect(response).to redirect_to(root_path)
+      end
+
+      it "accepts nested attributes for items so they are not duplicated" do
+        location = FactoryBot.create :location, user: user
+        item = FactoryBot.create :item, location: location
+
+        expect {
+          put :update, params: { id: location.to_param, location: new_attributes.merge({
+              items_attributes: [ item.attributes.slice(*%w(id name)) ]
+            })
+          }
+        }.to change(Item, :count).by(0)
+
       end
     end
   end

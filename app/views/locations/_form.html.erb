@@ -19,7 +19,10 @@
 
   <%= form.fields_for :items do |item_form| %>
     <div class="field">
-      <%= item_form.file_field :image, required: true %>
+      <% if item_form.object.image.attached? %>
+        <%= image_tag item_form.object.image_urls[:thumb], class: 'field__thumb' %>
+      <% end %>
+      <%= item_form.file_field :image %>
     </div>
 
     <div class="field">
@@ -40,3 +43,11 @@
   </div>
 
 <% end %>
+
+<!--
+  TODO add js to:
+  - set a pin to your current location on the map
+  - delete an item by hiding it and setting deleted field 
+  - if there is no thumbnail, then image is required
+  - button to duplicate the last item, similar to cacoon
+-->

@@ -40,6 +40,10 @@ form {
     margin-bottom: 0.75rem;
   }
 
+  .field__thumb {
+    max-width: 8rem;
+  }
+
   .help {
     margin-top: -0.75rem;
     color: $gray-medium;
