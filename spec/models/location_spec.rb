@@ -2,6 +2,17 @@ require 'rails_helper'
 
 describe Location do
 
+  describe ".items" do
+    it "destroys dependents" do
+      location = FactoryBot.create(:location)
+      item = FactoryBot.create(:item, location: location)
+
+      expect {
+        location.destroy
+      }.to change(Item, :count).by(-1)
+    end
+  end
+
   describe ".for_display" do
     it "must have a latitude" do
       no_latitude = FactoryBot.build(:location, latitude: nil)
