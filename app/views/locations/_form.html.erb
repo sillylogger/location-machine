@@ -8,12 +8,12 @@
   <div id="map_canvas"></div>
 
   <div class="field">
-    <%= form.text_field :name, placeholder: "Location name", required: true %>
+    <%= form.text_field :name, placeholder: "Location name", required: true, autocomplete: false %>
   </div>
 
   <% if show_description %>
     <div class="field">
-      <%= form.text_area :description, placeholder: "Description" %>
+      <%= form.text_area :description, placeholder: "Description", autocomplete: false %>
     </div>
   <% end %>
 
@@ -28,15 +28,15 @@
       </div>
 
       <div class="field">
-        <%= item_form.text_field :name, placeholder: "Item name", required: true %>
+        <%= item_form.text_field :name, placeholder: "Item name", required: true, autocomplete: false %>
       </div>
 
       <div class="field">
-        <%= item_form.number_field :price, placeholder: "Price", required: true %>
+        <%= item_form.number_field :price, placeholder: "Price", required: true, autocomplete: false %>
       </div>
 
       <div class="field">
-        <%= item_form.text_area :description, placeholder: "Description" %>
+        <%= item_form.text_area :description, placeholder: "Description", autocomplete: false %>
       </div>
     <% end %>
   <% end %>

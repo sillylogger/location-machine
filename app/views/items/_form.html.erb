@@ -12,15 +12,15 @@
   </div>
 
   <div class="field">
-    <%= form.text_field :name, placeholder: "Name", required: true %>
+    <%= form.text_field :name, placeholder: "Name", required: true, autocomplete: false %>
   </div>
 
   <div class="field">
-    <%= form.text_field :price, placeholder: "Price" %>
+    <%= form.text_field :price, placeholder: "Price", autocomplete: false %>
   </div>
 
   <div class="field">
-    <%= form.text_area :description, placeholder: "Description" %>
+    <%= form.text_area :description, placeholder: "Description", autocomplete: false %>
   </div>
 
   <div class="actions">
