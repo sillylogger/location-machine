@@ -8,7 +8,7 @@
   <div id="map_canvas"></div>
 
   <div class="field">
-    <%= form.text_field :name, placeholder: "Name", required: true %>
+    <%= form.text_field :name, placeholder: "Location name", required: true %>
   </div>
 
   <% if show_description %>
@@ -20,13 +20,14 @@
   <%= form.fields_for :items do |item_form| %>
     <div class="field">
       <% if item_form.object.image.attached? %>
+        <%= item_form.hidden_field :image, value: item_form.object.image.signed_id %>
         <%= image_tag item_form.object.image_urls[:thumb], class: 'field__thumb' %>
       <% end %>
       <%= item_form.file_field :image %>
     </div>
 
     <div class="field">
-      <%= item_form.text_field :name, placeholder: "Name", required: true %>
+      <%= item_form.text_field :name, placeholder: "Item name", required: true %>
     </div>
 
     <div class="field">
@@ -47,7 +48,7 @@
 <!--
   TODO add js to:
   - set a pin to your current location on the map
-  - delete an item by hiding it and setting deleted field 
+  - delete an item by hiding it and setting deleted field
   - if there is no thumbnail, then image is required
   - button to duplicate the last item, similar to cacoon
 -->

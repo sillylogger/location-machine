@@ -35,10 +35,12 @@ describe Location do
     end
 
     it "must have a name" do
-      no_name = FactoryBot.create(:location, name: nil)
+      no_name = FactoryBot.build(:location, name: nil)
+      no_name.save(validate: false)
       expect(Location.for_display).to_not include(no_name)
 
-      blank_name = FactoryBot.create(:location, name: "")
+      blank_name = FactoryBot.build(:location, name: "")
+      blank_name.save(validate: false)
       expect(Location.for_display).to_not include(blank_name)
     end
   end

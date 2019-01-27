@@ -3,15 +3,16 @@
   <%= render 'shared/error_messages', resource: item %>
 
   <div class="field">
-    <% if @item.image.attached? %>
-      <%= image_tag @item.image_urls[:medium] %>
+    <% if form.object.image.attached? %>
+      <%= form.hidden_field :image, value: form.object.image.signed_id %>
+      <%= image_tag form.object.image_urls[:medium] %>
     <% end %>
 
     <%= form.file_field :image %>
   </div>
 
   <div class="field">
-    <%= form.text_field :name, placeholder: "Name" %>
+    <%= form.text_field :name, placeholder: "Name", required: true %>
   </div>
 
   <div class="field">
