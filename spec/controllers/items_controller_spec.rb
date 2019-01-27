@@ -51,7 +51,7 @@ describe ItemsController do
           post :create, params: { location_id: location.to_param,
                                   item: valid_params }
         }.to change(Item, :count).by(1)
-        expect(response).to redirect_to([location, Item.last])
+        expect(response).to redirect_to(location_path(location))
       end
     end
 
@@ -88,7 +88,7 @@ describe ItemsController do
         put :update, params: { location_id: location.to_param,
                                id: item.to_param,
                                item: valid_params }
-        expect(response).to redirect_to([location, item])
+        expect(response).to redirect_to(location_path(location))
       end
     end
 

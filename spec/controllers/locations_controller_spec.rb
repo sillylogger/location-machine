@@ -51,7 +51,7 @@ describe LocationsController do
 
       it "redirects to the created location" do
         post :create, params: { location: FactoryBot.attributes_for(:location) }
-        expect(response).to redirect_to(root_path)
+        expect(response).to redirect_to(location_path(Location.last))
       end
     end
   end
@@ -75,7 +75,9 @@ describe LocationsController do
       it "redirects to the location" do
         location = FactoryBot.create :location, user: user
         put :update, params: { id: location.to_param, location: new_attributes }
-        expect(response).to redirect_to(root_path)
+
+        location.reload
+        expect(response).to redirect_to(location_path(location))
       end
 
       it "accepts nested attributes for items so they are not duplicated" do

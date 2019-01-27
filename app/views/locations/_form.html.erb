@@ -17,26 +17,28 @@
     </div>
   <% end %>
 
-  <%= form.fields_for :items do |item_form| %>
-    <div class="field">
-      <% if item_form.object.image.attached? %>
-        <%= item_form.hidden_field :image, value: item_form.object.image.signed_id %>
-        <%= image_tag item_form.object.image_urls[:thumb], class: 'field__thumb' %>
-      <% end %>
-      <%= item_form.file_field :image %>
-    </div>
+  <% if show_items %>
+    <%= form.fields_for :items do |item_form| %>
+      <div class="field">
+        <% if item_form.object.image.attached? %>
+          <%= item_form.hidden_field :image, value: item_form.object.image.signed_id %>
+          <%= image_tag item_form.object.image_urls[:thumb], class: 'field__thumb' %>
+        <% end %>
+        <%= item_form.file_field :image %>
+      </div>
 
-    <div class="field">
-      <%= item_form.text_field :name, placeholder: "Item name", required: true %>
-    </div>
+      <div class="field">
+        <%= item_form.text_field :name, placeholder: "Item name", required: true %>
+      </div>
 
-    <div class="field">
-      <%= item_form.text_field :price, placeholder: "Price", required: true %>
-    </div>
+      <div class="field">
+        <%= item_form.number_field :price, placeholder: "Price", required: true %>
+      </div>
 
-    <div class="field">
-      <%= item_form.text_area :description, placeholder: "Description" %>
-    </div>
+      <div class="field">
+        <%= item_form.text_area :description, placeholder: "Description" %>
+      </div>
+    <% end %>
   <% end %>
 
   <div class="actions">

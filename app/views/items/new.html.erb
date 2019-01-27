@@ -1,3 +1,13 @@
+<%= link_to 'Back', location_path(@location) %>
+
+<div id="map_canvas" class="m--reminder"></div>
+<script>
+  utils.ready(function() {
+    var loc = <%= @location.to_json.html_safe %>;
+    map.placeLocation(loc, { info: false });
+  });
+</script>
+
 <%= render 'form',
   location: @location,
   item: @item,

@@ -1,6 +1,9 @@
+<%= link_to 'Back', location_path(@location) %>
+
 <%= render 'form',
   location: @location,
   action_label: "Update",
+  show_items: false,
   show_description: true %>
 
 <script>

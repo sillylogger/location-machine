@@ -19,24 +19,24 @@ class LocationsController < ApplicationController
     @location.items.build
   end
 
+  # GET /locations/1/edit
+  def edit
+  end
+
   # POST /locations
   def create
     @location = current_user.locations.new(location_params)
     if @location.save
-      redirect_to root_path, notice: 'Location was successfully created.'
+      redirect_to @location, notice: 'Location was successfully created.'
     else
       render :new
     end
   end
 
-  # GET /locations/1/edit
-  def edit
-  end
-
   # PATCH/PUT /locations/1
   def update
     if @location.update(location_params)
-      redirect_to root_path, notice: 'Location was successfully updated.'
+      redirect_to @location, notice: 'Location was successfully updated.'
     else
       render :edit
     end
