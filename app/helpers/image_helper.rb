@@ -26,7 +26,7 @@ module ImageHelper
   end
 
   def image_path url, options = {}
-    return url if (Rails.application.config.active_storage.service == :local) || 
+    return url if [:test, :local].include?(Rails.application.config.active_storage.service) ||
                   (Credential.fetch(:cloudinary, :cloud_name) == 'demo')
 
     cl_image_path(url, {
