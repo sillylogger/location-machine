@@ -18,7 +18,10 @@ gem 'google-cloud-storage', '~> 1.11', require: false
 gem 'cloudinary', github: 'cloudinary/cloudinary_gem'
 
 # Use Puma as the app server
-gem 'puma', '~> 3.11'
+# gem 'puma', github: 'puma/puma'
+
+# I feel bad using this version of puma, revert back to origin once https://github.com/puma/puma/issues/1670 is closed
+gem 'puma', git: 'https://github.com/eric-norcross/puma.git', branch: 'chrome_70_ssl_curve_compatiblity'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
