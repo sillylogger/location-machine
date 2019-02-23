@@ -26,7 +26,7 @@ describe "Admin Pages" do
 
     fill_in     'page[title]',    with: "Privacy Policy"
     fill_in     'page[path]',     with: "privacy-policy"
-    fill_in     'page[content]',  with: "Who we are; What personal data we collect and why we collect it"
+    fill_in     'page[content]',  with: "# Privacy Policy \n Who we are; What personal data we collect and why we collect it"
     select      'Public',         from: 'page[visibility]'
     check       'page[published]'
 

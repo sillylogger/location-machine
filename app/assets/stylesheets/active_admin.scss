@@ -15,3 +15,18 @@
 // For example, to change the default status-tag color:
 //
 //   .status_tag { background: #6090DB; }
+
+table {
+  margin-bottom: 0;
+}
+
+table.zebra {
+  tr:nth-child(even) {
+    background: rgb(230, 230, 230);
+  }
+}
+
+ul.compact {
+  margin-bottom: 0;
+}
+

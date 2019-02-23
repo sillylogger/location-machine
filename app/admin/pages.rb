@@ -1,4 +1,7 @@
 ActiveAdmin.register Page do
+  
+  menu priority: 25
+
   permit_params :title, :path, :content, :visibility, :published
 
   index do

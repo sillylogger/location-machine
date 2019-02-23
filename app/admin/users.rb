@@ -1,5 +1,8 @@
 ActiveAdmin.register User do
-  permit_params :email, :password, :password_confirmation
+  
+  menu priority: 90
+
+  permit_params :name, :email, :phone, :role, :avatar_url
 
   index do
     selectable_column
@@ -18,11 +21,52 @@ ActiveAdmin.register User do
 
   form do |f|
     f.inputs do
+      f.input :name
+
       f.input :email
-      f.input :password
-      f.input :password_confirmation
+      f.input :phone
+
+      f.input :role,
+        as: :select,
+        collection: User::ROLES.map{|sym, str| [str, str]}
+
+      f.input :avatar_url
     end
     f.actions
+  end
+
+  show title: ->(user) { user.name } do
+    columns do
+      column do
+        attributes_table do
+          row :name
+          row :email
+          row :phone 
+          row :role
+          row :avatar_url do
+            if user.avatar_url.present?
+              image_tag user.avatar_url
+            end
+          end
+        end
+      end
+      column do
+        attributes_table do
+          row :sign_in_count
+          row :failed_attempts
+
+          row :current_sign_in_at
+          row :last_sign_in_at 
+
+          row :current_sign_in_ip
+          row :last_sign_in_ip
+
+          row :confirmed_at
+          row :confirmation_sent_at
+          row :unconfirmed_email
+        end
+      end
+    end
   end
 
 end

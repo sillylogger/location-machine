@@ -1,32 +1,41 @@
 ActiveAdmin.register_page "Dashboard" do
-  menu priority: 1, label: proc{ I18n.t("active_admin.dashboard") }
+  menu false
 
-  content title: proc{ I18n.t("active_admin.dashboard") } do
-    div class: "blank_slate_container", id: "dashboard_default_message" do
-      span class: "blank_slate" do
-        span I18n.t("active_admin.dashboard_welcome.welcome")
-        small I18n.t("active_admin.dashboard_welcome.call_to_action")
+  content do
+    columns do
+
+      column do
+        panel "Locations of #{Location.count}" do
+          ul(class: 'compact') do
+            Location.order(id: :desc).limit(5).map do |location|
+              summary = "#{location.name} @ #{location.latitude}, #{location.longitude}"
+              li link_to(summary, admin_location_path(location))
+            end
+          end
+        end
+
+        panel "Users of #{User.count}" do
+          ul(class: 'compact') do
+            User.order(id: :desc).limit(5).map do |user|
+              summary = "#{user.name} #{user.email} #{user.phone}"
+              li link_to(summary, admin_user_path(user))
+            end
+          end
+        end
       end
+
+      column do
+        panel "Items of #{Item.count}" do
+          ul(class: 'compact') do
+            Item.order(id: :desc).limit(5).map do |item|
+              summary = "#{item.name} #{number_to_currency(item.price)}"
+              li link_to(summary, admin_item_path(item))
+            end
+          end
+        end
+      end
+
     end
+  end
 
-    # Here is an example of a simple dashboard with columns and panels.
-    #
-    # columns do
-    #   column do
-    #     panel "Recent Posts" do
-    #       ul do
-    #         Post.recent(5).map do |post|
-    #           li link_to(post.title, admin_post_path(post))
-    #         end
-    #       end
-    #     end
-    #   end
-
-    #   column do
-    #     panel "Info" do
-    #       para "Welcome to ActiveAdmin."
-    #     end
-    #   end
-    # end
-  end # content
 end
