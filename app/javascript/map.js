@@ -3,9 +3,33 @@ let googleMap = null,
     lastMarker = null,
     lastInfoWindow = null;
 
+let mapOptions = {
+    zoom: 10,
+    draggable: true,
+    scrollwheel: true,
+
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    mapTypeControl: false,
+    fullscreenControl: true,
+    streetViewControl: false,
+    zoomControl: false,
+
+    clickableIcons: false,
+    styles: [{
+      elementType: 'geometry',
+      featureType: 'landscape',
+      stylers: [
+        { hue: '#ffff00' },
+        { saturation: 30 },
+        { lightness: 10 }
+      ]}
+    ]
+};
+
+
 class Map {
 
-  constructor() {
+  constructor(rawCenterString) {
     if(!window.google) {
       console.log("map.init - google not loaded");
       return false;
@@ -22,32 +46,11 @@ class Map {
       return false;
     }
 
-    let jakarta = new google.maps.LatLng(-6.1745, 106.8227);
-
-    let mapOptions = {
-        zoom: 8,
-        center: jakarta,
-        draggable: true,
-        scrollwheel: true,
-
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        mapTypeControl: false,
-        fullscreenControl: true,
-        streetViewControl: false,
-        zoomControl: false,
-
-        clickableIcons: false
-    };
-
-    mapOptions['styles'] = [{
-      elementType: 'geometry',
-      featureType: 'landscape',
-      stylers: [
-        { hue: '#ffff00' },
-        { saturation: 30 },
-        { lightness: 10 }
-      ]}
-    ];
+    if(!rawCenterString) {
+      rawCenterString = '-6.1745, 106.8227';
+    }
+    let center = rawCenterString.split(',').map((f) => { return parseFloat(f); })
+    mapOptions.center = new google.maps.LatLng(center[0], center[1]);
 
     googleMap = new google.maps.Map(canvas, mapOptions);
   }

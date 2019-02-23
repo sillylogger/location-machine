@@ -137,10 +137,11 @@ rspec spec
 
 These are settings that are store in the database and make it easy to customize Location Machine to your needs, much like [WordPress's Options](https://codex.wordpress.org/Option_Reference)
 
-| Name          | Default Value    | Purpose                                                     |
-|---------------|------------------|-------------------------------------------------------------|
-| site.title    | Location Machine | A human readable title in the navigation etc                |
-| site.host     |                  | The full hostname to correct to; eg: www.locationmachine.io |
+| Name          | Default Value     | Purpose                                                        |
+|---------------|-------------------|----------------------------------------------------------------|
+| site.title    | Location Machine  | A human readable title in the navigation etc                   |
+| site.host     |                   | The full hostname to correct to; eg: www.locationmachine.io    |
+| map.center    |                   | The map's default center, used when location access is blocked |
 
 **TODO:**
 

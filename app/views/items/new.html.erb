@@ -3,9 +3,10 @@
 <div id="map_canvas" class="m--reminder"></div>
 <script>
   lm.utils.ready(function() {
-    var loc = <%= @location.to_json.html_safe %>;
+    var center = <%= Setting.get('map.center').to_json.html_safe %>;
+    var map = new lm.Map(center);
 
-    var map = new lm.Map();
+    var loc = <%= @location.to_json.html_safe %>;
     map.placeLocation(loc, { info: false, panTo: true });
   });
 </script>
