@@ -37,7 +37,7 @@
 
   <% if @location.editor? current_user %>
     <li class="location-items__item m--add">
-      <%= link_to "Add Item", new_location_item_path(@location) %>
+      <%= link_to "Add", new_location_item_path(@location) %>
     </li>
   <% end %>
 </ul>

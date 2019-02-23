@@ -21,7 +21,7 @@ describe "the MVP flow" do
     fill_in 'user[name]',  with: (new_name = "Carme Ruscalleda")
     fill_in 'user[email]', with: (new_email = "carme.ruscalleda@example.com")
     fill_in 'user[phone]', with: (new_phone = "+62 123 4567 8901")
-    click_button 'Update'
+    click_button 'Save'
 
     wait_until { page.current_path == root_path }
     user.reload
