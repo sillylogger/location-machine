@@ -48,6 +48,9 @@ Rails.application.configure do
   # Raise an error on page load if there are pending migrations.
   config.active_record.migration_error = :page_load
 
+  # Raise an error when assigning params that are not permitted
+  config.action_controller.action_on_unpermitted_parameters = :raise
+
   # Highlight code that triggered database queries in logs.
   config.active_record.verbose_query_logs = true
 
