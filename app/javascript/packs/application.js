@@ -7,11 +7,14 @@
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
 
-let preApplication = require('../pre-application')
-    preApplication();
+window.lm = {};
+window.lm.utils = require('not-jquery');
+window.lm.Map = require('map');
+
 
 import Rails from 'rails-ujs';
 Rails.start();
+
 
 import * as ActiveStorage from 'activestorage'
 ActiveStorage.start()

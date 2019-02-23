@@ -1,7 +1,9 @@
 <div id="map_canvas"></div>
 
 <script>
-  utils.ready(function() {
+  lm.utils.ready(function() {
+    var map = new lm.Map();
+
     map.setCurrentPosition();
 
     var locations = <%= @locations.to_json.html_safe %>;

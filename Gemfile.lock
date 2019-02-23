@@ -21,7 +21,7 @@ GIT
 
 GIT
   remote: https://github.com/gregbell/active_admin.git
-  revision: 977b5aaeba0c4e5fcbe98f1b9f971e7d268347c7
+  revision: 9ea8e2606556508f705ede1c6226ffed59c6c43e
   specs:
     activeadmin (2.0.0.alpha)
       arbre (~> 1.1, >= 1.1.1)
@@ -38,7 +38,7 @@ GIT
 
 GIT
   remote: https://github.com/jnicklas/capybara.git
-  revision: 10e12bf0645b010bf50bfa99d0f22b3621a7cd1f
+  revision: 11333b64608e51cd3cc936b9446963e04020e43b
   specs:
     capybara (3.13.2)
       addressable
@@ -58,9 +58,9 @@ GIT
 
 GIT
   remote: https://github.com/plataformatec/devise.git
-  revision: 45016829d6fce6db42c900a5f7565cd670fd9cc9
+  revision: 4e4e42e1ae291b69822d7bb8a487a869e1e5d2d9
   specs:
-    devise (4.6.0)
+    devise (4.6.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0, < 6.0)
@@ -92,7 +92,7 @@ GIT
 
 GIT
   remote: https://github.com/rspec/rspec-rails.git
-  revision: 5a9182b24c7370ba293fcdd13d7ce01e6d24cd2e
+  revision: 7720e7b1c8c60f033a8e1f9c61f6ca12c84121f4
   specs:
     rspec-rails (3.9.0.pre)
       actionpack (>= 3.0)
@@ -120,7 +120,7 @@ GIT
 
 GIT
   remote: https://github.com/thoughtbot/bourbon.git
-  revision: ec7946003238fa3e9acb2206016e2dce9b890fc9
+  revision: b761367615db827b30dbf6c59b02672706e0c80b
   specs:
     bourbon (5.1.0)
       sass (~> 3.4)
@@ -136,7 +136,7 @@ GIT
 
 GIT
   remote: https://github.com/thoughtbot/neat.git
-  revision: 92a70ff596a5d2932dda108967508f3ba8d3a602
+  revision: 459d47bc51835439120097cbb893683b927c7b0e
   specs:
     neat (3.0.1)
       sass (~> 3.4)
@@ -206,10 +206,10 @@ GEM
     bindex (0.5.0)
     binding_of_caller (0.8.0)
       debug_inspector (>= 0.0.1)
-    bootsnap (1.3.2)
+    bootsnap (1.4.0)
       msgpack (~> 1.0)
     builder (3.2.3)
-    byebug (10.0.2)
+    byebug (11.0.0)
     childprocess (0.9.0)
       ffi (~> 1.0, >= 1.0.11)
     chromedriver-helper (2.1.0)
@@ -226,7 +226,7 @@ GEM
       unf (>= 0.0.5, < 1.0.0)
     erubi (1.8.0)
     execjs (2.7.0)
-    factory_bot (5.0.0)
+    factory_bot (5.0.2)
       activesupport (>= 4.2.0)
     faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
@@ -236,7 +236,7 @@ GEM
     formtastic_i18n (0.6.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
-    google-api-client (0.28.3)
+    google-api-client (0.28.4)
       addressable (~> 2.5, >= 2.5.1)
       googleauth (>= 0.5, < 0.10.0)
       httpclient (>= 2.8.1, < 3.0)
@@ -246,7 +246,7 @@ GEM
       signet (~> 0.10)
     google-cloud-core (1.3.0)
       google-cloud-env (~> 1.0)
-    google-cloud-debugger (0.33.2)
+    google-cloud-debugger (0.33.3)
       binding_of_caller (~> 0.7)
       concurrent-ruby (~> 1.1)
       google-cloud-core (~> 1.2)
@@ -255,12 +255,12 @@ GEM
       stackdriver-core (~> 1.3)
     google-cloud-env (1.0.5)
       faraday (~> 0.11)
-    google-cloud-error_reporting (0.31.1)
+    google-cloud-error_reporting (0.31.3)
       concurrent-ruby (~> 1.1)
       google-cloud-core (~> 1.2)
       google-gax (~> 1.0)
       stackdriver-core (~> 1.3)
-    google-cloud-logging (1.6.1)
+    google-cloud-logging (1.6.2)
       concurrent-ruby (~> 1.1)
       google-cloud-core (~> 1.2)
       google-gax (~> 1.3)
@@ -271,7 +271,7 @@ GEM
       google-api-client (~> 0.26)
       google-cloud-core (~> 1.2)
       googleauth (>= 0.6.2, < 0.10.0)
-    google-cloud-trace (0.34.0)
+    google-cloud-trace (0.34.1)
       concurrent-ruby (~> 1.1)
       google-cloud-core (~> 1.2)
       google-gax (~> 1.3)

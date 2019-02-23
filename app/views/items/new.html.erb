@@ -2,8 +2,10 @@
 
 <div id="map_canvas" class="m--reminder"></div>
 <script>
-  utils.ready(function() {
+  lm.utils.ready(function() {
     var loc = <%= @location.to_json.html_safe %>;
+
+    var map = new lm.Map();
     map.placeLocation(loc, { info: false });
   });
 </script>

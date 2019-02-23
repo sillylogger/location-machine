@@ -1,5 +1,5 @@
 
-let map = null,
+let googleMap = null,
     lastMarker = null,
     lastInfoWindow = null;
 
@@ -8,6 +8,11 @@ class Map {
   constructor() {
     if(!window.google) {
       console.log("map.init - google not loaded");
+      return false;
+    }
+
+    if(googleMap !== null) {
+      console.log("map.init - googleMap already initialized");
       return false;
     }
 
@@ -44,11 +49,11 @@ class Map {
       ]}
     ];
 
-    map = new google.maps.Map(canvas, mapOptions);
+    googleMap = new google.maps.Map(canvas, mapOptions);
   }
 
   isInitialized() {
-    return map != undefined;
+    return googleMap != undefined;
   }
 
   // TODO: split into placeClearableMarker(with drag callback to fn(update inputs)) and fn(update inputs)
@@ -56,7 +61,7 @@ class Map {
     let lattitudeInput = document.getElementById(latId);
     let longitudeInput = document.getElementById(lngId);
 
-    map.addListener('click', e => {
+    googleMap.addListener('click', e => {
       if(lastMarker) {
         lastMarker.setMap(null);
       }
@@ -67,7 +72,7 @@ class Map {
       let marker = new google.maps.Marker({
         position: e.latLng,
         draggable: true,
-        map: map
+        map: googleMap
       });
 
       marker.addListener('dragend', e => {
@@ -91,12 +96,17 @@ class Map {
 
     let marker = new google.maps.Marker({
       position: position,
-      map: map,
+      map: googleMap,
       title: loc.name
     });
 
+    if(options.panTo === true){
+      googleMap.panTo(marker.getPosition());
+      googleMap.setZoom(17);
+    }
+
     if(options.info === false){
-      return;
+      return marker;
     }
 
     let images = loc.items.filter((i) => {
@@ -123,7 +133,7 @@ class Map {
         lastInfoWindow.close();
       }
 
-      infoWindow.open(map, marker);
+      infoWindow.open(googleMap, marker);
 
       lastInfoWindow = infoWindow;
     });
@@ -155,7 +165,7 @@ class Map {
 
     let marker = new google.maps.Marker({
       position: currentLocation,
-      map: map,
+      map: googleMap,
 
       'clickable': false,
       'cursor': 'pointer',
@@ -175,8 +185,8 @@ class Map {
        'zIndex': 2
     });
 
-    map.panTo(marker.getPosition());
-    map.setZoom(12);
+    googleMap.panTo(marker.getPosition());
+    googleMap.setZoom(12);
   }
 
   setCurrentPositionFail() {

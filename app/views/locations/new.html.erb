@@ -5,11 +5,14 @@
   show_description: false %>
 
 <script>
-  utils.ready(function() {
+  lm.utils.ready(function() {
+    var map = new lm.Map();
+
     map.setCurrentPosition();
 
     map.hydrateLatLng('location_latitude',
                       'location_longitude');
   });
 </script>
+
 

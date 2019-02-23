@@ -4,12 +4,13 @@
   <%= link_to 'Edit', edit_location_path(@location) %>
 <% end %>
 
-
 <div id="map_canvas" class="m--reminder"></div>
 <script>
-  utils.ready(function() {
+  lm.utils.ready(function() {
     var loc = <%= @location.to_json.html_safe %>;
-    map.placeLocation(loc, { info: false });
+
+    var map = new lm.Map();
+    map.placeLocation(loc, { info: false, panTo: true });
   });
 </script>
 
