@@ -6,7 +6,7 @@
     var loc = <%= @location.to_json.html_safe %>;
 
     var map = new lm.Map();
-    map.placeLocation(loc, { info: false });
+    map.placeLocation(loc, { info: false, panTo: true });
   });
 </script>
 
