@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-describe User do
 
+describe User do
   describe "validations" do
     let(:user) { FactoryBot.build(:user) }
 
@@ -45,5 +45,31 @@ describe User do
     end
   end
 
+  describe '#facebook_identity' do
+    let(:user) { FactoryBot.create(:user) }
+    let!(:identity) { FactoryBot.create(:identity, user: user) }
+
+    it 'returns identity with provider facebook' do
+      expect(user.facebook_identity).to eq identity
+    end
+  end
+
+  describe '#is_facebook_user?' do
+    let(:user) { FactoryBot.create(:user) }
+
+    context 'user has no facebook identity' do
+      it 'returns false' do
+        expect(user.is_facebook_user?).to be false
+      end
+    end
+
+    context 'user has facebook identity' do
+      let!(:identity) { FactoryBot.create(:identity, user: user) }
+
+      it 'returns true' do
+        expect(user.is_facebook_user?).to be true
+      end
+    end
+  end
 end
 

@@ -14,3 +14,4 @@
   <p class="item-info__description"><%= @item.description %></p>
 </section>
 
+<%= click_to_chat_btn(user_id: @item.location.user.id, item_id: @item.id) %>

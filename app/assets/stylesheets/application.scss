@@ -12,13 +12,14 @@
  *
  */
 
-@import "bourbon";
-@import "base/base";
+@import 'bourbon';
+@import 'base/base';
 
-@import "maps";
-@import "location";
-@import "item";
-@import "markdown";
+@import 'maps';
+@import 'location';
+@import 'item';
+@import 'markdown';
+@import 'chat';
 
 html {
   background: whitesmoke;
@@ -98,7 +99,6 @@ header#navbar {
       vertical-align: middle;
     }
   }
-
 }
 
 footer#notifications {
@@ -122,7 +122,6 @@ footer#notifications {
 .b-devise-shared-links {
   margin-top: 2rem;
 }
-
 
 .b-call-to-action {
   text-align: center;

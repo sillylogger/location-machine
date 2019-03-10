@@ -13,6 +13,11 @@ Rails.application.routes.draw do
     registrations:      'users/registrations',
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
+
+  resources :users do
+    resources :chats, only: [:index]
+  end
+
   # match '/users/finish_signup' => 'users/registrations#finish_signup', via: [:get, :patch], :as => :finish_signup
 
   ActiveAdmin.routes(self)

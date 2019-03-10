@@ -85,4 +85,11 @@ class User < ApplicationRecord
     role? && role == ROLES[:admin]
   end
 
+  def facebook_identity
+    identities.facebook.first
+  end
+
+  def is_facebook_user?
+    facebook_identity.present?
+  end
 end

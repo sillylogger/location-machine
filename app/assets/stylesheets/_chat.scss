@@ -1,0 +1,14 @@
+.chat-items {
+  &__item {
+    margin-bottom: 5px;
+
+    img {
+      width: 15%;
+      float: left;
+    }
+
+    &__text {
+      padding: 20px 100px;
+    }
+  }
+}
