@@ -1,6 +1,6 @@
 module ChatsHelper
-  def click_to_chat_btn(user_id:, path:, item_id: nil)
-    link_to('Click to chat', user_chats_path(user_id: user_id, path: path, item_id:  item_id))
+  def click_to_chat_btn(user_id:, item_id: nil)
+    link_to('Click to chat', user_chats_path(user_id: user_id, item_id:  item_id))
   end
 
   def chat_item(type, text, id)

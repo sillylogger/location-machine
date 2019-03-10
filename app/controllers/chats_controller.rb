@@ -3,7 +3,6 @@ class ChatsController < ApplicationController
 
   def index
     @user = User.find_by(id: params[:user_id]) or not_found
-    @back_path = params[:path]
     @item = Item.find(params[:item_id]) if params[:item_id].present?
   end
 end
