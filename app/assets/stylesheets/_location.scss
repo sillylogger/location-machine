@@ -19,6 +19,17 @@
   }
 
   &__item.m--add {
+    svg {
+      position: relative;
+      top: 1.5rem;
+      width: 2rem;
+      height: 2rem;
+
+      image {
+        width: 2rem;
+        height: 2rem;
+      }
+    }
   }
 
 }
