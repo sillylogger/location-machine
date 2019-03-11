@@ -5,6 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+    <meta property="og:site_name" content="FoodHomeMap" />
+    <% if content_for?(:head) %>
+      <%= yield(:head) %>
+    <% end %>
+    <meta property="og:title" content="Food Home Map"/>
+    <meta property="og:description" content="Find home food near you"/>
+
     <title><%= Setting.fetch('site.title', 'Location Machine') %></title>
 
     <%= csrf_meta_tags %>
