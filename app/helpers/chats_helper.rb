@@ -1,6 +1,8 @@
 module ChatsHelper
-  def click_to_chat_btn(user_id:, item_id: nil)
-    link_to('Click to chat', user_chats_path(user_id: user_id, item_id:  item_id))
+  def click_to_chat_btn(user:, item_id: nil)
+    if user.phone.present?
+      link_to('Click to chat', user_chats_path(user_id: user.id, item_id: item_id))
+    end
   end
 
   def chat_item(type, text, id)

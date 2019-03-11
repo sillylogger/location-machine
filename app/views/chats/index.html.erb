@@ -10,7 +10,5 @@
 <% if params[:debug].present? && @user.is_facebook_user? %>
   <%= chat_item('facebook', 'Facebook', @user.facebook_identity.uid) %>
 <% end %>
-<% if @user.phone.present? %>
-  <%= chat_item('zalo', 'Zalo', @user.phone) %>
-  <%= chat_item('whatsapp', 'Whatsapp', @user.phone) %>
-<% end %>
+<%= chat_item('zalo', 'Zalo', @user.phone) %>
+<%= chat_item('whatsapp', 'Whatsapp', @user.phone) %>
