@@ -4,7 +4,9 @@
   <meta property="og:description" content="<%= @location.description %>"/>
 
   <% @location.items.each do |item| %>
-    <meta property="og:image" content="<%= item&.image_urls[:thumb] %>"/>
+    <% if item.image_urls %>
+      <meta property="og:image" content="<%= item&.image_urls[:thumb] %>"/>
+    <% end %>
   <% end %>
 <% end %>
 
