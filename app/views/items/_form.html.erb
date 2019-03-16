@@ -3,7 +3,7 @@
   <%= render 'shared/error_messages', resource: item %>
 
   <div class="field">
-    <% if form.object.image.attached? %>
+    <% if form.object.has_image? %>
       <%= form.hidden_field :image, value: form.object.image.signed_id %>
       <%= image_tag form.object.image_urls[:medium] %>
     <% end %>

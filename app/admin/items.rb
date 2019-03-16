@@ -8,7 +8,7 @@ ActiveAdmin.register Item do
       item.location.name
     end
     column :image do |item|
-      if item.image.attached?
+      if item.has_image?
         image_tag item.image_urls[:thumb], height: '150px'
       else
         content_tag(:span, '-')
@@ -27,7 +27,7 @@ ActiveAdmin.register Item do
     attributes_table do
       row :location
       row :image do
-        if item.image.attached?
+        if item.has_image?
           image_tag item.image_urls[:thumb], height: '150px'
         else
           content_tag(:span, '-')
@@ -47,7 +47,7 @@ ActiveAdmin.register Item do
     f.inputs do
       f.input :location_id, label: "Location Id"
 
-      f.input :image, :hint => f.object.image.attached? \
+      f.input :image, :hint => f.object.has_image? \
               ? f.image_tag(f.object.image_urls[:thumb], style: 'height: 150px;')
               : f.content_tag(:span, '-')
 

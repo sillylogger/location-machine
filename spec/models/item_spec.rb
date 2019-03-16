@@ -19,6 +19,16 @@ describe Item do
     end
   end
 
+  describe "#has_image?" do
+    it "simply calls attached?" do
+      item = FactoryBot.build(:item)
+      expect(item).to_not have_image
+
+      item = FactoryBot.create(:item, :with_image)
+      expect(item).to have_image
+    end
+  end
+
   describe "#to_param" do
     it "includes the item name parameterized" do
       item = FactoryBot.create(:item)
@@ -27,7 +37,7 @@ describe Item do
     end
 
     it "doesn't freak out if the name is nil" do
-      item = Item.new
+      item = FactoryBot.build(:item, name: nil)
       expect(item.to_param).to include(item.id.to_s)
     end
   end
