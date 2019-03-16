@@ -88,23 +88,20 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 end
 
-Capybara.register_driver :chrome do |app|
-  Capybara::Selenium::Driver.new app, :browser => :chrome
 
-  # profile = Selenium::WebDriver::Chrome::Profile.new
-  # profile['geolocation.default_content_setting'] = 1
+Capybara.run_server = true
+Capybara.default_max_wait_time = 5
 
-  # config = { :browser => :chrome, :profile => profile }
-  # Capybara::Selenium::Driver.new(app, config)
-end
+Capybara.default_driver = :selenium_chrome_headless
+Capybara.javascript_driver = :selenium_chrome_headless
 
-if ENV['HEADLESS'] == 'true'
-  Capybara.default_driver = :selenium_chrome_headless
-  Capybara.javascript_driver = :selenium_chrome_headless
-else
+
+if ENV['CAPYBARA_DRIVER'] == 'chrome'
+  Capybara.register_driver :chrome do |app|
+    Capybara::Selenium::Driver.new app, :browser => :chrome
+  end
+
   Capybara.default_driver = :chrome
   Capybara.javascript_driver = :chrome
 end
-Capybara.run_server = true
-Capybara.default_max_wait_time = 5
 
