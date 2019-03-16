@@ -5,14 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <meta property="og:site_name" content="FoodHomeMap" />
-    <% if content_for?(:head) %>
-      <%= yield(:head) %>
-    <% end %>
-    <meta property="og:title" content="Food Home Map"/>
-    <meta property="og:description" content="Find home food near you"/>
+    <title><%= Setting.site_title %></title>
 
-    <title><%= Setting.fetch('site.title', 'Location Machine') %></title>
+    <meta property="og:site_name" content="<%= Setting.site_title %>" />
+    <% if content_for?(:meta_og) %>
+      <%= yield(:meta_og) %>
+    <% else %>
+      <meta property="og:title" content="<%= Setting.site_title %>" />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="<%= request.url %>" />
+      <!-- TODO: og:image once Settings support images -->
+      <meta property="og:description" content="<%= Setting.site_tagline %>" />
+
+      <meta name="description" content="<%= Setting.site_tagline %>" />
+    <% end %>
 
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -30,7 +36,7 @@
 
     <header id="navbar">
       <div class="container">
-        <h2><%= link_to Setting.fetch('site.title', 'Location Machine'), root_path %></h2>
+        <h2><%= link_to Setting.site_title, root_path %></h2>
 
         <%- if user_signed_in? %>
           <p>

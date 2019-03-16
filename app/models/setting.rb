@@ -19,4 +19,15 @@ class Setting < ApplicationRecord
     return setting.value unless setting.nil?
   end
 
+
+  # Dry up setting access:
+  def self.site_title
+    fetch 'site.title', 'Location Machine'
+  end
+
+  def self.site_tagline
+    fetch 'site.tagline', 'GPS meets Photography meets Messaging'
+  end
+
+
 end

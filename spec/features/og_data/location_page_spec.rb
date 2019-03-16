@@ -9,9 +9,10 @@ describe 'Location Page' do
 
     within("head", visible: false) do
       expect(page.all('meta[property="og:title"]', visible: false).first[:content]).to eq location.name
-      expect(page.all('meta[property="og:description"]', visible: false).first[:content]).to eq location.description
-      expect(page.all('meta[property="og:type"]', visible: false).first[:content]).to eq 'FoodHomeMap:location'
+      expect(page.all('meta[property="og:type"]', visible: false).first[:content]).to eq 'website'
+      expect(page.all('meta[property="og:url"]', visible: false).first[:content]).to be_present
       expect(page.all('meta[property="og:image"]', visible: false).first[:content]).to be_present
+      expect(page.all('meta[property="og:description"]', visible: false).first[:content]).to eq location.description
     end
   end
 end

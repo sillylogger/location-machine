@@ -137,17 +137,17 @@ rspec spec
 
 These are settings that are store in the database and make it easy to customize Location Machine to your needs, much like [WordPress's Options](https://codex.wordpress.org/Option_Reference)
 
-| Name          | Default Value     | Purpose                                                        |
-|---------------|-------------------|----------------------------------------------------------------|
-| site.title    | Location Machine  | A human readable title in the navigation etc                   |
-| site.host     |                   | The full hostname to correct to; eg: www.locationmachine.io    |
-| map.center    |                   | The map's default center, used when location access is blocked |
+| Name          | Default Value                          | Purpose                                                        |
+|---------------|----------------------------------------|----------------------------------------------------------------|
+| site.title    | Location Machine                       | A human readable title in the navigation etc                   |
+| site.tagline  | GPS meets Photography meets Messaging  | A human/computer readable tagline used in meta description     |
+| site.host     |                                        | The full hostname to correct to; eg: www.locationmachine.io    |
+| map.center    |                                        | The map's default center, used when location access is blocked |
 
 **TODO:**
 
 | Name              | Default Value    | Purpose                                                        |
 |-------------------|------------------|----------------------------------------------------------------|
-| site.tagline      |                  | A human/computer readable tagline used in meta description     |
 | site.public       |                  | A boolean that requires a user login to view                   |
 | site.currency     |                  | To then allow proper formatting of price with [Globalize](https://github.com/globalizejs/globalize/blob/master/doc/api/currency/currency-formatter.md) |
 | user.registration |                  | A boolean as to whether users can register or it is turned off |

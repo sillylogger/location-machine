@@ -1,12 +1,11 @@
-<% content_for :head do %>
+<% content_for :meta_og do %>
   <meta property="og:title" content="<%= @location.name %>"/>
-  <meta property="og:type" content="FoodHomeMap:location"/>
-  <meta property="og:description" content="<%= @location.description %>"/>
-  <% @location.items.each do |item| %>
-    <% if item.has_image? %>
-      <meta property="og:image" content="<%= item.image_urls[:full] %>"/>
-    <% end %>
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="<%= location_url(@location) %>" />
+  <% @location.items.select(&:has_image?).each do |item| %>
+    <meta property="og:image" content="<%= item.image_urls[:full] %>"/>
   <% end %>
+  <meta property="og:description" content="<%= @location.description %>"/>
 <% end %>
 
 
