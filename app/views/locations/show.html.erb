@@ -1,8 +1,20 @@
+<% content_for :meta_og do %>
+  <meta property="og:title" content="<%= @location.name %>"/>
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="<%= location_url(@location) %>" />
+  <% @location.items.select(&:has_image?).each do |item| %>
+    <meta property="og:image" content="<%= item.image_urls[:full] %>"/>
+  <% end %>
+  <meta property="og:description" content="<%= @location.description %>"/>
+<% end %>
+
+
 <%= link_to 'Back', locations_path %>
 
 <% if @location.editor? current_user %>
   <%= link_to 'Edit', edit_location_path(@location) %>
 <% end %>
+
 
 <div id="map_canvas" class="m--reminder"></div>
 <script>
@@ -15,12 +27,10 @@
   });
 </script>
 
-
 <header class="location-info">
   <h1 class="location-info__name"><%= @location.name %></h1>
   <p class="location-info__description"><%= @location.description %></p>
 </header>
-
 
 <ul class="location-items">
   <%- @location.items.each do |item| %>
@@ -30,7 +40,7 @@
                   location_item_path(@location, item) %>
 
       <%= link_to path do %>
-        <% if item.image.attached? %>
+        <% if item.has_image? %>
           <%= image_tag item.image_urls[:thumb] %>
         <% end %>
       <% end %>

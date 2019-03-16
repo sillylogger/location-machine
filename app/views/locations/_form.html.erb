@@ -26,7 +26,7 @@
   <% if show_items %>
     <%= form.fields_for :items do |item_form| %>
       <div class="field">
-        <% if item_form.object.image.attached? %>
+        <% if item_form.object.has_image? %>
           <%= item_form.hidden_field :image, value: item_form.object.image.signed_id %>
           <%= image_tag item_form.object.image_urls[:thumb], class: 'field__thumb' %>
         <% end %>

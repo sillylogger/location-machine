@@ -20,13 +20,17 @@ class Item < ApplicationRecord
   end
 
   def image_urls
-    if image.attached?
-      {
-        thumb:  thumb_path(image.service_url),
-        medium: medium_path(image.service_url),
-        full:   full_path(image.service_url)
-      }
-    end
+    return unless has_image?
+
+    {
+      thumb:  thumb_path(image.service_url),
+      medium: medium_path(image.service_url),
+      full:   full_path(image.service_url)
+    }
+  end
+
+  def has_image?
+    image.attached?
   end
 
   def to_param
