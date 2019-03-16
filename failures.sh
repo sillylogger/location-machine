@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-bundle exec rspec --only_failures spec
+CAPYBARA_DRIVER=chrome bundle exec rspec --only_failures spec
