@@ -27,4 +27,5 @@
 </section>
 
 
-<%= link_to_chat(user: @item.location.user, item_id: @item.id) %>
+<%= link_to_chat(user: @item.location.user,
+                 regarding: "Regarding #{@item.name} at #{location_item_url(@location, @item)}") %>

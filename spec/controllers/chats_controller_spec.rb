@@ -17,7 +17,7 @@ describe ChatsController do
       it 'returns not found' do
         expect {
           get :index, params: { user_id: 'invalid-id' }
-        }.to raise_error ActionController::RoutingError
+        }.to raise_error ActiveRecord::RecordNotFound
       end
     end
   end

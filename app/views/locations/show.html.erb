@@ -57,5 +57,6 @@
 </ul>
 
 
-<%= link_to_chat(user: @location.user) %>
+<%= link_to_chat(user: @location.user,
+                 regarding: "Regarding #{@location.name} at #{location_url(@location)}") %>
 

@@ -1,20 +1,20 @@
 <header class="chat-info">
   <h1 class="chat-info__name">Chat with <%= @user.name %></h1>
 
-  <% if @item.present? %>
-    <p class="chat-info__description">About <%= @item.name %></p>
+  <% if params[:regarding].present? %>
+    <p class="chat-info__description"><%= params[:regarding] %></p>
   <% end %>
 </header>
 
 <ul class="chat-links">
 
   <% if params[:debug].present? && @user.is_facebook_user? %>
-    <%= native_chat_link type: 'facebook', id: @user.facebook_identity.uid, text: 'Facebook', asset: 'facebook2' %>
+    <%= chat_link url: native_chat_url('facebook', @user.facebook_identity.uid), label_text: 'Facebook', asset: 'facebook2' %>
   <% end %>
 
-  <%= native_chat_link type: 'zalo', id: @user.phone, text: 'Zalo', asset: 'zalo' %>
+  <%= chat_link url: native_chat_url('zalo', @user.phone), label_text: 'Zalo', asset: 'zalo' %>
 
-  <%= native_chat_link type: 'whatsapp', id: @user.phone, text: 'WhatsApp', asset: 'whatsapp' %>
+  <%= chat_link url: native_chat_url('whatsapp', @user.phone, regarding: params[:regarding]), label_text: 'WhatsApp', asset: 'whatsapp' %>
 
 </ul>
 
