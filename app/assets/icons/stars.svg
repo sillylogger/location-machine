@@ -1,0 +1,10 @@
+<svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<symbol id="icon-stars" viewBox="0 0 17 16">
+<title>stars</title>
+<path d="M4.5 7.152l0.926 2.851h2.997l-2.425 1.762 0.926 2.851-2.425-1.762-2.425 1.762 0.926-2.851-2.425-1.762h2.997z"></path>
+<path d="M8.5 0.152l0.926 2.851h2.997l-2.425 1.762 0.926 2.851-2.425-1.762-2.425 1.762 0.926-2.851-2.425-1.762h2.997z"></path>
+<path d="M12.5 7.152l0.926 2.851h2.997l-2.425 1.762 0.926 2.851-2.425-1.762-2.425 1.762 0.926-2.851-2.425-1.762h2.997z"></path>
+</symbol>
+</defs>
+</svg>

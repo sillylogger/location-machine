@@ -1,0 +1,8 @@
+<svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<symbol id="icon-toggle-on" viewBox="0 0 16 16">
+<title>toggle-on</title>
+<path d="M10.5 4h-5c-3.038 0-5.5 2.462-5.5 5.5s2.462 5.5 5.5 5.5h5c3.038 0 5.5-2.462 5.5-5.5s-2.462-5.5-5.5-5.5zM10.5 12c-1.381 0-2.5-1.119-2.5-2.5s1.119-2.5 2.5-2.5 2.5 1.119 2.5 2.5c0 1.381-1.119 2.5-2.5 2.5z"></path>
+</symbol>
+</defs>
+</svg>

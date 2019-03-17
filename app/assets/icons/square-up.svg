@@ -1,0 +1,9 @@
+<svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<symbol id="icon-square-up" viewBox="0 0 16 16">
+<title>square-up</title>
+<path d="M0 0v16h16v-16l-16 0zM14 14h-12v-12l12-0v12z"></path>
+<path d="M3.5 8l4.5-4.5 4.5 4.5h-3.5v5h-2v-5z"></path>
+</symbol>
+</defs>
+</svg>

@@ -1,0 +1,8 @@
+<svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<symbol id="icon-infinite2" viewBox="0 0 16 16">
+<title>infinite2</title>
+<path d="M11.5 0c-2.485 0-4.5 2.015-4.5 4.5v2.5h-2.5c-2.485 0-4.5 2.015-4.5 4.5s2.015 4.5 4.5 4.5 4.5-2.015 4.5-4.5v-2.5h2.5c2.485 0 4.5-2.015 4.5-4.5s-2.015-4.5-4.5-4.5zM7 11.5c0 1.381-1.119 2.5-2.5 2.5s-2.5-1.119-2.5-2.5 1.119-2.5 2.5-2.5h2.5v2.5zM11.5 7h-2.5v-2.5c0-1.381 1.119-2.5 2.5-2.5s2.5 1.119 2.5 2.5-1.119 2.5-2.5 2.5z"></path>
+</symbol>
+</defs>
+</svg>

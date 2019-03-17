@@ -1,0 +1,8 @@
+<svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<symbol id="icon-bubbles5" viewBox="0 0 18 16">
+<title>bubbles5</title>
+<path d="M12 0c1.1 0 2 0.9 2 2v5c0 1.1-0.9 2-2 2h-9l-3 3v-10c0-1.1 0.9-2 2-2h10zM16 3c1.1 0 2 0.9 2 2v11l-3-3h-9c-1.1 0-2-0.9-2-2v-1h2v0.996c0.001 0.001 0.002 0.003 0.004 0.004h9.996v-5.996c-0.001-0.001-0.002-0.003-0.004-0.004h-0.996v-2h1z"></path>
+</symbol>
+</defs>
+</svg>

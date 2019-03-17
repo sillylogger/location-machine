@@ -1,0 +1,8 @@
+<svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<symbol id="icon-bubble-video" viewBox="0 0 16 16">
+<title>bubble-video</title>
+<path d="M14.5 0h-13c-0.825 0-1.5 0.675-1.5 1.5v9c0 0.825 0.675 1.5 1.5 1.5h2.5v4l4.8-4h5.7c0.825 0 1.5-0.675 1.5-1.5v-9c0-0.825-0.675-1.5-1.5-1.5zM13 8c0 0.55-0.36 0.73-0.8 0.4l-2.2-2.4v2c0 0.55-0.45 1-1 1h-5c-0.55 0-1-0.45-1-1v-4c0-0.55 0.45-1 1-1h5c0.55 0 1 0.45 1 1v2l2.2-2.4c0.44-0.33 0.8-0.15 0.8 0.4v4z"></path>
+</symbol>
+</defs>
+</svg>

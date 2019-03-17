@@ -1,0 +1,9 @@
+<svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<symbol id="icon-square-down" viewBox="0 0 16 16">
+<title>square-down</title>
+<path d="M0 16v-16h16v16l-16-0zM14 2h-12v12l12 0v-12z"></path>
+<path d="M3.5 8l4.5 4.5 4.5-4.5h-3.5v-5h-2v5z"></path>
+</symbol>
+</defs>
+</svg>

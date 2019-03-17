@@ -1,0 +1,8 @@
+<svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<symbol id="icon-construction" viewBox="0 0 16 16">
+<title>construction</title>
+<path d="M16 6.5v-4c0-0.275-0.225-0.5-0.5-0.5h-15c-0.275 0-0.5 0.225-0.5 0.5v4c0 0.275 0.225 0.5 0.5 0.5h1.88l-2.38 7h3l1.020-3h7.96l1.020 3h3l-2.38-7h1.88c0.275 0 0.5-0.225 0.5-0.5zM13 3l-3 3h-3l3-3h3zM4 3h3l-3 3h-3l3-3zM11.64 10h-7.279l1.020-3h5.239l1.020 3zM15 6h-2l2-2v2z"></path>
+</symbol>
+</defs>
+</svg>

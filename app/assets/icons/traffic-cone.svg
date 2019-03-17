@@ -1,0 +1,8 @@
+<svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<symbol id="icon-traffic-cone" viewBox="0 0 16 16">
+<title>traffic-cone</title>
+<path d="M14 14l-4.194-13.048c-0.168-0.524-0.643-0.952-1.056-0.952s-1.088 0-1.5 0-0.888 0.428-1.056 0.952l-4.194 13.048h-2v2h16v-2h-2zM6.586 3h2.828l0.643 2h-4.114l0.643-2zM5.3 7h5.399l0.643 2h-6.685l0.643-2zM3.372 13l0.643-2h7.971l0.643 2h-9.256z"></path>
+</symbol>
+</defs>
+</svg>

@@ -49,7 +49,12 @@
 
   <% if @location.editor? current_user %>
     <li class="location-items__item m--add">
-      <%= link_to "Add", new_location_item_path(@location) %>
+      <%= link_to new_location_item_path(@location) do %>
+        <svg class="icon m--clickable">
+          <use xlink:href="<%= asset_path 'plus-circle.svg#icon-plus-circle' %>">
+          </use>
+        </svg>
+      <% end %>
     </li>
   <% end %>
 </ul>

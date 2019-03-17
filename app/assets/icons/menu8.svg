@@ -1,0 +1,12 @@
+<svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<symbol id="icon-menu8" viewBox="0 0 22 16">
+<title>menu8</title>
+<path d="M0 3h14v2h-14v-2z"></path>
+<path d="M0 7h14v2h-14v-2z"></path>
+<path d="M0 11h14v2h-14v-2z"></path>
+<path d="M15.5 9l3 3 3-3h-6z"></path>
+<path d="M21.5 7l-3-3-3 3h6z"></path>
+</symbol>
+</defs>
+</svg>

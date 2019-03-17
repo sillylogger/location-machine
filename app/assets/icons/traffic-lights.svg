@@ -1,0 +1,8 @@
+<svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<symbol id="icon-traffic-lights" viewBox="0 0 16 16">
+<title>traffic-lights</title>
+<path d="M13 10l1.5-3h-2.5v-1h1l1.5-3h-2.5v-1c0-0.55-0.45-1-1-1h-7c-0.55 0-1 0.45-1 1v1h-2.5l1.5 3h1v1h-2.5l1.5 3h1v1h-2.5l1.5 3h1v1c0 0.55 0.45 1 1 1h7c0.55 0 1-0.45 1-1v-1h1l1.5-3h-2.5v-1h1zM7.5 14c-0.828 0-1.5-0.672-1.5-1.5s0.672-1.5 1.5-1.5 1.5 0.672 1.5 1.5-0.672 1.5-1.5 1.5zM7.5 10c-0.828 0-1.5-0.672-1.5-1.5s0.672-1.5 1.5-1.5 1.5 0.672 1.5 1.5-0.672 1.5-1.5 1.5zM7.5 6c-0.828 0-1.5-0.672-1.5-1.5s0.672-1.5 1.5-1.5 1.5 0.672 1.5 1.5-0.672 1.5-1.5 1.5z"></path>
+</symbol>
+</defs>
+</svg>

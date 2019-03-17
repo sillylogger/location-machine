@@ -1,0 +1,10 @@
+<svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<symbol id="icon-glasses-3d" viewBox="0 0 18 16">
+<title>glasses-3d</title>
+<path d="M17 5v6h-5.086l-2.207-2.207c-0.195-0.195-0.451-0.293-0.707-0.293s-0.512 0.098-0.707 0.293l-2.207 2.207h-5.086v-6h16zM18 4h-18v8h6.5l2.5-2.5 2.5 2.5h6.5v-8z"></path>
+<path d="M2 6v4h3.5l2.5-2.5v-1.5h-6zM5 9h-2v-2h4l-2 2z"></path>
+<path d="M10 6v1.5l2.5 2.5h3.5v-4z"></path>
+</symbol>
+</defs>
+</svg>

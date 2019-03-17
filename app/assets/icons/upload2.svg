@@ -1,0 +1,9 @@
+<svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<symbol id="icon-upload2" viewBox="0 0 16 16">
+<title>upload2</title>
+<path d="M2.5 6l5.5-5.5 5.5 5.5h-3.5v6h-4v-6z"></path>
+<path d="M14 8v6h-12v-6h-2v6.5c0 0.825 0.675 1.5 1.5 1.5h13c0.825 0 1.5-0.675 1.5-1.5v-6.5h-2z"></path>
+</symbol>
+</defs>
+</svg>

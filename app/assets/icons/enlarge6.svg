@@ -1,0 +1,10 @@
+<svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<symbol id="icon-enlarge6" viewBox="0 0 16 16">
+<title>enlarge6</title>
+<path d="M0 0v16h16v-16h-16zM15 8v7h-14v-14h14v7z"></path>
+<path d="M14 2h-4.5l4.5 4.5z"></path>
+<path d="M2 14v-4.5l4.5 4.5z"></path>
+</symbol>
+</defs>
+</svg>

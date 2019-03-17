@@ -1,0 +1,8 @@
+<svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<symbol id="icon-sort" viewBox="0 0 16 16">
+<title>sort</title>
+<path d="M6 4v11h-2v-11h-2.5l3.5-3.5 3.5 3.5zM10 12v-11h2v11h2.5l-3.5 3.5-3.5-3.5z"></path>
+</symbol>
+</defs>
+</svg>

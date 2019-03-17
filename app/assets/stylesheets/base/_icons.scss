@@ -1,0 +1,18 @@
+.icon {
+  width: 2rem;
+  height: 2rem;
+}
+
+.icon.m--clickable {
+  fill: $gray-medium;
+
+  &:hover {
+    fill: darken($gray-medium, 10%);
+  }
+
+  &:active {
+    fill: darken($gray-medium, 20%);
+  }
+}
+
+

@@ -1,0 +1,12 @@
+<svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<symbol id="icon-floppy-disk" viewBox="0 0 16 16">
+<title>floppy-disk</title>
+<path d="M13.5 0h-13c-0.275 0-0.5 0.225-0.5 0.5v15c0 0.275 0.225 0.5 0.5 0.5h15c0.275 0 0.5-0.225 0.5-0.5v-13l-2.5-2.5zM4 0.5h8v4c0 0.275-0.225 0.5-0.5 0.5h-7c-0.275 0-0.5-0.225-0.5-0.5v-4zM14 15.5h-12v-6.5c0-0.552 0.448-1 1-1h10c0.552 0 1 0.448 1 1v6.5z"></path>
+<path d="M9 1h2v3h-2v-3z"></path>
+<path d="M4 9h8v1h-8v-1z"></path>
+<path d="M4 11h8v1h-8v-1z"></path>
+<path d="M4 13h8v1h-8v-1z"></path>
+</symbol>
+</defs>
+</svg>
