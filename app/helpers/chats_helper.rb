@@ -17,14 +17,16 @@ module ChatsHelper
   end
 
   def native_chat_url type, id
+    normalized = id.gsub(/\-|\+/, '').sub(/^0*/, '')
+
     case type
     when 'facebook'
-      "https://m.me/#{id}"
+      "https://m.me/#{normalized}"
     when 'whatsapp'
       # https://faq.whatsapp.com/en/android/26000030/
-      "https://wa.me/#{id}"
+      "https://wa.me/#{normalized}"
     when 'zalo'
-      "https://zalo.me/#{id}"
+      "https://zalo.me/#{normalized}"
     end
   end
 
