@@ -1,14 +1,27 @@
-.chat-items {
-  &__item {
-    margin-bottom: 5px;
+.chat-info {
+  margin-bottom: 0.75rem;
 
-    img {
-      width: 15%;
-      float: left;
-    }
+  &__name {
+    font-size: 1.25rem;
+    margin-bottom: 0;
+  }
 
-    &__text {
-      padding: 20px 100px;
-    }
+  &__description {
+    margin-bottom: 1rem;
+  }
+}
+
+.chat-links {
+
+  // TODO: move this out to be chat-links
+  // instead of chat-links__link... too verbose :-P
+  &__link {
+    margin-bottom: 0.75rem;
+    clear: both;
+  }
+
+  &__icon {
+    font-size: 2rem;
+    margin-right: 0.33rem;
   }
 }

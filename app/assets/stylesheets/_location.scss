@@ -12,6 +12,8 @@
 .location-items {
   column-count: 3;
 
+  // TODO: move this out to be location-item
+  // instead of location-items__item... too verbose :-P
   &__item {
     img {
       max-width: 100%;
@@ -20,7 +22,10 @@
 
   &__item.m--add {
     position: relative;
-    top: 1.5rem;
+    top: 1rem;
+
+    font-size: 2rem;
   }
 
 }
+

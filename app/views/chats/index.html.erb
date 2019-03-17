@@ -1,14 +1,21 @@
-<div>
-  Chat with: <%= @user.name %>
-  <% if @item %>
-    about <%= @item.name %>
+<header class="chat-info">
+  <h1 class="chat-info__name">Chat with <%= @user.name %></h1>
+
+  <% if @item.present? %>
+    <p class="chat-info__description">About <%= @item.name %></p>
   <% end %>
-</div>
+</header>
 
-<br></br>
+<ul class="chat-links">
 
-<% if params[:debug].present? && @user.is_facebook_user? %>
-  <%= chat_item('facebook', 'Facebook', @user.facebook_identity.uid) %>
-<% end %>
-<%= chat_item('zalo', 'Zalo', @user.phone) %>
-<%= chat_item('whatsapp', 'Whatsapp', @user.phone) %>
+  <% if params[:debug].present? && @user.is_facebook_user? %>
+    <%= native_chat_link type: 'facebook', id: @user.facebook_identity.uid, text: 'Facebook', asset: 'facebook2' %>
+  <% end %>
+
+  <%= native_chat_link type: 'zalo', id: @user.phone, text: 'Zalo', asset: 'zalo' %>
+
+  <%= native_chat_link type: 'whatsapp', id: @user.phone, text: 'WhatsApp', asset: 'whatsapp' %>
+
+</ul>
+
+

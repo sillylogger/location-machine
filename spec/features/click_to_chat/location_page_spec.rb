@@ -17,18 +17,18 @@ describe 'Location Page' do
     it "allow buyer to click to chat with seller" do
       visit location_path(location.id)
 
-      expect(page).to have_content("Click to chat")
+      expect(page).to have_content("Click to Chat")
 
-      click_link "Click to chat"
+      click_link "Click to Chat"
 
       wait_until { page.current_path == user_chats_path(user_id: seller.id) }
 
-      expect(page).to have_content "Whatsapp"
+      expect(page).to have_content "WhatsApp"
       expect(page).to have_content "Zalo"
     end
   end
 
-  context 'selled does not have phone number' do
+  context 'seller does not have phone number' do
     before do
       seller.update(phone: nil)
     end
@@ -36,7 +36,7 @@ describe 'Location Page' do
     it "hide click to chat" do
       visit location_path(location.id)
 
-      expect(page).not_to have_content("Click to chat")
+      expect(page).not_to have_content("Click to Chat")
     end
   end
 end
