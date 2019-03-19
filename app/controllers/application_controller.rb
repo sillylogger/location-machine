@@ -2,6 +2,20 @@ class ApplicationController < ActionController::Base
 
   before_action :force_canonical_host
   before_action :set_current_host
+  before_action :set_locale
+
+  DEFAULT_LOCALE = :en
+
+  def set_locale
+    begin
+      if params[:locale] != nil
+        cookies.permanent[:locale] = params[:locale]
+      end
+      I18n.locale = cookies[:locale] || read_lang_header || DEFAULT_LOCALE
+    rescue I18n::InvalidLocale
+      I18n.locale = DEFAULT_LOCALE
+    end
+  end
 
   protected
 
@@ -32,4 +46,8 @@ class ApplicationController < ActionController::Base
     ActiveStorage::Current.host = request.base_url
   end
 
+  def read_lang_header
+    lang_header = request.env['HTTP_ACCEPT_LANGUAGE']
+    lang_header.downcase.scan(/[a-z]{2}\-[a-z]{2}/).first unless lang_header.nil?
+  end
 end
