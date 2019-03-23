@@ -21,5 +21,10 @@ FactoryBot.define do
     end
   end
 
+  factory :facebook_user, parent: :user do
+    after :create do |user|
+      create_list :identity, 1, user: user
+    end
+  end
 end
 

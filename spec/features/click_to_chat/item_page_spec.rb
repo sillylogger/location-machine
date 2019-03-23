@@ -4,17 +4,10 @@ describe 'Item Page' do
   let(:item) { FactoryBot.create(:item) }
   let(:location) { item.location }
   let(:seller) { location.user }
-  let(:buyer) { FactoryBot.create(:user) }
 
-  before :each do
-    visit new_user_session_path
-    fill_in 'user[email]',    with: buyer.email
-    fill_in 'user[password]', with: 'password'
-    click_button 'Log in'
-    wait_until { page.current_path == root_path }
-  end
+  include_examples 'user login'
 
-  it "allow buyer to click to chat with seller in show item page" do
+  it "allow user to click to chat with seller in show item page" do
     visit location_item_path(location_id: location.id, id: item.id)
 
     expect(page).to have_content("Click to Chat")
