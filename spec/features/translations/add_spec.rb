@@ -12,20 +12,21 @@ describe 'Translation Pages' do
   end
 
   it "lets admin create new translation through active_admin and see new translation in location show page" do
-    visit admin_i18n_backend_active_record_translations_path
-    expect(page.current_path).to include(admin_i18n_backend_active_record_translations_path)
+    visit admin_translations_path
+    expect(page.current_path).to include(admin_translations_path)
 
-    click_link "New I18n Backend Active Record Translation"
-    wait_until { page.current_path.include?(new_admin_i18n_backend_active_record_translation_path) }
+    click_link "New Translation"
+    wait_until { page.current_path.include?(new_admin_translation_path) }
 
     select      'en', from: 'i18n_backend_active_record_translation[locale]'
-    fill_in     'i18n_backend_active_record_translation[key]', with: 'post'
+    fill_in     'i18n_backend_active_record_translation[key]', with: 'lm.action.post'
     fill_in     'i18n_backend_active_record_translation[value]', with: 'Post!'
 
     click_button 'Create Translation'
+
     wait_until {
-      translation = Translation.last
-      page.current_path.include?(admin_i18n_backend_active_record_translation_path(translation))
+      translation = Translation.where(key: 'lm.action.post').first
+      page.current_path.include?(admin_translation_path(translation))
     }
 
     expect(page).to have_content 'Post!'
