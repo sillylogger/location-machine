@@ -31,8 +31,8 @@ describe "the MVP flow" do
     expect(user.phone).to eq(new_phone)
   end
 
-  it "lets users sign in and post!" do
-    click_link 'Post!'
+  it "lets users sign in and post" do
+    click_link 'Post'
     wait_until { page.current_path == new_location_path }
 
     fill_in     'location[name]', with: location_attributes.name

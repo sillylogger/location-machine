@@ -14,12 +14,12 @@
   </script>
 
   <div class="field">
-    <%= form.text_field :name, placeholder: "Location name", required: true, autocomplete: false %>
+    <%= form.text_field :name, placeholder: t('lm.location.name', default: "Location name"), required: true, autocomplete: false %>
   </div>
 
   <% if show_description %>
     <div class="field">
-      <%= form.text_area :description, placeholder: "Description", autocomplete: false %>
+      <%= form.text_area :description, placeholder: t('lm.location.description', default: "Description"), autocomplete: false %>
     </div>
   <% end %>
 
@@ -34,15 +34,15 @@
       </div>
 
       <div class="field">
-        <%= item_form.text_field :name, placeholder: "Item name", required: true, autocomplete: false %>
+        <%= item_form.text_field :name, placeholder: t('lm.item.name', default: "Item name"), required: true, autocomplete: false %>
       </div>
 
       <div class="field">
-        <%= item_form.number_field :price, placeholder: "Price", required: true, autocomplete: false %>
+        <%= item_form.number_field :price, placeholder: t('lm.item.price', default: "Price"), required: true, autocomplete: false %>
       </div>
 
       <div class="field">
-        <%= item_form.text_area :description, placeholder: "Description", autocomplete: false %>
+        <%= item_form.text_area :description, placeholder: t('lm.item.description', default: "Description"), autocomplete: false %>
       </div>
     <% end %>
   <% end %>
