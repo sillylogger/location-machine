@@ -7,6 +7,8 @@ describe "the MVP flow" do
   include_examples 'user login'
 
   it "lets users sign in and edit their profile" do
+    visit root_path
+
     click_link user.name
     wait_until { page.current_path == edit_user_registration_path }
 
@@ -24,6 +26,8 @@ describe "the MVP flow" do
   end
 
   it "lets users sign in and post" do
+    visit root_path
+
     click_link 'Post'
     wait_until { page.current_path == new_location_path }
 
