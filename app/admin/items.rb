@@ -1,6 +1,6 @@
 ActiveAdmin.register Item do
   permit_params :location_id, :image, :name, :price, :description
-  
+
   index do
     selectable_column
     column :id
@@ -49,7 +49,7 @@ ActiveAdmin.register Item do
 
       f.input :image, :hint => f.object.has_image? \
               ? f.image_tag(f.object.image_urls[:thumb], style: 'height: 150px;')
-              : f.content_tag(:span, '-')
+              : f.content_tag(:span, '-'), as: :file
 
       f.input :name
       f.input :price, as: :string

@@ -1,5 +1,5 @@
 <div class="sign-in" >
-  <%= image_tag 'logo.png', class: 'sign-in__logo' %>
+  <%= image_tag Setting.site_logo, class: 'sign-in__logo' %>
 
   <div class="sign-in__actions">
     <a class="m--facebook b-btn" href="<%= user_facebook_omniauth_authorize_path %>">
