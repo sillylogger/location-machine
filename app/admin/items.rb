@@ -16,7 +16,7 @@ ActiveAdmin.register Item do
     end
     column :name
     column :price do |item|
-      number_to_currency(item.price)
+      content_tag(:span, item.price, class: 'js-price')
     end
     column :description
     column :created_at
@@ -34,8 +34,8 @@ ActiveAdmin.register Item do
         end
       end
       row :name
-      row :price do
-        number_to_currency(item.price)
+      row :price do |item|
+        content_tag(:span, item.price, class: 'js-price')
       end
       row :description
       row :created_at

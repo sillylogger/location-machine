@@ -40,6 +40,10 @@ class Setting < ApplicationRecord
     }
   end
 
+  def self.site_currency
+    fetch 'site.currency', 'USD'
+  end
+
   def has_attachment?
     attachment.attached?
   end

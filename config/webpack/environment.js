@@ -1,3 +1,6 @@
-const { environment } = require('@rails/webpacker')
+const {environment} = require('@rails/webpacker');
+const customConfig = require('./custom');
 
-module.exports = environment
+environment.config.merge(customConfig);
+
+module.exports = environment;
