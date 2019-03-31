@@ -1,20 +1,14 @@
 require 'rails_helper'
 
 describe "the MVP flow" do
-
-  let!(:user) { FactoryBot.create :user }
   let(:location_attributes) { FactoryBot.build :location }
   let(:item_attributes) { FactoryBot.build :item }
 
-  before :each do
-    visit new_user_session_path
-    fill_in 'user[email]',    with: user.email
-    fill_in 'user[password]', with: 'password'
-    click_button 'Log in'
-    wait_until { page.current_path == root_path }
-  end
+  include_examples 'user login'
 
   it "lets users sign in and edit their profile" do
+    visit root_path
+
     click_link user.name
     wait_until { page.current_path == edit_user_registration_path }
 
@@ -32,6 +26,8 @@ describe "the MVP flow" do
   end
 
   it "lets users sign in and post" do
+    visit root_path
+
     click_link 'Post'
     wait_until { page.current_path == new_location_path }
 

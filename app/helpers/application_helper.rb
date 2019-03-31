@@ -7,4 +7,10 @@ module ApplicationHelper
     end
   end
 
+  def home_link
+    link_to(root_url) do
+      concat image_tag Setting.site_logo, class: 'homepage__logo'
+      concat content_tag :span, Setting.site_title, class: 'homepage__title'
+    end
+  end
 end

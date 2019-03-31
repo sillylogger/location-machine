@@ -1,0 +1,14 @@
+.sign-in {
+  text-align: center;
+
+  &__actions {
+    float: left;
+    margin-left: 20px;
+    line-height: 150px;
+  }
+
+  &__logo {
+    height: 150px;
+    float: left;
+  }
+}

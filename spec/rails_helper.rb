@@ -42,6 +42,7 @@ RSpec.configure do |config|
 
   config.before(:suite) do
     DatabaseCleaner.clean_with :truncation
+    ActiveStorage::Current.host = ''
   end
 
   config.before(:each) do
@@ -58,6 +59,7 @@ RSpec.configure do |config|
 
   config.after(:each) do
     DatabaseCleaner.clean
+    Warden.test_reset!
   end
 
   config.render_views
@@ -66,6 +68,7 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers,  type: :view
   config.include Devise::Test::ControllerHelpers,  type: :controller
   config.include Devise::Test::IntegrationHelpers, type: :request
+  config.include Warden::Test::Helpers
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and

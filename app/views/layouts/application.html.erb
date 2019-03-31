@@ -36,7 +36,9 @@
 
     <header id="navbar">
       <div class="container">
-        <h2><%= link_to Setting.site_title, root_path %></h2>
+        <h2>
+          <%= home_link %>
+        </h2>
 
         <%- if user_signed_in? %>
           <p>
