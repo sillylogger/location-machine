@@ -1,6 +1,8 @@
 let googleMap = null,
   lastMarker = null,
-  lastInfoWindow = null;
+  lastInfoWindow = null,
+  latId = null,
+  lngId = null;
 
 let mapOptions = {
   zoom: 10,
@@ -76,10 +78,9 @@ class Map {
     lastInfoWindow = infoWindow;
   }
 
-  addMarker(latLng, options = {}, callbacks = []) {
-    console.log('Add marker');
+  addMarker(position, options = {}, callbacks = []) {
     marker = new google.maps.Marker({
-      position: latLng,
+      position: position,
       map: googleMap,
       ...options,
     });
@@ -91,10 +92,26 @@ class Map {
     return marker;
   }
 
-  storeLatLng(latLng, latId, lngId) {
-    console.log('Update input value');
-    document.getElementById(latId).value = latLng.lat();
-    document.getElementById(lngId).value = latLng.lng();
+  addDraggableMarker(position) {
+    this.destroyLastMarket();
+    this.storeLatLng(position);
+    market = this.addMarker(position, {draggable: true}, [
+      {
+        event: 'dragend',
+        callback: e => {
+          this.storeLatLng(position);
+        },
+      },
+    ]);
+    this.setLastMarker(marker);
+    return marker;
+  }
+
+  storeLatLng(position) {
+    if (latId && lngId) {
+      document.getElementById(latId).value = position.lat();
+      document.getElementById(lngId).value = position.lng();
+    }
   }
 
   panTo(position) {
@@ -135,22 +152,16 @@ class Map {
     return marker;
   }
 
-  hydrateLatLng(latId, lngId) {
-    this.addMarker;
+  hydrateLatLng(latElementId, lngElementId) {
+    latId = latElementId;
+    lngId = lngElementId;
     googleMap.addListener('click', e => {
-      this.destroyLastMarket();
-      this.storeLatLng(e.latLng, latId, lngId);
-      market = this.addMarker(e.latLng, {draggable: true}, [
-        {
-          event: 'dragend',
-          callback: e => {
-            console.log('Dragged');
-            this.storeLatLng(e.latLng, latId, lngId);
-          },
-        },
-      ]);
-      this.setLastMarker(marker);
+      this.addDraggableMarker(e.latLng);
     });
+  }
+
+  placeClearableLocation(location) {
+    this.setLastMarker(this.placeLocation(location));
   }
 
   placeLocation(location, options = {}) {
@@ -175,19 +186,21 @@ class Map {
     mapLocations.forEach(this.placeLocation.bind(this));
   }
 
-  setCurrentPosition() {
+  setCurrentPosition(options) {
     if (!navigator.geolocation) {
       console.log('ready - navigator.geolocation not available');
       return false;
     }
 
     navigator.geolocation.getCurrentPosition(
-      this.setCurrentPositionSuccess.bind(this),
+      function(position) {
+        this.setCurrentPositionSuccess.bind(this)(position, options);
+      }.bind(this),
       this.setCurrentPositionFail.bind(this),
     );
   }
 
-  setCurrentPositionSuccess(position) {
+  setCurrentPositionSuccess(position, options = {newLocation: false}) {
     console.log(
       'setCurrentPosition - navigator.geolocation.getCurrentPosition success',
     );
@@ -222,6 +235,10 @@ class Map {
       title: 'Current location',
       zIndex: 2,
     });
+
+    if (options.newLocation) {
+      this.addDraggableMarker(currentLocation);
+    }
 
     googleMap.panTo(marker.getPosition());
     googleMap.setZoom(12);

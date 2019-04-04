@@ -40,10 +40,6 @@ describe "the MVP flow" do
     validation_message = page.find("#location_items_attributes_0_name").native.attribute("validationMessage")
     expect(validation_message).to eq("Please fill out this field.")
     fill_in     'location[items_attributes][0][name]', with: item_attributes.name
-    click_button 'Create'
-
-    expect(page).to have_text("Latitude can't be blank")
-    expect(page).to have_text("Longitude can't be blank")
     execute_script <<-JS
       document.getElementById('location_latitude').value = '#{location_attributes.latitude}';
       document.getElementById('location_longitude').value = '#{location_attributes.longitude}';
@@ -64,5 +60,23 @@ describe "the MVP flow" do
     expect(location.items).to include(item)
   end
 
+  it 'let user post by default location' do
+    visit root_path
+
+    click_link 'Post'
+    wait_until { page.current_path == new_location_path }
+
+    fill_in     'location[name]', with: location_attributes.name
+    attach_file 'location[items_attributes][0][image]', Rails.root.join("spec", "fixtures", "spring-rolls.jpg")
+    fill_in     'location[items_attributes][0][price]', with: item_attributes.price
+    fill_in     'location[items_attributes][0][description]', with: item_attributes.description
+    fill_in     'location[items_attributes][0][name]', with: item_attributes.name
+
+    click_button 'Create'
+
+    location = Location.last
+    expect(location.latitude).to eq -6.2189898
+    expect(location.longitude).to eq 106.7861758
+  end
 end
 
