@@ -1,6 +1,6 @@
 import Globalize from 'globalize';
-import likelySubtags from 'cldr-data/supplemental/likelySubtags.json';
-import currencyData from 'cldr-data/supplemental/currencyData.json';
+import likelySubtags from './cldr-data/supplemental/likelySubtags.json';
+import currencyData from './cldr-data/supplemental/currencyData.json';
 
 Globalize.load(likelySubtags);
 Globalize.load(currencyData);
@@ -8,8 +8,8 @@ Globalize.load(currencyData);
 const locales = ['vi', 'en'];
 
 const load_locale = locale => {
-  Globalize.load(require(`cldr-data/main/${locale}/currencies.json`));
-  Globalize.load(require(`cldr-data/main/${locale}/numbers.json`));
+  Globalize.load(require(`./cldr-data/main/${locale}/currencies.json`));
+  Globalize.load(require(`./cldr-data/main/${locale}/numbers.json`));
 };
 
 locales.map(locale => load_locale(locale));
