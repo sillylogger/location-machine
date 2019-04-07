@@ -40,6 +40,12 @@ class Setting < ApplicationRecord
     }
   end
 
+  def self.site_masthead_logo
+    fetch 'site.masthead-logo', 'Masthead logo of site', {
+      io: File.open(Rails.root.join('app', 'assets', 'images', 'masthead-logo.png')), filename: 'masthead-logo.png'
+    }
+  end
+
   def self.site_currency
     fetch 'site.currency', 'USD'
   end
