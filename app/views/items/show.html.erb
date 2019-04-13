@@ -21,9 +21,7 @@
 <% end %>
 
 <section class="item-info">
-  <span class="item-info__price js-price">
-    <%= @item.price %>
-  </span>
+  <span class="item-info__price"> <%= to_currency(@item.price) %> </span>
   <h1 class="item-info__name"><%= @item.name %></h1>
   <p class="item-info__description"><%= @item.description %></p>
 </section>

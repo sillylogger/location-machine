@@ -13,7 +13,6 @@ window.lm.Map = require('map');
 
 import Rails from 'rails-ujs';
 import * as ActiveStorage from 'activestorage';
-import {formatPrice} from './format';
 
 Rails.start();
 ActiveStorage.start();
@@ -59,5 +58,3 @@ addEventListener('direct-upload:end', event => {
   const element = document.getElementById(`direct-upload-${id}`);
   element.classList.add('direct-upload--complete');
 });
-
-addEventListener('DOMContentLoaded', formatPrice);
