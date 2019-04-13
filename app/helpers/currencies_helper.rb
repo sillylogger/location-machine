@@ -1,5 +1,5 @@
 module CurrenciesHelper
   def to_currency(amount)
-    number_to_currency(amount, { unit: '$' })
+    Money.from_amount(amount, Setting.site_currency).format
   end
 end

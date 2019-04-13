@@ -19,7 +19,7 @@ describe 'Currency Format' do
     item_path = location_item_path(location_id: location.id, id: item.id, locale: 'vi')
     visit item_path
     expect(page).to have_content item.name
-    expect(page).to have_content "100,00 US$"
+    expect(page).to have_content "$100,00"
   end
 end
 
