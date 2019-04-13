@@ -1,9 +1,9 @@
 require 'i18n/backend/active_record'
 require "i18n/backend/fallbacks"
 
-I18n.available_locales = [:vn, :id, :en]
+I18n.available_locales = [:vi, :id, :en]
 
-I18n.fallbacks.map(vn: :en)
+I18n.fallbacks.map(vi: :en)
 I18n.fallbacks.map(id: :en)
 
 I18n.default_locale = :en
