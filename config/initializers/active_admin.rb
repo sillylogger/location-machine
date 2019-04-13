@@ -304,16 +304,3 @@ ActiveAdmin.setup do |config|
   #
   # config.order_clause = MyOrderClause
 end
-
-module AdminPageLayoutOverride
-  def build_active_admin_head(*args)
-    super
-
-    within head do
-      text_node(tag(:meta, name: 'site_currency', content: Setting.site_currency))
-      text_node(javascript_pack_tag('active_admin'))
-    end
-  end
-end
-
-ActiveAdmin::Views::Pages::Base.send :prepend, AdminPageLayoutOverride
