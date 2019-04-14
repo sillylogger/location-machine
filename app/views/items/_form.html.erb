@@ -16,7 +16,7 @@
   </div>
 
   <div class="field">
-    <%= form.text_field :price, placeholder: "Price", autocomplete: false %>
+    <%= form.text_field :price, placeholder: "Price", value: to_currency(item.price), autocomplete: false %>
   </div>
 
   <div class="field">

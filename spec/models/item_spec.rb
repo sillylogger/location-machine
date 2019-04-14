@@ -19,6 +19,28 @@ describe Item do
     end
   end
 
+  describe "#price=" do
+    let(:item) { FactoryBot.build(:item) }
+
+    it "passes through the money parser to accept strings properly" do
+      item.price = "19.00"
+      expect(item.price).to eq(Money.new(19_00, "USD").amount)
+
+      item.price = "$19.00"
+      expect(item.price).to eq(Money.new(19_00, "USD").amount)
+
+      item.price = "Rp50000"
+      expect(item.price).to eq(Money.new(50_000_00, "IDR").amount)
+
+      # item.price = "Rp50,000"
+      # expect(item.price).to eq(Money.new(50_000_00, "IDR").amount)
+      # This doesn't work, sigh :-(
+
+      item.price = "Rp50.000,00"
+      expect(item.price).to eq(Money.new(50_000_00, "IDR").amount)
+    end
+  end
+
   describe "#has_image?" do
     it "simply calls attached?" do
       item = FactoryBot.build(:item)

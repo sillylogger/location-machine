@@ -50,12 +50,13 @@ gem 'rails-i18n', '~> 5.1'
 gem 'i18n-active_record', :require => 'i18n/active_record'
 
 # format currency
-gem 'money'
+gem 'monetize'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'awesome_print'
+  gem 'factory_bot_rails', github: 'thoughtbot/factory_bot_rails'
 
   %w[rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support].each do |lib|
     gem lib, github: "rspec/#{lib}"
@@ -77,7 +78,6 @@ group :development do
 end
 
 group :test do
-  gem 'factory_bot_rails', github: 'thoughtbot/factory_bot_rails'
   gem 'database_cleaner', github: 'bmabey/database_cleaner'
 
   # Adds support for Capybara system testing and selenium driver

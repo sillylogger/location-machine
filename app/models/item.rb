@@ -29,6 +29,10 @@ class Item < ApplicationRecord
     }
   end
 
+  def price= value
+    super Monetize.parse(value).amount
+  end
+
   def has_image?
     image.attached?
   end
