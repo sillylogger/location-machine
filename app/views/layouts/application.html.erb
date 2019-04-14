@@ -30,6 +30,8 @@
 
     <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{ Credential.fetch(:google, :maps_api_key) }" %>
     <%= javascript_pack_tag 'application' %>
+
+    <%= Setting.site_custom_html %>
   </head>
 
   <body>

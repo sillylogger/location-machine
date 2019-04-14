@@ -16,4 +16,15 @@ describe "layouts/application" do
     end
   end
 
+  context "when there is a Setting for the Custom HTML" do
+    let!(:setting) { Setting.create name: 'site.custom-html', value: <<-HTML }
+    <style>.homepage_logo { display: none; }</style>
+    HTML
+
+    it "renders the setting's title" do
+      render template: 'layouts/application'
+      expect(rendered).to include('<style>.homepage_logo')
+    end
+  end
+
 end

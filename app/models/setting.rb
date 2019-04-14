@@ -42,6 +42,10 @@ class Setting < ApplicationRecord
     fetch 'site.tagline', 'GPS meets Photography meets Messaging'
   end
 
+  def self.site_custom_html
+    fetch('site.custom-html', '').html_safe
+  end
+
   def self.site_logo
     fetch 'site.logo', 'Logo of site', {
       io: File.open(Rails.root.join('app', 'assets', 'images', 'logo.png')), filename: 'logo.png'
