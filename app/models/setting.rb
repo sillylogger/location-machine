@@ -24,6 +24,14 @@ class Setting < ApplicationRecord
     return setting.value unless setting.nil?
   end
 
+  def self.set name, value
+    setting = Setting.find_by(name: name)
+    if setting.nil?
+      Setting.fetch name, value
+    else 
+      setting.update(value: value)
+    end
+  end
 
   # Dry up setting access:
   def self.site_title

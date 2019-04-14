@@ -54,4 +54,21 @@ describe Setting do
     end
   end
 
+  describe ".set" do
+    it "updates a value (for tests)" do
+      Setting.fetch "foo", "bar"
+      expect(Setting.get("foo")).to eq("bar")
+      Setting.set "foo", "bang"
+      expect(Setting.get("foo")).to eq("bang")
+    end
+
+    context "when it doesn't yet exist" do
+      it "creates the entry" do
+        expect(Setting.get("foo")).to be_nil 
+        Setting.set "foo", "bar"
+        expect(Setting.get("foo")).to eq("bar")
+      end
+    end
+  end
+
 end
