@@ -64,8 +64,11 @@ class Map {
     }
   }
 
-  setLastMarker() {
+  setLastMarker(marker) {
     lastMarker = marker;
+    console.log(
+      `- Set new marker: ${marker.position.lat()} - ${marker.position.lng()}`,
+    );
   }
 
   closeLastInfoWindow() {
@@ -99,7 +102,7 @@ class Map {
       {
         event: 'dragend',
         callback: e => {
-          this.storeLatLng(position);
+          this.storeLatLng(e.latLng);
         },
       },
     ]);
@@ -111,6 +114,9 @@ class Map {
     if (latId && lngId) {
       document.getElementById(latId).value = position.lat();
       document.getElementById(lngId).value = position.lng();
+      console.log(
+        `Assign value to form: ${position.lat()} - ${position.lng()}`,
+      );
     }
   }
 
