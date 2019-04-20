@@ -39,19 +39,18 @@
   <div class="actions">
     <%= f.submit "Save" %>
   </div>
-
-  <script>
-    // TODO: if password field is filled, show password confirmation & current password field
-  </script>
 <% end %>
 
 <hr/>
 
-<h3>Sign Out</h3>
 <p><%= button_to "Sign Out", destroy_user_session_path, method: :delete %></p>
 
-<hr/>
 
-<h3>Cancel my Account</h3>
-<p>Unhappy?  Sorry to hear you feel that way.  Feel free to delete your account and recreate one at a later time.  <%= button_to "Cancel my Account", user_registration_path, data: { confirm: "Are you sure?" }, method: :delete, class: "m--danger" %></p>
+<% # TODO: deal with account closing in the future
+  if false
+%>
+  <hr/>
 
+  <h3>Cancel my Account</h3>
+  <p>Unhappy?  Sorry to hear you feel that way.  Feel free to delete your account and recreate one at a later time.  <%= button_to "Cancel my Account", user_registration_path, data: { confirm: "Are you sure?" }, method: :delete, class: "m--danger" %></p>
+<% end %>
