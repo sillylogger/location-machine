@@ -25,3 +25,7 @@ production:
   <<: *default
   database: location-machine-sql-production
 
+  # Google App Engine specific
+  # username: <%= Credential.fetch(:google, :cloud_sql_username) %>
+  # password: <%= Credential.fetch(:google, :cloud_sql_password) %>
+  # host: /cloudsql/<%= Credential.fetch(:google, :cloud_sql_connection_name) %>
