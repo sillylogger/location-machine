@@ -1,8 +1,8 @@
 module ChatsHelper
-  def link_to_chat(user:, regarding:)
+  def link_to_chat(user:, name:, url:)
     return unless user.phone.present?
 
-    link_to('Click to Chat', user_chats_path(user_id: user.id, regarding: regarding))
+    link_to('Click to Chat', user_chats_path(user_id: user.id, regarding: regarding_info(name, url)))
   end
 
   def chat_link(url:, label_text:, asset: )
@@ -39,5 +39,12 @@ module ChatsHelper
 
   def call_url(phone_number)
     "tel:#{normalize_phone_number(phone_number)}"
+  end
+
+  def regarding_info(name, url)
+    content_tag(:span) do
+      concat t('regarding_at', name: name, default: "Regarding %{name} at ")
+      concat link_to('here', url)
+    end
   end
 end

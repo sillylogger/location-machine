@@ -2,7 +2,9 @@
   <h1 class="chat-info__name">Chat with <%= @user.name %></h1>
 
   <% if params[:regarding].present? %>
-    <p class="chat-info__description"><%= params[:regarding] %></p>
+    <p class="chat-info__description">
+      <%= params[:regarding].html_safe %>
+    </p>
   <% end %>
 </header>
 

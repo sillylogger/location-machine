@@ -28,4 +28,5 @@
 
 
 <%= link_to_chat(user: @item.location.user,
-                 regarding: "Regarding #{@item.name} at #{location_item_url(@location, @item)}") %>
+                 name: @item.name,
+                 url: location_item_url(@location, @item)) %>
