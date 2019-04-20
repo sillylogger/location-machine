@@ -112,12 +112,19 @@ header#navbar {
   }
 }
 
-footer#notifications {
+@keyframes fadeAway {
+    0% { opacity: 1; visibility: visible; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+footer#notification {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
   color: #444;
+
+  animation: 0.5s linear 4s fadeAway forwards;
 
   .notice,
   .alert {

@@ -58,7 +58,7 @@ class Map {
     return googleMap != undefined;
   }
 
-  destroyLastMarket() {
+  destroyLastMarker() {
     if (lastMarker) {
       lastMarker.setMap(null);
     }
@@ -96,7 +96,7 @@ class Map {
   }
 
   addDraggableMarker(position) {
-    this.destroyLastMarket();
+    this.destroyLastMarker();
     this.storeLatLng(position);
     market = this.addMarker(position, {draggable: true}, [
       {
