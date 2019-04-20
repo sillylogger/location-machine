@@ -8,14 +8,17 @@
 
 <ul class="chat-links">
 
-  <% if params[:debug].present? && @user.is_facebook_user? %>
-    <%= chat_link url: native_chat_url('facebook', @user.facebook_identity.uid), label_text: 'Facebook', asset: 'facebook2' %>
+  <% if @user.phone.present? %>
+    <% if params[:debug].present? && @user.is_facebook_user? %>
+      <%= chat_link url: native_chat_url('facebook', @user.facebook_identity.uid), label_text: 'Facebook', asset: 'facebook2' %>
+    <% end %>
+
+    <%= chat_link url: native_chat_url('zalo', @user.phone), label_text: 'Zalo', asset: 'zalo' %>
+
+    <%= chat_link url: native_chat_url('whatsapp', @user.phone, regarding: params[:regarding]), label_text: 'WhatsApp', asset: 'whatsapp' %>
+
+    <%= chat_link url: call_url(@user.phone), label_text: @user.phone, asset: 'phone3' %>
   <% end %>
-
-  <%= chat_link url: native_chat_url('zalo', @user.phone), label_text: 'Zalo', asset: 'zalo' %>
-
-  <%= chat_link url: native_chat_url('whatsapp', @user.phone, regarding: params[:regarding]), label_text: 'WhatsApp', asset: 'whatsapp' %>
-
 </ul>
 
 

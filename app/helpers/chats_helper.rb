@@ -14,8 +14,12 @@ module ChatsHelper
     end
   end
 
+  def normalize_phone_number(phone_number)
+    phone_number.gsub(/\-|\+/, '').sub(/^0*/, '')
+  end
+
   def native_chat_url messenger, id, regarding: nil
-    normalized = id.gsub(/\-|\+/, '').sub(/^0*/, '')
+    normalized = normalize_phone_number(id)
     text_parameter = ""
 
     if regarding.present?
@@ -33,4 +37,7 @@ module ChatsHelper
     end
   end
 
+  def call_url(phone_number)
+    "tel:#{normalize_phone_number(phone_number)}"
+  end
 end

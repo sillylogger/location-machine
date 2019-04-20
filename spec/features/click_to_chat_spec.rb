@@ -20,6 +20,7 @@ describe 'Click to chat' do
 
         expect(page).to have_content "WhatsApp"
         expect(page).to have_content "Zalo"
+        expect(page).to have_content seller.phone
       end
     end
 
@@ -48,6 +49,7 @@ describe 'Click to chat' do
 
       expect(page).to have_content "WhatsApp"
       expect(page).to have_content "Zalo"
+      expect(page).to have_content seller.phone
     end
   end
 end
