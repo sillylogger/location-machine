@@ -7,8 +7,12 @@
     line-height: 150px;
   }
 
+  &__action {
+    margin: auto;
+  }
+
   &__logo {
-    height: 150px;
+    height: 100px;
     float: left;
   }
 }
