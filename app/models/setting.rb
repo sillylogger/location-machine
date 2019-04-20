@@ -14,7 +14,7 @@ class Setting < ApplicationRecord
       end
     end
 
-    setting.has_attachment? ? setting.attachment_url : setting.value
+    setting.has_attachment? ? setting.url : setting.value
   rescue Exception
     return default
   end
@@ -47,14 +47,14 @@ class Setting < ApplicationRecord
   end
 
   def self.site_logo
-    fetch 'site.logo', 'Logo of site', {
+    fetch 'site.logo', nil, {
       io: File.open(Rails.root.join('app', 'assets', 'images', 'logo.png')), filename: 'logo.png'
     }
   end
 
-  def self.site_masthead_logo
-    fetch 'site.masthead-logo', 'Masthead logo of site', {
-      io: File.open(Rails.root.join('app', 'assets', 'images', 'masthead-logo.png')), filename: 'masthead-logo.png'
+  def self.site_logo_masthead
+    fetch 'site.logo-masthead', nil, {
+      io: File.open(Rails.root.join('app', 'assets', 'images', 'logo-masthead.png')), filename: 'logo-masthead.png'
     }
   end
 
@@ -66,11 +66,7 @@ class Setting < ApplicationRecord
     attachment.attached?
   end
 
-  def is_image_attached?
-    has_attachment? && attachment.content_type.include?('image')
-  end
-
-  def attachment_url
-    is_image_attached? ? full_path(attachment.service_url) : attachment.service_url
+  def url
+    attachment.service_url
   end
 end

@@ -9,8 +9,11 @@ module ApplicationHelper
 
   def home_link
     link_to(root_url) do
-      concat image_tag Setting.site_masthead_logo, class: 'homepage__logo'
-      concat content_tag :span, Setting.site_title, class: 'homepage__title'
+      if Setting.site_logo_masthead.present?
+        image_tag Setting.site_logo_masthead, class: 'homepage__logo'
+      else
+        content_tag :span, Setting.site_title, class: 'homepage__title'
+      end
     end
   end
 end
