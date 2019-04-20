@@ -2,7 +2,7 @@
 
 <%= render 'form',
   location: @location,
-  action_label: "Save",
+  action_label: t('lm.action.save', default: "Save"),
   show_items: false,
   show_description: true %>
 
@@ -23,4 +23,8 @@
 
 <hr/>
 
-<%= button_to "Delete", location_path(@location), data: { confirm: "Are you sure?" }, method: :delete, class: "m--danger" %>
+<%= button_to t('lm.action.delete', default: "Delete"),
+  location_path(@location),
+  data: { confirm: t('lm.action.confirm', default: "Are you sure?") },
+  method: :delete,
+  class: "m--danger" %>

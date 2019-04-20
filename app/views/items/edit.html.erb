@@ -1,10 +1,14 @@
-<%= link_to 'Back', location_path(@location) %>
+<%= link_to t('lm.action.back', default: "Back"), location_path(@location) %>
 
 <%= render 'form',
   location: @location,
   item: @item,
-  action_label: "Save" %>
+  action_label: t('lm.action.save', default: "Save") %>
 
 <hr/>
 
-<%= button_to "Delete", location_item_path(@location, @item), data: { confirm: "Are you sure?" }, method: :delete, class: "m--danger" %>
+<%= button_to t('lm.action.delete', default: "Delete"),
+  location_item_path(@location, @item),
+  data: { confirm: t('lm.action.confirm', default: "Are you sure?") },
+  method: :delete,
+  class: "m--danger" %>

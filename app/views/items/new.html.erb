@@ -1,4 +1,4 @@
-<%= link_to 'Back', location_path(@location) %>
+<%= link_to t('lm.action.back', default: "Back"), location_path(@location) %>
 
 <div id="map_canvas" class="m--reminder"></div>
 <script>
@@ -14,4 +14,4 @@
 <%= render 'form',
   location: @location,
   item: @item,
-  action_label: "Create" %>
+  action_label: t('lm.action.create', default: "Create") %>

@@ -19,8 +19,7 @@
 
 <% # TODO: deal with passwords at some point in the future
   if false
-%>
-    <div class="field">
+%>  <div class="field">
       <%= f.password_field :password, placeholder: "New Password", autocomplete: "new-password" %>
       <em class="help">(leave blank if you don't want to change it)</em>
       <% if @minimum_password_length && false %>
@@ -37,19 +36,17 @@
 <% end %>
 
   <div class="actions">
-    <%= f.submit "Save" %>
+    <%= f.submit t('lm.action.save', default: "Save") %>
   </div>
 <% end %>
 
 <hr/>
 
-<p><%= button_to "Sign Out", destroy_user_session_path, method: :delete %></p>
-
+<p><%= button_to t('devise.sign_out', default: "Sign Out"), destroy_user_session_path, method: :delete %></p>
 
 <% # TODO: deal with account closing in the future
   if false
-%>
-  <hr/>
+%><hr/>
 
   <h3>Cancel my Account</h3>
   <p>Unhappy?  Sorry to hear you feel that way.  Feel free to delete your account and recreate one at a later time.  <%= button_to "Cancel my Account", user_registration_path, data: { confirm: "Are you sure?" }, method: :delete, class: "m--danger" %></p>
