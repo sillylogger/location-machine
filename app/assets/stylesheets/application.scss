@@ -15,7 +15,6 @@
 @import 'bourbon';
 @import 'base/base';
 
-@import 'home';
 @import 'maps';
 @import 'location';
 @import 'item';
@@ -78,14 +77,24 @@ form {
 
 header#navbar {
   line-height: 32px;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   vertical-align: baseline;
 
   h2 {
     display: inline-block;
     font-size: 1rem;
-    line-height: 1.2;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0;
+  }
+
+  .navbar__logo {
+    margin-right: 10px;
+    margin-top: -8px;
+    max-height: 48px;
+    float: left;
+  }
+
+  .navbar__title {
+    line-height: 30px;
   }
 
   p {

@@ -39,14 +39,14 @@ describe "Admin Pages" do
       Setting.site_logo
     end
 
-    it 'let you see default site logo/masthead logo setting' do
+    it 'let you see default site logo/masthead setting' do
       visit admin_settings_path
 
       expect(page.current_path).to include(admin_settings_path)
 
       expect(page).to have_content('site.logo')
       expect(page).to have_css("img[src*='logo.png']")
-      expect(page).to have_css("img[src*='masthead-logo.png']")
+      expect(page).to have_css("img[src*='logo-masthead.png']")
     end
   end
 end

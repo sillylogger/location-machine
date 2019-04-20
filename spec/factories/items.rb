@@ -9,8 +9,9 @@ FactoryBot.define do
     trait :with_image do
       after :create do |item|
         file_path = Rails.root.join('spec', 'fixtures', 'spring-rolls.jpg')
+
         item.image.attach(
-          io: File.open(Rails.root.join('spec', 'fixtures', 'spring-rolls.jpg')),
+          io: File.open(file_path),
           filename: 'spring-rolls.jpg',
           content_type: 'image/jpg',
         )

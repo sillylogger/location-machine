@@ -11,13 +11,6 @@ describe Setting do
       expect(setting).to be_invalid
       expect(setting.errors[:name].size).to eq(1)
     end
-
-    it "validates presence of value" do
-      expect(setting).to be_valid
-      setting.value = ""
-      expect(setting).to be_invalid
-      expect(setting.errors[:value].size).to eq(1)
-    end
   end
 
   describe ".fetch" do
