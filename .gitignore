@@ -11,10 +11,9 @@
 NOTES.md
 TODO.md
 
-# Ignore the default SQLite database.
+# Ignore the database backups.
 /bin/cloud_sql_proxy
-/db/*.sqlite3
-/db/*.sqlite3-journal
+/db/*.bak
 
 # Ignore test results.
 spec/.rspec-examples.txt
