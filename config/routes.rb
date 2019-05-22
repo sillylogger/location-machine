@@ -20,6 +20,6 @@ Rails.application.routes.draw do
 
   # match '/users/finish_signup' => 'users/registrations#finish_signup', via: [:get, :patch], :as => :finish_signup
 
-  ActiveAdmin.routes(self)
+  ActiveAdmin.routes(self) rescue ActiveAdmin::DatabaseHitDuringLoad
 
 end
