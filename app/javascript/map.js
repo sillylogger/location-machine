@@ -3,7 +3,8 @@ let googleMap = null,
   lastInfoWindow = null,
   latId = null,
   lngId = null,
-  currentLocationMarker = null;
+  currentLocationMarker = null,
+  bounds = null;
 
 let mapOptions = {
   zoom: 10,
@@ -52,6 +53,8 @@ class Map {
     });
     mapOptions.center = new google.maps.LatLng(center[0], center[1]);
 
+    bounds = new google.maps.LatLngBounds();
+
     googleMap = new google.maps.Map(canvas, mapOptions);
 
     currentLocationMarker = new google.maps.Marker({
@@ -83,6 +86,12 @@ class Map {
     if (lastMarker) {
       lastMarker.setMap(null);
     }
+  }
+
+  zoomExtends() {
+    setTimeout(function () {
+      googleMap.fitBounds(bounds);
+    }, 2000);
   }
 
   setLastMarker(marker) {
@@ -198,6 +207,8 @@ class Map {
     );
     let marker = this.addMarker(position, {title: location.name});
 
+    bounds.extend(marker.getPosition());
+
     if (options.panTo) {
       this.panTo(position);
     }
@@ -245,6 +256,7 @@ class Map {
       this.addDraggableMarker(currentLocation);
     }
 
+    bounds.extend(marker.getPosition());
     currentLocationMarker.setPosition(currentLocation);
     googleMap.panTo(currentLocation);
     googleMap.setZoom(12);

@@ -5,7 +5,7 @@ class LocationsController < ApplicationController
 
   # GET /
   def index
-    @locations = Location.for_display
+    @locations = Location.for_display.newest.limit(Setting.site_limit_location)
   end
 
   # GET /locations/1

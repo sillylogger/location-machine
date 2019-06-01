@@ -26,7 +26,7 @@ class Setting < ApplicationRecord
     setting = Setting.find_by(name: name)
     if setting.nil?
       Setting.fetch name, value
-    else 
+    else
       setting.update(value: value)
     end
   end
@@ -58,6 +58,10 @@ class Setting < ApplicationRecord
 
   def self.site_currency
     fetch 'site.currency', 'USD'
+  end
+
+  def self.site_limit_location
+    fetch "site.limit_location", 50
   end
 
   def has_attachment?

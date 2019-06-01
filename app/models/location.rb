@@ -13,6 +13,7 @@ class Location < ApplicationRecord
     where("longitude IS NOT NULL").
     where("name <> ''")
   }
+  scope :newest, -> { order(created_at: :desc) }
 
   def editor? user
     self.user_id == user&.id
