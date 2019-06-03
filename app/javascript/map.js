@@ -220,9 +220,9 @@ class Map {
     }
 
     navigator.geolocation.getCurrentPosition(
-      function(position) {
+      (position) => {
         this.setCurrentPositionSuccess.bind(this)(position, options);
-      }.bind(this),
+      },
       this.setCurrentPositionFail.bind(this),
     );
   }
@@ -231,6 +231,7 @@ class Map {
     console.log(
       'setCurrentPosition - navigator.geolocation.getCurrentPosition success',
     );
+
     if (!position.coords) {
       return;
     }
@@ -245,7 +246,7 @@ class Map {
     }
 
     currentLocationMarker.setPosition(currentLocation);
-    googleMap.panTo(currentLocationMarker.getPosition());
+    googleMap.panTo(currentLocation);
     googleMap.setZoom(12);
   }
 
@@ -256,9 +257,11 @@ class Map {
   }
 
   addLocationButton() {
-    const controlDiv = document.createElement('div');
-    const controlButton = document.createElement('button');
+    let controlDiv = document.createElement('div');
+    controlDiv.index = 1;
 
+    let controlButton = document.createElement('button');
+    controlButton.title = 'Your Location';
     controlButton.style.backgroundColor = 'rgba(255,255,255,1)';
     controlButton.style.border = '0';
     controlButton.style.borderRadius = '2px';
@@ -269,12 +272,9 @@ class Map {
     controlButton.style.marginRight = '10px';
     controlButton.style.padding = '0';
     controlButton.style.position = 'relative';
-    controlButton.title = 'Your Location';
-
     controlDiv.appendChild(controlButton);
 
-    const controlUI = document.createElement('div');
-
+    let controlUI = document.createElement('div');
     controlUI.style.position = 'absolute';
     controlUI.style.height = '18px';
     controlUI.style.left = '6px';
@@ -285,16 +285,12 @@ class Map {
     controlUI.style.backgroundImage = 'url(https://maps.gstatic.com/tactile/mylocation/mylocation-sprite-cookieless-v2-2x.png)';
     controlUI.style.backgroundPosition = '0 0';
     controlUI.style.backgroundSize = '180px 18px';
-
     controlButton.appendChild(controlUI);
 
-    const _this = this;
-
-    controlUI.addEventListener('click', function() {
-      _this.setCurrentPosition();
+    controlUI.addEventListener('click', () => {
+      googleMap.panTo(currentLocationMarker.getPosition());
     });
 
-    controlDiv.index = 1;
     googleMap.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(controlDiv);
   }
 }
