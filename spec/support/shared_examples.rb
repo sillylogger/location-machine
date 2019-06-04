@@ -1,3 +1,9 @@
+# TODO: this should be just a function that is called in a before
+# these are not shared examples, so it feels misleading
+#
+# TODO: we should probably use `login_as` for most tests and only
+# use the OmniAuth login when explicitly testing OmniAuth (for speeed)
+
 RSpec.shared_examples "admin login" do |parameter|
   let(:admin) { FactoryBot.create :facebook_user, :with_admin }
 
@@ -19,7 +25,7 @@ RSpec.shared_examples "admin login" do |parameter|
 end
 
 RSpec.shared_examples "user login" do |parameter|
-  let(:user) { FactoryBot.create :facebook_user }
+  let(:user) { FactoryBot.create :user }
 
   before :each do
     login_as user, scope: :user

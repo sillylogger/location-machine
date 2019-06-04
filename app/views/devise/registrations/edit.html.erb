@@ -7,6 +7,10 @@
   </div>
 
   <div class="field">
+    <%= f.select :locale, I18n::SELECT_COLLECTION, include_blank: 'Language' %>
+  </div>
+
+  <div class="field">
     <%= f.email_field :email, placeholder: 'you@example.com', autocomplete: "email", required: true %>
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <em class="help">Currently waiting confirmation for: <%= resource.unconfirmed_email %></em>
@@ -15,9 +19,6 @@
 
   <div class="field">
     <%= f.text_field :phone, placeholder: '+62-812-0003-1337', autocomplete: "tel", required: true %>
-  </div>
-  <div class="field">
-    <%= f.select :preferred_locale, I18n.available_locales, include_blank: 'Select locale' %>
   </div>
 
 <% # TODO: deal with passwords at some point in the future

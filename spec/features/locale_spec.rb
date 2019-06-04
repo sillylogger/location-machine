@@ -3,26 +3,35 @@ require "rails_helper"
 describe "Locale" do
   include_examples "user login"
 
-  before do
-    Translation.create(locale: "vi", key: "lm.action.post", value: "Tạo Location")
-    Translation.create(locale: "en", key: "lm.action.post", value: "Post")
+  let!(:post_in_vietnamese) { Translation.create(locale: "vi", key: "lm.action.post", value: "Tạo Location") }
+  let!(:post_in_english) {    Translation.create(locale: "en", key: "lm.action.post", value: "Post") }
 
-    user.update preferred_locale: preferred_locale
+  context "when the user has a :vi locale" do
+    let(:user) { FactoryBot.create :user, locale: "vi" }
 
-    visit root_path
-  end
+    it "shows the vietnamese text for posting and remembers their preference" do
+      visit root_path
+      expect(page).to have_content post_in_vietnamese.value
 
-  context "when user set locale" do
-    context "when locale = vi" do
-      let(:preferred_locale) { "vi" }
+      visit edit_user_registration_path
 
-      it { expect(page).to have_content "Tạo Location" }
-    end
-
-    context "when locale = vi" do
-      let(:preferred_locale) { "en" }
-
-      it { expect(page).to have_content "Post" }
+      name, symbol = I18n::SELECT_COLLECTION.find{|o| o.last == :vi }
+      expect(page).to have_select "user_locale", selected: name
     end
   end
+
+  context "when the user has a :en locale" do
+    let(:user) { FactoryBot.create :user, locale: "en" }
+
+    it "shows the english text for posting and remembers their preference" do
+      visit root_path
+      expect(page).to have_content post_in_english.value
+
+      visit edit_user_registration_path
+
+      name, symbol = I18n::SELECT_COLLECTION.find{|o| o.last == :en }
+      expect(page).to have_select "user_locale", selected: name
+    end
+  end
+
 end

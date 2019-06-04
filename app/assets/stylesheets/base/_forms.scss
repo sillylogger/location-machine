@@ -28,7 +28,8 @@ textarea {
   font-size: 16px;
 }
 
-#{$all-text-inputs} {
+#{$all-text-inputs},
+select {
   appearance: none;
   background-color: $_form-background-color;
   border: $base-border;

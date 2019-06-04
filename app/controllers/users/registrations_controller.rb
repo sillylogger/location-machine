@@ -24,9 +24,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def user_params
     params.require(:user).permit(
       :name,
+      :locale,
       :email,
-      :phone,
-      :preferred_locale
+      :phone
     )
   end
 

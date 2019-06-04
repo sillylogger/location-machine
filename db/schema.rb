@@ -131,7 +131,7 @@ ActiveRecord::Schema.define(version: 2019_06_01_170628) do
     t.string "phone"
     t.string "avatar_url"
     t.string "role"
-    t.string "preferred_locale"
+    t.string "locale"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
