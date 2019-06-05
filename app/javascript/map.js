@@ -29,18 +29,18 @@ let mapOptions = {
 class Map {
   constructor(rawCenterString) {
     if (!window.google) {
-      console.log('map.init - google not loaded');
+      console.log('map.constructor - google not loaded');
       return false;
     }
 
     if (googleMap !== null) {
-      console.log('map.init - googleMap already initialized');
+      console.log('map.constructor - googleMap already initialized');
       return false;
     }
 
     let canvas = document.getElementById('map_canvas');
     if (!canvas) {
-      console.log("initializeMap - mapCanvas isn't on this page");
+      console.log("map.constructor - mapCanvas isn't on this page");
       return false;
     }
 
@@ -88,7 +88,7 @@ class Map {
   setLastMarker(marker) {
     lastMarker = marker;
     console.log(
-      `- Set new marker: ${marker.position.lat()} - ${marker.position.lng()}`,
+      `map.setLastMarker - ${marker.position.lat()} - ${marker.position.lng()}`,
     );
   }
 
@@ -136,7 +136,7 @@ class Map {
       document.getElementById(latId).value = position.lat();
       document.getElementById(lngId).value = position.lng();
       console.log(
-        `Assign value to form: ${position.lat()} - ${position.lng()}`,
+        `map.storeLatLng - ${position.lat()} - ${position.lng()}`,
       );
     }
   }
@@ -152,18 +152,18 @@ class Map {
         return i.image_urls != null;
       })
       .map(i => {
-        return `<img  src="${i.image_urls['thumb']}"
-                    alt="${i.name}"
-                    style="max-width:88px; max-height:88px; margin-right:1rem; margin-top:1rem;"
-              />`;
+        return `<figure class="map-info__image">
+                   <img src="${i.image_urls['thumb']}"
+                        alt="${i.name}" />
+                </figure>`;
       })
       .join(' ');
 
     return new google.maps.InfoWindow({
-      content: `<div>
+      content: `<div class="map-info">
         <a href="${location.pretty_path}">
-          <h1 style="margin-bottom: 0;">${location.name}</h1>
-          <div>${images}</div>
+          <h1 class="map-info__name">${location.name}</h1>
+          <div class="map-info__images">${images}</div>
         </a>
       </div>`,
     });
@@ -215,7 +215,7 @@ class Map {
 
   setCurrentPosition(options) {
     if (!navigator.geolocation) {
-      console.log('ready - navigator.geolocation not available');
+      console.log('map.setCurrentPosition - navigator.geolocation not available');
       return false;
     }
 
@@ -229,7 +229,7 @@ class Map {
 
   setCurrentPositionSuccess(position, options = {newLocation: false}) {
     console.log(
-      'setCurrentPosition - navigator.geolocation.getCurrentPosition success',
+      'map.setCurrentPositionSuccess - success',
     );
 
     if (!position.coords) {
@@ -252,7 +252,7 @@ class Map {
 
   setCurrentPositionFail() {
     console.log(
-      'failCurrentPosition - navigator.geolocation.getCurrentPosition fail',
+      'map.setCurrentPositionFail - fail',
     );
   }
 

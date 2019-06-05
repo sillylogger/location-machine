@@ -35,7 +35,7 @@ ActiveAdmin.register Setting do
   form do |f|
     f.inputs do
       f.input :name
-      f.input :value
+      f.input :value, as: (f.object.value.size > 100 ? :text : :string)
       f.input :attachment, :hint => attachment_tag(f.object), as: :file
     end
     f.actions
