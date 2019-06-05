@@ -5,14 +5,10 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
 
   def set_locale
-    begin
-      if params[:locale] != nil
-        cookies.permanent[:locale] = params[:locale]
-      end
-      I18n.locale = cookies[:locale] || read_lang_header || I18n.default_locale
-    rescue I18n::InvalidLocale
-      I18n.locale = I18n.default_locale
-    end
+    cookies.permanent[:locale] = params[:locale] if params[:locale].present?
+    I18n.locale = cookies[:locale] || current_user_locale.presence || read_lang_header || I18n.default_locale
+  rescue I18n::InvalidLocale
+    I18n.locale = I18n.default_locale
   end
 
   protected
@@ -47,8 +43,12 @@ class ApplicationController < ActionController::Base
 
 
   def read_lang_header
-    lang_header = request.env['HTTP_ACCEPT_LANGUAGE']
-    lang_header.downcase.scan(/[a-z]{2}\-[a-z]{2}/).first unless lang_header.nil?
+    lang_header = request.headers['HTTP_ACCEPT_LANGUAGE']
+    lang_header.downcase.scan(/^[a-z]{2}/).first unless lang_header.nil?
+  end
+
+  def current_user_locale
+    current_user && current_user.locale
   end
 
   def set_admin_locale

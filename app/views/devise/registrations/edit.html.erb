@@ -7,6 +7,10 @@
   </div>
 
   <div class="field">
+    <%= f.select :locale, I18n::SELECT_COLLECTION, include_blank: 'Language' %>
+  </div>
+
+  <div class="field">
     <%= f.email_field :email, placeholder: 'you@example.com', autocomplete: "email", required: true %>
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <em class="help">Currently waiting confirmation for: <%= resource.unconfirmed_email %></em>

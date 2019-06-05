@@ -1,7 +1,13 @@
 require 'i18n/backend/active_record'
-require "i18n/backend/fallbacks"
+require 'i18n/backend/fallbacks'
 
-I18n.available_locales = [:vi, :id, :en]
+I18n::SELECT_COLLECTION = [
+  ["English",           :en],
+  ["Tiếng Việt",        :vi],
+  ["Bahasa Indonesia",  :id]
+]
+
+I18n.available_locales = I18n::SELECT_COLLECTION.map(&:last)
 
 I18n.fallbacks.map(vi: :en)
 I18n.fallbacks.map(id: :en)
@@ -17,7 +23,6 @@ I18n::Backend::Simple.send(:include, I18n::Backend::Memoize)
 
 I18n.backend = I18n::Backend::Chain.new(I18n::Backend::ActiveRecord.new,
                                         I18n::Backend::Simple.new)
-
 
 module I18n
   module Backend

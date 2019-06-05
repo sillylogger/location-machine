@@ -7,6 +7,7 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: %i[facebook]
 
   validates_presence_of :name
+  validates :locale, inclusion: { in: I18n.available_locales.map(&:to_s), allow_blank: true }
 
   has_many :locations
   has_many :identities
