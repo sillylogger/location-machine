@@ -92,12 +92,11 @@ RSpec.configure do |config|
 end
 
 
-Capybara.run_server = true
+Capybara.server = :puma, { Silent: true }
 Capybara.default_max_wait_time = 5
 
 Capybara.default_driver = :selenium_chrome_headless
 Capybara.javascript_driver = :selenium_chrome_headless
-
 
 if ENV['CAPYBARA_DRIVER'] == 'chrome'
   Capybara.register_driver :chrome do |app|
