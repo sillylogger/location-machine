@@ -7,6 +7,14 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 
+database_cleaner_lib_path = $LOAD_PATH.grep(/database_cleaner/i).first
+database_cleaner_active_record_path = File.join(database_cleaner_lib_path, '..',
+                                                'adapters',
+                                                'database_cleaner-active_record',
+                                                'lib')
+$LOAD_PATH << database_cleaner_active_record_path
+require 'database_cleaner/active_record'
+
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
@@ -41,24 +49,24 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = false
 
   config.before(:suite) do
-    DatabaseCleaner.clean_with :truncation
+    DatabaseCleaner[:active_record].clean_with :truncation
     ActiveStorage::Current.host = ''
   end
 
   config.before(:each) do
-    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner[:active_record].strategy = :transaction
   end
 
   config.before(:each, :type => :feature) do
-    DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner[:active_record].strategy = :truncation
   end
 
   config.before(:each) do
-    DatabaseCleaner.start
+    DatabaseCleaner[:active_record].start
   end
 
   config.after(:each) do
-    DatabaseCleaner.clean
+    DatabaseCleaner[:active_record].clean
     Warden.test_reset!
   end
 
