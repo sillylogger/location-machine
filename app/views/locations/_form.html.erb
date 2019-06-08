@@ -14,6 +14,10 @@
   </script>
 
   <div class="field">
+    <%= form.text_field :address, placeholder: t('lm.location.address', default: "Address"), required: true, autocomplete: false %>
+  </div>
+
+  <div class="field">
     <%= form.text_field :name, placeholder: t('lm.location.name', default: "Location name"), required: true, autocomplete: false %>
   </div>
 

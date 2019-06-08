@@ -287,7 +287,8 @@ class Map {
     controlUI.style.backgroundSize = '180px 18px';
     controlButton.appendChild(controlUI);
 
-    controlUI.addEventListener('click', () => {
+    controlUI.addEventListener('click', (e) => {
+      e.preventDefault();
       googleMap.panTo(currentLocationMarker.getPosition());
     });
 

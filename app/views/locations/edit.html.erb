@@ -12,6 +12,7 @@
     var map = new lm.Map(center);
 
     map.setCurrentPosition();
+    map.addLocationButton();
 
     var loc = <%= @location.to_json.html_safe %>;
     map.placeClearableLocation(loc);

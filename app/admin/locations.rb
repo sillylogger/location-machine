@@ -2,7 +2,7 @@ ActiveAdmin.register Location do
 
   menu priority: 10
 
-  permit_params :user_id, :name, :description, :latitude, :longitude
+  permit_params :user_id, :name, :description, :latitude, :longitude, :address
 
   index do
     selectable_column
@@ -11,6 +11,7 @@ ActiveAdmin.register Location do
       location.user.name
     end
     column :name
+    column :address
     column :items do |location|
       link_to location.items.count, admin_items_path(q: { location_id_in: location.id })
     end
@@ -22,6 +23,7 @@ ActiveAdmin.register Location do
     attributes_table do
       row :user
       row :name
+      row :address
       row :description
       row :latitude
       row :longitude
@@ -37,6 +39,7 @@ ActiveAdmin.register Location do
     f.inputs do
       f.input :user_id, label: "User Id"
 
+      f.input :address
       f.input :name
       f.input :description
 
