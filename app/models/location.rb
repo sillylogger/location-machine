@@ -1,7 +1,7 @@
 class Location < ApplicationRecord
   include Rails.application.routes.url_helpers
 
-  validates_presence_of :user, :latitude, :longitude, :name
+  validates_presence_of :user, :latitude, :longitude, :name, :address
 
   belongs_to :user
 
