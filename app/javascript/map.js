@@ -179,11 +179,21 @@ class Map {
     return marker;
   }
 
-  hydrateLatLng(latElementId, lngElementId) {
+  hydrateLatLng(latElementId, lngElementId, searchBoxId) {
+    let searchBox = new google.maps.places.SearchBox(document.getElementById(searchBoxId));
+
     latId = latElementId;
     lngId = lngElementId;
-    googleMap.addListener('click', e => {
-      this.addDraggableMarker(e.latLng);
+
+    searchBox.addListener('places_changed', () => {
+      let places = searchBox.getPlaces();
+
+      if(places.length == 0) return;
+
+      let location = places[0].geometry.location;
+
+      this.addDraggableMarker(location);
+      this.panTo(location);
     });
   }
 
