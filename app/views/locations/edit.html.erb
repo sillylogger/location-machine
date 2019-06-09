@@ -17,8 +17,7 @@
     var loc = <%= @location.to_json.html_safe %>;
     map.placeClearableLocation(loc);
 
-    map.hydrateLatLng('location_latitude',
-                      'location_longitude');
+    map.hydrateLatLng('location_latitude', 'location_longitude', 'location_address');
   });
 </script>
 
