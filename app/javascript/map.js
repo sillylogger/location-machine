@@ -4,7 +4,8 @@ let googleMap = null,
   latId = null,
   lngId = null,
   currentLocationMarker = null,
-  bounds = null;
+  bounds = null,
+  markers = [];
 
 let mapOptions = {
   zoom: 10,
@@ -88,10 +89,38 @@ class Map {
     }
   }
 
-  zoomExtends() {
-    setTimeout(function () {
+  placeLocationsInBounds() {
+    setTimeout(() => {
       googleMap.fitBounds(bounds);
     }, 2000);
+
+    googleMap.addListener('idle', () => {
+      this.clearMarkers();
+      let mapBounds = googleMap.getBounds();
+      let swPoint = mapBounds.getSouthWest();
+      let nePoint = mapBounds.getNorthEast();
+
+      let params = new URLSearchParams({
+        "search_in_bounds[sw_lat]": swPoint.lat(),
+        "search_in_bounds[sw_lng]": swPoint.lng(),
+        "search_in_bounds[ne_lat]": nePoint.lat(),
+        "search_in_bounds[ne_lng]": nePoint.lng(),
+      });
+
+      fetch(`/locations.json?${params.toString()}`)
+        .then(response => {
+          if (!response.ok) {
+            throw Error(response.statusText);
+          }
+          return response.json();
+        })
+        .then(responseAsJson => {
+          this.placeLocations(responseAsJson);
+        })
+        .catch(err => {
+          console.log('Fetch Error: ', err);
+        });
+    });
   }
 
   setLastMarker(marker) {
@@ -207,6 +236,7 @@ class Map {
     );
     let marker = this.addMarker(position, {title: location.name});
 
+    markers.push(marker);
     bounds.extend(marker.getPosition());
 
     if (options.panTo) {
@@ -256,8 +286,8 @@ class Map {
       this.addDraggableMarker(currentLocation);
     }
 
-    bounds.extend(marker.getPosition());
     currentLocationMarker.setPosition(currentLocation);
+    bounds.extend(currentLocation);
     googleMap.panTo(currentLocation);
     googleMap.setZoom(12);
   }
@@ -304,6 +334,13 @@ class Map {
     });
 
     googleMap.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(controlDiv);
+  }
+
+  clearMarkers() {
+    for (let i = 0, ii = markers.length; i < ii; i++) {
+      markers[i].setMap(null);
+    }
+    markers = [];
   }
 }
 

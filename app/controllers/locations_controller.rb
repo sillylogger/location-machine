@@ -5,7 +5,18 @@ class LocationsController < ApplicationController
 
   # GET /
   def index
-    @locations = Location.for_display.newest.limit(Setting.site_limit_location)
+    @locations =
+      if params[:search_in_bounds]
+        bounds = params[:search_in_bounds]
+        Location.in_bounds(bounds[:sw_lat], bounds[:sw_lng], bounds[:ne_lat], bounds[:ne_lng])
+      else
+        Location.for_display
+      end.newest.limit(Setting.site_limit_location)
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @locations.to_json}
+    end
   end
 
   # GET /locations/1
