@@ -27,7 +27,7 @@
     <%- end %>
   </div>
 <% else %>
-  <% if params[:text].present? %>
+  <% unless params[:text].nil? %>
     No results
   <% end %>
 <% end %>

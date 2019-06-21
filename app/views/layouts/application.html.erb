@@ -71,11 +71,14 @@
 
     <footer class="actions">
       <div class="container">
-        <a class='actions__action'>
-          <%= icon 'plus-circle', class: 'm--clickable' %>
+        <a class='actions__action' href='<%= new_location_path %>'>
+          <%= icon 'plus-circle' %>
+        </a>
+        <a class='actions__action' href='<%= root_path %>'>
+          <%= icon 'home4' %>
         </a>
         <a class='actions__action' href='/search'>
-          <%= icon 'search2', class: 'm--clickable' %>
+          <%= icon 'search2' %>
         </a>
       </div>
     </footer>
