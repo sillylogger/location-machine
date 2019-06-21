@@ -1,35 +1,6 @@
-<form class="example">
+<form class="example" action='search'>
   <input type="text" placeholder="Search.." name="text" value="<%= text %>">
   <button type="submit"><i class="fa fa-search"></i></button>
 </form>
 
-<% if items.count.positive? %>
-  <div class="items">
-    <%- items.each do |item| %>
-      <% path = location_item_path(item.location, item) %>
-
-      <div style='display: flex'>
-        <%= link_to path, class: 'items__item' do %>
-          <div class='items__item__image'>
-            <% if item.has_image? %>
-              <%= image_tag item.image_urls[:thumb] %>
-            <% else %>
-              <%= image_tag Setting.site_logo %>
-            <% end %>
-          </div>
-          <div class='items__item__content'>
-            <div class='items__item__content__name'>
-              <%= item.name %>
-            </div>
-            <div class='items__item__content__price'>
-              <%= to_currency(item.price) %>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    <%- end %>
-  </div>
-<% else %>
-  No results
-<% end %>
 
