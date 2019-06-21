@@ -8,6 +8,7 @@
   <meta property="og:description" content="<%= @location.description %>"/>
 <% end %>
 
+<%= render 'search/form', text: params[:text] %>
 
 <%= link_to t('lm.action.back', default: "Back"), locations_path %>
 
