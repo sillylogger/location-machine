@@ -21,6 +21,7 @@
 @import 'markdown';
 @import 'chat';
 @import 'sign_in';
+@import 'search';
 
 html {
   background: whitesmoke;
@@ -112,8 +113,14 @@ header#navbar {
 }
 
 @keyframes fadeAway {
-    0% { opacity: 1; visibility: visible; }
-  100% { opacity: 0; visibility: hidden; }
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
 }
 
 footer#notification {

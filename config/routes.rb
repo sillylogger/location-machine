@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     resources :items
   end
 
+  resources :search, only: [:index]
+
   root to: "locations#index"
 
   devise_for :users, controllers: {
