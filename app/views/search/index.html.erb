@@ -1,4 +1,4 @@
-<%= render 'form', text: params[:text] %>
+<%= render 'search/form', text: params[:text] %>
 
 <% if @items.count.positive? %>
   <div class="items">
@@ -27,6 +27,8 @@
     <%- end %>
   </div>
 <% else %>
-  No results
+  <% if params[:text].present? %>
+    No results
+  <% end %>
 <% end %>
 

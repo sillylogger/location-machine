@@ -123,20 +123,42 @@ header#navbar {
   }
 }
 
-footer#notification {
+footer {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
   color: #444;
 
-  animation: 0.5s linear 4s fadeAway forwards;
+  &#notification {
+    animation: 0.5s linear 4s fadeAway forwards;
 
-  .notice,
-  .alert {
-    max-width: 25rem;
-    margin: 0 auto;
-    text-align: center;
+    .notice,
+    .alert {
+      max-width: 25rem;
+      margin: 0 auto;
+      text-align: center;
+    }
+  }
+
+  &.actions {
+    background-color: #fff;
+    border-top: 1px solid #ccc;
+    display: none;
+
+    @media (max-width: 768px) {
+      display: block;
+    }
+  }
+
+  .actions {
+    &__action {
+      width: 50%;
+      float: left;
+      text-align: center;
+      font-size: 30px;
+      padding: 10px;
+    }
   }
 }
 
@@ -149,6 +171,10 @@ footer#notification {
 
 .b-call-to-action {
   text-align: center;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 
   &__post {
     margin: 1rem 0;
