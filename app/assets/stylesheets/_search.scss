@@ -1,12 +1,24 @@
-form.search-bar {
-  input {
+.search-bar {
+  position: relative;
+
+  &__back-icon {
+    font-size: 20px;
     float: left;
-    width: 100%;
-    background: #f1f1f1;
+    margin: 7px 7px 7px 0;
   }
 
-  button:hover {
-    background: #0b7dda;
+  &__icon {
+    position: absolute;
+    top: 10px;
+    left: 40px;
+    fill: #ccc;
+  }
+
+  input {
+    float: left;
+    width: calc(100% - 40px);
+    background-color: #f1f1f1;
+    padding-left: 35px;
   }
 
   /* Clear floats */
