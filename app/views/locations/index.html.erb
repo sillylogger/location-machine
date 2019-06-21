@@ -1,6 +1,3 @@
-<div class='search-bar-container'>
-  <%= render 'search/form', text: params[:text] %>
-</div>
 <div id="map_canvas" class="m--full"></div>
 
 <script>
@@ -16,8 +13,3 @@
   });
 </script>
 
-<div class="b-call-to-action">
-  <a class="b-call-to-action__post b-btn" href="<%= new_location_path %>">
-    <%= t('lm.action.post', default: "Post") %>
-  </a>
-</div>

@@ -77,11 +77,10 @@
         <a class='actions__action' href='<%= root_path %>'>
           <%= icon 'home4' %>
         </a>
-        <a class='actions__action' href='/search'>
+        <a class='actions__action' href='/search?back_path=<%= request.path %>'>
           <%= icon 'search2' %>
         </a>
       </div>
     </footer>
-
   </body>
 </html>

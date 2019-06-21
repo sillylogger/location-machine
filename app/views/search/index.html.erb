@@ -1,4 +1,4 @@
-<%= render 'search/form', text: params[:text] %>
+<%= render 'search/form', text: params[:text], back_path: cookies[:back_path] %>
 
 <% if @items.count.positive? %>
   <div class="items">

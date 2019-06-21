@@ -1,5 +1,7 @@
 <form class="search-bar" action='/search'>
-  <%= icon 'arrow-left4', class: 'search-bar__back-icon m--clickable' %>
+  <a href='<%= back_path %>'>
+    <%= icon 'arrow-left4', class: 'search-bar__back-icon m--clickable' %>
+  </a>
   <%= icon 'search2', class: 'search-bar__icon' %>
   <input type="search" placeholder="Search" name="text" value="<%= text %>">
 </form>

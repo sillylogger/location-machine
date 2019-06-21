@@ -144,11 +144,6 @@ footer {
   &.actions {
     background-color: #fff;
     border-top: 1px solid #ccc;
-    display: none;
-
-    @media (max-width: 768px) {
-      display: block;
-    }
   }
 
   .actions {
@@ -167,17 +162,4 @@ footer {
 
 .b-devise-shared-links {
   margin-top: 2rem;
-}
-
-.b-call-to-action {
-  text-align: center;
-
-  @media (max-width: 768px) {
-    display: none;
-  }
-
-  &__post {
-    margin: 1rem 0;
-    background-color: $gray-dark;
-  }
 }
