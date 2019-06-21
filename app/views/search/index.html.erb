@@ -1,19 +1,23 @@
 <form class="example">
-  <input type="text" placeholder="Search.." name="text">
+  <input type="text" placeholder="Search.." name="text" value="<%= params[:text] %>">
   <button type="submit"><i class="fa fa-search"></i></button>
 </form>
 
-<ul class="location-items">
-  <%- @items.each do |item| %>
-    <li class="location-items__item">
-      <% path = location_item_path(item.location, item) %>
+<% if @items.count.positive? %>
+  <ul class="location-items">
+    <%- @items.each do |item| %>
+      <li class="location-items__item">
+        <% path = location_item_path(item.location, item) %>
 
-      <%= link_to path do %>
-        <% if item.has_image? %>
-          <%= image_tag item.image_urls[:thumb] %>
+        <%= link_to path do %>
+          <% if item.has_image? %>
+            <%= image_tag item.image_urls[:thumb] %>
+          <% end %>
         <% end %>
-      <% end %>
-    </li>
-  <%- end %>
-</ul>
+      </li>
+    <%- end %>
+  </ul>
+<% else %>
+  No results
+<% end %>
 

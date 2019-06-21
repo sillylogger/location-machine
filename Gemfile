@@ -13,6 +13,7 @@ gem 'rack'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
+gem 'pg_search'
 
 # Use google cloud for storage
 gem 'google-cloud-storage', require: false

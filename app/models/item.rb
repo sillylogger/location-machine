@@ -1,10 +1,13 @@
 class Item < ApplicationRecord
   include ::ImageHelper
+  include PgSearch
 
   validates_presence_of :name
 
   belongs_to        :location
   has_one_attached  :image, acl: 'public'
+
+  pg_search_scope :search_for, against: %i(name description)
 
   def editor? user
     return false unless self.location.present?
