@@ -29,9 +29,10 @@
 
   function listen() {
     height = document.documentElement.offsetHeight,
-    offset = document.documentElement.scrollTop + window.innerHeight;
+		scrollingElement = document.scrollingElement || document.documentElement;
+    offset = scrollingElement.scrollTop + window.innerHeight;
 
-    if (!isCalling && offset > height) {
+    if (!isCalling && offset >= height - 200) {
       isCalling = true;
       lm.utils.callAjax(`/search.js?text=<%= params[:text] %>&page=${nextPage}`, callback);
     }
