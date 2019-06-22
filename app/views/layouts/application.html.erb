@@ -27,7 +27,6 @@
 
     <%= render 'shared/testing' %>
     <%= render 'shared/tracking' %>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{ Credential.fetch(:google, :maps_api_key) }&libraries=places".html_safe %>
     <%= javascript_pack_tag 'application' %>

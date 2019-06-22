@@ -6,7 +6,7 @@ class Item < ApplicationRecord
 
   belongs_to        :location
   has_one_attached  :image, acl: 'public'
-	acts_as_mappable through: :location
+  acts_as_mappable through: :location
 
   pg_search_scope :search_for, against: %i(name description)
 
