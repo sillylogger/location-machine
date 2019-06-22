@@ -6,13 +6,6 @@
       <%= render 'item', item: item %>
     <%- end %>
   </div>
-  <% if @total_pages > 1 %>
-    <div class='items__see-more' id='see_more'>
-      <a onClick='seeMore()'>
-        <%= t('lm.action.see_more') %>
-      </a>
-    </div>
-  <% end %>
 <% else %>
   <% unless params[:text].nil? %>
     No results
@@ -22,19 +15,29 @@
 <script>
   let nextPage = 2;
   let totalPage = <%= @total_pages %>;
+  let isCalling = false;
 
   function callback(body) {
     let element = document.createElement('div');
     element.innerHTML = body;
     document.getElementById('items_container').append(element);
     nextPage += 1;
-    if (nextPage > totalPage) {
-      element = document.getElementById('see_more');
-      element.parentNode.removeChild(element);
+    if (nextPage <= totalPage) {
+      isCalling = false;
     }
   }
 
-  function seeMore() {
-    lm.utils.callAjax(`/search.js?text=<%= params[:text] %>&page=${nextPage}`, callback);
+  function listen() {
+    height = document.documentElement.offsetHeight,
+    offset = document.documentElement.scrollTop + window.innerHeight;
+
+    if (!isCalling && offset > height) {
+      isCalling = true;
+      lm.utils.callAjax(`/search.js?text=<%= params[:text] %>&page=${nextPage}`, callback);
+    }
   }
+
+  window.onload = function () {
+    window.addEventListener("scroll", listen);
+  };
 </script>

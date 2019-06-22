@@ -8,7 +8,7 @@ class SearchController < ApplicationController
   def index
     @items = Item
       .for_nearests(@origin, text: params[:text])
-      .page(params[:page] || 1).per(10)
+      .page(params[:page] || 1).per(15)
 
     @total_pages = @items.total_pages
 
