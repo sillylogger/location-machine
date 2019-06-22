@@ -53,6 +53,9 @@ gem 'monetize'
 # geokit for rails
 gem 'geokit-rails'
 
+# active record paginator
+gem 'kaminari'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

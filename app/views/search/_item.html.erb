@@ -1,0 +1,24 @@
+<% path = location_item_path(item.location, item) %>
+
+<div style='display: flex'>
+  <%= link_to path, class: 'items__item' do %>
+    <div class='items__item__image'>
+      <% if item.has_image? %>
+        <%= image_tag item.image_urls[:thumb] %>
+      <% else %>
+        <%= image_tag Setting.site_logo %>
+      <% end %>
+    </div>
+    <div class='items__item__content'>
+      <div class='items__item__content__name'>
+        <%= item.name %>
+      </div>
+      <div class='items__item__content__price'>
+        <%= to_currency(item.price) %>
+      </div>
+    </div>
+    <div class='items__item__distance'>
+      <%= item.distance.round(1) %> km
+    </div>
+  <% end %>
+</div>

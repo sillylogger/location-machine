@@ -1,37 +1,40 @@
 <%= render 'search/form', text: params[:text], back_path: cookies[:back_path] %>
 
 <% if @items.present? && @items.count.positive? %>
-  <div class="items">
+  <div class="items" id='items_container'>
     <%- @items.each do |item| %>
-      <% path = location_item_path(item.location, item) %>
-
-      <div style='display: flex'>
-        <%= link_to path, class: 'items__item' do %>
-          <div class='items__item__image'>
-            <% if item.has_image? %>
-              <%= image_tag item.image_urls[:thumb] %>
-            <% else %>
-              <%= image_tag Setting.site_logo %>
-            <% end %>
-          </div>
-          <div class='items__item__content'>
-            <div class='items__item__content__name'>
-              <%= item.name %>
-            </div>
-            <div class='items__item__content__price'>
-              <%= to_currency(item.price) %>
-            </div>
-          </div>
-          <div class='items__item__distance'>
-            <%= item.distance.round(1) %> km
-          </div>
-        <% end %>
-      </div>
+      <%= render 'item', item: item %>
     <%- end %>
   </div>
+  <% if @total_pages > 1 %>
+    <div class='items__see-more' id='see_more'>
+      <a onClick='seeMore()'>
+        See more
+      </a>
+    </div>
+  <% end %>
 <% else %>
   <% unless params[:text].nil? %>
     No results
   <% end %>
 <% end %>
 
+<script>
+  let nextPage = 2;
+  let totalPage = <%= @total_pages %>;
+
+  function callback(body) {
+    let element = document.createElement('div');
+    element.innerHTML = body;
+    document.getElementById('items_container').append(element);
+    nextPage += 1;
+    if (nextPage > totalPage) {
+      element = document.getElementById('see_more');
+      element.parentNode.removeChild(element);
+    }
+  }
+
+  function seeMore() {
+    lm.utils.callAjax(`/search.js?text=<%= params[:text] %>&page=${nextPage}`, callback);
+  }
+</script>

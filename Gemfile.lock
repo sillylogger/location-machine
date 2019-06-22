@@ -545,6 +545,7 @@ DEPENDENCIES
   google-cloud-storage
   i18n
   i18n-active_record
+  kaminari
   listen
   monetize
   neat!
