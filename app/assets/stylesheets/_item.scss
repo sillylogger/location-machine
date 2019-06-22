@@ -35,13 +35,17 @@
     }
 
     &__content {
-      width: calc(100% - 110px);
+      width: calc(100% - 130px);
       padding-top: 5px;
 
       &__name,
       &__price {
         max-height: 46px;
         overflow: hidden;
+      }
+
+      &__price {
+        color: #9bbd65;
       }
 
       &__name {
@@ -51,8 +55,10 @@
     }
 
     &__distance {
-      width: 30px;
+      width: 50px;
       color: #999;
+      padding: 0;
+      text-align: right;
     }
   }
 }
