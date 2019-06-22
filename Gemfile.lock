@@ -229,6 +229,10 @@ GEM
     formtastic (3.1.5)
       actionpack (>= 3.2.13)
     formtastic_i18n (0.6.0)
+    geokit (1.13.1)
+    geokit-rails (2.3.1)
+      geokit (~> 1.5)
+      rails (>= 3.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     google-api-client (0.30.1)
@@ -537,6 +541,7 @@ DEPENDENCIES
   database_cleaner!
   devise!
   factory_bot_rails!
+  geokit-rails
   google-cloud-storage
   i18n
   i18n-active_record
