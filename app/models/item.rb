@@ -14,6 +14,15 @@ class Item < ApplicationRecord
 
   attr_accessor :distance
 
+  # TODO: default is 50 kilometers, we need to find a suitable number later
+  scope :for_nearests, -> (origin, text: '', distance: 50) {
+    scoped = joins(:location)
+            .within(50, origin: origin)
+            .by_distance(origin: origin)
+    scoped = scoped.search_for(text) if text.present?
+    scoped
+  }
+
   def editor? user
     return false unless self.location.present?
     self.location.user_id == user&.id
