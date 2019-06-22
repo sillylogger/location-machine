@@ -22,6 +22,9 @@
               <%= to_currency(item.price) %>
             </div>
           </div>
+          <div class='items__item__distance'>
+            <%= item.location.distance.round(1) %> km
+          </div>
         <% end %>
       </div>
     <%- end %>

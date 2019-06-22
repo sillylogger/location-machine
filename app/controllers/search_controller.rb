@@ -3,7 +3,17 @@ class SearchController < ApplicationController
 
   def index
     cookies.permanent[:back_path] = params[:back_path] if params[:back_path]
-    # TODO: we can add pagination here and maybe add 'see more' in search page
-    @items = Item.search_for(params[:text]).limit(10)
+    location = Location.first
+    @items = Item
+      .joins(:location)
+      .within(50, origin: location)
+      .by_distance(origin: location)
+      .search_for(params[:text])
+      .limit(20)
+
+    @items = @items.map do |item|
+      item.location.distance = item.location.distance_to(location)
+      item
+    end
   end
 end
