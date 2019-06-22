@@ -15,10 +15,11 @@
 
 .items {
   &__item {
-    padding: 10px;
+    padding: 5px 10px;
     width: 100%;
     color: #000;
     font-size: 12px;
+    display: inline-flex;
 
     &,
     &__image,
@@ -27,21 +28,33 @@
     &__content__name,
     &__content__price {
       float: left;
-      padding-right: 10px;
     }
 
     &__image {
-      width: 80px;
+      width: 70px;
+      height: 70px;
+      padding: 0;
+      position: relative;
+      margin-right: 10px;
+
+      img {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+      }
     }
 
     &__content {
       width: calc(100% - 130px);
-      padding-top: 5px;
+      padding-right: 10px;
+      margin: auto;
 
       &__name,
       &__price {
         max-height: 46px;
         overflow: hidden;
+        padding-right: 10px;
       }
 
       &__price {
@@ -55,9 +68,9 @@
     }
 
     &__distance {
+      margin: auto;
       width: 50px;
       color: #999;
-      padding: 0;
       text-align: right;
     }
   }
