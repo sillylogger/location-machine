@@ -1,6 +1,6 @@
 <%= render 'search/form', text: params[:text], back_path: cookies[:back_path] %>
 
-<% if @items.count.positive? %>
+<% if @items.present? && @items.count.positive? %>
   <div class="items">
     <%- @items.each do |item| %>
       <% path = location_item_path(item.location, item) %>

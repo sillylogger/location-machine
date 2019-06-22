@@ -71,7 +71,7 @@ class Map {
       },
       optimized: false,
       title: 'Current location',
-      zIndex: 2
+      zIndex: 2,
     });
   }
 
@@ -135,9 +135,7 @@ class Map {
     if (latId && lngId) {
       document.getElementById(latId).value = position.lat();
       document.getElementById(lngId).value = position.lng();
-      console.log(
-        `map.storeLatLng - ${position.lat()} - ${position.lng()}`,
-      );
+      console.log(`map.storeLatLng - ${position.lat()} - ${position.lng()}`);
     }
   }
 
@@ -180,7 +178,9 @@ class Map {
   }
 
   hydrateLatLng(latElementId, lngElementId, searchBoxId) {
-    let searchBox = new google.maps.places.SearchBox(document.getElementById(searchBoxId));
+    let searchBox = new google.maps.places.SearchBox(
+      document.getElementById(searchBoxId),
+    );
 
     latId = latElementId;
     lngId = lngElementId;
@@ -188,7 +188,7 @@ class Map {
     searchBox.addListener('places_changed', () => {
       let places = searchBox.getPlaces();
 
-      if(places.length == 0) return;
+      if (places.length == 0) return;
 
       let location = places[0].geometry.location;
 
@@ -225,26 +225,26 @@ class Map {
 
   setCurrentPosition(options) {
     if (!navigator.geolocation) {
-      console.log('map.setCurrentPosition - navigator.geolocation not available');
+      console.log(
+        'map.setCurrentPosition - navigator.geolocation not available',
+      );
       return false;
     }
 
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        this.setCurrentPositionSuccess.bind(this)(position, options);
-      },
-      this.setCurrentPositionFail.bind(this),
-    );
+    navigator.geolocation.getCurrentPosition(position => {
+      this.setCurrentPositionSuccess.bind(this)(position, options);
+    }, this.setCurrentPositionFail.bind(this));
   }
 
   setCurrentPositionSuccess(position, options = {newLocation: false}) {
-    console.log(
-      'map.setCurrentPositionSuccess - success',
-    );
+    console.log('map.setCurrentPositionSuccess - success');
 
     if (!position.coords) {
       return;
     }
+
+    document.cookie = `latitude=${position.coords.latitude}`;
+    document.cookie = `longitude=${position.coords.longitude}`;
 
     let currentLocation = new google.maps.LatLng(
       position.coords.latitude,
@@ -261,9 +261,7 @@ class Map {
   }
 
   setCurrentPositionFail() {
-    console.log(
-      'map.setCurrentPositionFail - fail',
-    );
+    console.log('map.setCurrentPositionFail - fail');
   }
 
   addLocationButton() {
@@ -292,17 +290,20 @@ class Map {
     controlUI.style.padding = '0';
     controlUI.style.top = '6px';
     controlUI.style.width = '18px';
-    controlUI.style.backgroundImage = 'url(https://maps.gstatic.com/tactile/mylocation/mylocation-sprite-cookieless-v2-2x.png)';
+    controlUI.style.backgroundImage =
+      'url(https://maps.gstatic.com/tactile/mylocation/mylocation-sprite-cookieless-v2-2x.png)';
     controlUI.style.backgroundPosition = '0 0';
     controlUI.style.backgroundSize = '180px 18px';
     controlButton.appendChild(controlUI);
 
-    controlUI.addEventListener('click', (e) => {
+    controlUI.addEventListener('click', e => {
       e.preventDefault();
       googleMap.panTo(currentLocationMarker.getPosition());
     });
 
-    googleMap.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(controlDiv);
+    googleMap.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(
+      controlDiv,
+    );
   }
 }
 
