@@ -8,7 +8,9 @@
   </div>
 <% else %>
   <% unless params[:text].nil? %>
-    No results
+    <p class='no-result'>
+      <%= t('lm.search.no_result', default: "There is no '%{text}' in this area", text: params[:text]) %>
+    </p>
   <% end %>
 <% end %>
 
