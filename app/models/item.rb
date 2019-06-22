@@ -10,6 +10,10 @@ class Item < ApplicationRecord
 
   pg_search_scope :search_for, against: %i(name description)
 
+  delegate :latitude, :longitude, to: :location, allow_nil: true
+
+  attr_accessor :distance
+
   def editor? user
     return false unless self.location.present?
     self.location.user_id == user&.id

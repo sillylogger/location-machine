@@ -10,9 +10,8 @@ class SearchController < ApplicationController
       .by_distance(origin: location)
       .search_for(params[:text])
       .limit(20)
-
     @items = @items.map do |item|
-      item.location.distance = item.location.distance_to(location)
+      item.distance = item.distance_to(location)
       item
     end
   end
