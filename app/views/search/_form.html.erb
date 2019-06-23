@@ -1,7 +1,7 @@
-<form class="search-bar" action='/search'>
-  <a href='<%= back_path %>'>
+<%= form_tag search_path, method: 'get', class: 'search-bar' do %>
+  <%= link_to back_path do %>
     <%= icon 'arrow-left4', class: 'search-bar__back-icon m--clickable' %>
-  </a>
+  <% end %>
   <%= icon 'search2', class: 'search-bar__icon' %>
-  <input type="search" placeholder="Search" name="text" value="<%= text %>">
-</form>
+  <%= search_field_tag :text, text, placeholder: "Search" %>
+<% end %>

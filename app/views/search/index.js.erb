@@ -1,5 +1,2 @@
-<%- @items.each do |item| %>
-  <%= render 'item', item: item %>
-<%- end %>
-
+<%= render partial: 'item', collection: @items %>
 

@@ -19,7 +19,7 @@ describe "Search" do
     visit root_path
 
     page.find('a[name="search"]').click
-    wait_until { page.current_path == search_index_path }
+    wait_until { page.current_path == search_path }
 
     expect(page).to have_content item_1.name
     expect(page).to have_content item_2.name
@@ -28,7 +28,7 @@ describe "Search" do
 
     fill_in 'text', with: 'cake'
     find('.search-bar>input').native.send_keys(:return)
-    wait_until { page.current_path == search_index_path }
+    wait_until { page.current_path == search_path }
 
     expect(page).to have_content item_1.name
     expect(page).to have_content item_2.name
@@ -36,7 +36,7 @@ describe "Search" do
 
     visit new_location_path
     page.find('a[name="search"]').click
-    wait_until { page.current_path == search_index_path }
+    wait_until { page.current_path == search_path }
     page.find(".search-bar__back-icon").click
     wait_until { page.current_path == new_location_path }
   end

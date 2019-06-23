@@ -1,15 +1,15 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  get '/p/:path' => 'pages#show', :as => :page
+  root to: "locations#index"
+
+  get '/p/:path'          => 'pages#show', :as => :page
 
   resources :locations do
     resources :items
   end
 
-  resources :search, only: [:index]
-
-  root to: "locations#index"
+  get '/search(.:format)' => 'search#index', :as => :search
 
   devise_for :users, controllers: {
     registrations:      'users/registrations',

@@ -13,65 +13,43 @@
   }
 }
 
-.items {
-  &__item {
-    padding: 5px 10px;
-    width: 100%;
-    color: #000;
-    font-size: 12px;
-    display: inline-flex;
+.search-items {
 
-    &,
-    &__image,
-    &__content,
-    &__distance,
-    &__content__name,
-    &__content__price {
-      float: left;
+}
+
+.search-item {
+  padding: 5px 10px;
+  width: 100%;
+  color: #000;
+  font-size: 12px;
+  display: inline-flex;
+
+  &__image {
+    width: 70px;
+    height: 70px;
+    padding: 0;
+    position: relative;
+    margin-right: 10px;
+  }
+
+  &__content {
+    width: calc(100% - 130px);
+    padding-right: 10px;
+    margin: auto;
+
+    &__price {
+      color: #9bbd65;
     }
 
-    &__image {
-      width: 70px;
-      height: 70px;
-      padding: 0;
-      position: relative;
-      margin-right: 10px;
-
-      img {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        margin: auto;
-      }
+    &__name {
+      margin-bottom: 5px;
     }
+  }
 
-    &__content {
-      width: calc(100% - 130px);
-      padding-right: 10px;
-      margin: auto;
-
-      &__name,
-      &__price {
-        max-height: 46px;
-        overflow: hidden;
-        padding-right: 10px;
-      }
-
-      &__price {
-        color: #9bbd65;
-      }
-
-      &__name {
-        margin-bottom: 5px;
-        float: none;
-      }
-    }
-
-    &__distance {
-      margin: auto;
-      width: 50px;
-      color: #999;
-      text-align: right;
-    }
+  &__distance {
+    margin: auto;
+    width: 50px;
+    color: #999;
+    text-align: right;
   }
 }

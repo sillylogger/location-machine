@@ -1,10 +1,8 @@
 <%= render 'search/form', text: params[:text], back_path: cookies[:back_path] %>
 
 <% if @items.present? && @items.count.positive? %>
-  <div class="items" id='items_container'>
-    <%- @items.each do |item| %>
-      <%= render 'item', item: item %>
-    <%- end %>
+  <div class="search-items" id="search-items">
+    <%= render partial: 'item', collection: @items %>
   </div>
 <% else %>
   <% unless params[:text].nil? %>
@@ -19,28 +17,28 @@
   let totalPage = <%= @total_pages %>;
   let isCalling = false;
 
-  function callback(body) {
-    let element = document.createElement('div');
-    element.innerHTML = body;
-    document.getElementById('items_container').append(element);
+  function searchResultsCallback(body) {
+    document.getElementById('search-items').insertAdjacentHTML('beforeend', body);
+
     nextPage += 1;
     if (nextPage <= totalPage) {
       isCalling = false;
     }
   }
 
-  function listen() {
+  function scrollHandler() {
     height = document.documentElement.offsetHeight,
-		scrollingElement = document.scrollingElement || document.documentElement;
+    scrollingElement = document.scrollingElement || document.documentElement;
     offset = scrollingElement.scrollTop + window.innerHeight;
 
     if (!isCalling && offset >= height - 200) {
       isCalling = true;
-      lm.utils.callAjax(`/search.js?text=<%= params[:text] %>&page=${nextPage}`, callback);
+      search_path = "<%= search_path(format: 'js', text: params[:text], page: 'NEXTPAGE').html_safe %>";
+      lm.utils.callAjax(search_path.replace("NEXTPAGE", nextPage), searchResultsCallback);
     }
   }
 
-  window.onload = function () {
-    window.addEventListener("scroll", listen);
-  };
+  lm.utils.ready(function() {
+    window.addEventListener("scroll", scrollHandler);
+  });
 </script>
