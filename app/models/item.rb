@@ -1,10 +1,27 @@
 class Item < ApplicationRecord
   include ::ImageHelper
+  include PgSearch
 
   validates_presence_of :name
 
   belongs_to        :location
   has_one_attached  :image, acl: 'public'
+  acts_as_mappable through: :location
+
+  pg_search_scope :search_for, against: %i(name description)
+
+  delegate :latitude, :longitude, to: :location, allow_nil: true
+
+  attr_accessor :distance
+
+  # TODO: default is 50 kilometers, we need to find a suitable number later
+  scope :for_nearests, -> (origin, text: '', distance: 50) {
+    scoped = joins(:location)
+            .within(50, origin: origin)
+            .by_distance(origin: origin)
+    scoped = scoped.search_for(text) if text.present?
+    scoped
+  }
 
   def editor? user
     return false unless self.location.present?

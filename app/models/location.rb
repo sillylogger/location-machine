@@ -1,12 +1,17 @@
 class Location < ApplicationRecord
   include Rails.application.routes.url_helpers
 
+  acts_as_mappable lat_column_name: :latitude,
+                   lng_column_name: :longitude
+
   validates_presence_of :user, :latitude, :longitude, :name, :address
 
   belongs_to :user
 
   has_many   :items, dependent: :destroy
   accepts_nested_attributes_for :items, allow_destroy: true
+
+  attr_accessor :distance
 
   scope :for_display, ->() {
     where("latitude IS NOT NULL").

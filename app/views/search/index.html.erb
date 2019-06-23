@@ -1,0 +1,44 @@
+<%= render 'search/form', text: params[:text], back_path: cookies[:back_path] %>
+
+<% if @items.present? && @items.count.positive? %>
+  <div class="search-items" id="search-items">
+    <%= render partial: 'item', collection: @items %>
+  </div>
+<% else %>
+  <% unless params[:text].nil? %>
+    <p class='no-result'>
+      <%= t('lm.search.no_result', default: "There is no '%{text}' in this area", text: params[:text]) %>
+    </p>
+  <% end %>
+<% end %>
+
+<script>
+  let nextPage = 2;
+  let totalPage = <%= @total_pages %>;
+  let isCalling = false;
+
+  function searchResultsCallback(body) {
+    document.getElementById('search-items').insertAdjacentHTML('beforeend', body);
+
+    nextPage += 1;
+    if (nextPage <= totalPage) {
+      isCalling = false;
+    }
+  }
+
+  function scrollHandler() {
+    height = document.documentElement.offsetHeight,
+    scrollingElement = document.scrollingElement || document.documentElement;
+    offset = scrollingElement.scrollTop + window.innerHeight;
+
+    if (!isCalling && offset >= height - 200) {
+      isCalling = true;
+      search_path = "<%= search_path(format: 'js', text: params[:text], page: 'NEXTPAGE').html_safe %>";
+      lm.utils.callAjax(search_path.replace("NEXTPAGE", nextPage), searchResultsCallback);
+    }
+  }
+
+  lm.utils.ready(function() {
+    window.addEventListener("scroll", scrollHandler);
+  });
+</script>

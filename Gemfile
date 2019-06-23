@@ -13,6 +13,7 @@ gem 'rack'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
+gem 'pg_search'
 
 # Use google cloud for storage
 gem 'google-cloud-storage', require: false
@@ -48,6 +49,12 @@ gem 'i18n-active_record', :require => 'i18n/active_record'
 
 # format currency
 gem 'monetize'
+
+# geokit for rails
+gem 'geokit-rails'
+
+# active record paginator
+gem 'kaminari'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
