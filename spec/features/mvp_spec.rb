@@ -31,7 +31,7 @@ describe "the MVP flow" do
     page.find('a[name="create location"]').click
     wait_until { page.current_path == new_location_path }
 
-    fill_in     'location[address]', with: 'Test'
+    fill_in     'location[address]', with: location_attributes.address
     fill_in     'location[name]', with: location_attributes.name
     attach_file 'location[items_attributes][0][image]', Rails.root.join("spec", "fixtures", "spring-rolls.jpg")
     fill_in     'location[items_attributes][0][price]', with: item_attributes.price
@@ -67,7 +67,7 @@ describe "the MVP flow" do
     page.find('a[name="create location"]').click
     wait_until { page.current_path == new_location_path }
 
-    fill_in     'location[address]', with: 'Test'
+    fill_in     'location[address]', with: location_attributes.address
     fill_in     'location[name]', with: location_attributes.name
     attach_file 'location[items_attributes][0][image]', Rails.root.join("spec", "fixtures", "spring-rolls.jpg")
     fill_in     'location[items_attributes][0][price]', with: item_attributes.price
