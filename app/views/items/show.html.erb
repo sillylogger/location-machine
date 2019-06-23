@@ -15,6 +15,7 @@
   <%= link_to t('lm.action.edit', default: "Edit"), edit_location_item_path(@location, @item) %>
 <% end %>
 
+<br/>
 
 <% if @item.has_image? %>
   <%= image_tag @item.image_urls[:medium] %>

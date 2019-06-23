@@ -1,5 +1,7 @@
 <header class="chat-info">
-  <h1 class="chat-info__name">Chat with <%= @user.name %></h1>
+  <h1 class="chat-info__name">
+    <%= t('lm.chats.with', default: "Chat with: %{name}", name: @user.name) %>
+  </h1>
 
   <% if params[:regarding].present? %>
     <p class="chat-info__description">

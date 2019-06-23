@@ -1,5 +1,16 @@
 <%= link_to t('lm.action.back', default: "Back"), location_path(@location) %>
 
+<div id="map_canvas" class="m--reminder"></div>
+<script>
+  lm.utils.ready(function() {
+    var center = <%= Setting.get('map.center').to_json.html_safe %>;
+    var map = new lm.Map(center);
+
+    var loc = <%= @location.to_json.html_safe %>;
+    map.placeLocation(loc, { info: false, panTo: true });
+  });
+</script>
+
 <%= render 'form',
   location: @location,
   item: @item,

@@ -14,39 +14,54 @@
   </script>
 
   <div class="field">
-    <%= form.text_field :address, placeholder: t('lm.location.address', default: "Address"), required: true, autocomplete: false %>
+    <%= form.text_field :address,
+      placeholder: t('lm.location.address', default: "Address"),
+      required: true, autocomplete: false %>
   </div>
 
   <div class="field">
-    <%= form.text_field :name, placeholder: t('lm.location.name', default: "Location name"), required: true, autocomplete: false %>
+    <%= form.text_field :name,
+      placeholder: t('lm.location.name', default: "Location name"),
+      required: true, autocomplete: false %>
   </div>
 
   <% if show_description %>
     <div class="field">
-      <%= form.text_area :description, placeholder: t('lm.location.description', default: "Description"), autocomplete: false %>
+      <%= form.text_area :description,
+        placeholder: t('lm.location.description', default: "Description"),
+        autocomplete: false %>
     </div>
   <% end %>
 
   <% if show_items %>
     <%= form.fields_for :items do |item_form| %>
-      <div class="field">
+      <div class="field m--file">
         <% if item_form.object.has_image? %>
           <%= item_form.hidden_field :image, value: item_form.object.image.signed_id %>
           <%= image_tag item_form.object.image_urls[:thumb], class: 'field__thumb' %>
         <% end %>
+
+        <%= item_form.label :image,
+            t('lm.action.file-upload', default: 'Choose Image') %>
         <%= item_form.file_field :image %>
       </div>
 
       <div class="field">
-        <%= item_form.text_field :name, placeholder: t('lm.item.name', default: "Item name"), required: true, autocomplete: false %>
+        <%= item_form.text_field :name,
+          placeholder: t('lm.item.name', default: "Item name"),
+          required: true, autocomplete: false %>
       </div>
 
       <div class="field">
-        <%= item_form.number_field :price, placeholder: t('lm.item.price', default: "Price"), required: true, autocomplete: false %>
+        <%= item_form.number_field :price,
+          placeholder: t('lm.item.price', default: "Price"),
+          required: true, autocomplete: false %>
       </div>
 
       <div class="field">
-        <%= item_form.text_area :description, placeholder: t('lm.item.description', default: "Description"), autocomplete: false %>
+        <%= item_form.text_area :description,
+          placeholder: t('lm.item.description', default: "Description"),
+          autocomplete: false %>
       </div>
     <% end %>
   <% end %>
