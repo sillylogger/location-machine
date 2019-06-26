@@ -1,5 +1,4 @@
 class SearchController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_back_path
   before_action :get_origin
 
