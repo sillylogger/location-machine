@@ -2,12 +2,13 @@
   text-align: center;
   margin-top: 2rem;
 
-  $logo-height: 10rem;
+  $logo-height: 7rem;
 
   &__actions {
     float: left;
     margin-left: 2rem;
-    line-height: $logo-height;
+    height: $logo-height;
+    display: flex;
   }
 
   &__action {

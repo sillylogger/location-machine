@@ -50,17 +50,18 @@ $_button-background-color-hover: shade($action-color, 20%);
   }
 }
 
-
 .b-btn.m--facebook {
   padding: 8px;
   background-color: #4267b2;
   text-align: center;
+  float: right;
+  font-size: 0.8rem;
 
   svg {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 1rem;
+    height: 1rem;
     vertical-align: middle;
-    margin-right: 0.5rem;
+    margin-right: 0.3rem;
   }
 
   span {
