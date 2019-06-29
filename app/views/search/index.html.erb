@@ -1,8 +1,11 @@
 <%= render 'search/form', text: params[:text], back_path: cookies[:back_path] %>
 
-<% if @items.present? && @items.count.positive? %>
+<% if @items.count.positive? || @positive.count.positive? %>
   <div class="search-items" id="search-items">
     <%= render partial: 'item', collection: @items %>
+  </div>
+  <div class="search-items" id="search-items">
+    <%= render partial: 'location', collection: @locations %>
   </div>
 <% else %>
   <% unless params[:text].nil? %>

@@ -7,16 +7,18 @@ class SearchController < ApplicationController
   def index
     @items = Item
       .for_nearests(@origin, text: params[:text])
-      .page(params[:page] || 1).per(15)
+      .page(page).per(item_per_page)
+
+    @locations = Location
+      .for_nearests(@origin, text: params[:text])
+      .page(page).per(item_per_page)
 
     @total_pages = @items.total_pages
 
     # TODO: follow doc in github, geokit will automate this calculation
     # but it's not working, maybe I miss something in config, will do later
-    @items = @items.map do |item|
-      item.distance = item.distance_to(@origin)
-      item
-    end
+    @items = set_distance(@items)
+    @locations = set_distance(@locations)
 
     respond_to do |format|
       format.html
@@ -27,6 +29,21 @@ class SearchController < ApplicationController
   end
 
   private
+
+  def page
+    params[:page] || 1
+  end
+
+  def item_per_page
+    15
+  end
+
+  def set_distance(results)
+    results.map do |result|
+      result.distance = result.distance_to(@origin)
+      result
+    end
+  end
 
   def set_back_path
     cookies.permanent[:back_path] = params[:back_path] if params[:back_path]
