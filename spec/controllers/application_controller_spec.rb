@@ -32,22 +32,9 @@ describe ApplicationController do
   end
 
   describe '#set_locale' do
-
     it "gets the default locale if no other info" do
       get :index
       expect(I18n.locale).to eq(:en)
-    end
-
-    it "respects the locale param, stores it in a cookie" do
-      get :index, params: { locale: 'id' }
-      expect(I18n.locale).to eq(:id)
-      expect(cookies['locale']).to eq('id')
-    end
-
-    it "respects the locale stored in the cookie" do
-      cookies['locale'] = 'vi'
-      get :index
-      expect(I18n.locale).to eq(:vi)
     end
 
     it "respects the current_user's locale" do
@@ -66,7 +53,5 @@ describe ApplicationController do
       get :index
       expect(I18n.locale).to eq(:id)
     end
-
   end
-
 end

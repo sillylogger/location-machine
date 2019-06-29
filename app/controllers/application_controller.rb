@@ -5,8 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
 
   def set_locale
-    cookies.permanent[:locale] = params[:locale] if params[:locale].present?
-    I18n.locale = cookies[:locale] || current_user_locale.presence || read_lang_header || I18n.default_locale
+    I18n.locale = current_user_locale.presence || read_lang_header || I18n.default_locale
   rescue I18n::InvalidLocale
     I18n.locale = I18n.default_locale
   end
