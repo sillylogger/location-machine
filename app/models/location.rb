@@ -3,10 +3,12 @@ class Location < ApplicationRecord
   include Rails.application.routes.url_helpers
   include PgSearch
 
-  acts_as_mappable lat_column_name: :latitude,
-                   lng_column_name: :longitude
-
-  pg_search_scope :search_for, against: %i(name description)
+  multisearchable against: [:name, :description], additional_attributes: -> (location) {
+    {
+      latitude: location.latitude,
+      longitude: location.longitude
+    }
+  }
 
   validates_presence_of :user, :latitude, :longitude, :name, :address
 
@@ -14,14 +16,6 @@ class Location < ApplicationRecord
 
   has_many   :items, dependent: :destroy
   accepts_nested_attributes_for :items, allow_destroy: true
-
-  attr_accessor :distance
-
-  scope :for_nearests, -> (origin, text: '', distance: 50) {
-    scoped = within(50, origin: origin).by_distance(origin: origin)
-    scoped = scoped.search_for(text) if text.present?
-    scoped
-  }
 
   scope :for_display, ->() {
     where("latitude IS NOT NULL").

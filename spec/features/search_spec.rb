@@ -23,7 +23,6 @@ describe "Search" do
 
     page.find('a[name="search"]').click
     wait_until { page.current_path == search_path }
-    expect(page).to have_content I18n.t('lm.search.items_title', default: 'Items')
     expect(page).to have_content item_1.name
     expect(page).to have_content item_2.name
     expect(page).to have_content item_3.name
@@ -32,8 +31,6 @@ describe "Search" do
     fill_in 'text', with: 'cake'
     find('.search-bar>input').native.send_keys(:return)
     wait_until { page.current_path == search_path }
-    expect(page).to have_content I18n.t('lm.search.items_title', default: 'Items')
-    expect(page).to have_content I18n.t('lm.search.locations_title', default: 'Locations')
     expect(page).to have_content item_1.name
     expect(page).to have_content item_2.name
     expect(page).not_to have_content item_4.name
@@ -42,7 +39,6 @@ describe "Search" do
     fill_in 'text', with: 'house'
     find('.search-bar>input').native.send_keys(:return)
     wait_until { page.current_path == search_path }
-    expect(page).to have_content I18n.t('lm.search.locations_title', default: 'Locations')
     expect(page).to have_content location_1.name
     expect(page).not_to have_content location_2.name
 

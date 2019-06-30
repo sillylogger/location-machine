@@ -5,24 +5,18 @@ class SearchController < ApplicationController
   protect_from_forgery except: :index
 
   def index
-    @items = Item
+    @items = SearchDocument
       .for_nearests(@origin, text: params[:text])
-      .page(page).per(item_per_page)
-
-    # TODO: show page 1 of location first, scrolling down to show more is for items
-    # only, will update later when having better appoarch for searching on text
-    # and location base
-    @locations = params[:text].present? ? Location
-                                          .for_nearests(@origin, text: params[:text])
-                                          .page(1).per(item_per_page)
-                                        : []
+      .page(params[:page] || 1).per(15)
 
     @total_pages = @items.total_pages
 
     # TODO: follow doc in github, geokit will automate this calculation
     # but it's not working, maybe I miss something in config, will do later
-    @items = set_distance(@items)
-    @locations = set_distance(@locations)
+    @items = @items.map do |item|
+      item.distance = item.distance_to(@origin)
+      item
+    end
 
     respond_to do |format|
       format.html
@@ -33,21 +27,6 @@ class SearchController < ApplicationController
   end
 
   private
-
-  def page
-    params[:page] || 1
-  end
-
-  def item_per_page
-    15
-  end
-
-  def set_distance(results)
-    results.map do |result|
-      result.distance = result.distance_to(@origin)
-      result
-    end
-  end
 
   def set_back_path
     cookies.permanent[:back_path] = params[:back_path] if params[:back_path]

@@ -1,19 +1,10 @@
 <%= render 'search/form', text: params[:text], back_path: cookies[:back_path] %>
 
-<% if @locations.count.positive? %>
-  <h4 class='search_results__group__title'><%= t('lm.search.locations_tittle', default: 'Locations') %></h4>
-  <div class="search-items" id="search-items">
-    <%= render partial: 'location', collection: @locations %>
-  </div>
-  <br/>
-<% end %>
 <% if @items.count.positive? %>
-  <h4 class='search_results__group__title'><%= t('lm.search.items_tittle', default: 'Items') %></h4>
   <div class="search-items" id="search-items">
     <%= render partial: 'item', collection: @items %>
   </div>
-<% end %>
-<% if @locations.count.negative? && @items.count.negative? %>
+<% else %>
   <% unless params[:text].nil? %>
     <p class='no-result'>
       <%= t('lm.search.no_result', default: "There is no '%{text}' in this area", text: params[:text]) %>

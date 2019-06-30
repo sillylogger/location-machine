@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
   include ::ImageHelper
+  include Rails.application.routes.url_helpers
   include PgSearch
 
   validates_presence_of :name
@@ -8,18 +9,14 @@ class Item < ApplicationRecord
   has_one_attached  :image, acl: 'public'
   acts_as_mappable through: :location
 
-  pg_search_scope :search_for, against: %i(name description)
+  multisearchable against: [:name, :description], additional_attributes: -> (item) {
+    {
+      latitude: item.latitude,
+      longitude: item.longitude
+    }
+  }
 
   delegate :latitude, :longitude, to: :location, allow_nil: true
-
-  attr_accessor :distance
-
-  # TODO: default is 50 kilometers, we need to find a suitable number later
-  scope :for_nearests, -> (origin, text: '', distance: 50) {
-    scoped = joins(:location).within(50, origin: origin).by_distance(origin: origin)
-    scoped = scoped.search_for(text) if text.present?
-    scoped
-  }
 
   def editor? user
     return false unless self.location.present?
@@ -52,8 +49,11 @@ class Item < ApplicationRecord
     image.attached?
   end
 
+  def pretty_path
+    location_item_path(location, self) if persisted?
+  end
+
   def to_param
     [id, name&.parameterize].compact.join('-')
   end
-
 end
