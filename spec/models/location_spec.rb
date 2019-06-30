@@ -101,30 +101,4 @@ describe Location do
       end
     end
   end
-
-  describe '.for_nearests' do
-    let!(:location_1) { FactoryBot.create(:location, name: 'cake of Ba Ngoai') }
-    let!(:location_2) { FactoryBot.create(:location, name: 'noodles', description: 'noodles and cake of 4P') }
-    let!(:location_3) { FactoryBot.create(:location, name: 'pizza 4P') }
-    let!(:location_4) { FactoryBot.create(:location, name: 'cake of Ba Noi') }
-    let(:latitude) { -6.2189898 }
-    let(:longitude) {106.7861758 }
-
-    before do
-      Location.update(latitude: latitude, longitude: longitude)
-      location_4.update(latitude: 0, longitude: 0)
-    end
-
-    context 'no text' do
-      it 'returns nearest locations within distance 50' do
-        expect(Location.for_nearests([latitude, longitude])).to match_array [location_1, location_2, location_3]
-      end
-    end
-
-    context 'has text' do
-      it 'returns nearest locations within distance 50 with matched text' do
-        expect(Location.for_nearests([latitude, longitude], text: 'cake')).to match_array [location_1, location_2]
-      end
-    end
-  end
 end

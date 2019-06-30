@@ -16,6 +16,9 @@ describe "Search" do
     Location.update(latitude: latitude, longitude: longitude)
     item_4.location.update(latitude: 0, longitude: 0)
     location_2.update(latitude: 0, longitude: 0)
+    [Item, Location].each do |klass|
+      klass.find_each { |record| record.update_pg_search_document }
+    end
   end
 
   it "search, see results, go to result, go back" do
