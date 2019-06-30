@@ -11,17 +11,21 @@ class Location < ApplicationRecord
   }
 
   validates_presence_of :user, :latitude, :longitude, :name, :address
-
   belongs_to :user
-
   has_many   :items, dependent: :destroy
   accepts_nested_attributes_for :items, allow_destroy: true
+
+  after_save :update_items_coordinate
 
   scope :for_display, ->() {
     where("latitude IS NOT NULL").
     where("longitude IS NOT NULL").
     where("name <> ''")
   }
+
+  def update_items_coordinate
+    items.find_each { |record| record.update_pg_search_document }
+  end
 
   def editor? user
     self.user_id == user&.id
