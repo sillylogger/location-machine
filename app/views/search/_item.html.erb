@@ -17,7 +17,9 @@
         <%= to_currency(object.price) %>
       </p>
     <% else %>
-      <%= t('lm.search.location_hashtag', default: '#location') %>
+      <p>
+        <%= t('lm.search.location_hashtag', default: '#location') %>
+      </p>
     <% end %>
   </div>
   <span class='search-item__distance'>
