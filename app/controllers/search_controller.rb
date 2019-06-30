@@ -9,9 +9,13 @@ class SearchController < ApplicationController
       .for_nearests(@origin, text: params[:text])
       .page(page).per(item_per_page)
 
-    @locations = Location
-      .for_nearests(@origin, text: params[:text])
-      .page(page).per(item_per_page)
+    # TODO: show page 1 of location first, scrolling down to show more is for items
+    # only, will update later when having better appoarch for searching on text
+    # and location base
+    @locations = params[:text].present? ? Location
+                                          .for_nearests(@origin, text: params[:text])
+                                          .page(1).per(item_per_page)
+                                        : []
 
     @total_pages = @items.total_pages
 
