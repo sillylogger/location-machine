@@ -1,7 +1,7 @@
 class SearchDocument < PgSearch::Document
   include PgSearch
 
-	attr_accessor :distance
+  attr_accessor :distance
 
   acts_as_mappable lat_column_name: :latitude,
     lng_column_name: :longitude

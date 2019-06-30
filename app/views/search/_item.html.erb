@@ -12,13 +12,13 @@
     <p class='search-item__content__name'>
       <%= object.name %>
     </p>
-		<% if item.searchable_type == Item.to_s %>
-			<p class='search-item__content__price'>
-				<%= to_currency(object.price) %>
-			</p>
-		<% else %>
-			<%= t('lm.search.location_hashtag', default: '#location') %>
-		<% end %>
+    <% if item.searchable_type == Item.to_s %>
+      <p class='search-item__content__price'>
+        <%= to_currency(object.price) %>
+      </p>
+    <% else %>
+      <%= t('lm.search.location_hashtag', default: '#location') %>
+    <% end %>
   </div>
   <span class='search-item__distance'>
     <%= item.distance.round(1) %> km
