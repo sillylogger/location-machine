@@ -41,6 +41,7 @@ gem 'omniauth-facebook', github: 'mkdynamic/omniauth-facebook'
 
 # Best admin system for crud settings & pages
 gem 'activeadmin', github: 'gregbell/active_admin'
+gem 'paper_trail', github: 'paper-trail-gem/paper_trail'
 
 # Format markdown & currencies
 gem 'redcarpet'

@@ -1,18 +1,18 @@
 class Item < ApplicationRecord
-  include ::ImageHelper
-  include PgSearch
-
-  validates_presence_of :name
 
   belongs_to        :location
-  has_one_attached  :image, acl: 'public'
-  acts_as_mappable through: :location
-
-  pg_search_scope :search_for, against: %i(name description)
-
+  acts_as_mappable  through: :location
   delegate :latitude, :longitude, to: :location, allow_nil: true
 
+  include ::ImageHelper
+  has_one_attached  :image, acl: 'public'
+
+  include PgSearch
+  pg_search_scope :search_for, against: %i(name description)
+
   attr_accessor :distance
+
+  validates_presence_of :name
 
   # TODO: default is 50 kilometers, we need to find a suitable number later
   scope :for_nearests, -> (origin, text: '', distance: 50) {
