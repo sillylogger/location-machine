@@ -5,13 +5,9 @@ class LocationsController < ApplicationController
 
   # GET /
   def index
-    @locations =
-      if params[:search_in_bounds]
-        bounds = params[:search_in_bounds]
-        Location.in_bounds(bounds[:sw_lat], bounds[:sw_lng], bounds[:ne_lat], bounds[:ne_lng])
-      else
-        Location.for_display
-      end.newest.limit(Setting.site_limit_location)
+    @locations = Location.for_display
+    @locations = @locations.in_bounds(bounds_params) if bounds_params.present?
+    @locations = @locations.newest.limit(Setting.site_limit_location)
 
     respond_to do |format|
       format.html
@@ -61,27 +57,31 @@ class LocationsController < ApplicationController
 
   private
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_location
-      @location = current_user.locations.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_location
+    @location = current_user.locations.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def location_params
-      params.require(:location).permit(
-        :latitude,
-        :longitude,
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def location_params
+    params.require(:location).permit(
+      :latitude,
+      :longitude,
+      :name,
+      :address,
+      :description,
+      items_attributes: [
+        :id,
+        :image,
         :name,
-        :address,
-        :description,
-        items_attributes: [
-          :id,
-          :image,
-          :name,
-          :price,
-          :description
-        ]
-      )
-    end
+        :price,
+        :description
+      ]
+    )
+  end
+
+  def bounds_params
+    [params[:bounds][:south_west], params[:bounds][:north_east]] if params[:bounds].present?
+  end
 
 end

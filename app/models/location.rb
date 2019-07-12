@@ -28,15 +28,6 @@ class Location < ApplicationRecord
     where("name <> ''")
   }
   scope :newest, -> { order(created_at: :desc) }
-  scope :in_bounds, ->(sw_lat, sw_lng, ne_lat, ne_lng) do
-    where (
-      <<-EOS.squish
-        ((:sw_lat < :ne_lat AND latitude BETWEEN :sw_lat AND :ne_lat) OR (:ne_lat < :sw_lat AND latitude BETWEEN :ne_lat AND :sw_lat))
-        AND
-        ((:sw_lng < :ne_lng AND longitude BETWEEN :sw_lng AND :ne_lng) OR (:ne_lng < :sw_lng AND longitude BETWEEN :ne_lng AND :sw_lng))
-      EOS
-    ), sw_lat: sw_lat, sw_lng: sw_lng, ne_lat: ne_lat, ne_lng: ne_lng
-  end
 
   def update_items_coordinate
     items.find_each { |record| record.update_pg_search_document }
