@@ -8,7 +8,6 @@
   <meta property="og:description" content="<%= @location.description %>"/>
 <% end %>
 
-
 <%= link_to t('lm.action.back', default: "Back"), locations_path %>
 
 <% if @location.editor? current_user %>
@@ -29,6 +28,7 @@
 
 <header class="location-info">
   <h1 class="location-info__name"><%= @location.name %></h1>
+  <p class="location-info__address"><%= @location.address %></p>
   <p class="location-info__description"><%= @location.description %></p>
 </header>
 
@@ -59,4 +59,3 @@
 <%= link_to_chat(user: @location.user,
                  name: @location.name,
                  url: location_url(@location)) %>
-

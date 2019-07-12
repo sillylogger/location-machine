@@ -3,10 +3,10 @@ class ApplicationController < ActionController::Base
   before_action :force_canonical_host
   before_action :set_current_host
   before_action :set_locale
+  before_action :set_paper_trail_whodunnit
 
   def set_locale
-    cookies.permanent[:locale] = params[:locale] if params[:locale].present?
-    I18n.locale = cookies[:locale] || current_user_locale.presence || read_lang_header || I18n.default_locale
+    I18n.locale = current_user_locale.presence || read_lang_header || I18n.default_locale
   rescue I18n::InvalidLocale
     I18n.locale = I18n.default_locale
   end

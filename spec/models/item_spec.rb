@@ -63,5 +63,4 @@ describe Item do
       expect(item.to_param).to include(item.id.to_s)
     end
   end
-
 end

@@ -11,13 +11,18 @@ gem 'rails', '~> 5.2.2'
 gem 'puma', github: 'puma/puma'
 gem 'rack'
 
-# Use postgresql as the database for Active Record
+# Use PostgreSQL, full text search, and 
 gem 'pg'
+gem 'pg_search'
+gem 'geokit-rails'
 
-# Use google cloud for storage
+# Active Record pagination
+gem 'kaminari'
+
+# Use Google cloud for storage
 gem 'google-cloud-storage', require: false
 
-# Use cloudinary for processing variants
+# On-the-fly image processing
 gem 'cloudinary', github: 'cloudinary/cloudinary_gem'
 
 # Use SCSS for stylesheets
@@ -26,28 +31,32 @@ gem 'bourbon', github: 'thoughtbot/bourbon'
 gem 'neat', github: 'thoughtbot/neat'
 gem 'bitters', github: 'thoughtbot/bitters'
 
-# Use Uglifier as compressor for JavaScript assets
+# JS compressor and transpiler
 gem 'uglifier'
-# Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker'
 
+# Authentication
 gem 'devise', github: 'plataformatec/devise'
 gem 'omniauth-facebook', github: 'mkdynamic/omniauth-facebook'
 
 # Best admin system for crud settings & pages
 gem 'activeadmin', github: 'gregbell/active_admin'
+gem 'paper_trail', github: 'paper-trail-gem/paper_trail'
+
+# Format markdown & currencies
 gem 'redcarpet'
+gem 'monetize'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
 
-# internationalization
+# Performance monitoring
+gem 'newrelic_rpm'
+
+# Internationalization
 gem 'i18n'
 gem 'rails-i18n'
 gem 'i18n-active_record', :require => 'i18n/active_record'
-
-# format currency
-gem 'monetize'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -68,10 +77,6 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen'
-
-  # Only require appengine if running remote commands,
-  # otherwise it will warn about Cloud SDK quotas
-  gem 'appengine', require: !ENV['APPENGINE'].nil?
 end
 
 group :test do

@@ -2,25 +2,33 @@
 
   <%= render 'shared/error_messages', resource: item %>
 
-  <div class="field">
+  <div class="field m--file">
     <% if form.object.has_image? %>
       <%= form.hidden_field :image, value: form.object.image.signed_id %>
-      <%= image_tag form.object.image_urls[:medium] %>
+      <%= image_tag form.object.image_urls[:thumb], class: 'field__thumb' %>
     <% end %>
 
+    <%= form.label :image,
+        t('lm.action.file-upload', default: 'Choose Image') %>
     <%= form.file_field :image %>
   </div>
 
   <div class="field">
-    <%= form.text_field :name, placeholder: "Name", required: true, autocomplete: false %>
+    <%= form.text_field :name,
+      placeholder: t('lm.item.name', default: "Name"),
+      required: true, autocomplete: false %>
   </div>
 
   <div class="field">
-    <%= form.text_field :price, placeholder: "Price", value: to_currency(item.price), autocomplete: false %>
+    <%= form.text_field :price,
+      placeholder: t('lm.item.price', default: "Price"),
+      value: to_currency(item.price), autocomplete: false %>
   </div>
 
   <div class="field">
-    <%= form.text_area :description, placeholder: "Description", autocomplete: false %>
+    <%= form.text_area :description,
+      placeholder: t('lm.item.description', default: "Description"),
+      autocomplete: false %>
   </div>
 
   <div class="actions">

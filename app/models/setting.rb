@@ -1,8 +1,10 @@
 class Setting < ApplicationRecord
 
-  validates_presence_of :name
+  has_paper_trail
 
   has_one_attached :attachment, acl: 'public'
+
+  validates_presence_of :name
 
   def self.fetch name, default = nil, attachment_options = {}
     setting = Setting.find_or_create_by(name: name) do |s|

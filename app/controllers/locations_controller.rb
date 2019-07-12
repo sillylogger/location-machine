@@ -72,6 +72,7 @@ class LocationsController < ApplicationController
         :latitude,
         :longitude,
         :name,
+        :address,
         :description,
         items_attributes: [
           :id,

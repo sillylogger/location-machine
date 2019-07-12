@@ -1,0 +1,40 @@
+.search-bar {
+  position: relative;
+
+  &__back-icon {
+    font-size: 20px;
+    float: left;
+    margin: 7px 7px 7px 0;
+  }
+
+  &__icon {
+    position: absolute;
+    top: 10px;
+    left: 40px;
+    fill: #ccc;
+  }
+
+  input {
+    float: left;
+    width: calc(100% - 40px);
+    background-color: #f1f1f1;
+    padding-left: 35px;
+  }
+
+  /* Clear floats */
+  &::after {
+    content: '';
+    clear: both;
+    display: table;
+  }
+}
+
+.search_results {
+  &__group__title {
+    font-size: 0.9em;
+  }
+}
+
+.no-result {
+  margin: 0 25px;
+}

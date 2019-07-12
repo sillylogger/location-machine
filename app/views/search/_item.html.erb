@@ -1,0 +1,28 @@
+<% object = item.searchable %>
+
+<%= link_to object.pretty_path, class: 'search-item' do %>
+  <div class='search-item__image'>
+    <% if object.has_image? %>
+      <%= image_tag object.image_urls[:thumb] %>
+    <% else %>
+      <%= image_tag Setting.site_logo %>
+    <% end %>
+  </div>
+  <div class='search-item__content'>
+    <p class='search-item__content__name'>
+      <%= object.name %>
+    </p>
+    <% if item.searchable_type == Item.to_s %>
+      <p class='search-item__content__price'>
+        <%= to_currency(object.price) %>
+      </p>
+    <% else %>
+      <p>
+        <%= t('lm.search.location_hashtag', default: '#location') %>
+      </p>
+    <% end %>
+  </div>
+  <span class='search-item__distance'>
+    <%= item.distance.round(1) %> km
+  </span>
+<% end %>

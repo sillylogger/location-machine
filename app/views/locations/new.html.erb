@@ -9,10 +9,9 @@
     var center = <%= Setting.get('map.center').to_json.html_safe %>;
     var map = new lm.Map(center);
 
-    map.hydrateLatLng('location_latitude', 'location_longitude');
+    map.hydrateLatLng('location_latitude', 'location_longitude', 'location_address');
 
     map.setCurrentPosition({ newLocation: true });
+    map.addLocationButton();
   });
 </script>
-
-
