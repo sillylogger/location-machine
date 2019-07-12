@@ -66,6 +66,10 @@ class Setting < ApplicationRecord
     fetch "site.limit_location", 50
   end
 
+  def self.site_location_radius
+    fetch "site.site_location_radius", 50
+  end
+
   def has_attachment?
     attachment.attached?
   end
