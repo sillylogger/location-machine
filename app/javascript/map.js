@@ -7,7 +7,7 @@ let googleMap = null,
   markers = [];
 
 let mapOptions = {
-  zoom: 10,
+  zoom: 15,
   draggable: true,
   scrollwheel: true,
 
@@ -169,7 +169,7 @@ class Map {
 
   panTo(position) {
     googleMap.panTo(position);
-    googleMap.setZoom(17);
+    googleMap.setZoom(15);
   }
 
   buildLocationInfoWindow(location) {
@@ -312,7 +312,6 @@ class Map {
 
     currentLocationMarker.setPosition(currentLocation);
     googleMap.panTo(currentLocation);
-    googleMap.setZoom(12);
   }
 
   setCurrentPositionFail() {
