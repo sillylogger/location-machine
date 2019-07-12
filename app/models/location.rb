@@ -10,11 +10,16 @@ class Location < ApplicationRecord
     }
   }
 
-  validates_presence_of :user, :latitude, :longitude, :name, :address
-  belongs_to :user
-  has_many   :items, dependent: :destroy
+  attr_accessor :distance
+  acts_as_mappable lat_column_name: :latitude,
+                   lng_column_name: :longitude
+
+  has_many :items, dependent: :destroy
   accepts_nested_attributes_for :items, allow_destroy: true
 
+  belongs_to :user
+
+  validates_presence_of :user, :latitude, :longitude, :name, :address
   after_save :update_items_coordinate
 
   scope :for_display, ->() {

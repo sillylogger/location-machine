@@ -5,4 +5,6 @@ class Page < ApplicationRecord
     protected: "Protected"
   }
 
+  has_paper_trail
+
 end

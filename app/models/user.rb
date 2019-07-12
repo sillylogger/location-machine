@@ -1,21 +1,24 @@
 class User < ApplicationRecord
 
+  ROLES = { admin: 'Admin' }
+
+  TEMP_EMAIL_PREFIX = 'change@me'
+  TEMP_EMAIL_REGEX = /\Achange@me/
+
+  has_paper_trail
+
   # Include default devise modules. Others available are:
   # :timeoutable
   devise :database_authenticatable, :registerable, :lockable,  # TODO: :confirmable once email is setup
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: %i[facebook]
 
-  validates_presence_of :name
-  validates :locale, inclusion: { in: I18n.available_locales.map(&:to_s), allow_blank: true }
-
   has_many :locations
   has_many :identities
 
-  ROLES = { admin: 'Admin' }
+  validates :locale, inclusion: { in: I18n.available_locales.map(&:to_s), allow_blank: true }
 
-  TEMP_EMAIL_PREFIX = 'change@me'
-  TEMP_EMAIL_REGEX = /\Achange@me/
+  validates_presence_of :name
 
   # From an old article about multiple identities:
   # https://sourcey.com/rails-4-omniauth-using-devise-with-twitter-facebook-and-linkedin/

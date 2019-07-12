@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :force_canonical_host
   before_action :set_current_host
   before_action :set_locale
+  before_action :set_paper_trail_whodunnit
 
   def set_locale
     I18n.locale = current_user_locale.presence || read_lang_header || I18n.default_locale

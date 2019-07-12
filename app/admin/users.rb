@@ -1,7 +1,7 @@
 ActiveAdmin.register User do
-  
-  menu priority: 90
 
+  menu priority: 90
+  actions :all, except: [:delete]
   permit_params :name, :email, :phone, :role, :avatar_url
 
   index do
@@ -64,6 +64,22 @@ ActiveAdmin.register User do
           row :confirmed_at
           row :confirmation_sent_at
           row :unconfirmed_email
+        end
+      end
+    end
+
+    active_admin_comments
+
+    panel "Versions" do
+      paginated_collection(resource.versions.page(params[:version_page]).per(20), param_name: 'version_page', download_links: false) do
+        table_for collection do
+          column :id
+          column :event
+          column :whodunnit
+          column :changeset do |version|
+            version.changeset.except('updated_at')
+          end
+          column :created_at
         end
       end
     end

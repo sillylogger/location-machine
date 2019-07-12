@@ -1,14 +1,14 @@
 class Item < ApplicationRecord
-  include ::ImageHelper
   include Rails.application.routes.url_helpers
-  include PgSearch
-
-  validates_presence_of :name
 
   belongs_to        :location
-  has_one_attached  :image, acl: 'public'
-  acts_as_mappable through: :location
+  acts_as_mappable  through: :location
+  delegate :latitude, :longitude, to: :location, allow_nil: true
 
+  include ::ImageHelper
+  has_one_attached  :image, acl: 'public'
+
+  include PgSearch
   multisearchable against: [:name, :description], additional_attributes: -> (item) {
     {
       latitude: item.latitude,
@@ -16,7 +16,7 @@ class Item < ApplicationRecord
     }
   }
 
-  delegate :latitude, :longitude, to: :location, allow_nil: true
+  validates_presence_of :name
 
   def editor? user
     return false unless self.location.present?
