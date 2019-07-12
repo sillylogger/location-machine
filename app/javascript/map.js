@@ -4,7 +4,6 @@ let googleMap = null,
   latId = null,
   lngId = null,
   currentLocationMarker = null,
-  bounds = null,
   markers = [];
 
 let mapOptions = {
@@ -54,8 +53,6 @@ class Map {
     });
     mapOptions.center = new google.maps.LatLng(center[0], center[1]);
 
-    bounds = new google.maps.LatLngBounds();
-
     googleMap = new google.maps.Map(canvas, mapOptions);
 
     currentLocationMarker = new google.maps.Marker({
@@ -90,8 +87,6 @@ class Map {
   }
 
   placeLocationsInBounds() {
-    googleMap.fitBounds(bounds);
-
     googleMap.addListener('idle', () => {
       let mapBounds = googleMap.getBounds();
       let swPoint = mapBounds.getSouthWest();
@@ -245,7 +240,6 @@ class Map {
     });
 
     markers.push(marker);
-    bounds.extend(marker.getPosition());
 
     if (options.panTo) {
       this.panTo(position);
@@ -317,7 +311,6 @@ class Map {
     }
 
     currentLocationMarker.setPosition(currentLocation);
-    bounds.extend(currentLocation);
     googleMap.panTo(currentLocation);
     googleMap.setZoom(12);
   }
