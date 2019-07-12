@@ -55,4 +55,12 @@ class ApplicationController < ActionController::Base
     I18n.locale = :en
   end
 
+  def get_user_location
+    if cookies[:latitude].present?
+      @user_location = [cookies[:latitude], cookies[:longitude]]
+    else
+      # TODO: we may store all location history of users, and get the latest one
+      @user_location = Location.first
+    end
+  end
 end
