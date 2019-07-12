@@ -63,30 +63,4 @@ describe Item do
       expect(item.to_param).to include(item.id.to_s)
     end
   end
-
-  describe '.for_nearests' do
-    let!(:item_1) { FactoryBot.create(:item, name: 'cake of Ba Ngoai') }
-    let!(:item_2) { FactoryBot.create(:item, name: 'noodles', description: 'noodles and cake of 4P') }
-    let!(:item_3) { FactoryBot.create(:item, name: 'pizza 4P') }
-    let!(:item_4) { FactoryBot.create(:item, name: 'cake of Ba Noi') }
-    let(:latitude) { -6.2189898 }
-    let(:longitude) {106.7861758 }
-
-    before do
-      Location.update(latitude: latitude, longitude: longitude)
-      item_4.location.update(latitude: 0, longitude: 0)
-    end
-
-    context 'no text' do
-      it 'returns nearest items within distance 50' do
-        expect(Item.for_nearests([latitude, longitude])).to match_array [item_1, item_2, item_3]
-      end
-    end
-
-    context 'has text' do
-      it 'returns nearest items within distance 50 with matched text' do
-        expect(Item.for_nearests([latitude, longitude], text: 'cake')).to match_array [item_1, item_2]
-      end
-    end
-  end
 end

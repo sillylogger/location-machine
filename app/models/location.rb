@@ -1,5 +1,14 @@
 class Location < ApplicationRecord
+  include ::ImageHelper
   include Rails.application.routes.url_helpers
+  include PgSearch
+
+  multisearchable against: [:name, :description], additional_attributes: -> (location) {
+    {
+      latitude: location.latitude,
+      longitude: location.longitude
+    }
+  }
 
   attr_accessor :distance
   acts_as_mappable lat_column_name: :latitude,
@@ -11,12 +20,17 @@ class Location < ApplicationRecord
   belongs_to :user
 
   validates_presence_of :user, :latitude, :longitude, :name, :address
+  after_save :update_items_coordinate
 
   scope :for_display, ->() {
     where("latitude IS NOT NULL").
     where("longitude IS NOT NULL").
     where("name <> ''")
   }
+
+  def update_items_coordinate
+    items.find_each { |record| record.update_pg_search_document }
+  end
 
   def editor? user
     self.user_id == user&.id
@@ -39,4 +53,21 @@ class Location < ApplicationRecord
     [id, name&.parameterize].compact.join('-')
   end
 
+  def has_image?
+    image.present?
+  end
+
+  def image
+    items.detect { |item| item.has_image? }&.image
+  end
+
+  def image_urls
+    return unless has_image?
+
+    {
+      thumb:  thumb_path(image.service_url),
+      medium: medium_path(image.service_url),
+      full:   full_path(image.service_url)
+    }
+  end
 end

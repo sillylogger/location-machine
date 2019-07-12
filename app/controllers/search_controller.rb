@@ -5,7 +5,7 @@ class SearchController < ApplicationController
   protect_from_forgery except: :index
 
   def index
-    @items = Item
+    @items = SearchDocument
       .for_nearests(@origin, text: params[:text])
       .page(params[:page] || 1).per(15)
 

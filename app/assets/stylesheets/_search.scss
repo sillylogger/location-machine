@@ -29,6 +29,12 @@
   }
 }
 
+.search_results {
+  &__group__title {
+    font-size: 0.9em;
+  }
+}
+
 .no-result {
   margin: 0 25px;
 }

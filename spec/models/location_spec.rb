@@ -81,4 +81,24 @@ describe Location do
     end
   end
 
+  describe "#image and #has_image?" do
+    let(:location) { FactoryBot.create(:location) }
+
+    context 'no item' do
+      it 'return nothing' do
+        expect(location.image).to be_nil
+        expect(location).not_to be_has_image
+      end
+    end
+
+    context 'has items' do
+      let!(:item_1) { FactoryBot.create(:item, location: location) }
+      let!(:item_2) { FactoryBot.create(:item, :with_image, location: location) }
+
+      it "get image of one of items" do
+        expect(location.image.attachment).to eq item_2.image.attachment
+        expect(location).to be_has_image
+      end
+    end
+  end
 end
