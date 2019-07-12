@@ -90,21 +90,16 @@ class Map {
   }
 
   placeLocationsInBounds() {
-    setTimeout(() => {
-      googleMap.fitBounds(bounds);
-    }, 2000);
+    googleMap.fitBounds(bounds);
 
     googleMap.addListener('idle', () => {
-      this.clearMarkers();
       let mapBounds = googleMap.getBounds();
       let swPoint = mapBounds.getSouthWest();
       let nePoint = mapBounds.getNorthEast();
 
       let params = new URLSearchParams({
-        "search_in_bounds[sw_lat]": swPoint.lat(),
-        "search_in_bounds[sw_lng]": swPoint.lng(),
-        "search_in_bounds[ne_lat]": nePoint.lat(),
-        "search_in_bounds[ne_lng]": nePoint.lng(),
+        'bounds[south_west]': [swPoint.lat(), swPoint.lng()],
+        'bounds[north_east]': [nePoint.lat(), nePoint.lng()],
       });
 
       fetch(`/locations.json?${params.toString()}`)
@@ -115,6 +110,7 @@ class Map {
           return response.json();
         })
         .then(responseAsJson => {
+          this.clearMarkers();
           this.placeLocations(responseAsJson);
         })
         .catch(err => {
@@ -244,7 +240,10 @@ class Map {
       location.latitude,
       location.longitude,
     );
-    let marker = this.addMarker(position, {title: location.name});
+    let marker = this.addMarker(position, {
+      title: location.name,
+      id: location.id,
+    });
 
     markers.push(marker);
     bounds.extend(marker.getPosition());
