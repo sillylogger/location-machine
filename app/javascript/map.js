@@ -110,7 +110,6 @@ class Map {
           return response.json();
         })
         .then(responseAsJson => {
-          this.clearMarkers();
           this.placeLocations(responseAsJson);
         })
         .catch(err => {
@@ -259,8 +258,27 @@ class Map {
     return marker;
   }
 
-  placeLocations(mapLocations) {
-    mapLocations.forEach(this.placeLocation.bind(this));
+  placeLocations(locations) {
+    let markerIds = markers.map(marker => marker.id);
+    let locationIds = locations.map(location => location.id);
+    let keptMarkers = markers.filter(marker => locationIds.includes(marker.id));
+    let outdatedMarkerIds = markers
+      .filter(marker => !locationIds.includes(marker.id))
+      .map(marker => marker.id);
+    let newLocations = locations.filter(
+      location => !markerIds.includes(location.id),
+    );
+
+    // remove outdated markers
+    markers.map(marker => {
+      if (outdatedMarkerIds.includes(marker.id)) {
+        marker.setMap(null);
+      }
+    });
+    markers = keptMarkers;
+
+    // add new markers
+    newLocations.forEach(this.placeLocation.bind(this));
   }
 
   setCurrentPosition(options) {
@@ -345,13 +363,6 @@ class Map {
     googleMap.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(
       controlDiv,
     );
-  }
-
-  clearMarkers() {
-    for (let i = 0, ii = markers.length; i < ii; i++) {
-      markers[i].setMap(null);
-    }
-    markers = [];
   }
 }
 
