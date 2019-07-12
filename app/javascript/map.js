@@ -269,13 +269,16 @@ class Map {
       location => !markerIds.includes(location.id),
     );
 
-    // remove outdated markers
-    markers.map(marker => {
-      if (outdatedMarkerIds.includes(marker.id)) {
-        marker.setMap(null);
-      }
-    });
-    markers = keptMarkers;
+    // remove outdated markers, removal is good but it looks weird when change
+    // slightly on the map and the markers show on/off
+    // so I removed this feature currently
+    //
+    //markers.map(marker => {
+    //if (outdatedMarkerIds.includes(marker.id)) {
+    //marker.setMap(null);
+    //}
+    //});
+    //markers = keptMarkers;
 
     // add new markers
     newLocations.forEach(this.placeLocation.bind(this));
