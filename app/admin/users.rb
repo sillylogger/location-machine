@@ -1,7 +1,7 @@
 ActiveAdmin.register User do
 
   menu priority: 90
-  actions :all, except: [:delete]
+  actions :all, except: [:destroy]
   permit_params :name, :email, :phone, :role, :avatar_url
 
   index do
