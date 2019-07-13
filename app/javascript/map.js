@@ -254,19 +254,20 @@ class Map {
 
   placeLocations(locations) {
     let markerIds = markers.map(marker => marker.id);
-    let locationIds = locations.map(location => location.id);
-    let keptMarkers = markers.filter(marker => locationIds.includes(marker.id));
-    let outdatedMarkerIds = markers
-      .filter(marker => !locationIds.includes(marker.id))
-      .map(marker => marker.id);
     let newLocations = locations.filter(
       location => !markerIds.includes(location.id),
     );
 
-    // remove outdated markers, removal is good but it looks weird when change
-    // slightly on the map and the markers show on/off
-    // so I removed this feature currently
+    // TODO:
+    // remove outdated markers, removal is good but it looks weird
+    // when change slightly on the map makes the markers show on/off
+    // so I disabled this feature by now
     //
+    //let locationIds = locations.map(location => location.id);
+    //let keptMarkers = markers.filter(marker => locationIds.includes(marker.id));
+    //let outdatedMarkerIds = markers
+    //.filter(marker => !locationIds.includes(marker.id))
+    //.map(marker => marker.id);
     //markers.map(marker => {
     //if (outdatedMarkerIds.includes(marker.id)) {
     //marker.setMap(null);
