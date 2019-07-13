@@ -60,7 +60,8 @@ class ApplicationController < ActionController::Base
       @user_location = [cookies[:latitude], cookies[:longitude]]
     else
       # TODO: we may store all location history of users, and get the latest one
-      @user_location = Location.first
+      # if there is no location, set [0, 0]
+      @user_location = Location.first || [0, 0]
     end
   end
 end
