@@ -3,10 +3,11 @@ let googleMap = null,
   lastInfoWindow = null,
   latId = null,
   lngId = null,
-  currentLocationMarker = null;
+  currentLocationMarker = null,
+  markers = [];
 
 let mapOptions = {
-  zoom: 10,
+  zoom: 15,
   draggable: true,
   scrollwheel: true,
 
@@ -85,6 +86,33 @@ class Map {
     }
   }
 
+  placeLocationsInBounds() {
+    googleMap.addListener('idle', () => {
+      let mapBounds = googleMap.getBounds();
+      let swPoint = mapBounds.getSouthWest();
+      let nePoint = mapBounds.getNorthEast();
+
+      let params = new URLSearchParams({
+        'bounds[south_west]': [swPoint.lat(), swPoint.lng()],
+        'bounds[north_east]': [nePoint.lat(), nePoint.lng()],
+      });
+
+      fetch(`/locations.json?${params.toString()}`)
+        .then(response => {
+          if (!response.ok) {
+            throw Error(response.statusText);
+          }
+          return response.json();
+        })
+        .then(responseAsJson => {
+          this.placeLocations(responseAsJson);
+        })
+        .catch(err => {
+          console.log('Fetch Error: ', err);
+        });
+    });
+  }
+
   setLastMarker(marker) {
     lastMarker = marker;
     console.log(
@@ -141,7 +169,7 @@ class Map {
 
   panTo(position) {
     googleMap.panTo(position);
-    googleMap.setZoom(17);
+    googleMap.setZoom(15);
   }
 
   buildLocationInfoWindow(location) {
@@ -206,7 +234,12 @@ class Map {
       location.latitude,
       location.longitude,
     );
-    let marker = this.addMarker(position, {title: location.name});
+    let marker = this.addMarker(position, {
+      title: location.name,
+      id: location.id,
+    });
+
+    markers.push(marker);
 
     if (options.panTo) {
       this.panTo(position);
@@ -219,8 +252,31 @@ class Map {
     return marker;
   }
 
-  placeLocations(mapLocations) {
-    mapLocations.forEach(this.placeLocation.bind(this));
+  placeLocations(locations) {
+    let markerIds = markers.map(marker => marker.id);
+    let newLocations = locations.filter(
+      location => !markerIds.includes(location.id),
+    );
+
+    // TODO:
+    // remove outdated markers, removal is good but it looks weird
+    // when change slightly on the map makes the markers show on/off
+    // so I disabled this feature by now
+    //
+    //let locationIds = locations.map(location => location.id);
+    //let keptMarkers = markers.filter(marker => locationIds.includes(marker.id));
+    //let outdatedMarkerIds = markers
+    //.filter(marker => !locationIds.includes(marker.id))
+    //.map(marker => marker.id);
+    //markers.map(marker => {
+    //if (outdatedMarkerIds.includes(marker.id)) {
+    //marker.setMap(null);
+    //}
+    //});
+    //markers = keptMarkers;
+
+    // add new markers
+    newLocations.forEach(this.placeLocation.bind(this));
   }
 
   setCurrentPosition(options) {
@@ -257,7 +313,6 @@ class Map {
 
     currentLocationMarker.setPosition(currentLocation);
     googleMap.panTo(currentLocation);
-    googleMap.setZoom(12);
   }
 
   setCurrentPositionFail() {

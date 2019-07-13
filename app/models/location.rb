@@ -27,6 +27,7 @@ class Location < ApplicationRecord
     where("longitude IS NOT NULL").
     where("name <> ''")
   }
+  scope :newest, -> { order(created_at: :desc) }
 
   def update_items_coordinate
     items.find_each { |record| record.update_pg_search_document }
