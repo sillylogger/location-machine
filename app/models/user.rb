@@ -1,6 +1,9 @@
 class User < ApplicationRecord
 
-  ROLES = { admin: 'Admin' }
+  ROLES = {
+    admin: 'Admin',
+    partner: 'Partner'
+  }
 
   TEMP_EMAIL_PREFIX = 'change@me'
   TEMP_EMAIL_REGEX = /\Achange@me/
@@ -86,7 +89,15 @@ class User < ApplicationRecord
   end
 
   def admin?
-    role? && role == ROLES[:admin]
+    role? && role == ROLES.fetch(:admin)
+  end
+
+  def partner?
+    role? && role == ROLES.fetch(:partner)
+  end
+
+  def can_view_admin?
+    admin? || partner?
   end
 
   def facebook_identity

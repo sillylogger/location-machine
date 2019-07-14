@@ -28,11 +28,11 @@ class ApplicationController < ActionController::Base
 
   def authenticate_admin_user!
     authenticate_user!
-    redirect_to root_path, alert: 'Sorry, Admins only!' unless current_user.admin?
+    redirect_to root_path, alert: 'Sorry, Admins only!' unless current_user.can_view_admin?
   end
 
   def after_sign_in_path_for resource
-    default_path = resource.admin? ? admin_dashboard_path : root_path
+    default_path = resource.can_view_admin? ? admin_dashboard_path : root_path
     stored_location_for(resource) || default_path
   end
 
@@ -61,6 +61,8 @@ class ApplicationController < ActionController::Base
     else
       # TODO: we may store all location history of users, and get the latest one
       # if there is no location, set [0, 0]
+      #
+      # TODO: use the Setting.get(map.center)
       @user_location = Location.first || [0, 0]
     end
   end
