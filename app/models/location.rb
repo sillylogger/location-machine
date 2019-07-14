@@ -23,9 +23,10 @@ class Location < ApplicationRecord
   after_save :update_items_coordinate
 
   scope :for_display, ->() {
+    where("name <> ''").
     where("latitude IS NOT NULL").
     where("longitude IS NOT NULL").
-    where("name <> ''")
+    includes(items: { image_attachment: :blob })
   }
   scope :newest, -> { order(created_at: :desc) }
 
