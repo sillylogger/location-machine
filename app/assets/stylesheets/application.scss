@@ -131,6 +131,8 @@ footer {
   color: #444;
 
   &#notification {
+    font-weight: bold;
+    bottom: 4rem;
     animation: 0.5s linear 4s fadeAway forwards;
 
     .notice,

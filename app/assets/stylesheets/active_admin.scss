@@ -26,7 +26,49 @@ table.zebra {
   }
 }
 
+table td.col img {
+  max-height: 150px;
+}
+
 ul.compact {
   margin-bottom: 0;
 }
+
+a.see-all {
+  display: block;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+.comments .panel_contents {
+  overflow: hidden;
+}
+
+.comments .pagination_information {
+  margin-bottom: 0;
+}
+
+.item {
+  &:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+
+  &::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+  &__image {
+    float: left;
+    max-height: 75px;
+    margin-right: 1rem;
+  }
+
+  &__name,
+  &__price {
+  }
+}
+
+
 
