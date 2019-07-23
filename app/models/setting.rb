@@ -70,6 +70,10 @@ class Setting < ApplicationRecord
     fetch "site.site_location_radius", 50
   end
 
+  def self.map_center
+    fetch 'map.center', '21.0174607, 105.8416558'
+  end
+
   def has_attachment?
     attachment.attached?
   end

@@ -2,7 +2,7 @@
 
 <script>
   lm.utils.ready(function() {
-    var center = <%= Setting.get('map.center').to_json.html_safe %>;
+    var center = <%= Setting.map_center.to_json.html_safe %>;
     var map = new lm.Map(center);
 
     map.setCurrentPosition();

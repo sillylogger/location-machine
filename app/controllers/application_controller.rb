@@ -59,11 +59,7 @@ class ApplicationController < ActionController::Base
     if cookies[:latitude].present?
       @user_location = [cookies[:latitude], cookies[:longitude]]
     else
-      # TODO: we may store all location history of users, and get the latest one
-      # if there is no location, set [0, 0]
-      #
-      # TODO: use the Setting.get(map.center)
-      @user_location = Location.first || [0, 0]
+      @user_location = Setting.map_center.split(',').map(&:to_f)
     end
   end
 end
