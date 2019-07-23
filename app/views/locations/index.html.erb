@@ -5,8 +5,9 @@
     var center = <%= Setting.map_center.to_json.html_safe %>;
     var map = new lm.Map(center);
     var latestCoordinator = <%= @latest_coordinator.to_json.html_safe %>
+    var currentUserId = <%= @current_user&.id.to_json.html_safe %>
 
-    map.setCurrentPosition({ latestCoordinator: latestCoordinator });
+    map.setCurrentPosition({ latestCoordinator: latestCoordinator, currentUserId: currentUserId });
     map.addLocationButton();
 
     var locations = <%= @locations.to_json.html_safe %>;

@@ -279,6 +279,20 @@ class Map {
     newLocations.forEach(this.placeLocation.bind(this));
   }
 
+  pushCoordinator(coordinator, options) {
+    fetch(`users/${options.currentUserId}/coordinators.json`, {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        coordinator: {
+          latitude: coordinator.latitude,
+          longitude: coordinator.longitude,
+        },
+      }),
+    });
+  }
+
   setCurrentPosition(options) {
     if (!navigator.geolocation) {
       console.log(
@@ -309,6 +323,10 @@ class Map {
     document.cookie = `latitude=${coordinator.latitude}`;
     document.cookie = `longitude=${coordinator.longitude}`;
 
+    if (!options.coordinatorFromHistory && options.currentUserId) {
+      this.pushCoordinator(coordinator, options);
+    }
+
     let currentLocation = new google.maps.LatLng(
       coordinator.latitude,
       coordinator.longitude,
@@ -324,10 +342,10 @@ class Map {
 
   setCurrentPositionFail(options = {}) {
     if (options.latestCoordinator) {
-      this.setCurrentPositionSuccess.bind(this)(
-        options.latestCoordinator,
-        options,
-      );
+      this.setCurrentPositionSuccess.bind(this)(options.latestCoordinator, {
+        ...options,
+        coordinatorFromHistory: true,
+      });
     }
   }
 
