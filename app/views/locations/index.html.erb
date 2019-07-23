@@ -4,8 +4,9 @@
   lm.utils.ready(function() {
     var center = <%= Setting.map_center.to_json.html_safe %>;
     var map = new lm.Map(center);
+    var latestCoordinator = <%= @latest_coordinator.to_json.html_safe %>
 
-    map.setCurrentPosition();
+    map.setCurrentPosition({ latestCoordinator: latestCoordinator });
     map.addLocationButton();
 
     var locations = <%= @locations.to_json.html_safe %>;

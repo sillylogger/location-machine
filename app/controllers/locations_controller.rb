@@ -8,6 +8,7 @@ class LocationsController < ApplicationController
     @locations = Location.for_display
     @locations = @locations.in_bounds(bounds_params) if bounds_params.present?
     @locations = @locations.newest.limit(Setting.site_limit_location)
+    @latest_coordinator = @current_user.latest_coordinator
 
     respond_to do |format|
       format.html

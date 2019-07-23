@@ -287,24 +287,31 @@ class Map {
       return false;
     }
 
-    navigator.geolocation.getCurrentPosition(position => {
-      this.setCurrentPositionSuccess.bind(this)(position, options);
-    }, this.setCurrentPositionFail.bind(this));
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        this.setCurrentPositionSuccess.bind(this)(position.coords, options);
+      },
+      () => this.setCurrentPositionFail.bind(this)(options),
+    );
   }
 
-  setCurrentPositionSuccess(position, options = {newLocation: false}) {
-    console.log('map.setCurrentPositionSuccess - success');
+  setCurrentPositionSuccess(coordinator, options = {newLocation: false}) {
+    console.log(
+      `map.setCurrentPositionSuccess - success: ${coordinator.latitude}, ${
+        coordinator.longitude
+      }`,
+    );
 
-    if (!position.coords) {
+    if (!coordinator.latitude) {
       return;
     }
 
-    document.cookie = `latitude=${position.coords.latitude}`;
-    document.cookie = `longitude=${position.coords.longitude}`;
+    document.cookie = `latitude=${coordinator.latitude}`;
+    document.cookie = `longitude=${coordinator.longitude}`;
 
     let currentLocation = new google.maps.LatLng(
-      position.coords.latitude,
-      position.coords.longitude,
+      coordinator.latitude,
+      coordinator.longitude,
     );
 
     if (options.newLocation) {
@@ -315,8 +322,13 @@ class Map {
     googleMap.panTo(currentLocation);
   }
 
-  setCurrentPositionFail() {
-    console.log('map.setCurrentPositionFail - fail');
+  setCurrentPositionFail(options = {}) {
+    if (options.latestCoordinator) {
+      this.setCurrentPositionSuccess.bind(this)(
+        options.latestCoordinator,
+        options,
+      );
+    }
   }
 
   addLocationButton() {
