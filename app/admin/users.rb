@@ -7,6 +7,11 @@ ActiveAdmin.register User do
   index do
     selectable_column
     id_column
+    column :avatar do |user|
+      if user.avatar_url.present?
+        image_tag user.avatar_url
+      end
+    end
     column :email
     column :current_sign_in_at
     column :sign_in_count
@@ -41,7 +46,7 @@ ActiveAdmin.register User do
         attributes_table do
           row :name
           row :email
-          row :phone 
+          row :phone
           row :role
           row :avatar_url do
             if user.avatar_url.present?
@@ -56,7 +61,7 @@ ActiveAdmin.register User do
           row :failed_attempts
 
           row :current_sign_in_at
-          row :last_sign_in_at 
+          row :last_sign_in_at
 
           row :current_sign_in_ip
           row :last_sign_in_ip
