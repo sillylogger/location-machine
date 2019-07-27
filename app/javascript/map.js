@@ -279,15 +279,15 @@ class Map {
     newLocations.forEach(this.placeLocation.bind(this));
   }
 
-  pushCoordinator(coordinator, options) {
-    fetch(`users/${options.currentUserId}/coordinators.json`, {
+  pushCoordinate(coordinate, options) {
+    fetch(`users/${options.currentUserId}/coordinates.json`, {
       method: 'POST',
       credentials: 'same-origin',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
-        coordinator: {
-          latitude: coordinator.latitude,
-          longitude: coordinator.longitude,
+        coordinate: {
+          latitude: coordinate.latitude,
+          longitude: coordinate.longitude,
         },
       }),
     });
@@ -309,27 +309,27 @@ class Map {
     );
   }
 
-  setCurrentPositionSuccess(coordinator, options = {newLocation: false}) {
+  setCurrentPositionSuccess(coordinate, options = {newLocation: false}) {
     console.log(
-      `map.setCurrentPositionSuccess - success: ${coordinator.latitude}, ${
-        coordinator.longitude
+      `map.setCurrentPositionSuccess - success: ${coordinate.latitude}, ${
+        coordinate.longitude
       }`,
     );
 
-    if (!coordinator.latitude) {
+    if (!coordinate.latitude) {
       return;
     }
 
-    document.cookie = `latitude=${coordinator.latitude}`;
-    document.cookie = `longitude=${coordinator.longitude}`;
+    document.cookie = `latitude=${coordinate.latitude}`;
+    document.cookie = `longitude=${coordinate.longitude}`;
 
-    if (!options.coordinatorFromHistory && options.currentUserId) {
-      this.pushCoordinator(coordinator, options);
+    if (!options.coordinateFromHistory && options.currentUserId) {
+      this.pushCoordinate(coordinate, options);
     }
 
     let currentLocation = new google.maps.LatLng(
-      coordinator.latitude,
-      coordinator.longitude,
+      coordinate.latitude,
+      coordinate.longitude,
     );
 
     if (options.newLocation) {
@@ -341,10 +341,10 @@ class Map {
   }
 
   setCurrentPositionFail(options = {}) {
-    if (options.latestCoordinator) {
-      this.setCurrentPositionSuccess.bind(this)(options.latestCoordinator, {
+    if (options.latestCoordinate) {
+      this.setCurrentPositionSuccess.bind(this)(options.latestCoordinate, {
         ...options,
-        coordinatorFromHistory: true,
+        coordinateFromHistory: true,
       });
     }
   }

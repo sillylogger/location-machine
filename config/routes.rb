@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :chats, only: [:index]
-    resources :coordinators, only: [:create]
+    resources :coordinates, only: [:create]
   end
 
   # match '/users/finish_signup' => 'users/registrations#finish_signup', via: [:get, :patch], :as => :finish_signup
