@@ -26,7 +26,10 @@ describe "the MVP flow" do
   end
 
   it "lets users sign in and post" do
-    visit root_path
+    expect {
+      visit root_path
+    }.to change { Coordinate.count }.from(0).to(1)
+    expect(Coordinate.first.user).to eq user
 
     page.find('a[name="create location"]').click
     wait_until { page.current_path == new_location_path }

@@ -71,5 +71,14 @@ describe User do
       end
     end
   end
+
+  describe '#latest_coordinate' do
+    let(:user) { FactoryBot.create(:user) }
+    let!(:coordinates) { FactoryBot.create_list(:coordinate, 3, user: user) }
+
+    it 'returns latest coordinate of user' do
+      expect(user.latest_coordinate.id).to eq Coordinate.order(:created_at).last.id
+    end
+  end
 end
 
