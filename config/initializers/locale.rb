@@ -30,6 +30,8 @@ module I18n
       class Translation < ::ActiveRecord::Base
         after_save :reload_i18n
 
+        validates :key, uniqueness: { scope: :locale }, presence: true
+
         private
         def reload_i18n
           I18n.backend.reload!
