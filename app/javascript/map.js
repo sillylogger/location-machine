@@ -279,6 +279,20 @@ class Map {
     newLocations.forEach(this.placeLocation.bind(this));
   }
 
+  pushCoordinate(coordinate, options) {
+    fetch(`users/${options.currentUserId}/coordinates.json`, {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        coordinate: {
+          latitude: coordinate.latitude,
+          longitude: coordinate.longitude,
+        },
+      }),
+    });
+  }
+
   setCurrentPosition(options) {
     if (!navigator.geolocation) {
       console.log(
@@ -287,24 +301,35 @@ class Map {
       return false;
     }
 
-    navigator.geolocation.getCurrentPosition(position => {
-      this.setCurrentPositionSuccess.bind(this)(position, options);
-    }, this.setCurrentPositionFail.bind(this));
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        this.setCurrentPositionSuccess.bind(this)(position.coords, options);
+      },
+      () => this.setCurrentPositionFail.bind(this)(options),
+    );
   }
 
-  setCurrentPositionSuccess(position, options = {newLocation: false}) {
-    console.log('map.setCurrentPositionSuccess - success');
+  setCurrentPositionSuccess(coordinate, options = {newLocation: false}) {
+    console.log(
+      `map.setCurrentPositionSuccess - success: ${coordinate.latitude}, ${
+        coordinate.longitude
+      }`,
+    );
 
-    if (!position.coords) {
+    if (!coordinate.latitude) {
       return;
     }
 
-    document.cookie = `latitude=${position.coords.latitude}`;
-    document.cookie = `longitude=${position.coords.longitude}`;
+    document.cookie = `latitude=${coordinate.latitude}`;
+    document.cookie = `longitude=${coordinate.longitude}`;
+
+    if (!options.coordinateFromHistory && options.currentUserId) {
+      this.pushCoordinate(coordinate, options);
+    }
 
     let currentLocation = new google.maps.LatLng(
-      position.coords.latitude,
-      position.coords.longitude,
+      coordinate.latitude,
+      coordinate.longitude,
     );
 
     if (options.newLocation) {
@@ -315,8 +340,13 @@ class Map {
     googleMap.panTo(currentLocation);
   }
 
-  setCurrentPositionFail() {
-    console.log('map.setCurrentPositionFail - fail');
+  setCurrentPositionFail(options = {}) {
+    if (options.latestCoordinate) {
+      this.setCurrentPositionSuccess.bind(this)(options.latestCoordinate, {
+        ...options,
+        coordinateFromHistory: true,
+      });
+    }
   }
 
   addLocationButton() {

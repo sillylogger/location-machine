@@ -58,6 +58,9 @@ class ApplicationController < ActionController::Base
   def get_user_location
     if cookies[:latitude].present?
       @user_location = [cookies[:latitude], cookies[:longitude]]
+    elsif @current_user && @current_user.latest_coordinate
+      coordinate = @current_user.latest_coordinate
+      @user_location = [coordinate.latitude, coordinate.longitude]
     else
       @user_location = Setting.map_center.split(',').map(&:to_f)
     end

@@ -18,6 +18,7 @@ class User < ApplicationRecord
 
   has_many :locations
   has_many :identities
+  has_many :coordinates
 
   validates :locale, inclusion: { in: I18n.available_locales.map(&:to_s), allow_blank: true }
 
@@ -106,5 +107,9 @@ class User < ApplicationRecord
 
   def is_facebook_user?
     facebook_identity.present?
+  end
+
+  def latest_coordinate
+    coordinates.order(created_at: :desc).first
   end
 end
