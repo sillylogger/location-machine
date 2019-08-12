@@ -44,7 +44,7 @@ module ChatsHelper
   def regarding_info(name, url)
     content_tag(:span) do
       concat t('regarding_at', name: name, default: "Regarding %{name} at ")
-      concat link_to('here', url)
+      concat link_to(t('lm.text.here', default: 'here'), url)
     end
   end
 end

@@ -7,7 +7,7 @@
   </div>
 
   <div class="field">
-    <%= f.select :locale, I18n::SELECT_COLLECTION, include_blank: 'Language' %>
+    <%= f.select :locale, I18n::SELECT_COLLECTION, include_blank: t('lm.text.language', default: 'Language') %>
   </div>
 
   <div class="field">

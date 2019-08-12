@@ -3,5 +3,5 @@
     <%= icon 'arrow-left4', class: 'search-bar__back-icon m--clickable' %>
   <% end %>
   <%= icon 'search2', class: 'search-bar__icon' %>
-  <%= search_field_tag :text, text, placeholder: "Search" %>
+  <%= search_field_tag :text, text, placeholder: t('lm.text.search', default: 'Search') %>
 <% end %>
