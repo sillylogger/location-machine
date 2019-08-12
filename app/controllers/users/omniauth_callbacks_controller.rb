@@ -5,6 +5,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     if @user.persisted?
       sign_in_and_redirect @user, event: :authentication
+      set_locale
       set_flash_message(:notice, :success, kind: "facebook".capitalize) if is_navigational_format?
     else
       session["devise.facebook_data"] = request.env["omniauth.auth"]
@@ -12,7 +13,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
   end
 
-  # TODO: bring this additional prompt back in the form of 
+  # TODO: bring this additional prompt back in the form of
   # a flash notification on the profile#edit
   #
   # def after_sign_in_path_for resource
@@ -23,4 +24,11 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   #   end
   # end
 
+  private
+
+  def set_locale
+    I18n.locale = current_user_locale.presence || read_lang_header || I18n.default_locale
+  rescue I18n::InvalidLocale
+    I18n.locale = I18n.default_locale
+  end
 end
