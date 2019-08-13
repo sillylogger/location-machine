@@ -55,14 +55,14 @@ class ApplicationController < ActionController::Base
     I18n.locale = :en
   end
 
-  def get_user_location
+  def get_user_coordinate
     if cookies[:latitude].present?
-      @user_location = [cookies[:latitude], cookies[:longitude]]
+      @user_coordinate = [cookies[:latitude], cookies[:longitude]]
     elsif @current_user && @current_user.latest_coordinate
       coordinate = @current_user.latest_coordinate
-      @user_location = [coordinate.latitude, coordinate.longitude]
+      @user_coordinate = [coordinate.latitude, coordinate.longitude]
     else
-      @user_location = Setting.map_center.split(',').map(&:to_f)
+      @user_coordinate = Setting.map_center.split(',').map(&:to_f)
     end
   end
 end
