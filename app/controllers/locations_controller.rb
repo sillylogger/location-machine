@@ -2,6 +2,7 @@ class LocationsController < ApplicationController
 
   before_action :authenticate_user!,  except: [:index, :show]
   before_action :set_location,        only:   [:edit, :update, :destroy]
+  before_action :get_user_coordinate, only: [:index]
 
   # GET /
   def index
@@ -9,6 +10,7 @@ class LocationsController < ApplicationController
     @locations = @locations.in_bounds(bounds_params) if bounds_params.present?
     @locations = @locations.newest.limit(Setting.site_limit_location)
     @latest_coordinate = @current_user.latest_coordinate if @current_user
+    @items = Item.latest_in_distance(@user_coordinate).page(1).per(10)
 
     respond_to do |format|
       format.html

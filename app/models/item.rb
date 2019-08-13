@@ -16,6 +16,14 @@ class Item < ApplicationRecord
     }
   }
 
+  scope :latest_in_distance, -> (origin, distance: Setting.site_location_radius) {
+    joins(:location)
+      .within(distance, origin: origin)
+      .latest
+  }
+
+  scope :latest, -> { order(created_at: :desc) }
+
   validates_presence_of :name
 
   def editor? user

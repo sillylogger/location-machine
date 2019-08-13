@@ -1,5 +1,14 @@
 <div id="map_canvas" class="m--full"></div>
 
+<h4>
+  <%= t('lm.text.newest_items', default: 'Newest items') %>
+</h4>
+<% if @items.count.positive? %>
+  <div class="search-items" id="search-items">
+    <%= render partial: 'item', collection: @items %>
+  </div>
+<% end %>
+
 <script>
   lm.utils.ready(function() {
     var center = <%= Setting.map_center.to_json.html_safe %>;
