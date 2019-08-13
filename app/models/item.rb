@@ -24,6 +24,8 @@ class Item < ApplicationRecord
 
   scope :latest, -> { order(created_at: :desc) }
 
+  attr_accessor :distance
+
   validates_presence_of :name
 
   def editor? user
