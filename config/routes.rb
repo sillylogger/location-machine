@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     resources :items
   end
 
+  resources :items, only: [:index]
+
   get '/search(.:format)' => 'search#index', :as => :search
 
   devise_for :users, controllers: {

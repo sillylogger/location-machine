@@ -3,6 +3,11 @@ require 'rails_helper'
 describe "the MVP flow" do
   let(:location_attributes) { FactoryBot.build :location }
   let(:item_attributes) { FactoryBot.build :item }
+  let(:latitude) { -6.2189898 }
+  let(:longitude) {106.7861758 }
+  let(:coordinate) { FactoryBot.create(:coordinate, latitude: latitude, longitude: longitude, user: user) }
+  let(:location_1) { FactoryBot.create(:location, latitude: latitude, longitude: longitude) }
+  let!(:item_1) { FactoryBot.create(:item, location: location_1) }
 
   include_examples 'user login'
 
@@ -82,6 +87,14 @@ describe "the MVP flow" do
     location = Location.last
     expect(location.latitude).to eq -6.2189898
     expect(location.longitude).to eq 106.7861758
+  end
+
+  it "lets users sign in and see newest items" do
+    visit root_path
+
+    wait_until { page.current_path == root_path }
+    expect(page).to have_content I18n.t('lm.text.newest_items', default: 'Newest items')
+    expect(page).to have_content item_1.name
   end
 end
 

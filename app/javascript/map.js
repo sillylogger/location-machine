@@ -293,6 +293,16 @@ class Map {
     });
   }
 
+  pullNewestItems() {
+    function searchResultsCallback(body) {
+      document
+        .getElementById('items_container')
+        .insertAdjacentHTML('beforeend', body);
+    }
+
+    lm.utils.callAjax('/items.js', searchResultsCallback);
+  }
+
   setCurrentPosition(options) {
     if (!navigator.geolocation) {
       console.log(
@@ -338,6 +348,8 @@ class Map {
 
     currentLocationMarker.setPosition(currentLocation);
     googleMap.panTo(currentLocation);
+
+    this.pullNewestItems();
   }
 
   setCurrentPositionFail(options = {}) {

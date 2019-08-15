@@ -1,0 +1,8 @@
+<% if @items.count.positive? %>
+  <h4>
+    <%= t('lm.text.newest_items', default: 'Newest items') %>
+  </h4>
+  <div class="search-items" id="search-items">
+    <%= render partial: 'item', collection: @items %>
+  </div>
+<% end %>

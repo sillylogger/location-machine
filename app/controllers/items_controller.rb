@@ -1,8 +1,24 @@
 class ItemsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
+  before_action :set_location, only: [:new, :edit, :create, :update, :destroy]
+  before_action :set_item, only: [:edit, :update, :destroy]
+  before_action :get_user_coordinate, only: [:index]
 
-  before_action :authenticate_user!, only: [        :new, :edit, :create, :update, :destroy]
-  before_action :set_location,       only: [        :new, :edit, :create, :update, :destroy]
-  before_action :set_item,           only: [              :edit,          :update, :destroy]
+  protect_from_forgery except: :index
+
+  def index
+    @items = Item.latest_in_distance(@user_coordinate).page(1).per(Setting.number_of_newest_items)
+    @items = @items.map do |item|
+      item.distance = item.distance_to(@user_coordinate.to_latlng)
+      item
+    end
+
+    respond_to do |format|
+      format.js do
+        render layout: false
+      end
+    end
+  end
 
   # GET /locations/1/items/1
   def show
