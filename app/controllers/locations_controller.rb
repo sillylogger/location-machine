@@ -12,7 +12,7 @@ class LocationsController < ApplicationController
     @latest_coordinate = @current_user.latest_coordinate if @current_user
     @items = Item.latest_in_distance(@user_coordinate).page(1).per(10)
     @items = @items.map do |item|
-      item.distance = item.distance_to(@user_coordinate)
+      item.distance = item.distance_to(@user_coordinate.to_latlng)
       item
     end
 

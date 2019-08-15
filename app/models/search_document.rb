@@ -8,8 +8,9 @@ class SearchDocument < PgSearch::Document
 
   pg_search_scope :search_for, against: %i(content)
 
-  scope :for_nearests, -> (origin, text: '', distance: Setting.site_location_radius) {
-    scoped = within(distance, origin: origin).by_distance(origin: origin)
+  scope :for_nearests, -> (coordinate, text: '', distance: Setting.site_location_radius) {
+    latlng = coordinate.to_latlng
+    scoped = within(distance, origin: latlng).by_distance(origin: latlng)
     scoped = scoped.search_for(text) if text.present?
     scoped
   }

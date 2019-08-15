@@ -14,7 +14,7 @@ class SearchController < ApplicationController
     # TODO: follow doc in github, geokit will automate this calculation
     # but it's not working, maybe I miss something in config, will do later
     @items = @items.map do |item|
-      item.distance = item.distance_to(@user_coordinate)
+      item.distance = item.distance_to(@user_coordinate.to_latlng)
       item
     end
 

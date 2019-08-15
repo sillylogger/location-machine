@@ -8,6 +8,7 @@ describe SearchDocument do
     let!(:search_document_4) { FactoryBot.create(:search_document, content: 'cake of Ba Noi') }
     let(:latitude) { -6.2189898 }
     let(:longitude) {106.7861758 }
+    let(:coordinate) { Coordinate.new(latitude: latitude, longitude: longitude) }
 
     before do
       SearchDocument.update(latitude: latitude, longitude: longitude)
@@ -16,13 +17,13 @@ describe SearchDocument do
 
     context 'no text' do
       it 'returns nearest search_documents within distance 50' do
-        expect(SearchDocument.for_nearests([latitude, longitude])).to match_array [search_document_1, search_document_2, search_document_3]
+        expect(SearchDocument.for_nearests(coordinate)).to match_array [search_document_1, search_document_2, search_document_3]
       end
     end
 
     context 'has text' do
       it 'returns nearest search_documents within distance 50 with matched text' do
-        expect(SearchDocument.for_nearests([latitude, longitude], text: 'cake')).to match_array [search_document_1, search_document_2]
+        expect(SearchDocument.for_nearests(coordinate, text: 'cake')).to match_array [search_document_1, search_document_2]
       end
     end
   end

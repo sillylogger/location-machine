@@ -16,9 +16,9 @@ class Item < ApplicationRecord
     }
   }
 
-  scope :latest_in_distance, -> (origin, distance: Setting.site_location_radius) {
+  scope :latest_in_distance, -> (coordinate, distance: Setting.site_location_radius) {
     joins(:location)
-      .within(distance, origin: origin)
+      .within(distance, origin: coordinate.to_latlng)
       .latest
   }
 
