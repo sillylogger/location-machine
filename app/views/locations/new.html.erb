@@ -11,7 +11,7 @@
 
     map.hydrateLatLng('location_latitude', 'location_longitude', 'location_address');
 
-    map.setCurrentPosition({ newLocation: true });
+    map.allocateUserCoordinate({ callback: map.pinCoordinate });
     map.addLocationButton();
   });
 </script>

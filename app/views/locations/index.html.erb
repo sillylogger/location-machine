@@ -9,7 +9,7 @@
     var latestCoordinate = <%= @latest_coordinate.to_json.html_safe %>
     var currentUserId = <%= @current_user&.id.to_json.html_safe %>
 
-    map.setCurrentPosition({ latestCoordinate: latestCoordinate, currentUserId: currentUserId });
+    map.allocateUserCoordinate({ latestCoordinate: latestCoordinate, currentUserId: currentUserId, callback: map.pullNewestItems });
     map.addLocationButton();
 
     var locations = <%= @locations.to_json.html_safe %>;

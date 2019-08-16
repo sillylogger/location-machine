@@ -11,7 +11,7 @@
     var center = <%= Setting.get('map.center').to_json.html_safe %>;
     var map = new lm.Map(center);
 
-    map.setCurrentPosition();
+    map.allocateUserCoordinate();
     map.addLocationButton();
 
     var loc = <%= @location.to_json.html_safe %>;

@@ -144,10 +144,10 @@ class Map {
     return marker;
   }
 
-  addDraggableMarker(position) {
+  addDraggableMarker(latLng) {
     this.destroyLastMarker();
-    this.storeLatLng(position);
-    market = this.addMarker(position, {draggable: true}, [
+    this.storeLatLng(latLng);
+    market = this.addMarker(latLng, {draggable: true}, [
       {
         event: 'dragend',
         callback: e => {
@@ -218,10 +218,10 @@ class Map {
 
       if (places.length == 0) return;
 
-      let location = places[0].geometry.location;
+      let latLng = places[0].geometry.location;
 
-      this.addDraggableMarker(location);
-      this.panTo(location);
+      this.addDraggableMarker(latLng);
+      this.panTo(latLng);
     });
   }
 
@@ -303,10 +303,10 @@ class Map {
     lm.utils.callAjax('/items.js', searchResultsCallback);
   }
 
-  setCurrentPosition(options) {
+  allocateUserCoordinate(options = {}) {
     if (!navigator.geolocation) {
       console.log(
-        'map.setCurrentPosition - navigator.geolocation not available',
+        'map.allocateUserCoordinate - navigator.geolocation not available',
       );
       return false;
     }
@@ -319,13 +319,15 @@ class Map {
     );
   }
 
-  setCurrentPositionSuccess(coordinate, options = {newLocation: false}) {
-    console.log(
-      `map.setCurrentPositionSuccess - success: ${coordinate.latitude}, ${
-        coordinate.longitude
-      }`,
-    );
+  convertCoordinateToLatLng(coordinate) {
+    return new google.maps.LatLng(coordinate.latitude, coordinate.longitude);
+  }
 
+  pinCoordinate(coordinate) {
+    this.addDraggableMarker(this.convertCoordinateToLatLng(coordinate));
+  }
+
+  setPosition(coordinate, options) {
     if (!coordinate.latitude) {
       return;
     }
@@ -333,31 +335,38 @@ class Map {
     document.cookie = `latitude=${coordinate.latitude}`;
     document.cookie = `longitude=${coordinate.longitude}`;
 
-    if (!options.coordinateFromHistory && options.currentUserId) {
+    let latLng = this.convertCoordinateToLatLng(coordinate);
+
+    currentLocationMarker.setPosition(latLng);
+    googleMap.panTo(latLng);
+
+    if (options.callback) {
+      options.callback.bind(this)(coordinate);
+    }
+  }
+
+  setCurrentPositionSuccess(coordinate, options) {
+    console.log(
+      `Allocate user coordinate successfully: ${coordinate.latitude}, ${
+        coordinate.longitude
+      }`,
+    );
+
+    if (options.currentUserId) {
       this.pushCoordinate(coordinate, options);
     }
 
-    let currentLocation = new google.maps.LatLng(
-      coordinate.latitude,
-      coordinate.longitude,
-    );
-
-    if (options.newLocation) {
-      this.addDraggableMarker(currentLocation);
-    }
-
-    currentLocationMarker.setPosition(currentLocation);
-    googleMap.panTo(currentLocation);
-
-    this.pullNewestItems();
+    this.setPosition.bind(this)(coordinate, options);
   }
 
-  setCurrentPositionFail(options = {}) {
+  setCurrentPositionFail(options) {
     if (options.latestCoordinate) {
-      this.setCurrentPositionSuccess.bind(this)(options.latestCoordinate, {
-        ...options,
-        coordinateFromHistory: true,
-      });
+      console.log(
+        `Allocate user coordinate failed, get coordinate from history: ${
+          coordinate.latitude
+        }, ${coordinate.longitude}`,
+      );
+      this.setPosition.bind(this)(options.latestCoordinate, options);
     }
   }
 
