@@ -1,7 +1,7 @@
 <% if @items.count.positive? %>
-  <h4>
+  <div class='newest-items__header'>
     <%= t('lm.text.newest_items', default: 'Newest items') %>
-  </h4>
+  </div>
   <div class="newest-items" id="newest-items">
     <%= render partial: 'item', collection: @items %>
   </div>

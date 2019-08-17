@@ -21,6 +21,10 @@ let notJquery = {
     xmlhttp.open('GET', url, true);
     xmlhttp.send();
   },
+  setViewportHeight: function() {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  },
 };
 
 module.exports = notJquery;

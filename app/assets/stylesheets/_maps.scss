@@ -5,7 +5,7 @@
 }
 
 #map_canvas.m--full {
-  height: calc(95vh - 10rem);
+  height: calc(var(--vh, 1vh) * 100 - 320px - 0.75rem);
 }
 
 #map_canvas.m--reminder {
@@ -34,7 +34,6 @@
 
 #map_canvas {
   .map-info {
-
     &__name {
       margin-bottom: 0.5rem;
     }
@@ -85,6 +84,5 @@
         max-width: 24%;
       }
     }
-
   }
 }

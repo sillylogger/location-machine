@@ -3,6 +3,8 @@
 <div id='items_container'></div>
 
 <script>
+  lm.utils.setViewportHeight();
+
   lm.utils.ready(function() {
     var center = <%= Setting.map_center.to_json.html_safe %>;
     var map = new lm.Map(center);
@@ -15,6 +17,9 @@
     var locations = <%= @locations.to_json.html_safe %>;
     map.placeLocations(locations);
     map.placeLocationsInBounds();
+  });
+  window.addEventListener('resize', () => {
+    lm.utils.setViewportHeight();
   });
 </script>
 

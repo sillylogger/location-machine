@@ -63,22 +63,26 @@
 .newest-items {
   overflow-x: auto;
   white-space: nowrap;
+
+  &__header {
+    margin-bottom: 10px;
+  }
 }
 
 .newest-item {
   padding: 5px;
   width: 130px;
-  height: 200px;
+  height: 170px;
   color: #000;
   font-size: 12px;
   display: inline-block;
   border: 1px solid #eee;
-  margin: 5px;
+  margin-right: 8px;
   background: #fff;
 
   &__image {
     padding: 0;
-    margin: 10px auto;
+    margin: 5px auto;
     text-align: center;
 
     img {
@@ -99,7 +103,7 @@
     }
 
     &__name {
-      height: 36px;
+      height: 18px;
       overflow: hidden;
       white-space: initial;
       margin-bottom: 5px;
