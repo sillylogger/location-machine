@@ -14,7 +14,6 @@
 }
 
 .search-items {
-
 }
 
 .search-item {
@@ -43,6 +42,55 @@
 
     &__name {
       margin-bottom: 5px;
+    }
+  }
+
+  &__distance {
+    margin: auto;
+    width: 50px;
+    color: #999;
+    text-align: right;
+  }
+}
+
+.newest-item {
+  padding: 5px;
+  width: 130px;
+  height: 200px;
+  color: #000;
+  font-size: 12px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  margin: 0 5px;
+  background: #fff;
+
+  &__image {
+    padding: 0;
+    margin: 10px auto;
+    text-align: center;
+
+    img {
+      width: 85px;
+      height: 85px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+  }
+
+  &__content {
+    text-align: center;
+
+    p {
+      margin-bottom: 0px;
+    }
+
+    &__price {
+      color: #9bbd65;
+    }
+
+    &__name {
+      height: 36px;
+      overflow: hidden;
     }
   }
 

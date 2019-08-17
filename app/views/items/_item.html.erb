@@ -1,20 +1,20 @@
-<%= link_to item.pretty_path, class: 'search-item' do %>
-  <div class='search-item__image'>
+<%= link_to item.pretty_path, class: 'newest-item' do %>
+  <div class='newest-item__image'>
     <% if item.has_image? %>
       <%= image_tag item.image_urls[:thumb] %>
     <% else %>
       <%= image_tag Setting.site_logo %>
     <% end %>
   </div>
-  <div class='search-item__content'>
-    <p class='search-item__content__name'>
+  <div class='newest-item__content'>
+    <p class='newest-item__content__name'>
       <%= item.name %>
     </p>
-    <p class='search-item__content__price'>
+    <p class='newest-item__content__price'>
       <%= to_currency(item.price) %>
     </p>
   </div>
-  <span class='search-item__distance'>
+  <div class='newest-item__distance'>
     <%= item.distance.round(1) %> km
-  </span>
+  </div>
 <% end %>
