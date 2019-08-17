@@ -72,7 +72,7 @@
   color: #000;
   font-size: 12px;
   display: inline-block;
-  border: 1px solid #ccc;
+  border: 1px solid #eee;
   margin: 5px;
   background: #fff;
 
@@ -86,30 +86,29 @@
       height: 85px;
       object-fit: cover;
       border-radius: 50%;
+      border: 1px solid #aaa;
     }
   }
 
   &__content {
     text-align: center;
 
-    p {
-      margin-bottom: 0px;
-    }
-
     &__price {
       color: #9bbd65;
+      margin-bottom: 0px;
     }
 
     &__name {
       height: 36px;
       overflow: hidden;
+      white-space: initial;
+      margin-bottom: 5px;
     }
   }
 
   &__distance {
     margin: auto;
-    width: 50px;
     color: #999;
-    text-align: right;
+    text-align: center;
   }
 }
