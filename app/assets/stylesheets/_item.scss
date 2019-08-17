@@ -53,6 +53,11 @@
   }
 }
 
+.newest-items {
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
 .newest-item {
   padding: 5px;
   width: 130px;
@@ -61,7 +66,7 @@
   font-size: 12px;
   display: inline-block;
   border: 1px solid #ccc;
-  margin: 0 5px;
+  margin: 5px;
   background: #fff;
 
   &__image {
