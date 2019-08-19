@@ -6,7 +6,10 @@ class SearchDocument < PgSearch::Document
   acts_as_mappable lat_column_name: :latitude,
                    lng_column_name: :longitude
 
-  pg_search_scope :search_for, against: %i(content)
+  pg_search_scope :search_for,
+    against: %i(content),
+    using: [:tsearch, :trigram],
+    ignoring: :accents
 
   scope :for_nearests, -> (coordinate, text: '', distance: Setting.site_location_radius) {
     latlng = coordinate.to_latlng
