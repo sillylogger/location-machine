@@ -69,8 +69,7 @@
 }
 
 .newest-item {
-  padding: 5px;
-  width: 130px;
+  width: 110px;
   height: 170px;
   color: #000;
   font-size: 12px;
@@ -81,14 +80,13 @@
 
   &__image {
     padding: 0;
-    margin: 5px auto;
+    margin: auto;
     text-align: center;
 
     img {
-      width: 85px;
-      height: 85px;
+      width: 110px;
+      height: 100px;
       object-fit: cover;
-      border: 1px solid #ccc;
     }
   }
 
