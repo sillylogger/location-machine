@@ -25,6 +25,10 @@ let notJquery = {
     let vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`);
   },
+  hideSpinners: () => {
+    element = document.getElementById('spinner');
+    element.className = 'hidden';
+  },
 };
 
 module.exports = notJquery;

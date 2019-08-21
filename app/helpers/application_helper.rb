@@ -15,4 +15,8 @@ module ApplicationHelper
       concat content_tag :span, Setting.site_title, class: 'navbar__title'
     end
   end
+
+  def spinner
+    icon('spinner7', class: 'spinner')
+  end
 end

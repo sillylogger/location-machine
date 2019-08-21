@@ -1,5 +1,9 @@
 <div id="map_canvas" class="m--full"></div>
 
+<div id="spinner">
+  <%= spinner %>
+</div>
+
 <div id='items_container'></div>
 
 <script>
@@ -11,7 +15,7 @@
     var latestCoordinate = <%= @latest_coordinate.to_json.html_safe %>
     var currentUserId = <%= @current_user&.id.to_json.html_safe %>
 
-    map.allocateUserCoordinate({ latestCoordinate: latestCoordinate, currentUserId: currentUserId, callback: map.pullNewestItems });
+    map.allocateUserCoordinate({ latestCoordinate: latestCoordinate, currentUserId: currentUserId, callback: lm.item.pullLatestItems });
     map.addLocationButton();
 
     var locations = <%= @locations.to_json.html_safe %>;
