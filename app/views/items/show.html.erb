@@ -22,12 +22,14 @@
 <% end %>
 
 <section class="item-info">
-  <span class="item-info__price"><%= to_currency(@item.price) %></span>
   <h1 class="item-info__name"><%= @item.name %></h1>
+  <div class="item-info__connect">
+    <%= link_to_chat(user: @item.location.user,
+                     name: @item.name,
+                     url: location_item_url(@location, @item)) %>
+  </div>
+  <div class="item-info__price"><%= to_currency(@item.price) %></div>
   <p class="item-info__description"><%= @item.description %></p>
 </section>
 
 
-<%= link_to_chat(user: @item.location.user,
-                 name: @item.name,
-                 url: location_item_url(@location, @item)) %>

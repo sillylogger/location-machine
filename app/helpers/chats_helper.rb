@@ -2,8 +2,12 @@ module ChatsHelper
   def link_to_chat(user:, name:, url:)
     return unless user.phone.present?
 
-    link_to(t('lm.action.chat', default: 'Click to Chat'),
-            user_chats_path(user_id: user.id, regarding: regarding_info(name, url)))
+    button_to(
+      t('lm.action.connect', default: 'Buy Now'),
+      user_chats_path(user_id: user.id),
+      method: :get,
+      params: { regarding: regarding_info(name, url) }
+    )
   end
 
   def chat_link(url:, label_text:, asset: )

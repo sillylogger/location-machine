@@ -28,6 +28,11 @@
 
 <header class="location-info">
   <h1 class="location-info__name"><%= @location.name %></h1>
+  <div class="location-info__connect">
+    <%= link_to_chat(user: @location.user,
+                     name: @location.name,
+                     url: location_url(@location)) %>
+  </div>
   <p class="location-info__address"><%= @location.address %></p>
   <p class="location-info__description"><%= @location.description %></p>
 </header>
@@ -56,6 +61,3 @@
   <% end %>
 </ul>
 
-<%= link_to_chat(user: @location.user,
-                 name: @location.name,
-                 url: location_url(@location)) %>
