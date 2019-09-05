@@ -4,7 +4,7 @@ Welcome!  Location Machine is an attempt to connect: GPS points, quality photos,
 
 Right now it kinda looks like this:
 
-![Screenshot](/app/assets/images/location-machine-dot-io-mvp.png)
+![Screenshot](app/assets/images/Screenshot_20190905-194102_Chrome.jpg)
 
 Background: there are many uses for a generic app of this nature: event organization, photo blogging, geocaching...
 
