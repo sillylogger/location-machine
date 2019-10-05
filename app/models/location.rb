@@ -9,6 +9,10 @@ class Location < ApplicationRecord
       longitude: location.longitude
     }
   }
+  pg_search_scope :search_for,
+    against: [:name, :description],
+    using: [:tsearch, :trigram],
+    ignoring: :accents
 
   attr_accessor :distance
   acts_as_mappable lat_column_name: :latitude,
