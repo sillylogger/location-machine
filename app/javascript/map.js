@@ -29,6 +29,7 @@ let mapOptions = {
 
 class Map {
   constructor(rawCenterString) {
+    window.searchQuery = '';
     if (!window.google) {
       console.log('map.constructor - google not loaded');
       return false;
@@ -94,6 +95,7 @@ class Map {
     return new URLSearchParams({
       'bounds[south_west]': window.bounds[0],
       'bounds[north_east]': window.bounds[1],
+      query: window.searchQuery,
     });
   }
 
