@@ -86,18 +86,29 @@ class Map {
     }
   }
 
+  setBounds(bounds) {
+    window.bounds = bounds;
+  }
+
+  getSearchParams() {
+    return new URLSearchParams({
+      'bounds[south_west]': window.bounds[0],
+      'bounds[north_east]': window.bounds[1],
+    });
+  }
+
   placeLocationsInBounds() {
     googleMap.addListener('idle', () => {
       let mapBounds = googleMap.getBounds();
       let swPoint = mapBounds.getSouthWest();
       let nePoint = mapBounds.getNorthEast();
 
-      let params = new URLSearchParams({
-        'bounds[south_west]': [swPoint.lat(), swPoint.lng()],
-        'bounds[north_east]': [nePoint.lat(), nePoint.lng()],
-      });
+      this.setBounds([
+        [swPoint.lat(), swPoint.lng()],
+        [nePoint.lat(), nePoint.lng()],
+      ]);
 
-      fetch(`/locations.json?${params.toString()}`)
+      fetch(`/locations.json?${this.getSearchParams().toString()}`)
         .then(response => {
           if (!response.ok) {
             throw Error(response.statusText);
