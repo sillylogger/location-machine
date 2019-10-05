@@ -99,6 +99,22 @@ class Map {
     });
   }
 
+  fetchLocationsAndRenderOnMap() {
+    fetch(`/locations.json?${this.getSearchParams().toString()}`)
+      .then(response => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response.json();
+      })
+      .then(responseAsJson => {
+        this.placeLocations(responseAsJson);
+      })
+      .catch(err => {
+        console.log('Fetch Error: ', err);
+      });
+  }
+
   placeLocationsInBounds() {
     googleMap.addListener('idle', () => {
       let mapBounds = googleMap.getBounds();
@@ -109,20 +125,7 @@ class Map {
         [swPoint.lat(), swPoint.lng()],
         [nePoint.lat(), nePoint.lng()],
       ]);
-
-      fetch(`/locations.json?${this.getSearchParams().toString()}`)
-        .then(response => {
-          if (!response.ok) {
-            throw Error(response.statusText);
-          }
-          return response.json();
-        })
-        .then(responseAsJson => {
-          this.placeLocations(responseAsJson);
-        })
-        .catch(err => {
-          console.log('Fetch Error: ', err);
-        });
+      this.fetchLocationsAndRenderOnMap();
     });
   }
 
