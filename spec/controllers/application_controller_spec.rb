@@ -6,6 +6,10 @@ describe ApplicationController do
     def index
       render plain: 'ApplicationController#index'
     end
+
+    def after_sign_in_path_for(resource)
+      super resource
+    end
   end
 
   describe '#force_canonical_host' do
@@ -52,6 +56,26 @@ describe ApplicationController do
       request.headers.merge!({ 'HTTP_ACCEPT_LANGUAGE' => 'id' })
       get :index
       expect(I18n.locale).to eq(:id)
+    end
+  end
+
+  describe '#after_sign_in_path_for resource' do
+    let(:result) { controller.after_sign_in_path_for(subject) }
+
+    context 'resource is normal user' do
+      subject { FactoryBot.create :user }
+
+      it 'redirects to root path' do
+        expect(result).to eq root_path
+      end
+    end
+
+    context 'resource is admin user' do
+      subject { FactoryBot.create :user, :with_admin }
+
+      it 'redirects to root path' do
+        expect(result).to eq root_path
+      end
     end
   end
 end
