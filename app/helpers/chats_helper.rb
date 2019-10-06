@@ -3,7 +3,7 @@ module ChatsHelper
     return unless user.phone.present?
 
     button_to(
-      t('lm.action.connect', default: 'Buy Now'),
+      t('lm.action.connect', default: 'Click to Chat'),
       user_chats_path(user_id: user.id),
       method: :get,
       params: { regarding: regarding_info(name, url) }

@@ -20,6 +20,7 @@ RSpec.shared_examples "admin login" do |parameter|
     visit new_user_session_path
     click_link 'Login with Facebook'
 
+    visit admin_dashboard_path
     wait_until { page.current_path == admin_dashboard_path }
   end
 end
