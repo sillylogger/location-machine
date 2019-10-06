@@ -113,7 +113,12 @@ class User < ApplicationRecord
     coordinates.order(created_at: :desc).first
   end
 
-  def temp_email?
-    email.match? TEMP_EMAIL_REGEX
+  def email
+    return "" if self[:email].match?(TEMP_EMAIL_REGEX)
+    self[:email]
+  end
+
+  def email_required?
+    false
   end
 end

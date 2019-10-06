@@ -16,10 +16,6 @@ describe User do
   describe "#prompt_additional_information?" do
     let(:user) { FactoryBot.build(:user) }
 
-    it "doesn't bother the users if they haven't supplied additional information" do
-      expect(user.prompt_additional_information?).to be false
-    end
-
     it "bother the users if they are missing their name" do
       user.name = ''
       expect(user.prompt_additional_information?).to be true
@@ -78,6 +74,17 @@ describe User do
 
     it 'returns latest coordinate of user' do
       expect(user.latest_coordinate.id).to eq Coordinate.order(:created_at).last.id
+    end
+  end
+
+  describe "#email" do 
+    let(:user) { FactoryBot.build :user,  email: 'change@me-123-facebook.com' }
+    it "doesn't show the facebook fake email" do
+      expect(user).to be_valid
+      expect(user.email).to eq('')
+
+      user.email = 'tommy@example.com'
+      expect(user.email).to eq('tommy@example.com')
     end
   end
 end
