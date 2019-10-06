@@ -112,4 +112,8 @@ class User < ApplicationRecord
   def latest_coordinate
     coordinates.order(created_at: :desc).first
   end
+
+  def temp_email?
+    email.match? TEMP_EMAIL_REGEX
+  end
 end

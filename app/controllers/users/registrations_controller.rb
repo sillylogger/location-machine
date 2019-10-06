@@ -27,7 +27,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
       :locale,
       :email,
       :phone
-    )
+    ).reject { |k, v| v.empty? }
   end
-
 end
