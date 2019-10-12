@@ -1,90 +1,95 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-    <title><%= Setting.site_title %></title>
+  <title><%= Setting.site_title %></title>
 
-    <meta property="og:site_name" content="<%= Setting.site_title %>" />
-    <% if content_for?(:meta_og) %>
-      <%= yield(:meta_og) %>
-    <% else %>
-      <meta property="og:title" content="<%= Setting.site_title %>" />
-      <meta property="og:type" content="website" />
-      <meta property="og:url" content="<%= request.url %>" />
-      <!-- TODO: og:image once Settings support images -->
-      <meta property="og:description" content="<%= Setting.site_tagline %>" />
+  <meta property="og:site_name" content="<%= Setting.site_title %>"/>
+  <% if content_for?(:meta_og) %>
+    <%= yield(:meta_og) %>
+  <% else %>
+    <meta property="og:title" content="<%= Setting.site_title %>"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="<%= request.url %>"/>
+    <!-- TODO: og:image once Settings support images -->
+    <meta property="og:description" content="<%= Setting.site_tagline %>"/>
 
-      <meta name="description" content="<%= Setting.site_tagline %>" />
-    <% end %>
+    <meta name="description" content="<%= Setting.site_tagline %>"/>
+  <% end %>
 
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
 
-    <%= render 'shared/testing' %>
-    <%= render 'shared/tracking' %>
+  <%= render 'shared/testing' %>
+  <%= render 'shared/tracking' %>
 
-    <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{ Credential.fetch(:google, :maps_api_key) }&libraries=places".html_safe %>
-    <%= javascript_pack_tag 'application' %>
+  <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{ Credential.fetch(:google, :maps_api_key) }&libraries=places".html_safe %>
+  <%= javascript_pack_tag 'application' %>
 
-    <%= Setting.site_custom_html %>
-  </head>
+  <%= Setting.site_custom_html %>
+</head>
 
-  <body>
+<body>
 
-    <header id="navbar">
-      <div class="container">
-        <h2>
-          <%= home_link %>
-        </h2>
+<header id="navbar">
+  <div class="container">
+    <h2>
+      <%= home_link %>
+    </h2>
 
-        <%- if user_signed_in? %>
-          <p>
-            <%= link_to edit_user_registration_path do %>
-              <%- if current_user.avatar_url? %>
-                <img src="<%= current_user.avatar_url.sub('http:', 'https:') %>" alt="current_user.avatar_url" />
-              <%- end %>
-              <%= " #{current_user.name} " %>
-            <%- end %>
-          </p>
-        <%- else %>
-          <%- unless current_page?(:controller => 'devise/sessions', :action => 'new') %>
-            <%= render "devise/shared/sign_in_btn" %>
+    <%- if user_signed_in? %>
+      <p>
+        <%= link_to edit_user_registration_path do %>
+          <%- if current_user.avatar_url? %>
+            <img src="<%= current_user.avatar_url.sub('http:', 'https:') %>" alt="current_user.avatar_url"/>
           <%- end %>
+          <%= " #{current_user.name} " %>
         <%- end %>
-      </div>
-    </header>
+      </p>
+    <%- else %>
+      <%- unless current_page?(:controller => 'devise/sessions', :action => 'new') %>
+        <%= render "devise/shared/sign_in_btn" %>
+      <%- end %>
+    <%- end %>
+  </div>
+</header>
 
-    <div id="main">
-      <div class="container">
-        <%= yield %>
-      </div>
-    </div>
+<div id="main">
+  <div class="container">
+    <%= yield %>
+  </div>
+</div>
 
-    <footer class="actions">
-      <div class="container">
-        <a class='actions__action' name='search' href='/search?back_path=<%= request.path %>'>
-          <%= icon 'search2' %>
-        </a>
-        <a class='actions__action' href='<%= root_path %>'>
-          <%= icon 'home4' %>
-        </a>
-        <a class='actions__action' name='create location' href='<%= new_location_path %>'>
-          <%= icon 'plus3' %>
-        </a>
-      </div>
-    </footer>
+<footer class="actions">
+  <div class="container">
+    <a class='actions__action' name='search' href='/search?back_path=<%= request.path %>'>
+      <%= icon 'search2' %>
+    </a>
+    <a class='actions__action' href='<%= root_path %>'>
+      <%= icon 'home4' %>
+    </a>
+    <a class='actions__action' name='create location' id="create_location" href='<%= new_location_path %>'>
+      <%= icon 'plus3' %>
+    </a>
+    <% if not current_page?(root_url) %>
+      <a class='actions__action' name="share location" id="share_location" href="#" hidden="true">
+        <%= icon 'share' %>
+      </a>
+    <% end %>
+  </div>
+</footer>
 
-    <footer id="notification">
-      <div class="container">
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
-      </div>
-    </footer>
+<footer id="notification">
+  <div class="container">
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+  </div>
+</footer>
 
-  </body>
+</body>
 </html>
