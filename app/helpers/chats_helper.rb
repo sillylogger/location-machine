@@ -10,7 +10,7 @@ module ChatsHelper
     )
   end
 
-  def chat_link(url:, label_text:, asset: )
+  def chat_link(url:, label_text:, asset:)
     tag.li class: 'chat-links__link' do
       link_to(url, target: '_blank') do
         concat icon(asset, class: 'chat-links__icon m--clickable')
@@ -20,11 +20,11 @@ module ChatsHelper
   end
 
   def normalize_phone_number(phone_number)
-    phone_number.gsub(/\-|\+/, '').sub(/^0*/, '')
+    phone_number.gsub(/\D/, '').sub(/^0*/, '')
   end
 
   def native_chat_url messenger, id, regarding: nil
-    normalized = normalize_phone_number(id)
+    normalized     = normalize_phone_number(id)
     text_parameter = ""
 
     if regarding.present?
@@ -43,7 +43,7 @@ module ChatsHelper
   end
 
   def call_url(phone_number)
-    "tel:#{normalize_phone_number(phone_number)}"
+    "tel:#{phone_number}"
   end
 
   def regarding_info(name, url)
