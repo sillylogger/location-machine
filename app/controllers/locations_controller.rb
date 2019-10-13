@@ -6,7 +6,14 @@ class LocationsController < ApplicationController
 
   # GET /
   def index
-    @locations = LocationQuery.new({ query: params[:query], bounds: bounds_params }).match_in_bounds
+    if params[:query].present?
+      service = GetLocationsBySearch.call({ query: params[:query], bounds: bounds_params })
+      @search_documents = service.search_documents
+      @locations = service.locations
+    else
+      @locations = LocationQuery.new({ query: params[:query], bounds: bounds_params }).match_in_bounds
+    end
+
     @latest_coordinate = @current_user.latest_coordinate if @current_user
 
     respond_to do |format|

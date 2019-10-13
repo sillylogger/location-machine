@@ -4,7 +4,7 @@ describe SearchDocumentQuery do
   let(:query) { SearchDocumentQuery.new(params) }
   let(:bounds) { [[0, 0], [1, 1]] }
 
-  describe '.match_in_bounds' do
+  describe '#match_in_bounds' do
     context 'bounds params is empty' do
       let(:params) { {} }
 
