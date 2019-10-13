@@ -1,4 +1,5 @@
 utils = require('not-jquery');
+itemUtils = require('item');
 
 let googleMap = null,
   lastMarker = null,
@@ -122,6 +123,11 @@ class Map {
         console.log('Fetch Error: ', err);
         utils.hideSpinners();
       });
+    if (this.searchQuery != '') {
+      itemUtils.pullSearchResults(
+        `/locations.js?${this.getSearchParams().toString()}`,
+      );
+    }
   }
 
   placeLocationsInBounds() {
@@ -141,6 +147,9 @@ class Map {
   onSearchSubmit(query, event) {
     this.setSearchQuery(query);
     this.fetchLocationsAndRenderOnMap();
+    if (this.searchQuery == '') {
+      itemUtils.pullLatestItems();
+    }
     event.preventDefault();
   }
 

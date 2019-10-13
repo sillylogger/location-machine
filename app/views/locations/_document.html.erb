@@ -1,4 +1,4 @@
-<%= link_to document.searchable.pretty_path, class: 'newest-item' do %>
+<%= link_to document.reload.searchable.pretty_path, class: 'newest-item' do %>
   <div class='newest-item__image'>
     <% if document.searchable.has_image? %>
       <%= image_tag document.searchable.image_urls[:thumb] %>
