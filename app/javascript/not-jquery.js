@@ -29,6 +29,10 @@ let notJquery = {
     element = document.getElementById('spinner');
     element.className = 'hidden';
   },
+  showSpinners: () => {
+    element = document.getElementById('spinner');
+    element.classList.remove('hidden');
+  },
 };
 
 module.exports = notJquery;

@@ -1,3 +1,5 @@
+utils = require('not-jquery');
+
 let googleMap = null,
   lastMarker = null,
   lastInfoWindow = null,
@@ -104,6 +106,7 @@ class Map {
   }
 
   fetchLocationsAndRenderOnMap() {
+    utils.showSpinners();
     fetch(`/locations.json?${this.getSearchParams().toString()}`)
       .then(response => {
         if (!response.ok) {
@@ -113,9 +116,11 @@ class Map {
       })
       .then(responseAsJson => {
         this.placeLocations(responseAsJson);
+        utils.hideSpinners();
       })
       .catch(err => {
         console.log('Fetch Error: ', err);
+        utils.hideSpinners();
       });
   }
 
@@ -131,6 +136,12 @@ class Map {
       ]);
       this.fetchLocationsAndRenderOnMap();
     });
+  }
+
+  onSearchSubmit(query, event) {
+    this.setSearchQuery(query);
+    this.fetchLocationsAndRenderOnMap();
+    event.preventDefault();
   }
 
   setLastMarker(marker) {
