@@ -6,9 +6,7 @@ class LocationsController < ApplicationController
 
   # GET /
   def index
-    @locations = Location.for_display
-    @locations = @locations.in_bounds(bounds_params) if bounds_params.present?
-    @locations = @locations.newest.limit(Setting.site_limit_location)
+    @locations = LocationQuery.new({ query: params[:query], bounds: bounds_params }).match_in_bounds
     @latest_coordinate = @current_user.latest_coordinate if @current_user
 
     respond_to do |format|
@@ -85,5 +83,4 @@ class LocationsController < ApplicationController
   def bounds_params
     [params[:bounds][:south_west], params[:bounds][:north_east]] if params[:bounds].present?
   end
-
 end

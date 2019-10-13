@@ -21,6 +21,7 @@
     var locations = <%= @locations.to_json.html_safe %>;
     map.placeLocations(locations);
     map.placeLocationsInBounds();
+    map.setSearchQuery("<%= params[:query] %>")
   });
   window.addEventListener('resize', () => {
     lm.utils.setViewportHeight();

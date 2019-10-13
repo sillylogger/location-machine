@@ -29,7 +29,7 @@ let mapOptions = {
 
 class Map {
   constructor(rawCenterString) {
-    window.searchQuery = '';
+    this.setSearchQuery('');
     if (!window.google) {
       console.log('map.constructor - google not loaded');
       return false;
@@ -88,14 +88,18 @@ class Map {
   }
 
   setBounds(bounds) {
-    window.bounds = bounds;
+    this.bounds = bounds;
+  }
+
+  setSearchQuery(query) {
+    this.searchQuery = query;
   }
 
   getSearchParams() {
     return new URLSearchParams({
-      'bounds[south_west]': window.bounds[0],
-      'bounds[north_east]': window.bounds[1],
-      query: window.searchQuery,
+      'bounds[south_west]': this.bounds[0],
+      'bounds[north_east]': this.bounds[1],
+      query: this.searchQuery,
     });
   }
 
