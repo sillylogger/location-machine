@@ -17,11 +17,4 @@ class SearchDocument < PgSearch::Document
     scoped = scoped.search_for(text) if text.present?
     scoped
   }
-
-  scope :for_bounds, -> (bounds, text: '') {
-    scoped = self
-    scoped = scoped.in_bounds(bounds) if bounds.present?
-    scoped = scoped.search_for(text) if text.present?
-    scoped
-  }
 end
