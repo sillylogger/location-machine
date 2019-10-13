@@ -11,6 +11,11 @@ class LocationsController < ApplicationController
       service = GetLocationsBySearch.call({ query: params[:query], bounds: bounds_params })
       @search_documents = service.search_documents
       @locations = service.locations
+      @search_documents = @search_documents.map do |document|
+        document.reload
+        document.distance = document.distance_to(@user_coordinate.to_latlng)
+        document
+      end
     else
       @locations = LocationQuery.new({ query: params[:query], bounds: bounds_params }).match_in_bounds
     end
