@@ -1,8 +1,9 @@
 class LocationsController < ApplicationController
-
   before_action :authenticate_user!,  except: [:index, :show]
   before_action :set_location,        only:   [:edit, :update, :destroy]
   before_action :get_user_coordinate, only: [:index]
+
+  protect_from_forgery except: :index
 
   # GET /
   def index
@@ -18,7 +19,8 @@ class LocationsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render json: @locations.to_json}
+      format.json { render json: @locations.to_json }
+      format.js { render layout: false }
     end
   end
 

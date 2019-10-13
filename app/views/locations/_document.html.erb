@@ -1,0 +1,16 @@
+<%= link_to document.searchable.pretty_path, class: 'newest-item' do %>
+  <div class='newest-item__image'>
+    <% if document.searchable.has_image? %>
+      <%= image_tag document.searchable.image_urls[:thumb] %>
+    <% else %>
+      <%= image_tag Setting.site_logo %>
+     <% end %>
+  </div>
+  <div class='newest-item__content'>
+    <p class='newest-item__content__name'>
+      <%= document.searchable.name %>
+    </p>
+  </div>
+  <div class='newest-item__distance'>
+  </div>
+<% end %>

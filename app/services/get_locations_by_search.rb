@@ -13,7 +13,7 @@ class GetLocationsBySearch < Base
   private
 
   def location_ids
-    search_documents.map do |document|
+    @search_documents.map do |document|
       if document.searchable_type = Location.to_s
         document.searchable_id
       else document.searchable_type = Item.to_s
