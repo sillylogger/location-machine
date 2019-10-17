@@ -11,7 +11,7 @@
   </div>
 
   <div class="field">
-    <%= f.email_field :email, placeholder: 'you@example.com', autocomplete: "email", required: true %>
+    <%= f.email_field :email, placeholder: 'you@example.com', autocomplete: "email" %>
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <em class="help">Currently waiting confirmation for: <%= resource.unconfirmed_email %></em>
     <% end %>

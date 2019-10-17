@@ -44,3 +44,6 @@ spec/.rspec-examples.txt
 /node_modules
 yarn-debug.log*
 .yarn-integrity
+
+# ignore IDE files
+.idea

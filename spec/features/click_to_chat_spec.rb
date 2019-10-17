@@ -5,6 +5,8 @@ describe 'Click to chat' do
   let(:location) { item.location }
   let(:seller) { location.user }
 
+  let(:action_connect_text) { I18n.t('lm.action.connect', default: 'Click to Chat') }
+
   include_examples 'user login'
 
   context 'location page' do
@@ -12,9 +14,8 @@ describe 'Click to chat' do
       it "allow user to click to chat with seller" do
         visit location_path(location.id)
 
-        expect(page).to have_content("Click to Chat")
-
-        click_link "Click to Chat"
+        expect(page).to have_button(action_connect_text)
+        click_button action_connect_text
 
         wait_until { page.current_path == user_chats_path(user_id: seller.id) }
 
@@ -32,7 +33,7 @@ describe 'Click to chat' do
       it "hide click to chat" do
         visit location_path(location.id)
 
-        expect(page).not_to have_content("Click to Chat")
+        expect(page).not_to have_button(action_connect_text)
       end
     end
   end
@@ -41,9 +42,8 @@ describe 'Click to chat' do
     it "allow user to click to chat with seller in show item page" do
       visit location_item_path(location_id: location.id, id: item.id)
 
-      expect(page).to have_content("Click to Chat")
-
-      click_link "Click to Chat"
+      expect(page).to have_button(action_connect_text)
+      click_button action_connect_text
 
       wait_until { page.current_path == user_chats_path(user_id: seller.id) }
 

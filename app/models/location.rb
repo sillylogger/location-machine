@@ -1,7 +1,7 @@
 class Location < ApplicationRecord
   include ::ImageHelper
+  include PgSearch::Model
   include Rails.application.routes.url_helpers
-  include PgSearch
 
   multisearchable against: [:name, :description], additional_attributes: -> (location) {
     {

@@ -1,5 +1,5 @@
 class SearchDocument < PgSearch::Document
-  include PgSearch
+  include PgSearch::Model
 
   attr_accessor :distance
 

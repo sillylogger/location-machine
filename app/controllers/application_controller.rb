@@ -32,8 +32,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for resource
-    default_path = resource.can_view_admin? ? admin_dashboard_path : root_path
-    stored_location_for(resource) || default_path
+    stored_location_for(resource) || root_path
   end
 
 

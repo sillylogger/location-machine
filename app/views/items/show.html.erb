@@ -9,7 +9,7 @@
 <% end %>
 
 
-<%= link_to t('lm.action.back', default: "Back"), location_path(@item.location) %>
+<%= link_to @item.location.name, location_path(@item.location) %> > <%= @item.name %>
 
 <% if @item.editor? current_user %>
   <%= link_to t('lm.action.edit', default: "Edit"), edit_location_item_path(@location, @item) %>

@@ -1,22 +1,22 @@
 GIT
   remote: https://github.com/DatabaseCleaner/database_cleaner.git
-  revision: 75c9666bb6fe2b19cbdfd108cfeed0b162c51c0c
+  revision: 85767fa7011355049aa526ffa1f99c6972b98fbf
   specs:
     database_cleaner (1.8.0)
 
 GIT
   remote: https://github.com/cloudinary/cloudinary_gem.git
-  revision: aadae59c34d51ad89552a6435116df8821d66b9a
+  revision: d529213d93780d990048edab76fbe203838b153a
   specs:
-    cloudinary (1.11.1)
+    cloudinary (1.12.0)
       aws_cf_signer
       rest-client
 
 GIT
   remote: https://github.com/gregbell/active_admin.git
-  revision: 3dc13b67bc9ac5a729b960eee7bf40008cb45dd7
+  revision: 45ac6a00be09c64809bd29ce6b88f417bc5f0c09
   specs:
-    activeadmin (2.1.0)
+    activeadmin (2.4.0)
       arbre (~> 1.2, >= 1.2.1)
       formtastic (~> 3.1)
       formtastic_i18n (~> 0.4)
@@ -31,9 +31,9 @@ GIT
 
 GIT
   remote: https://github.com/jnicklas/capybara.git
-  revision: 62bd0f97c5fd8956b0d0539c9d2798b68b3e4ea8
+  revision: 156038a08491fd187b45cdf67670688d2f4955a7
   specs:
-    capybara (3.24.0)
+    capybara (3.29.0)
       addressable
       mini_mime (>= 0.1.3)
       nokogiri (~> 1.8)
@@ -51,17 +51,17 @@ GIT
 
 GIT
   remote: https://github.com/paper-trail-gem/paper_trail.git
-  revision: f75893ee1965519f7c360563784729dd9c30c4df
+  revision: 015ed5381764386bab9d274e379df11ea40548a7
   specs:
-    paper_trail (10.3.0)
-      activerecord (>= 4.2, < 6.1)
+    paper_trail (10.3.1)
+      activerecord (>= 4.2)
       request_store (~> 1.1)
 
 GIT
   remote: https://github.com/plataformatec/devise.git
-  revision: 81cb5b00f46cc24e6f41d6f1841ecaf442013898
+  revision: f48b6f1651233a39c52dd70e9ac6c35f70086062
   specs:
-    devise (4.6.2)
+    devise (4.7.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0)
@@ -70,21 +70,21 @@ GIT
 
 GIT
   remote: https://github.com/puma/puma.git
-  revision: e68a462679177524e1444509a2347fb7473eb014
+  revision: 0593cef9dec659a5febccebe03e7a1bc5c73fd5e
   specs:
-    puma (3.12.1)
+    puma (4.2.0)
       nio4r (~> 2.0)
 
 GIT
   remote: https://github.com/rspec/rspec-core.git
-  revision: 466fb758ea977ca2ec881685bdf8443fcde19127
+  revision: b2df62e42ad8cc8d1710f4f47f39880d4bf9dfd2
   specs:
     rspec-core (3.9.0.pre)
       rspec-support (= 3.9.0.pre)
 
 GIT
   remote: https://github.com/rspec/rspec-expectations.git
-  revision: b1d15ac6d05532949b55ad02d360232e1432e91e
+  revision: fc0bcb59e4db5d620429b418e91978f3ea9f0f8b
   specs:
     rspec-expectations (3.9.0.pre)
       diff-lcs (>= 1.2.0, < 2.0)
@@ -92,7 +92,7 @@ GIT
 
 GIT
   remote: https://github.com/rspec/rspec-mocks.git
-  revision: b789d70b76d5bde224796de6e5d2c5af2bbd291b
+  revision: 10243d77ce5ab587c09c94bfa9ef9ec156d138e7
   specs:
     rspec-mocks (3.9.0.pre)
       diff-lcs (>= 1.2.0, < 2.0)
@@ -100,7 +100,7 @@ GIT
 
 GIT
   remote: https://github.com/rspec/rspec-rails.git
-  revision: 75e66e4f6bca255f20b56b6246f9b4fad292af87
+  revision: 203e893e26546ea312ae05c01432b22b2c961f9b
   specs:
     rspec-rails (3.9.0.pre)
       actionpack (>= 3.0)
@@ -113,41 +113,37 @@ GIT
 
 GIT
   remote: https://github.com/rspec/rspec-support.git
-  revision: 667ad802a4fadd153044e6223a8561a1e143e202
+  revision: e179d8f208a4a8a5413e7fe10cb36ba20331bf23
   specs:
     rspec-support (3.9.0.pre)
 
 GIT
   remote: https://github.com/thoughtbot/bitters.git
-  revision: 0444f914165e23b2af49ee14146eda335f60636d
+  revision: 6ce9f78c734fd28d1093ed2a55f67b24e00cabb5
   specs:
-    bitters (1.8.0)
-      bourbon (~> 5.0)
-      sass (~> 3.4)
+    bitters (2.0.1)
       thor (~> 0.19)
 
 GIT
   remote: https://github.com/thoughtbot/bourbon.git
-  revision: 59abd363a9873fbc4642ee9c81339098e7becb48
+  revision: d42e7f9f51b73049533cad6590c6ac1654f4b5b7
   specs:
-    bourbon (5.1.0)
-      sass (~> 3.4)
+    bourbon (6.0.0)
       thor (~> 0.19)
 
 GIT
   remote: https://github.com/thoughtbot/factory_bot_rails.git
-  revision: 3815aae2b9e4a5c5c3027a2ee8851f44b7c6a4da
+  revision: ce94dc1a39c642dbb56e8d005f4c6a3ab6053bd5
   specs:
-    factory_bot_rails (5.0.2)
-      factory_bot (~> 5.0.2)
+    factory_bot_rails (5.1.1)
+      factory_bot (~> 5.1.0)
       railties (>= 4.2.0)
 
 GIT
   remote: https://github.com/thoughtbot/neat.git
-  revision: 134d7453505fd1e3961aa65dcfd6657db1246e1d
+  revision: e00e7943f1f968fbfe1a20138a03752a53c144bc
   specs:
-    neat (3.0.1)
-      sass (~> 3.4)
+    neat (4.0.0)
       thor (~> 0.19)
 
 GEM
@@ -194,8 +190,8 @@ GEM
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    addressable (2.6.0)
-      public_suffix (>= 2.0.2, < 4.0)
+    addressable (2.7.0)
+      public_suffix (>= 2.0.2, < 5.0)
     arbre (1.2.1)
       activesupport (>= 3.0.0)
     arel (9.0.0)
@@ -206,26 +202,25 @@ GEM
       babel-source (>= 4.0, < 6)
       execjs (~> 2.0)
     bcrypt (3.1.13)
-    bindex (0.7.0)
-    bootsnap (1.4.4)
+    bindex (0.8.1)
+    bootsnap (1.4.5)
       msgpack (~> 1.0)
     builder (3.2.3)
     byebug (11.0.1)
-    childprocess (1.0.1)
-      rake (< 13.0)
+    childprocess (3.0.0)
     concurrent-ruby (1.1.5)
     crass (1.0.4)
     declarative (0.0.10)
     declarative-option (0.1.0)
     diff-lcs (1.3)
     digest-crc (0.4.1)
-    domain_name (0.5.20180417)
+    domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
-    erubi (1.8.0)
+    erubi (1.9.0)
     execjs (2.7.0)
-    factory_bot (5.0.2)
+    factory_bot (5.1.1)
       activesupport (>= 4.2.0)
-    faraday (0.15.4)
+    faraday (0.16.2)
       multipart-post (>= 1.2, < 3)
     ffi (1.11.1)
     formtastic (3.1.5)
@@ -237,7 +232,7 @@ GEM
       rails (>= 3.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
-    google-api-client (0.30.2)
+    google-api-client (0.32.0)
       addressable (~> 2.5, >= 2.5.1)
       googleauth (>= 0.5, < 0.10.0)
       httpclient (>= 2.8.1, < 3.0)
@@ -245,18 +240,18 @@ GEM
       representable (~> 3.0)
       retriable (>= 2.0, < 4.0)
       signet (~> 0.10)
-    google-cloud-core (1.3.0)
+    google-cloud-core (1.3.1)
       google-cloud-env (~> 1.0)
-    google-cloud-env (1.2.0)
+    google-cloud-env (1.2.1)
       faraday (~> 0.11)
-    google-cloud-storage (1.18.2)
+    google-cloud-storage (1.21.1)
       addressable (~> 2.5)
       digest-crc (~> 0.4)
       google-api-client (~> 0.26)
       google-cloud-core (~> 1.2)
       googleauth (>= 0.6.2, < 0.10.0)
-      mime-types (~> 3.0)
-    googleauth (0.8.1)
+      mini_mime (~> 1.0)
+    googleauth (0.9.0)
       faraday (~> 0.12)
       jwt (>= 1.4, < 3.0)
       memoist (~> 0.16)
@@ -267,18 +262,19 @@ GEM
       actionpack (>= 4.1)
       activesupport (>= 4.1)
     hashie (3.6.0)
+    http-accept (1.7.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     httpclient (2.8.3)
-    i18n (1.6.0)
+    i18n (1.7.0)
       concurrent-ruby (~> 1.0)
-    i18n-active_record (0.2.2)
+    i18n-active_record (0.3.0)
       i18n (>= 0.5.0)
-    inherited_resources (1.10.0)
-      actionpack (>= 5.0, < 6.0)
+    inherited_resources (1.11.0)
+      actionpack (>= 5.0, < 6.1)
       has_scope (~> 0.6)
-      railties (>= 5.0, < 6.0)
-      responders (~> 2.0)
+      railties (>= 5.0, < 6.1)
+      responders (>= 2, < 4)
     jquery-rails (4.3.5)
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
@@ -296,11 +292,10 @@ GEM
       activerecord
       kaminari-core (= 1.1.1)
     kaminari-core (1.1.1)
-    listen (3.1.5)
-      rb-fsevent (~> 0.9, >= 0.9.4)
-      rb-inotify (~> 0.9, >= 0.9.7)
-      ruby_dep (~> 1.2)
-    loofah (2.2.3)
+    listen (3.2.0)
+      rb-fsevent (~> 0.10, >= 0.10.3)
+      rb-inotify (~> 0.9, >= 0.9.10)
+    loofah (2.3.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
@@ -309,28 +304,28 @@ GEM
       mimemagic (~> 0.3.2)
     memoist (0.16.0)
     method_source (0.9.2)
-    mime-types (3.2.2)
+    mime-types (3.3)
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2019.0331)
+    mime-types-data (3.2019.0904)
     mimemagic (0.3.3)
-    mini_mime (1.0.1)
+    mini_mime (1.0.2)
     mini_portile2 (2.4.0)
-    minitest (5.11.3)
-    monetize (1.9.1)
+    minitest (5.12.2)
+    monetize (1.9.2)
       money (~> 6.12)
     money (6.13.4)
       i18n (>= 0.6.4, <= 2)
-    msgpack (1.3.0)
+    msgpack (1.3.1)
     multi_json (1.13.1)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
     netrc (0.11.0)
-    newrelic_rpm (5.4.0.347)
-    nio4r (2.3.1)
-    nokogiri (1.10.3)
+    newrelic_rpm (6.7.0.359)
+    nio4r (2.5.2)
+    nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
-    oauth2 (1.4.1)
-      faraday (>= 0.8, < 0.16.0)
+    oauth2 (1.4.2)
+      faraday (>= 0.8, < 2.0)
       jwt (>= 1.0, < 3.0)
       multi_json (~> 1.3)
       multi_xml (~> 0.5)
@@ -344,10 +339,12 @@ GEM
     orm_adapter (0.5.0)
     os (1.0.1)
     pg (1.1.4)
-    pg_search (2.2.0)
+    pg_search (2.3.0)
       activerecord (>= 4.2)
       activesupport (>= 4.2)
-    public_suffix (3.1.0)
+    polyamorous (2.3.0)
+      activerecord (>= 5.0)
+    public_suffix (4.0.1)
     rack (2.0.7)
     rack-proxy (0.6.5)
       rack
@@ -369,7 +366,7 @@ GEM
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
-    rails-html-sanitizer (1.0.4)
+    rails-html-sanitizer (1.2.0)
       loofah (~> 2.2, >= 2.2.2)
     rails-i18n (5.1.3)
       i18n (>= 0.7, < 2)
@@ -380,56 +377,47 @@ GEM
       method_source
       rake (>= 0.8.7)
       thor (>= 0.19.0, < 2.0)
-    rake (12.3.2)
-    ransack (2.1.1)
+    rake (13.0.0)
+    ransack (2.3.0)
       actionpack (>= 5.0)
       activerecord (>= 5.0)
       activesupport (>= 5.0)
       i18n
+      polyamorous (= 2.3.0)
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
-    redcarpet (3.4.0)
-    regexp_parser (1.5.1)
+    redcarpet (3.5.0)
+    regexp_parser (1.6.0)
     representable (3.0.4)
       declarative (< 0.1.0)
       declarative-option (< 0.2.0)
       uber (< 0.2.0)
     request_store (1.4.1)
       rack (>= 1.4)
-    responders (2.4.1)
-      actionpack (>= 4.2.0, < 6.0)
-      railties (>= 4.2.0, < 6.0)
-    rest-client (2.0.2)
+    responders (3.0.0)
+      actionpack (>= 5.0)
+      railties (>= 5.0)
+    rest-client (2.1.0)
+      http-accept (>= 1.7.0, < 2.0)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
     retriable (3.1.2)
-    ruby_dep (1.5.0)
-    rubyzip (1.2.3)
-    sass (3.7.4)
-      sass-listen (~> 4.0.0)
-    sass-listen (4.0.0)
-      rb-fsevent (~> 0.9, >= 0.9.4)
-      rb-inotify (~> 0.9, >= 0.9.7)
-    sass-rails (5.0.7)
-      railties (>= 4.0.0, < 6)
-      sass (~> 3.1)
-      sprockets (>= 2.8, < 4.0)
-      sprockets-rails (>= 2.0, < 4.0)
-      tilt (>= 1.1, < 3)
-    sassc (2.0.1)
+    rubyzip (1.3.0)
+    sass-rails (6.0.0)
+      sassc-rails (~> 2.1, >= 2.1.1)
+    sassc (2.2.1)
       ffi (~> 1.9)
-      rake
     sassc-rails (2.1.2)
       railties (>= 4.0.0)
       sassc (>= 2.0)
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    selenium-webdriver (3.142.3)
-      childprocess (>= 0.5, < 2.0)
-      rubyzip (~> 1.2, >= 1.2.2)
+    selenium-webdriver (3.142.6)
+      childprocess (>= 0.5, < 4.0)
+      rubyzip (>= 1.2.2)
     signet (0.11.0)
       addressable (~> 2.3)
       faraday (~> 0.9)
@@ -452,11 +440,11 @@ GEM
       sprockets (>= 3.0.0)
     thor (0.20.3)
     thread_safe (0.3.6)
-    tilt (2.0.9)
+    tilt (2.0.10)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
     uber (0.1.0)
-    uglifier (4.1.20)
+    uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
     unf (0.1.4)
       unf_ext
@@ -468,7 +456,7 @@ GEM
       activemodel (>= 5.0)
       bindex (>= 0.4.0)
       railties (>= 5.0)
-    webdrivers (4.0.1)
+    webdrivers (4.1.2)
       nokogiri (~> 1.6)
       rubyzip (~> 1.0)
       selenium-webdriver (>= 3.0, < 4.0)

@@ -1,14 +1,14 @@
 class Item < ApplicationRecord
+  include ::ImageHelper
+  include PgSearch::Model
   include Rails.application.routes.url_helpers
 
   belongs_to        :location
   acts_as_mappable  through: :location
   delegate :latitude, :longitude, to: :location, allow_nil: true
 
-  include ::ImageHelper
   has_one_attached  :image, acl: 'public'
 
-  include PgSearch
   multisearchable against: [:name, :description], additional_attributes: -> (item) {
     {
       latitude: item.latitude,
