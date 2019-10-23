@@ -1,0 +1,14 @@
+<% if @search_documents %>
+  <% if @search_documents.count.positive? %>
+    <div class='newest-items__header'>
+      <%= t('lm.text.search_results', default: 'Search Results') %>
+    </div>
+    <div class="newest-items" id="newest-items">
+      <%= render partial: 'document', collection: @search_documents %>
+    </div>
+  <% else %>
+    <div class='newest-items__header'>
+      <%= t('lm.search.no_result', default: "There is no '%{text}' in this area", text: params[:query]) %>
+    </div>
+  <% end %>
+<% end %>

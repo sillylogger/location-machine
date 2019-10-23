@@ -1,3 +1,6 @@
+utils = require('not-jquery');
+itemUtils = require('item');
+
 let googleMap = null,
   lastMarker = null,
   lastInfoWindow = null,
@@ -29,6 +32,7 @@ let mapOptions = {
 
 class Map {
   constructor(rawCenterString) {
+    this.setSearchQuery('');
     if (!window.google) {
       console.log('map.constructor - google not loaded');
       return false;
@@ -86,31 +90,67 @@ class Map {
     }
   }
 
+  setBounds(bounds) {
+    this.bounds = bounds;
+  }
+
+  setSearchQuery(query) {
+    this.searchQuery = query;
+  }
+
+  getSearchParams() {
+    return new URLSearchParams({
+      'bounds[south_west]': this.bounds[0],
+      'bounds[north_east]': this.bounds[1],
+      query: this.searchQuery,
+    });
+  }
+
+  fetchLocationsAndRenderOnMap() {
+    utils.showSpinners();
+    fetch(`/locations.json?${this.getSearchParams().toString()}`)
+      .then(response => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response.json();
+      })
+      .then(responseAsJson => {
+        this.placeLocations(responseAsJson);
+        utils.hideSpinners();
+      })
+      .catch(err => {
+        console.log('Fetch Error: ', err);
+        utils.hideSpinners();
+      });
+    if (this.searchQuery != '') {
+      itemUtils.pullSearchResults(
+        `/locations.js?${this.getSearchParams().toString()}`,
+      );
+    }
+  }
+
   placeLocationsInBounds() {
     googleMap.addListener('idle', () => {
       let mapBounds = googleMap.getBounds();
       let swPoint = mapBounds.getSouthWest();
       let nePoint = mapBounds.getNorthEast();
 
-      let params = new URLSearchParams({
-        'bounds[south_west]': [swPoint.lat(), swPoint.lng()],
-        'bounds[north_east]': [nePoint.lat(), nePoint.lng()],
-      });
-
-      fetch(`/locations.json?${params.toString()}`)
-        .then(response => {
-          if (!response.ok) {
-            throw Error(response.statusText);
-          }
-          return response.json();
-        })
-        .then(responseAsJson => {
-          this.placeLocations(responseAsJson);
-        })
-        .catch(err => {
-          console.log('Fetch Error: ', err);
-        });
+      this.setBounds([
+        [swPoint.lat(), swPoint.lng()],
+        [nePoint.lat(), nePoint.lng()],
+      ]);
+      this.fetchLocationsAndRenderOnMap();
     });
+  }
+
+  onSearchSubmit(query, event) {
+    this.setSearchQuery(query);
+    this.fetchLocationsAndRenderOnMap();
+    if (this.searchQuery == '') {
+      itemUtils.pullLatestItems();
+    }
+    event.preventDefault();
   }
 
   setLastMarker(marker) {
@@ -258,22 +298,17 @@ class Map {
       location => !markerIds.includes(location.id),
     );
 
-    // TODO:
-    // remove outdated markers, removal is good but it looks weird
-    // when change slightly on the map makes the markers show on/off
-    // so I disabled this feature by now
-    //
-    //let locationIds = locations.map(location => location.id);
-    //let keptMarkers = markers.filter(marker => locationIds.includes(marker.id));
-    //let outdatedMarkerIds = markers
-    //.filter(marker => !locationIds.includes(marker.id))
-    //.map(marker => marker.id);
-    //markers.map(marker => {
-    //if (outdatedMarkerIds.includes(marker.id)) {
-    //marker.setMap(null);
-    //}
-    //});
-    //markers = keptMarkers;
+    let locationIds = locations.map(location => location.id);
+    let keptMarkers = markers.filter(marker => locationIds.includes(marker.id));
+    let outdatedMarkerIds = markers
+      .filter(marker => !locationIds.includes(marker.id))
+      .map(marker => marker.id);
+    markers.map(marker => {
+      if (outdatedMarkerIds.includes(marker.id)) {
+        marker.setMap(null);
+      }
+    });
+    markers = keptMarkers;
 
     // add new markers
     newLocations.forEach(this.placeLocation.bind(this));

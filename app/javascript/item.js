@@ -1,15 +1,18 @@
 utils = require('not-jquery');
 
-appendNewestItemsToHomePage = body => {
-  document
-    .getElementById('items_container')
-    .insertAdjacentHTML('beforeend', body);
+renderItemsToHomePage = body => {
+  document.getElementById('items_container').innerHTML = body;
   utils.hideSpinners();
 };
 
 let item = {
   pullLatestItems: () => {
-    utils.callAjax('/items.js', appendNewestItemsToHomePage);
+    utils.showSpinners();
+    utils.callAjax('/items.js', renderItemsToHomePage);
+  },
+  pullSearchResults: url => {
+    utils.showSpinners();
+    utils.callAjax(url, renderItemsToHomePage);
   },
 };
 

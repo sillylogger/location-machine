@@ -4,6 +4,11 @@
   <%= spinner %>
 </div>
 
+<%= form_tag locations_path, class: 'search-bar', id: 'search_form' do %>
+  <%= icon 'search2', class: 'search-bar__icon' %>
+  <%= search_field_tag :query, nil, placeholder: t('lm.text.search', default: 'Search'), name: :query %>
+<% end %>
+
 <div id='items_container'></div>
 
 <script>
@@ -21,6 +26,8 @@
     var locations = <%= @locations.to_json.html_safe %>;
     map.placeLocations(locations);
     map.placeLocationsInBounds();
+    map.setSearchQuery("<%= params[:query] %>")
+    document.getElementById("search_form").onsubmit = event => map.onSearchSubmit(event.target.elements.query.value, event);
   });
   window.addEventListener('resize', () => {
     lm.utils.setViewportHeight();

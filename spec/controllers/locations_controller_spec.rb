@@ -22,11 +22,9 @@ describe LocationsController do
 
     context 'json format' do
       context 'no bound' do
-        it 'returns newest locations' do
+        it 'returns no location' do
           get :index, format: :json
-          expect(response.body).to include location_1.name
-          expect(response.body).to include location_2.name
-          expect(response.body).to include location_3.name
+          expect(JSON.parse(response.body)).to be_empty
         end
       end
 

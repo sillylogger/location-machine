@@ -1,19 +1,30 @@
 class LocationsController < ApplicationController
-
   before_action :authenticate_user!,  except: [:index, :show]
   before_action :set_location,        only:   [:edit, :update, :destroy]
   before_action :get_user_coordinate, only: [:index]
 
+  protect_from_forgery except: :index
+
   # GET /
   def index
-    @locations = Location.for_display
-    @locations = @locations.in_bounds(bounds_params) if bounds_params.present?
-    @locations = @locations.newest.limit(Setting.site_limit_location)
+    if params[:query].present?
+      service = GetLocationsBySearch.call({ query: params[:query], bounds: bounds_params })
+      @search_documents = service.search_documents
+      @locations = service.locations
+      @search_documents = @search_documents.map do |document|
+        document.distance = document.distance_to(@user_coordinate.to_latlng)
+        document
+      end
+    else
+      @locations = LocationQuery.new({ query: params[:query], bounds: bounds_params }).match_in_bounds
+    end
+
     @latest_coordinate = @current_user.latest_coordinate if @current_user
 
     respond_to do |format|
       format.html
-      format.json { render json: @locations.to_json}
+      format.json { render json: @locations.to_json }
+      format.js { render layout: false }
     end
   end
 
@@ -85,5 +96,4 @@ class LocationsController < ApplicationController
   def bounds_params
     [params[:bounds][:south_west], params[:bounds][:north_east]] if params[:bounds].present?
   end
-
 end
