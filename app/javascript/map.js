@@ -357,8 +357,8 @@ class Map {
       return;
     }
 
-    document.cookie = `latitude=${coordinate.latitude}`;
-    document.cookie = `longitude=${coordinate.longitude}`;
+    utils.setCookie('latitude', coordinate.latitude);
+    utils.setCookie('longitude', coordinate.longitude);
 
     let latLng = this.convertCoordinateToLatLng(coordinate);
 
