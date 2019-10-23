@@ -28,6 +28,7 @@
     map.placeLocationsInBounds();
     map.setSearchQuery("<%= params[:query] %>")
     document.getElementById("search_form").onsubmit = event => map.onSearchSubmit(event.target.elements.query.value, event);
+    lm.search.onHomePageLoadFocusOnSearchBox();
   });
   window.addEventListener('resize', () => {
     lm.utils.setViewportHeight();
