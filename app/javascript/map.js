@@ -253,6 +253,10 @@ class Map {
     latId = latElementId;
     lngId = lngElementId;
 
+    googleMap.addListener('click', e => {
+      this.addDraggableMarker(e.latLng);
+    });
+
     searchBox.addListener('places_changed', () => {
       let places = searchBox.getPlaces();
 
