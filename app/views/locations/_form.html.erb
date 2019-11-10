@@ -77,7 +77,7 @@
     document.getElementById('location_address').addEventListener('input', event => {
       const isError = document.getElementById('location_address') != '' && document.getElementById('location_latitude').value == '';
       if (isError) {
-        event.target.setCustomValidity('Can not find this address on map, please find and pin location on map');
+        event.target.setCustomValidity("<%= t('lm.location.address.not_found', default: 'Can not find this address on map, please find and pin location on map') %>");
       } else {
         event.target.setCustomValidity('');
       }
