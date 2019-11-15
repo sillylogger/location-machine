@@ -1,5 +1,6 @@
 utils = require('not-jquery');
 itemUtils = require('item');
+locationUtils = require('location');
 
 let googleMap = null,
   lastMarker = null,
@@ -255,6 +256,7 @@ class Map {
 
     googleMap.addListener('click', e => {
       this.addDraggableMarker(e.latLng);
+      locationUtils.validateAddress();
     });
 
     searchBox.addListener('places_changed', () => {

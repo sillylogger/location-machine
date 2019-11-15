@@ -90,6 +90,14 @@
 </html>
 
 <script>
+  // TODO: will figure out better way to pass translation to client
+  window.lm.messages = {
+    location: {
+      errors: {
+        address: "<%= t('lm.location.address.not_found', default: 'Can not find this address on map, please find and pin location on map') %>"
+      }
+    }
+  }
   lm.utils.ready(() => {
     document.getElementById('search').addEventListener('click', lm.search.clickOnSearchHandler);
   });
