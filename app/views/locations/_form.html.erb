@@ -72,6 +72,12 @@
 
 <% end %>
 
+<script>
+  lm.utils.ready(function() {
+    document.getElementById('location_address').addEventListener('input', lm.location.validateAddress);
+  });
+</script>
+
 <!--
   TODO add js to:
   - set a pin to your current location on the map

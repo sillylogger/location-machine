@@ -12,6 +12,7 @@ window.lm.utils = require('not-jquery');
 window.lm.Map = require('map');
 window.lm.item = require('item');
 window.lm.search = require('search');
+window.lm.location = require('location');
 
 import Rails from 'rails-ujs';
 Rails.start();
