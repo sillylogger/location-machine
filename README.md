@@ -106,7 +106,9 @@ In order to login via Facebook's OAuth, you are going to need to use SSL locally
 The best way to do this is use [`mkcert`](https://github.com/FiloSottile/mkcert) to write trusted self-signed certs to `config/localhost.key` and `config/localhost.crt` with:
 
 ```
-$(go env GOPATH)/bin/mkcert -cert-file config/localhost.crt -key-file config/localhost.key localhost 127.0.0.1 ::1
+mkcert localhost 127.0.0.1 ::1
+mv localhost+2.pem config/localhost.crt
+mv localhost+2-key.pem config/localhost.key
 ```
 
 Then you can start `puma` with:

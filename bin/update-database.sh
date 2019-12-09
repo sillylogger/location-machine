@@ -3,7 +3,7 @@
 heroku pg:backups:capture
 mv -f db/production.bak db/production-last.bak
 wget `heroku pg:backups:url` -O db/production.bak
-pg_restore --verbose --clean --no-acl --no-owner -h localhost -d location-machine-sql-development ./db/production.bak
+pg_restore --verbose --clean --no-acl --no-owner -d location-machine-sql-development ./db/production.bak
 
 printf "\n\n"
 printf "Don't forget:\n\n"
