@@ -73,11 +73,11 @@
     <a class='actions__action' href='<%= root_path %>'>
       <%= icon 'home4' %>
     </a>
-    <a class='actions__action' name='create location' href='<%= new_location_path %>'>
+    <a class='actions__action' name='create location' id='create_location' href='<%= new_location_path %>'>
       <%= icon 'plus3' %>
     </a>
     <% if not current_page?(root_url) %>
-      <a class='actions__action' name="share location" id="share_location" href="#" hidden="true">
+      <a class='actions__action' name='share location' id='share_location' href='#' hidden='true'>
         <%= icon 'share' %>
       </a>
     <% end %>
@@ -105,5 +105,7 @@
   }
   lm.utils.ready(() => {
     document.getElementById('search').addEventListener('click', lm.search.clickOnSearchHandler);
+
+    var share = new lm.Share('share_location', 'create_location');
   });
 </script>
